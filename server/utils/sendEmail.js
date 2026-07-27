@@ -1,8 +1,8 @@
-const { Resend } = require("resend");
+const sgMail = require("@sendgrid/mail");
 
 const sendEmail = async (options) => {
-  if (!process.env.RESEND_API_KEY) {
-    console.log("\n⚠️ [WARNING]: RESEND_API_KEY not found in .env");
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log("\n⚠️ [WARNING]: SENDGRID_API_KEY not found in .env");
     console.log("Mocking email delivery instead of failing.");
     console.log("-----------------------------------------");
     console.log(`To: ${options.email || options.to}`);
@@ -13,7 +13,7 @@ const sendEmail = async (options) => {
   }
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const logoUrl = "https://res.cloudinary.com/dzf4st3t2/image/upload/v1777659922/kambata-travel/assets/picsvg_download_psbhbc.png";
     const year = new Date().getFullYear();
     let emailBodyHtml = "";
@@ -111,17 +111,18 @@ const sendEmail = async (options) => {
       </html>
     `;
 
-    const data = await resend.emails.send({
-      from: process.env.EMAIL_FROM || "Kambata Travel <onboarding@resend.dev>",
+    const msg = {
+      from: process.env.EMAIL_FROM || "Kambata Travel <kambatatravel@gmail.com>",
       to: options.email || options.to,
       subject: options.subject,
       html: finalHtml,
-      attachments: options.attachments || [],
-    });
+      text: options.message || "Please view this email in an HTML compatible client.",
+    };
 
-    console.log("Resend Message sent:", data);
+    const response = await sgMail.send(msg);
+    console.log("SendGrid Message sent:", response[0].statusCode);
   } catch (error) {
-    console.error("Error sending email via Resend:", error.message);
+    console.error("Error sending email via SendGrid:", error.response ? error.response.body : error.message);
     throw error;
   }
 };
