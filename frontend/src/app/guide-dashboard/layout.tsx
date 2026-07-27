@@ -241,7 +241,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
                   className="w-full h-full object-cover"
                 />
               </div>
-              {(user?.guideStatus === "approved" || user?.guideStatus === "verified") && (
+              {((user?.guideStatus as any) === "approved" || (user?.guideStatus as any) === "verified") && (
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#10B981] rounded-full flex items-center justify-center border-2 border-white dark:border-[#0B1120] shadow-sm pointer-events-none">
                   <ShieldCheck size={10} className="text-white" />
                 </div>
