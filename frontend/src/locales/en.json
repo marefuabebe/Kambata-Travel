@@ -1,0 +1,2007 @@
+{
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "tours": "Tours",
+    "heritage": "Heritage",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "chatbot": {
+    "online": "Online • Live Travel Data",
+    "discover": "Discover",
+    "zone": "Kambata Zone",
+    "subtitle": "Waterfalls, culture, traditions, warm people, and unforgettable experiences await you.",
+    "tryAsking": "Try asking about Kambata...",
+    "popularDestinations": "Popular Destinations in Kambata",
+    "viewAll": "View all",
+    "upcomingTours": "Upcoming Tours",
+    "availableGuides": "Available Guides",
+    "travelTip": "Travel Tip",
+    "tipText": "The best time to visit Kambata is during the dry season (October to March) for pleasant weather and clear views.",
+    "placeholder": "Ask anything about tours, packages, hotels...",
+    "seatsLeft": "Seats Left",
+    "newConversation": "New Conversation",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "theme": "Theme",
+    "concierge": "Concierge",
+    "authenticated": "Authenticated",
+    "heroBtn1": "Explore\nDestinations",
+    "heroBtn2": "Waterfalls",
+    "heroBtn3": "Cultural\nExperiences",
+    "heroBtn4": "Local\nGuides",
+    "heroBtn5": "My\nBookings",
+    "heroBtn6": "Custom Tour",
+    "sug1": "Explore Tours",
+    "sug1p": "What tours are available?",
+    "sug2": "Packages",
+    "sug2p": "Show me travel packages",
+    "sug3": "Hotels",
+    "sug3p": "Find hotels in Kambata Zone",
+    "sug4": "My Trips",
+    "sug4p": "Check my upcoming trips",
+    "sug5": "Payments",
+    "sug5p": "Check my payment status",
+    "sug6": "Travel Advice",
+    "sug6p": "Tell me about Kambata culture",
+    "hist1": "What tours are available?",
+    "hist2": "Check my upcoming trips",
+    "hist3": "Hotels in Durame",
+    "hist4": "Hambaricho Mountain trekking",
+    "expertGuide": "Expert Guide",
+    "culturalGuide": "Cultural Guide",
+    "highlandTrekking": "Highland Trekking",
+    "waterfall": "The Majestic Doje'e Waterfall"
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back Explorer",
+    "continueJourney": "Continue your journey through the heart of Kambata",
+    "discoverHidden": "Discover Hidden Destinations",
+    "bookGuides": "Book Local Guides",
+    "experienceCulture": "Experience Authentic Culture",
+    "email": "Email Address",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot Password?",
+    "agreeTo": "By logging in, you agree to our",
+    "terms": "Terms",
+    "and": "and",
+    "privacy": "Privacy Policy",
+    "signingIn": "Signing In...",
+    "signIn": "Sign In",
+    "rating": "Rating",
+    "travelers": "Travelers",
+    "secureLogin": "Secure Login",
+    "or": "OR",
+    "continueGoogle": "Continue with Google",
+    "continueFacebook": "Continue with Facebook",
+    "noAccount": "Don't have an account?",
+    "startJourney": "Start Your Journey",
+    "createAccount": "Create an Account",
+    "joinKambata": "Join Kambata Travel today",
+    "fullName": "Full Name",
+    "confirmPassword": "Confirm Password",
+    "creating": "Creating Account...",
+    "signUp": "Sign Up",
+    "haveAccount": "Already have an account?",
+    "createDesc": "Create your account and discover the heart of Kambata.",
+    "signupGoogle": "Sign up with Google",
+    "signupFacebook": "Sign up with Facebook",
+    "alreadyMember": "Already a member?"
+  },
+  "footer": {
+    "description": "The official portal for discovering the ancient culture, majestic landscapes, and living history of the Kambaata Zone, Ethiopia.",
+    "usefulLinks": "Useful Links",
+    "about": "About",
+    "contact": "Contact",
+    "explorer": "Explorer",
+    "tours": "Tours",
+    "gallery": "Gallery",
+    "contactUs": "Contact Us",
+    "address": "Durame, Kambata Zone",
+    "country": "Ethiopia",
+    "joinJournal": "Join the Journal",
+    "journalDesc": "Get authentic stories, travel tips, and early access to tour dates.",
+    "rights": "© 2026 Kambata Travel. All rights reserved.",
+    "crafted": "Crafted for the Highlands.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "enterEmail": "Enter your email",
+    "joining": "Joining...",
+    "joinNow": "Join Now",
+    "error": "Something went wrong. Please try again."
+  },
+  "modal": {
+    "requestSuccess": "Request submitted successfully!",
+    "requestFailed": "Failed to submit request.",
+    "requestReceived": "Request Received!",
+    "matchingGuide": "We are matching you with the best available guide. You will be notified soon.",
+    "step": "Step",
+    "of": "of",
+    "customDate": "Request Custom Date",
+    "privateTour": "Request Private Tour",
+    "joinWaitlist": "Join Waitlist",
+    "whenTravel": "When do you want to travel?",
+    "startDate": "Start Date",
+    "endDateOpt": "End Date (Optional)",
+    "whoTravel": "Who is traveling?",
+    "numTravelers": "Number of Travelers",
+    "specificReqs": "Any specific requirements?",
+    "preferredTime": "Preferred Time",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "flexible": "Flexible",
+    "specialNotes": "Special Notes",
+    "notesPlaceholder": "Tell us about any specific needs or preferences...",
+    "reviewReq": "Review your request",
+    "dates": "Dates",
+    "notSet": "Not set",
+    "pax": "Pax",
+    "notes": "Notes",
+    "back": "Back",
+    "continue": "Continue",
+    "submitting": "Submitting...",
+    "submitRequest": "Submit Request"
+  },
+  "home": {
+    "welcomeTag": "WELCOME TO KAMBATA",
+    "heroTitle1": "Explore the Untouched",
+    "heroTitle2": "Beauty of Kambata Zone",
+    "heroSub": "From breathtaking landscapes and rich culture to warm communities and unforgettable adventures. Kambata welcomes you.",
+    "startAdventure": "Start Your Adventure",
+    "features": {
+      "localExp": "Local Experiences",
+      "localExpDesc": "Authentic & community-based",
+      "expertGuides": "Expert Local Guides",
+      "expertGuidesDesc": "Friendly, professional & local",
+      "safeComfort": "Safe & Comfortable",
+      "safeComfortDesc": "Your safety is our priority",
+      "sustainable": "Sustainable Tourism",
+      "sustainableDesc": "Protecting nature & culture"
+    },
+    "search": {
+      "whereTo": "Where to?",
+      "whereToPlaceholder": "Search destinations...",
+      "category": "What are you looking for?",
+      "categoryPlaceholder": "Select category",
+      "duration": "Duration",
+      "durationPlaceholder": "Any duration",
+      "travelers": "Travelers",
+      "travelersPlaceholder": "1 Traveler",
+      "button": "Search",
+      "categories": {
+        "nature": "Nature",
+        "waterfalls": "Waterfalls",
+        "hiking": "Hiking",
+        "culture": "Culture",
+        "heritage": "Heritage",
+        "festivals": "Festivals"
+      }
+    },
+    "categoryTag": "DISCOVER YOUR PASSION",
+    "categoryTitle": "Explore By Category",
+    "destinationsTag": "TOP DESTINATIONS",
+    "destinationsTitle": "Popular Destinations",
+    "inKambata": "in Kambata",
+    "expTag": "EXPERIENCE THE REAL KAMBATA",
+    "expCulture": "Culture.",
+    "expNature": "Nature.",
+    "expPeople": "People.",
+    "expAllInOne": "All in One Place.",
+    "eventsComingSoon": "COMING SOON ....",
+    "masalaFestival": "Masala Festival",
+    "toursTag": "FEATURED TOURS",
+    "whyTravelers": "WHY TRAVELERS LOVE KAMBATA",
+    "faqTitle": "Frequently Asked Questions",
+    "ctaTag": "READY FOR YOUR NEXT ADVENTURE?",
+    "ctaTitle": "Let's Explore Kambata Together!",
+    "ctaWhether": "Whether you're looking for adventure",
+    "ctaRelaxation": "relaxation",
+    "ctaCulture": "culture",
+    "ctaOrNature": "or nature",
+    "ctaHasSomething": "— Kambata has something unforgettable for you.",
+    "bookTour": "Book a Tour",
+    "contactUs": "Contact Us",
+    "destinationsDesc": "Experience Kambata's beauty through their integrated paths, where verdant peaks meet living heritage.",
+    "expDesc": "Discover vibrant traditions, breathtaking landscapes, rich history, and the warmth of the Kambata people.",
+    "expFeat1": "Authentic Local Experiences",
+    "expFeat2": "Community Centered",
+    "expFeat3": "Sustainable Tourism",
+    "expFeat4": "Support Local Communities",
+    "days": "DAYS",
+    "hours": "HOURS",
+    "minutes": "MINUTES",
+    "seconds": "SECONDS",
+    "viewAllTours": "View All Tours",
+    "stillQuestions": "Still have questions?",
+    "faq": {
+      "q1": "How do I book a tour?",
+      "a1": "You can book a tour directly through our website by browsing the Tours page, selecting your preferred package, and following the easy checkout process.",
+      "q2": "Do you support offline booking?",
+      "a2": "Yes! If you prefer to book in person or pay via bank transfer, you can visit our Kambata Zone office in Durame town or call our support line.",
+      "q3": "Can I cancel my booking?",
+      "a3": "Absolutely. We offer a full refund if you cancel at least 48 hours before your scheduled tour date. Please check our cancellation policy for more details.",
+      "q4": "Is transportation included?",
+      "a4": "Most of our guided tours include local transportation from Durame town to the destination. However, this varies by package, so please check the specific tour details.",
+      "q5": "Are guides local?",
+      "a5": "Yes, all our guides are certified locals from the Kambata region. They offer deep cultural insights and know the history and hidden gems of the area intimately."
+    },
+    "stats": {
+      "destinations": "Destinations<br />To Explore",
+      "travelers": "Happy<br />Travelers",
+      "guides": "Local Guides<br />& Experts",
+      "satisfaction": "Satisfaction<br />Rate"
+    },
+    "tours": {
+      "perPerson": "per person",
+      "viewAll": "View All Tours"
+    },
+    "whyChooseUs": {
+      "tag": "DISCOVER KAMBATA",
+      "title": "Start Your Next Adventure With Confidence",
+      "desc": "Experience breathtaking landscapes, rich cultural heritage, professional guides, and unforgettable adventures across the Kambata region. We connect travelers with authentic experiences while ensuring comfort, safety, and memorable journeys.",
+      "card_1_title": "Cultural Experiences",
+      "card_1_desc": "Explore authentic Kambata traditions, local communities, food, and heritage.",
+      "card_2_title": "Guided Adventures",
+      "card_2_desc": "Professional local guides leading unforgettable journeys.",
+      "card_3_title": "Private Tours",
+      "card_3_desc": "Personalized travel experiences tailored to travelers.",
+      "card_4_title": "Local Travel Experts",
+      "card_4_desc": "Expert destination planning and local insights.",
+      "benefit_1": "Verified Local Guides",
+      "benefit_2": "Safe & Secure Bookings",
+      "benefit_3": "Authentic Cultural Experiences",
+      "benefit_4": "Flexible Tour Packages",
+      "benefit_5": "Instant Support",
+      "btnExplore": "Explore Tours",
+      "btnLearn": "Learn More"
+    },
+    "popularTours": {
+      "tag": "Explore Amazing Destinations",
+      "title": "Popular Tours",
+      "desc": "Discover the most loved destinations and unforgettable experiences handpicked by our travel experts.",
+      "descShort": "Explore the breathtaking highlights and experience the rich culture of the local people.",
+      "viewAll": "View All Tours"
+    }
+  },
+  "explore": {
+    "hero": {
+      "tag": "DISCOVER KAMBATA",
+      "title": "Explore Hidden Wonders of Kambata",
+      "sub": "Experience breathtaking mountains, waterfalls, rich culture, and unforgettable local adventures.",
+      "btnPrimary": "Explore Destinations",
+      "btnSecondary": "Watch Story",
+      "scroll": "Scroll Down"
+    },
+    "search": {
+      "labelDest": "Search destination",
+      "placeholderDest": "Where do you want to go?",
+      "labelCat": "Category",
+      "catAll": "All Categories",
+      "catAdv": "Adventure",
+      "catCul": "Culture",
+      "catNat": "Nature",
+      "catRel": "Relax",
+      "catHer": "Heritage",
+      "catHik": "Hiking",
+      "labelDist": "District",
+      "distAll": "All Districts",
+      "labelExp": "Experience",
+      "expAll": "All Experiences",
+      "expGui": "Guided",
+      "expSelf": "Self-Guided",
+      "expPri": "Private",
+      "labelDur": "Duration",
+      "durAny": "Any Duration",
+      "dur1": "1 Day",
+      "dur2": "2 Days",
+      "dur3": "3-5 Days",
+      "dur4": "1 Week+",
+      "btnExplore": "Explore",
+      "btnClear": "Clear Filters",
+      "alert": "Please select at least one filter before searching."
+    },
+    "popular": {
+      "tag": "TOP PLACES TO VISIT",
+      "title": "Popular Destinations",
+      "viewAll": "View All Destinations",
+      "desc": "Explore the breathtaking beauty and rich culture of this amazing destination in Kambata."
+    },
+    "categories": {
+      "tag": "DISCOVER YOUR PASSION",
+      "title": "Explore By Category",
+      "Mountains": "Mountains",
+      "Waterfalls": "Waterfalls",
+      "Villages": "Villages",
+      "Culture": "Culture",
+      "Photography": "Photography",
+      "Nature": "Nature",
+      "Hiking": "Hiking",
+      "Heritage": "Heritage"
+    },
+    "featured": {
+      "tag": "FEATURED DESTINATION",
+      "title": "Ajora Falls",
+      "loc": "Damboya District, Kambata Zone",
+      "desc": "The highest waterfall in Kambata and one of the most stunning waterfalls in Ethiopia. A breathtaking view surrounded by lush vegetation and natural beauty.",
+      "bestTime": "Best Time",
+      "bestTimeVal": "Oct - May",
+      "duration": "Duration",
+      "durationVal": "1 Day",
+      "difficulty": "Difficulty",
+      "difficultyVal": "Easy",
+      "guide": "Guide",
+      "guideVal": "Available",
+      "btn": "Explore This Destination"
+    },
+    "heritage": {
+      "tag": "OUR HERITAGE",
+      "title": "Traditional Kambata Culture",
+      "desc": "Experience the warmth of Kambata people, their traditions, music, dance, local cuisine, and unique way of life that has been preserved for generations.",
+      "clothing": "Traditional<br/>Clothing",
+      "dance": "Cultural<br/>Dances",
+      "cuisine": "Local<br/>Cuisine",
+      "tourism": "Community<br/>Tourism",
+      "btn": "Learn More"
+    },
+    "stories": {
+      "tag": "TRAVEL STORIES",
+      "title": "Latest Stories",
+      "viewAll": "View All",
+      "s1Title": "Camping adventure at Bilate Benarraa",
+      "s1Date": "May 12, 2026",
+      "s2Title": "Cultural Experience in Kambata Villages",
+      "s2Date": "May 28, 2026",
+      "s3Title": "A Journey to Ajora Falls",
+      "s3Date": "Jun 20, 2026"
+    },
+    "newsletter": {
+      "tag": "STAY INSPIRED",
+      "title": "Get Inspired For Your Next Adventure",
+      "desc": "Subscribe to our newsletter and get the latest updates on new destinations, travel tips, and exclusive offers.",
+      "placeholder": "Enter your email address...",
+      "btn": "Subscribe"
+    }
+  },
+  "toursPage": {
+    "comingSoon": "COMING SOON ....",
+    "masalaFestival": "MASALA FESTIVAL",
+    "days": "DAYS",
+    "hours": "HOURS",
+    "minutes": "MINUTES",
+    "seconds": "SECONDS",
+    "discoverKambata": "Discover Kambata",
+    "kambataZoneDest": "Kambata Zone Destinations",
+    "exploreBeauty": "Explore the breathtaking beauty, rich culture, and unique attractions found only in the Kambata Zone.",
+    "editorsPicks": "Editor's Picks",
+    "trendingKambata": "Trending in Kambata",
+    "discoverMostBreathtaking": "Discover the most breathtaking and highly-rated experiences handpicked by our local travel experts.",
+    "featured": {
+      "badge1": "#1 Most Popular",
+      "title1": "Ajora Falls Expedition",
+      "desc1": "Experience the thundering power of the majestic twin waterfalls plunging into the deep gorge. A true natural wonder.",
+      "dist1": "Damboya District",
+      "dur1": "1 Day Tour",
+      "title2": "Mount Hambaricho Summit",
+      "desc2": "Conquer the highest peak for panoramic views of the Rift Valley.",
+      "dist2": "Tembaro",
+      "dur2": "Moderate Hike",
+      "title3": "Kambata Cultural Immersion",
+      "desc3": "Experience authentic village life, traditional music, and heritage crafts.",
+      "dist3": "Multiple Villages",
+      "dur3": "Family Friendly"
+    },
+    "filters": {
+      "searchPlaceholder": "Search destinations...",
+      "sortBy": "Sort by:",
+      "applyFilters": "Apply Filters",
+      "noDestinations": "No Destinations Found",
+      "tryAdjusting": "Try adjusting your filters or search terms to discover more beautiful locations in Kambata.",
+      "clearAll": "Clear all filters"
+    },
+    "categories": {
+      "All Categories": "All Categories",
+      "Adventure": "Adventure",
+      "Culture": "Culture",
+      "Nature": "Nature",
+      "Relax": "Relax",
+      "Heritage": "Heritage",
+      "Hiking": "Hiking"
+    },
+    "districts": {
+      "All Districts": "All Districts",
+      "Dara": "Dara",
+      "Tembaro": "Tembaro",
+      "Damboya": "Damboya",
+      "Kachabira": "Kachabira",
+      "Kediida Gamela": "Kediida Gamela",
+      "Multiple Villages": "Multiple Villages"
+    },
+    "travelers": {
+      "Any Travelers": "Any Travelers",
+      "1-2": "1-2",
+      "3-5": "3-5",
+      "6-10": "6-10",
+      "10+": "10+"
+    },
+    "sort": {
+      "Popular": "Popular",
+      "Newest": "Newest",
+      "Price: Low to High": "Price: Low to High",
+      "Price: High to Low": "Price: High to Low"
+    }
+  },
+  "heritagePage": {
+    "hero": {
+      "tag": "KAMBATA HERITAGE",
+      "title": "Discover the Living Culture of Kambata",
+      "sub": "Explore centuries of traditions, language, music, architecture, craftsmanship, and the rich cultural identity of the Kambata people.",
+      "exploreBtn": "Explore Heritage",
+      "watchBtn": "Watch Cultural Story",
+      "scroll": "Scroll Down"
+    },
+    "identity": {
+      "tag": "OUR IDENTITY",
+      "title": "The Heart of Kambata Identity",
+      "desc": "The Kambata people are known for their unity, hard work, rich traditions and deep connection to the land. Our culture has been passed down through generations, shaping our way of life and strengthening our community bonds.",
+      "icons": {
+        "history": "Centuries of History",
+        "traditions": "Rich Traditions",
+        "language": "Unique Language",
+        "heritage": "Living Heritage"
+      }
+    },
+    "categories": {
+      "tag": "EXPLORE OUR HERITAGE",
+      "title": "Heritage Categories",
+      "viewAll": "View All Categories",
+      "clothing": "Traditional Clothing",
+      "music": "Traditional Music",
+      "dance": "Cultural Dance",
+      "threads": "Threads of Time & Tradition",
+      "learnMore": "Learn More"
+    },
+    "timeline": {
+      "tag": "OUR JOURNEY THROUGH TIME",
+      "title": "Kambata Heritage Timeline",
+      "items": [
+        {
+          "title": "Kingdom Era",
+          "desc": "Traditional kingdoms and local leadership emerge, establishing the foundation of Kambata's rich heritage."
+        },
+        {
+          "title": "Traditional Governance",
+          "desc": "Community systems, deeply rooted values, and cultural institutions form a cohesive societal structure."
+        },
+        {
+          "title": "Cultural Preservation",
+          "desc": "Traditions, language, and rituals passed down through generations with immense pride and resilience."
+        },
+        {
+          "title": "Modern Kambata",
+          "desc": "Preserving ancient heritage while dynamically embracing education, modern progress, and sustainable tourism."
+        }
+      ]
+    },
+    "harmony": {
+      "tag": "OUR WAY OF LIFE",
+      "title": "Living in Harmony with Culture & Nature",
+      "desc": "Kambata life is built on respect, community, and togetherness. Our traditions guide our daily lives, from farming the land to celebrating together as one family.",
+      "list": [
+        "Strong family and community values",
+        "Traditional farming and sustainability",
+        "Local markets and craftsmanship",
+        "Indigenous knowledge and wisdom"
+      ],
+      "quote": "\"Our culture is not just our past; it is our present and the future we build together.\"",
+      "author": "- Kambata Elder"
+    },
+    "gallery": {
+      "tag": "CULTURAL GALLERY",
+      "title": "Moments of Our Heritage",
+      "exploreBtn": "Explore Full Gallery"
+    },
+    "festivals": {
+      "tag": "CULTURAL FESTIVALS",
+      "title": "Celebrate Our Traditions",
+      "viewAll": "Discover All Festivals",
+      "items": [
+        {
+          "title": "Kambata New Year",
+          "date": "September",
+          "desc": "Traditional new year celebration with music, dance and ceremonies.",
+          "loc": "Damboya District"
+        },
+        {
+          "title": "Harvest Festival",
+          "date": "August",
+          "desc": "Community celebration of harvest with dance, food and thanksgiving.",
+          "loc": "Tembaro District"
+        },
+        {
+          "title": "Cultural Gathering",
+          "date": "Throughout the Year",
+          "desc": "Traditional gatherings that strengthen unity and cultural identity.",
+          "loc": "All Districts"
+        }
+      ]
+    },
+    "preserving": {
+      "tag": "PRESERVING OUR HERITAGE",
+      "title": "Keeping Our Culture Alive",
+      "desc": "Our heritage is our greatest treasure. We are deeply committed to protecting our language, educating our youth, and maintaining the sacred traditions that define the Kambata people.",
+      "btn": "Support Our Mission",
+      "items": [
+        {
+          "title": "Language",
+          "desc": "Protecting Kambata language for future generations."
+        },
+        {
+          "title": "Education",
+          "desc": "Teaching our values, history and traditions to the youth."
+        },
+        {
+          "title": "Music & Dance",
+          "desc": "Keeping traditional music and dance alive."
+        },
+        {
+          "title": "Heritage Sites",
+          "desc": "Preserving historical and cultural landmarks."
+        }
+      ]
+    },
+    "cta": {
+      "tag": "EXPERIENCE OUR HERITAGE",
+      "title": "Experience Kambata Heritage First-Hand",
+      "desc": "Join our cultural tours and experiences to connect with the heart, traditions and people of Kambata.",
+      "bookBtn": "Book Cultural Tour",
+      "exploreBtn": "Explore Heritage Sites"
+    }
+  },
+  "galleryPage": {
+    "hero": {
+      "tag": "KAMBATA GALLERY",
+      "title": "Moments That Capture The Beauty of Kambata",
+      "sub": "Discover breathtaking landscapes, waterfalls, culture, heritage, and unforgettable traveler experiences."
+    },
+    "stats": {
+      "photos": "Photos",
+      "destinations": "Destinations",
+      "districts": "Districts",
+      "uploads": "Traveler Uploads"
+    },
+    "search": {
+      "placeholder": "Search photos, locations, culture, waterfalls..."
+    },
+    "categories": {
+      "title": "Explore Categories",
+      "landscapes": "Landscapes",
+      "waterfalls": "Waterfalls",
+      "culture": "Culture",
+      "heritage": "Heritage",
+      "travelerMoments": "Traveler Moments"
+    },
+    "collections": {
+      "title": "Featured Collections"
+    },
+    "photos": {
+      "title": "All Photos",
+      "viewPhoto": "View Photo"
+    },
+    "travelers": {
+      "title": "Traveler Moments",
+      "sub": "Captured by those who experienced it"
+    },
+    "cta": {
+      "tag": "BE PART OF OUR STORY",
+      "title": "Have Your Own Kambata Story?",
+      "desc": "Share your favorite memories, photos, and adventures with the community. Help us build a living gallery of our beautiful heritage.",
+      "btn": "Submit Your Photos"
+    }
+  },
+  "aboutPage": {
+    "hero": {
+      "tag": "ABOUT KAMBATA TRAVEL",
+      "title": "Connecting Travelers With The Heart Of Kambata",
+      "sub": "Create authentic experiences that connect visitors with the landscapes, culture and people of Kambata Zone.",
+      "btnStory": "Our Story",
+      "btnVideo": "Watch Documentary"
+    },
+    "stats": {
+      "travelers": "Travelers",
+      "destinations": "Destinations",
+      "guides": "Guides",
+      "satisfaction": "Satisfaction"
+    },
+    "story": {
+      "tag": "OUR STORY",
+      "title": "Born From A Love For Kambata",
+      "p1": "Kambata Travel was founded by local guides and community members who believe in the power of tourism to transform lives while preserving our heritage and environment.",
+      "p2": "We know every hidden trail, every cultural story, and every breathtaking view in Kambata Zone. Our goal is to share our home with the world in a way that benefits our communities and protects our future.",
+      "locallyOwned": {
+        "title": "Locally Owned",
+        "desc": "We are 100% based in Kambata Zone."
+      },
+      "communityFocused": {
+        "title": "Community Focused",
+        "desc": "Tourism that supports local people."
+      },
+      "sustainable": {
+        "title": "Sustainable Tourism",
+        "desc": "Protecting nature and heritage."
+      },
+      "authentic": {
+        "title": "Authentic Tours"
+      }
+    },
+    "experience": {
+      "tag": "EXPERIENCE KAMBATA",
+      "title": "Discover Our World",
+      "items": [
+        "Nature & Landscapes",
+        "Heritage & Culture",
+        "Adventure Experiences"
+      ]
+    },
+    "whyChooseUs": {
+      "tag": "WHY CHOOSE US",
+      "title": "Your Trusted Local Experts",
+      "items": [
+        {
+          "title": "Authentic Experiences",
+          "desc": "Genuine connections with locals."
+        },
+        {
+          "title": "Local Experts",
+          "desc": "Guides born and raised in Kambata."
+        },
+        {
+          "title": "Sustainable Tourism",
+          "desc": "Positive impact on our environment."
+        },
+        {
+          "title": "Safety First",
+          "desc": "Highest standards of safety."
+        },
+        {
+          "title": "Personalized Service",
+          "desc": "Tailor-made itineraries for you."
+        },
+        {
+          "title": "Cultural Immersion",
+          "desc": "Deep dive into rich heritage."
+        }
+      ]
+    },
+    "values": {
+      "tag": "OUR VALUES",
+      "title": "What Drives Us",
+      "items": [
+        {
+          "title": "Integrity",
+          "desc": "We operate with honesty, transparency, and respect."
+        },
+        {
+          "title": "Respect",
+          "desc": "We value our culture, people, and every traveler."
+        },
+        {
+          "title": "Sustainability",
+          "desc": "We protect our environment for future generations."
+        },
+        {
+          "title": "Excellence",
+          "desc": "We are committed to delivering exceptional experiences."
+        },
+        {
+          "title": "Community",
+          "desc": "We grow together with the communities we serve."
+        }
+      ]
+    },
+    "leaders": {
+      "tag": "OUR CULTURAL LEADERS",
+      "title": "Guardians Of Our Heritage",
+      "items": [
+        {
+          "role": "Spiritual Guardian of Hambaricho",
+          "desc": "Leading historical blessing rituals and preserving sacred traditions."
+        },
+        {
+          "role": "Historical Sovereign",
+          "desc": "Remembered for defending ancestral lands and reforming customary laws."
+        },
+        {
+          "role": "Cultural Orator",
+          "desc": "Dedicated to documenting oral history for modern generations."
+        },
+        {
+          "role": "Heritage Advocate",
+          "desc": "Leading modern efforts to standardize language and sponsor festivals."
+        }
+      ]
+    },
+    "team": {
+      "tag": "MEET OUR TEAM",
+      "title": "The People Behind Your Journey",
+      "items": [
+        {
+          "role": "Founder & CEO"
+        },
+        {
+          "role": "Customer Experience"
+        },
+        {
+          "role": "Culture Specialist"
+        },
+        {
+          "role": "Marketing Manager"
+        }
+      ]
+    },
+    "history": {
+      "title": "The Kambata Story",
+      "subtitle": "A Journey Through History, Culture & Identity",
+      "p1": "Nestled among the green highlands, waterfalls, and fertile valleys of Southern Ethiopia, the Kambata people are a proud community with a rich cultural heritage that stretches back many centuries.",
+      "p2": "Historians and oral traditions describe Kambata as one of Ethiopia's historic kingdoms, known for its strong social organization, agricultural excellence, vibrant traditions, and deep respect for community values.",
+      "p3": "The story of Kambata is preserved not only in historical records but also in songs, oral traditions, ceremonies, and the collective memory of its people.",
+      "timeline": {
+        "title": "Journey Through Time",
+        "items": [
+          {
+            "title": "Ancient Kingdoms",
+            "desc": "Traditional governance systems and strong cultural foundations shaped early Kambata society."
+          },
+          {
+            "title": "Agricultural Heritage",
+            "desc": "Generations of farming communities transformed the fertile highlands into thriving agricultural landscapes."
+          },
+          {
+            "title": "Cultural Preservation",
+            "desc": "Language, music, ceremonies, and traditional values continue to connect generations."
+          },
+          {
+            "title": "Modern Kambata",
+            "desc": "Today Kambata proudly welcomes visitors while preserving its unique identity and heritage."
+          }
+        ]
+      },
+      "quote": "\"Kambata is more than a destination—it is a living story of culture, history, and human connection waiting to be experienced.\""
+    },
+    "cta": {
+      "tag": "Let's Explore Together",
+      "title": "Ready To Experience Kambata?",
+      "desc": "Join us and discover the breathtaking landscapes, rich culture, and unforgettable adventures of Kambata Zone.",
+      "btnTours": "Explore Tours",
+      "btnContact": "Contact Us"
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "tag": "WE ARE HERE FOR YOU",
+      "title": "Get in Touch with Kambata Travel",
+      "sub": "We're here to help you plan unforgettable journeys across Kambata Zone",
+      "location": "Location",
+      "locationValue": "Kambata Zone, Ethiopia",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "name": "Full Name",
+      "namePlace": "Enter your full name",
+      "emailPlace": "Enter your email",
+      "phonePlace": "Enter your phone number",
+      "subject": "Subject",
+      "subjectSelect": "Select a subject",
+      "subjectTour": "Tour Booking",
+      "subjectGeneral": "General Inquiry",
+      "message": "Message",
+      "messagePlace": "Write your message here...",
+      "send": "Send Message"
+    },
+    "help": {
+      "title": "How We Can Help You",
+      "support": {
+        "title": "24/7 Travel Support",
+        "desc": "We are available anytime for you"
+      },
+      "guide": {
+        "title": "Local Guide Assistance",
+        "desc": "Expert local guides at your service"
+      },
+      "booking": {
+        "title": "Booking Help",
+        "desc": "Get help with your bookings"
+      },
+      "emergency": {
+        "title": "Emergency Contact",
+        "desc": "Urgent support when you need it"
+      },
+      "reply": {
+        "title": "Replies within 2 hours",
+        "desc": "We value your time"
+      }
+    },
+    "methods": {
+      "visit": {
+        "title": "Visit Us",
+        "desc": "Kambata Zone Office<br/>Durame Town, Ethiopia",
+        "link": "Get Directions"
+      },
+      "call": {
+        "title": "Call Us",
+        "desc": "Instant support line",
+        "link": "Call Now"
+      },
+      "email": {
+        "title": "Email Us",
+        "desc": "Send us an email anytime",
+        "link": "Send Email"
+      },
+      "whatsapp": {
+        "title": "WhatsApp Support",
+        "desc": "Chat with our team<br/>Quick response",
+        "link": "Chat Now"
+      }
+    },
+    "map": {
+      "title": "Our Location",
+      "desc": "We are located in the heart of Kambata Zone, close to the most beautiful attractions.",
+      "btn": "View on Google Maps"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "contactLink": "Still have questions? <span>Contact us</span>",
+      "questions": [
+        {
+          "q": "How do I book a tour?",
+          "a": "You can book directly through our website by browsing our available tours, selecting your preferred dates, and following the checkout process."
+        },
+        {
+          "q": "Do you support offline booking?",
+          "a": "Yes, you can visit our office in Durame or contact our support team via phone to arrange an offline booking."
+        },
+        {
+          "q": "Can I cancel my booking?",
+          "a": "Yes, cancellations are allowed up to 48 hours before the tour start date for a full refund. Please review our cancellation policy for more details."
+        },
+        {
+          "q": "Is transportation included?",
+          "a": "Transportation from the meeting point to the destination is typically included in most of our tour packages. Please check the specific tour details."
+        },
+        {
+          "q": "Are guides local?",
+          "a": "Absolutely! All our guides are experienced locals who know the Kambata Zone intimately, ensuring you get an authentic and enriching experience."
+        }
+      ]
+    },
+    "urgent": {
+      "title": "Need urgent travel assistance?",
+      "desc": "Our emergency team is available 24/7 to help you.",
+      "call": "Emergency Call",
+      "whatsapp": "WhatsApp",
+      "hotline": "24/7 Hotline"
+    },
+    "bottomBanner": {
+      "title": "Start Your Journey with Kambata Today",
+      "desc": "Discover breathtaking landscapes, rich culture, and unforgettable experiences.",
+      "btnTours": "Explore Tours",
+      "btnDestinations": "View Destinations"
+    }
+  },
+  "explorerDashboard": {
+    "header": {
+      "greeting": "Hello, {name}",
+      "subtitle": "Your personal travel overview — tours, packages, and messages in one place."
+    },
+    "stats": {
+      "upcomingTours": "Upcoming Tours",
+      "upcomingPackages": "Upcoming Packages",
+      "completedTrips": "Trips Completed",
+      "unreadMessages": "Unread Messages",
+      "upcoming": "Upcoming",
+      "completed": "Completed",
+      "wishlist": "Wishlist",
+      "points": "Points"
+    },
+    "featuredSpotlight": {
+      "tag": "Featured Spotlight",
+      "tagMobile": "Spotlight",
+      "title": "Mount Hambarcho",
+      "desc": "Experience the breathtaking sunrise from the peak of Kambata's most iconic mountain. A journey of spiritual and natural discovery.",
+      "descMobile": "Experience the breathtaking sunrise from the peak of Kambata's most iconic mountain.",
+      "location": "Durame",
+      "btnExplore": "Explore Now",
+      "btnExploreMobile": "Explore"
+    },
+    "customTourReady": {
+      "tag": "Action Required",
+      "title": "Your Custom Tour is Ready!",
+      "desc": "{title} — Guide has been assigned for {date}.",
+      "btnPay": "Pay Now"
+    },
+    "upcomingTrip": {
+      "tag": "Upcoming Trip Widget",
+      "title": "Upcoming Trip",
+      "date": "Date:",
+      "guide": "Guide:",
+      "status": "Status:",
+      "pendingGuide": "Pending Guide",
+      "btnViewDetails": "View Details",
+      "startsIn": "Starts in {days} Days",
+      "btnTicket": "Ticket",
+      "btnDetails": "Details",
+      "tba": "TBA"
+    },
+    "noUpcoming": {
+      "title": "No Upcoming Trips",
+      "desc": "You don't have any upcoming confirmed trips yet. Ready to explore?",
+      "descMobile": "Ready for your next adventure?",
+      "btnExplore": "Explore Tours",
+      "btnFindTours": "Find Tours"
+    },
+    "recommendations": {
+      "forYou": "For You",
+      "trendingTours": "Trending Tours",
+      "viewAll": "View All",
+      "discovering": "Discovering tours for you…",
+      "trending": "Trending",
+      "viewDetails": "View Details",
+      "btnBook": "Book",
+      "tourFallback": "Tour"
+    },
+    "chooseExperience": {
+      "title": "Choose Your Experience",
+      "tour": {
+        "title": "Tour Only",
+        "tag": "Activity Only",
+        "desc": "→ Quick cultural / adventure activity"
+      },
+      "package": {
+        "title": "Travel Package",
+        "tag": "Full Experience",
+        "desc": "→ Full experience with hotel + guide + meals"
+      }
+    },
+    "mobileWelcome": {
+      "greeting": "👋 Welcome,<br/><span className=\"text-[#0F766E]\">{name}</span>",
+      "search": "Where to next?"
+    },
+    "discover": {
+      "title": "Discover",
+      "seeAll": "See All"
+    },
+    "quickAccess": {
+      "title": "Quick Access",
+      "explore": "Explore",
+      "packages": "Packages",
+      "requests": "Requests",
+      "wishlist": "Wishlist",
+      "reviews": "Reviews",
+      "payments": "Payments",
+      "support": "Support",
+      "sos": "SOS"
+    }
+  },
+  "exploreTours": {
+    "header": {
+      "title": "Explore Tours",
+      "subtitle": "Browse, search, and book curated Kambata experiences."
+    },
+    "filters": {
+      "title": "Filters",
+      "allDestinations": "All destinations",
+      "maxPrice": "Max price (ETB)",
+      "anyDuration": "Any duration",
+      "upTo1Day": "Up to 1 day",
+      "days2to3": "2–3 days",
+      "days4Plus": "4+ days",
+      "clearFilters": "Clear Filters"
+    },
+    "results": {
+      "found": "Results for \"{query}\" — {count} tours found",
+      "noMatch": "No tours match your current filters."
+    },
+    "tourCard": {
+      "from": "From",
+      "btnDetails": "Details",
+      "btnBook": "Book",
+      "btnRequest": "Request"
+    },
+    "toast": {
+      "loginToContinue": "Please log in to continue",
+      "removedWishlist": "Removed from wishlist",
+      "savedWishlist": "Saved to wishlist",
+      "wishlistFailed": "Wishlist update failed"
+    },
+    "destKambata": "Kambata"
+  },
+  "packagesPage": {
+    "toast": {
+      "loadSchedulesFailed": "Could not load package schedules",
+      "invalidSelection": "Please select a schedule and valid number of travelers.",
+      "reserved": "Travel Package reserved — proceed to payment from My Bookings",
+      "bookingFailed": "Booking failed"
+    },
+    "header": {
+      "title": "Travel Packages",
+      "subtitle": "Premium curated experiences combining tours and luxurious accommodations."
+    },
+    "empty": {
+      "title": "No packages available",
+      "desc": "We are currently crafting exclusive new travel packages. Check back soon!"
+    },
+    "card": {
+      "badge": "Travel Package",
+      "from": "From",
+      "perPerson": "/ person",
+      "btnDetails": "Details"
+    },
+    "modal": {
+      "title": "Book Package",
+      "noSchedules": "There are currently no upcoming schedules available for this package. Please check back later.",
+      "selectSchedule": "Select Schedule",
+      "seatsRemaining": "seats remaining",
+      "travelers": "Travelers",
+      "travelersPlaceholder": "Number of travelers",
+      "totalPrice": "Total Price",
+      "cancel": "Cancel",
+      "confirmBooking": "Confirm Booking"
+    }
+  },
+  "bookings": {
+    "title": "My Bookings",
+    "subtitle": "View all your past and upcoming reservations in Kambaata.",
+    "tabs": {
+      "tours": "Tours",
+      "hotels": "Hotels",
+      "packages": "Packages"
+    },
+    "actions": {
+      "downloadInvoice": "Download Invoice",
+      "digitalPass": "Digital Pass",
+      "cancelBooking": "Cancel Booking",
+      "confirmCompletion": "Confirm Completion",
+      "viewDetails": "View Details",
+      "generatePass": "Generate Digital Pass",
+      "messageGuide": "Message Guide",
+      "contactSupport": "Contact Support"
+    },
+    "status": {
+      "confirmed": "Confirmed",
+      "paid": "Paid",
+      "pending": "Pending",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "details": {
+      "backToBookings": "Back to My Bookings",
+      "bookingTimeline": "Booking Timeline",
+      "documentsReceipts": "Documents & Receipts",
+      "needHelp": "Need Help?",
+      "yourGuide": "Your Guide"
+    },
+    "timeline": {
+      "bookingConfirmed": "Booking Confirmed",
+      "paymentReceived": "Payment Received",
+      "guideAssigned": "Guide Assigned",
+      "tourReminder": "Tour Reminder",
+      "tourInProgress": "Tour In Progress",
+      "tourCompleted": "Tour Completed",
+      "leaveReview": "Leave Review"
+    },
+    "empty": {
+      "title": "No bookings found",
+      "subtitle": "You haven't made any bookings in this category yet."
+    }
+  },
+  "payments": {
+    "title": "Payment History",
+    "subtitle": "View your transactions and download receipts",
+    "noTransactions": "No transactions found.",
+    "table": {
+      "transactionRef": "Transaction Ref",
+      "item": "Item",
+      "amount": "Amount",
+      "status": "Status",
+      "date": "Date",
+      "receipt": "Receipt"
+    },
+    "packageBooking": "Package Booking",
+    "tourBooking": "Tour Booking",
+    "refunded": "Refunded: ETB",
+    "downloadReceipt": "Receipt"
+  },
+  "messages": {
+    "title": "Messages",
+    "subtitle": "Communicate directly with your assigned guides and our support team.",
+    "loading": "Loading interface..."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Stay updated with your bookings and account activity.",
+    "markAllAsRead": "Mark all as read",
+    "caughtUp": "All caught up!",
+    "noUnreadFound": "No unread notifications found. We'll alert you when something happens.",
+    "noAllFound": "No notifications found. We'll alert you when something happens.",
+    "alert": "Alert",
+    "newAlerts": "New Alerts"
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "subtitle": "Your personal collection of saved adventures.",
+    "savedTours": "Saved Tours",
+    "savedPackages": "Saved Packages",
+    "noSavedTours": "No saved tours",
+    "noSavedToursDesc": "You haven't added any tours to your wishlist yet.",
+    "noSavedPackages": "No saved packages",
+    "noSavedPackagesDesc": "You haven't added any packages to your wishlist yet.",
+    "startExploring": "Start Exploring",
+    "viewDetails": "View Details"
+  },
+  "reviews": {
+    "title": "My Reviews",
+    "subtitle": "Share your experiences to help other travelers and support our local guides.",
+    "pendingReviews": "Pending Reviews",
+    "submittedReviews": "Submitted Reviews",
+    "caughtUp": "All caught up!",
+    "caughtUpDesc": "You have no pending reviews. Complete more adventures to unlock new review opportunities!",
+    "rateTour": "Rate Tour",
+    "ratePackage": "Rate Package",
+    "rateGuide": "Rate Guide",
+    "noReviewsSubmitted": "No reviews submitted yet.",
+    "responseFromGuide": "Response from Guide",
+    "overallExperience": "Overall Experience",
+    "categoryBreakdown": "Category Breakdown",
+    "shareYourThoughts": "Share your thoughts",
+    "tellUsWhatYouLoved": "Tell us what you loved...",
+    "cancel": "Cancel",
+    "submitReview": "Submit Review",
+    "submitting": "Submitting..."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile, preferences, and account security.",
+    "general": "General",
+    "preferences": "Preferences",
+    "emergency": "Emergency",
+    "notifications": "Notifications",
+    "security": "Security",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "personalInfo": "Personal Information",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "location": "Location",
+    "email": "Email",
+    "travelPreferences": "Travel Preferences",
+    "difficulty": "Preferred Difficulty",
+    "groupType": "Group Type",
+    "emergencyContact": "Emergency Contact",
+    "relation": "Relation",
+    "notificationPrefs": "Notification Preferences",
+    "emailAlerts": "Email Alerts",
+    "bookingUpdates": "Booking Updates",
+    "reminders": "Reminders",
+    "securitySettings": "Security Settings",
+    "newPassword": "New Password",
+    "updatePassword": "Update Password",
+    "dangerZone": "Danger Zone",
+    "deleteAccount": "Delete Account",
+    "deleteDesc": "Once you delete your account, there is no going back. Please be certain.",
+    "uploadPhoto": "Upload Photo"
+  },
+  "sos": {
+    "title": "Emergency SOS Center",
+    "subtitle": "For urgent help during your tour. We respond immediately.",
+    "hotline": "Emergency Hotline",
+    "available247": "Available 24/7 for life-threatening emergencies",
+    "submitAlert": "Submit New Alert",
+    "history": "Alert History",
+    "emergencyType": "Emergency Type",
+    "severityLevel": "Severity Level",
+    "location": "Your Current Location",
+    "contactPhone": "Contact Phone Number",
+    "description": "Describe the Situation",
+    "sendAlert": "Send Emergency Alert",
+    "sending": "Sending...",
+    "noAlerts": "No SOS alerts",
+    "noAlertsDesc": "You haven't submitted any emergency alerts.",
+    "statusOpen": "Received",
+    "statusAck": "Acknowledged",
+    "statusProg": "Being Handled",
+    "statusRes": "Resolved",
+    "statusFalse": "False Alarm",
+    "submittedSuccess": "Help is on the way!"
+  },
+  "support": {
+    "title": "Help & Support",
+    "subtitle": "We're here to help you before, during, and after your journey.",
+    "openTickets": "Open Tickets",
+    "createTicket": "Create Ticket",
+    "subject": "Subject",
+    "category": "Category",
+    "message": "Message",
+    "submitTicket": "Submit Ticket",
+    "submitting": "Submitting...",
+    "noTickets": "No support tickets",
+    "noTicketsDesc": "You don't have any open support tickets.",
+    "faqs": "Frequently Asked Questions",
+    "contactUs": "Contact Us",
+    "currentEmergency": "Current Trip Emergency?",
+    "emergencyDesc": "If you are currently on a tour and need immediate assistance, call our 24/7 hotline.",
+    "generalInquiries": "General Inquiries",
+    "hours": "Mon-Fri, 8am-6pm EAT",
+    "emailSupport": "Email Support",
+    "replyTime": "Typically replies in 2 hours",
+    "openMessages": "Open Messages",
+    "searchAnswers": "Search for answers...",
+    "noResults": "No results found",
+    "tryDifferent": "Try different keywords or contact support below.",
+    "sendMessage": "Send a Message",
+    "messageSent": "Message Sent",
+    "receivedRequest": "We've received your request and will get back to you shortly.",
+    "sendAnother": "Send another",
+    "selectTopic": "Select a topic",
+    "topicBooking": "Booking Modification",
+    "topicPayment": "Payment Issue",
+    "topicTour": "Tour Inquiry",
+    "topicAccount": "Account Problem",
+    "topicOther": "Other",
+    "mySupportTickets": "My Support Tickets",
+    "id": "ID",
+    "date": "Date",
+    "status": "Status",
+    "close": "Close",
+    "catBookings": "Bookings & Payments",
+    "catTours": "Tours & Packages",
+    "q1": "How do I modify my booking?",
+    "a1": "You can modify your booking up to 48 hours before the tour start time. Go to 'My Bookings', select your upcoming trip, and click 'Modify Schedule' or contact support.",
+    "q2": "What is the cancellation policy?",
+    "a2": "Full refunds are available for cancellations made at least 7 days before departure. Cancellations within 48 hours may be subject to a 50% fee.",
+    "q3": "Which payment methods are accepted?",
+    "a3": "We accept Visa, MasterCard, Telebirr, and direct bank transfers (CBE, Dashen, Awash).",
+    "q4": "Are flights included in the packages?",
+    "a4": "Domestic flights within Ethiopia are often included in premium packages. International flights to Addis Ababa must be booked separately.",
+    "q5": "What should I pack for a trekking tour?",
+    "a5": "We recommend sturdy hiking boots, layers for cold mornings, sun protection, and a refillable water bottle. A detailed packing list will be available in your Booking Details page once confirmed."
+  },
+  "requests": {
+    "title": "My Custom Requests",
+    "subtitle": "Track the status of your custom dates, private tours, and waitlists.",
+    "paymentPending": "Payment Pending",
+    "travelExperience": "Travel Experience",
+    "travelers": "Travelers",
+    "messageFromAdmin": "Message from Admin",
+    "activityTimeline": "Activity Timeline",
+    "status": {
+      "actionRequired": "Action Required",
+      "guideAccepted": "Your guide accepted!",
+      "completePayment": "Complete payment within 30 minutes to confirm your reservation.",
+      "approved": "Approved",
+      "assigningGuide": "Assigning your guide…",
+      "notifyWhenReady": "We'll notify you as soon as your guide is confirmed and payment is ready.",
+      "underReview": "Under Review",
+      "reviewingRequest": "Our team is currently reviewing your request. We'll get back to you shortly.",
+      "unavailable": "Unavailable",
+      "unableToFulfill": "We are unable to fulfill this request at this time.",
+      "expired": "Expired",
+      "paymentExpired": "The payment window for this request has expired.",
+      "noLongerValid": "This request is no longer valid.",
+      "paymentSuccessful": "Payment Successful",
+      "expeditionSecured": "Your expedition is secured!",
+      "viewDetails": "View Details →",
+      "cancelled": "Cancelled",
+      "youCancelled": "You cancelled this request.",
+      "cancelRequest": "Cancel Request",
+      "confirmCancel": "Are you sure you want to cancel this request?",
+      "payNow": "Pay Now →",
+      "processing": "Processing…"
+    },
+    "empty": {
+      "title": "No requests found",
+      "subtitle": "You don't have any requests in this category yet."
+    }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "exploreTours": "Explore Tours",
+    "explorePackages": "Explore Packages",
+    "myBookings": "My Bookings",
+    "myRequests": "My Requests",
+    "payments": "Payments",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "wishlist": "Wishlist",
+    "reviews": "Reviews",
+    "profile": "Profile",
+    "sosEmergency": "SOS Emergency",
+    "searchPlaceholder": "Search destinations, tours, or guides..."
+  },
+  "guideSidebar": {
+    "portalName": "Guide Portal",
+    "dashboard": "Dashboard",
+    "myCalendar": "My Calendar",
+    "customRequests": "Custom Requests",
+    "assignments": "Assignments",
+    "qrScanner": "QR Scanner",
+    "assignedTours": "Assigned Tours",
+    "travelers": "Travelers",
+    "messages": "Messages",
+    "attendance": "Attendance",
+    "incidentReports": "Incident Reports",
+    "sosEmergency": "SOS Emergency",
+    "walletEarnings": "Wallet & Earnings",
+    "tourHistory": "Tour History",
+    "myRatings": "My Ratings",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings",
+    "searchPlaceholder": "Search assigned tours…",
+    "kambataZone": "Kambata Zone",
+    "available": "Available",
+    "dutyStatus": "Duty Status",
+    "mobileHome": "Home",
+    "mobileTours": "Tours",
+    "mobileRequests": "Requests",
+    "mobileCalendar": "Calendar",
+    "mobileProfile": "Profile"
+  },
+  "guideDashboard": {
+    "header": {
+      "greeting": "Welcome, {name}",
+      "subtitle": "Operational overview — assigned tours and field tasks only.",
+      "guideFallback": "Guide"
+    },
+    "stats": {
+      "todaysTours": "Today's Tours",
+      "upcomingTours": "Upcoming Tours",
+      "unreadMessages": "Unread Messages",
+      "travelers": "Travelers",
+      "toursToday": "Tours Today",
+      "todaysEarnings": "Today's Earnings"
+    },
+    "nextAssignment": {
+      "tag": "Next Assignment",
+      "dateTime": "Date & Time",
+      "location": "Location",
+      "meetingPoint": "Meeting Point",
+      "travelers": "Travelers",
+      "guests": "{n} Guests",
+      "btnOpen": "Open Tour Details & Roster"
+    },
+    "noUpcoming": {
+      "title": "No upcoming assignments",
+      "desc": "Admin will assign schedules to you. Once assigned, your next tour will appear here. (Note: Accepted custom requests will appear here after the traveler completes payment)."
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "assignedTours": "Assigned Tours",
+      "assignedToursDesc": "View and manage your active tour execution",
+      "markAttendance": "Mark Attendance",
+      "markAttendanceDesc": "Scan QR codes or manually check-in travelers",
+      "reportIncident": "Report Incident",
+      "reportIncidentDesc": "Log issues, delays, or emergency situations"
+    },
+    "mobile": {
+      "kambataArea": "Kambata Area",
+      "todaysAssignment": "Today's Assignment",
+      "inProgress": "In Progress",
+      "tourProgress": "Tour Progress",
+      "guideCheckedIn": "Guide Checked In",
+      "travelersVerified": "Travelers Verified",
+      "lunchBreak": "Lunch Break",
+      "todaysTravelers": "Today's Travelers",
+      "nextMeetingPoint": "Next Meeting Point",
+      "minutesAway": "8 minutes away",
+      "viewDetails": "View Details",
+      "continueTour": "Continue Tour",
+      "noToursToday": "No Tours Today",
+      "noToursTodayDesc": "Enjoy your free day. We'll notify you when a new assignment arrives.",
+      "refresh": "Refresh",
+      "todaysSchedule": "Today's Schedule",
+      "meetTravelers": "Meet Travelers",
+      "startNavigation": "Start Tour Navigation",
+      "emergency": "Emergency",
+      "emergencyDesc": "Quick access to support & SOS",
+      "tours": "Tours",
+      "attendance": "Attendance",
+      "calendar": "Calendar",
+      "payments": "Payments"
+    },
+    "mobileWelcome": {
+      "greeting": "Hi, {name} 👋",
+      "rating": "{rating} Rating",
+      "toursThisMonth": "{n} Tours this month"
+    }
+  },
+  "guidePages": {
+    "assignedTours": {
+      "title": "Assigned Tours",
+      "subtitle": "Admin-assigned schedules — view only. You execute tours; admins own supply and bookings.",
+      "filterPlaceholder": "Filter tours…",
+      "emptyTitle": "No assignments yet",
+      "emptyDesc": "When an admin creates a schedule and assigns you, it will appear here.",
+      "tourType": "Tour & Type",
+      "destination": "Destination",
+      "dateTime": "Date / Time",
+      "travelers": "Travelers",
+      "status": "Status",
+      "actions": "Actions",
+      "package": "Package",
+      "tour": "Tour",
+      "viewDetails": "View Details",
+      "startTour": "Start Tour",
+      "completeTour": "Complete Tour",
+      "view": "View",
+      "start": "Start",
+      "finish": "Finish"
+    },
+    "requests": {
+      "title": "Custom Tour Requests",
+      "subtitle": "Review and respond to custom tour and private booking requests.",
+      "emptyTitle": "No {status} requests",
+      "emptyDesc": "You currently have no {status} requests in your queue.",
+      "travelExperience": "Travel Experience",
+      "flexibleTime": "Flexible Time",
+      "travelers": "{n} Travelers",
+      "respondWithin": "Respond within:",
+      "decline": "Decline",
+      "accept": "Accept",
+      "awaitingPayment": "Awaiting traveler payment",
+      "accepted": "You accepted this request",
+      "declined": "You declined this request"
+    },
+    "attendance": {
+      "title": "Attendance",
+      "subtitle": "Mark present, absent, or late for each traveler on your assignment.",
+      "emptyTitle": "No active tours",
+      "emptyDesc": "Select an assignment when you have upcoming tours.",
+      "total": "Total",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "markAllPresent": "Mark All Present",
+      "openScanner": "Open QR Scanner",
+      "exportReport": "Export Report",
+      "presentBtn": "present",
+      "absentBtn": "absent",
+      "lateBtn": "late"
+    },
+    "incidents": {
+      "title": "Incident Reports",
+      "subtitle": "Operational issues are sent to admin instantly for review.",
+      "newReport": "New Report",
+      "associatedTour": "Associated Tour",
+      "incidentTitle": "Incident Title",
+      "description": "Description",
+      "incidentType": "Incident Type",
+      "severityLevel": "Severity Level",
+      "locationOptional": "Location (Optional)",
+      "titlePlaceholder": "E.g., Flat tire on transport van",
+      "descPlaceholder": "Provide details about what happened...",
+      "locationPlaceholder": "Where did this occur?",
+      "submit": "Submit Incident Report",
+      "yourReports": "Your Reports",
+      "emptyTitle": "No incidents filed",
+      "emptyDesc": "You have not submitted any incident reports yet.",
+      "severity": "Severity:",
+      "typeWeather": "Weather Delay",
+      "typeVehicle": "Vehicle Issue",
+      "typeTravelerEmergency": "Traveler Emergency",
+      "typeSafety": "Safety Issue",
+      "typeSchedule": "Schedule Delay",
+      "typeOther": "Other",
+      "severityLow": "Low - Minor disruption",
+      "severityMedium": "Medium - Noticeable impact",
+      "severityHigh": "High - Major disruption",
+      "severityCritical": "Critical - Immediate action required"
+    },
+    "travelers": {
+      "title": "Travelers",
+      "subtitle": "Roster for your assigned schedules only — no access to other tours.",
+      "exportCsv": "Export CSV",
+      "searchPlaceholder": "Search by name...",
+      "allAttendance": "All attendance",
+      "pending": "Pending",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "applyFilters": "Apply filters",
+      "emptyTitle": "No travelers",
+      "emptyDesc": "Confirmed bookings on your assigned tours will appear here.",
+      "bookingRef": "Booking Ref",
+      "partySize": "Party Size",
+      "guest": "Guest",
+      "guests": "Guests",
+      "emergencyContact": "Emergency Contact",
+      "message": "Message"
+    },
+    "history": {
+      "title": "Tour History",
+      "subtitle": "Completed assignments, attendance stats, and operational notes.",
+      "searchPlaceholder": "Search tour history by name or destination...",
+      "emptyTitle": "No completed tours",
+      "emptyDesc": "Finished assignments will appear here.",
+      "travelers": "Travelers",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "operationalNotes": "Operational Notes",
+      "noNotes": "No operational notes recorded.",
+      "completed": "Completed"
+    },
+    "reviews": {
+      "title": "My Ratings",
+      "subtitle": "See what travelers are saying about your tours.",
+      "overallRating": "Overall Rating",
+      "basedOn": "Based on {n} reviews",
+      "categoryBreakdown": "Category Breakdown",
+      "knowledge": "Knowledge",
+      "communication": "Communication",
+      "professionalism": "Professionalism",
+      "friendliness": "Friendliness",
+      "recentFeedback": "Recent Feedback",
+      "emptyTitle": "No reviews yet",
+      "emptyDesc": "Reviews from your completed tours will appear here."
+    },
+    "messages": {
+      "title": "Messages",
+      "subtitle": "Communicate with your assigned travelers and Kambata Operations."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Booking alerts, payments, and admin notices.",
+      "markAllRead": "Mark All as Read",
+      "emptyTitle": "You are all caught up!",
+      "emptyDesc": "No recent notifications or alerts.",
+      "viewDetails": "View Details",
+      "alert": "ALERT"
+    },
+    "assignments": {
+      "title": "Tour Assignments",
+      "subtitle": "Review your new assignments, accept them, or decline them if you have a conflict.",
+      "emptyTitle": "No {tab} assignments",
+      "emptyDesc": "You currently have no {tab} assignments for public tours.",
+      "actionRequired": "Action Required",
+      "reject": "Reject",
+      "accept": "Accept",
+      "viewDashboard": "View Tour Execution Dashboard",
+      "declined": "You declined this assignment",
+      "travelersMax": "{n} Travelers ({capacity} max)",
+      "at": "at"
+    },
+    "calendar": {
+      "title": "My Calendar",
+      "subtitle": "Manage your schedule and availability",
+      "manageTimeOff": "Manage Time Off",
+      "blockDates": "Block Dates",
+      "blockDatesDesc": "Mark yourself as unavailable.",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "reason": "Reason",
+      "notesOptional": "Notes (Optional)",
+      "vacation": "Vacation / Leave",
+      "sickLeave": "Sick Leave",
+      "bookedElsewhere": "Booked by Another Agency",
+      "personal": "Personal Reason",
+      "notesPlaceholder": "Add any details...",
+      "confirmTimeOff": "Confirm Time Off",
+      "submitting": "Submitting..."
+    },
+    "earnings": {
+      "title": "Financials Restricted",
+      "desc": "Payment processing and payout requests are managed directly by Kambata Travel administrators. Earnings are released to your wallet automatically when you complete an assigned tour.",
+      "viewTours": "View Assigned Tours"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "subtitle": "Platform rules and guidelines",
+      "guideAgreement": "Guide Agreement",
+      "agreementDesc": "By using Kambata Travel, guides agree to host only approved blueprints and honor all confirmed bookings.",
+      "compliance": "Compliance",
+      "complianceDesc": "You must comply with platform commission rates and payout rules.",
+      "contactSupport": "For further clarification on our policies, please contact support through the Help Center."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "subtitle": "How we handle your data",
+      "dataProtection": "Data Protection",
+      "dataDesc": "Kambata Travel protects guide and traveler data with industry-leading security standards.",
+      "secureVault": "Secure Vault",
+      "vaultDesc": "Document vault files are stored securely and encrypted at rest.",
+      "contactSupport": "For questions or to request your data, please contact support through the Help Center."
+    },
+    "messageTemplates": {
+      "meeting": "Meeting Reminder",
+      "meetingText": "Please arrive at the meeting point 15 minutes before start time.",
+      "delay": "Schedule Update",
+      "delayText": "The tour has been delayed by 30 minutes. We will update you shortly.",
+      "emergency": "Emergency Alert",
+      "emergencyText": "Important safety update — please check your messages immediately.",
+      "thanks": "Thank You",
+      "thanksText": "Thank you for traveling with Kambata Travel. We hope you enjoyed the experience!"
+    },
+    "common": {
+      "call": "Call",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "backToAssignments": "Back to assignments",
+      "scanPass": "Scan Digital Pass",
+      "save": "Save",
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "loading": "Loading...",
+      "guests": "Guests",
+      "guest": "Guest"
+    },
+    "tabs": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "guidePending": "Guide Pending",
+      "awaitingPayment": "Awaiting Payment",
+      "confirmed": "Confirmed",
+      "declinedByGuide": "Declined by Guide",
+      "submitSos": "Submit SOS",
+      "myAlerts": "My Alerts"
+    },
+    "wallet": {
+      "title": "My Wallet & Earnings",
+      "subtitle": "Manage your earnings, view pending payments, and request withdrawals.",
+      "availableBalance": "Available Balance",
+      "pendingEarnings": "Pending Earnings",
+      "pendingWithdrawals": "Pending Withdrawals",
+      "lifetimeEarnings": "Lifetime Earnings",
+      "awaitingClearance": "Awaiting completion clearance",
+      "awaitingApproval": "Awaiting admin approval",
+      "requestWithdrawal": "Request Withdrawal",
+      "amount": "Amount (ETB)",
+      "minAmount": "Min 500",
+      "bankTransfer": "Bank Transfer (Optional)",
+      "bankName": "Bank Name",
+      "accountNumber": "Account Number",
+      "accountHolder": "Account Holder Name",
+      "bankPlaceholder": "e.g. CBE",
+      "telebirr": "Telebirr (Optional)",
+      "phoneNumber": "Phone Number",
+      "telebirrPlaceholder": "e.g. 0911...",
+      "submitting": "Submitting...",
+      "submitRequest": "Submit Request",
+      "recentRequests": "Recent Requests",
+      "noHistory": "No payout history found.",
+      "ref": "Ref:",
+      "cancelRequest": "Cancel Request",
+      "statusCompleted": "Completed",
+      "statusRejected": "Rejected",
+      "statusApproved": "Approved",
+      "statusCancelled": "Cancelled",
+      "statusPending": "Pending"
+    },
+    "contact": {
+      "title": "Help Center",
+      "subtitle": "Contact Kambata Travel support for platform, payout, or verification issues.",
+      "submitTicket": "Submit Support Ticket",
+      "ticketReceived": "Ticket Received",
+      "responseTime": "Our team will review your inquiry and respond to {email} within 12–24 hours.",
+      "submitAnother": "Submit Another Request",
+      "inquiryCategory": "Inquiry Category",
+      "subject": "Subject",
+      "message": "Message",
+      "catTechnical": "Technical Issue (Platform / App)",
+      "catBooking": "Booking Dispute Resolution",
+      "catPayout": "Payout / Earnings Anomaly",
+      "catVerification": "Profile Verification Status",
+      "subjectPlaceholder": "Brief summary of your issue",
+      "messagePlaceholder": "Describe your issue in detail...",
+      "sending": "Sending Request…",
+      "submitTicketBtn": "Submit Ticket",
+      "myTickets": "My Support Tickets",
+      "statusOpen": "Open",
+      "statusInProgress": "In Progress",
+      "statusResolved": "Resolved",
+      "statusClosed": "Closed",
+      "adminReply": "Admin Reply"
+    },
+    "sos": {
+      "title": "Emergency SOS",
+      "subtitle": "Report emergencies for yourself or your travelers.",
+      "opsLine": "Operations Line: +251 911 234 567",
+      "opsAvailable": "Available 24/7 for life-threatening emergencies",
+      "alertReceived": "Alert Received!",
+      "alertReceivedDesc": "The operations team has been notified. Help is coming.",
+      "trackStatus": "Track Status",
+      "newAlert": "New Alert",
+      "tourNameOptional": "Tour Name (optional)",
+      "selectTour": "Select a tour (optional)",
+      "emergencyType": "Emergency Type *",
+      "severity": "Severity *",
+      "description": "Description *",
+      "descriptionPlaceholder": "What happened? How many travelers affected? Any injuries? What do you need?",
+      "location": "Location",
+      "locationPlaceholder": "Current location…",
+      "contactPhone": "Contact Phone",
+      "phonePlaceholder": "+251 9XX XXX XXXX",
+      "sending": "Sending SOS…",
+      "sendAlert": "Send Emergency Alert",
+      "myAlerts": "My SOS Alerts",
+      "noAlerts": "No Alerts",
+      "staySafe": "Stay safe out there, {name}!",
+      "typeMedical": "Medical Emergency",
+      "typeSafety": "Safety Threat",
+      "typeAccident": "Accident / Injury",
+      "typeDisaster": "Natural Disaster",
+      "typeLost": "Lost Traveler",
+      "typeVehicle": "Vehicle Breakdown",
+      "typeHarassment": "Harassment / Threat",
+      "typeOther": "Other Emergency",
+      "severityCritical": "Critical",
+      "severityHigh": "High",
+      "severityMedium": "Medium",
+      "severityLow": "Low",
+      "statusReceived": "Received",
+      "statusAcknowledged": "Acknowledged",
+      "statusBeingHandled": "Being Handled",
+      "statusResolved": "Resolved",
+      "statusFalseAlarm": "False Alarm"
+    },
+    "tourDetail": {
+      "tourInfo": "Tour Information",
+      "date": "Date",
+      "time": "Time",
+      "meetingPoint": "Meeting point",
+      "capacity": "Capacity",
+      "travelersMax": "{n} Travelers max",
+      "attendanceSummary": "Attendance Summary",
+      "total": "TOTAL",
+      "present": "PRESENT",
+      "absent": "ABSENT",
+      "late": "LATE",
+      "groupAnnouncement": "Group Announcement",
+      "announcementPlaceholder": "Message all travelers on this tour…",
+      "sendToAll": "Send to all travelers",
+      "travelers": "Travelers",
+      "ref": "Ref:",
+      "party": "Party:",
+      "message": "Message",
+      "incidentsOnTour": "Incidents on this tour",
+      "scanPass": "Scan Pass",
+      "scanPassDesc": "Point your camera at the traveler's Digital Travel Pass"
+    },
+    "calendarView": {
+      "today": "Today",
+      "searchPlaceholder": "Search tours (Ctrl+K)...",
+      "allStatus": "All Status",
+      "assigned": "Assigned",
+      "pending": "Pending",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "allDistricts": "All Districts",
+      "exportPdf": "Export PDF",
+      "exportExcel": "Export Excel",
+      "addToCalendar": "Add to Calendar",
+      "tours": "Tours",
+      "travelers": "Travelers",
+      "rating": "Rating",
+      "estimatedRevenue": "Estimated Revenue",
+      "weather": "Weather",
+      "timeOff": "Time Off",
+      "manageTimeOff": "Manage Time Off",
+      "todaysSchedule": "Today's Schedule",
+      "freeDay": "Free day ahead!",
+      "from": "From:",
+      "to": "To:",
+      "tourProgress": "Tour Progress",
+      "schedule": "Schedule",
+      "people": "People",
+      "location": "Location",
+      "tba": "TBA",
+      "kambataZone": "Kambata Zone",
+      "viewMap": "View Map",
+      "weatherForecast": "Weather Forecast",
+      "tourCompleted": "Tour Completed",
+      "upcomingTour": "Upcoming Tour",
+      "startTour": "Start Tour",
+      "more": "+{n} More",
+      "dayHeaders": "Su,Mo,Tu,We,Th,Fr,Sa",
+      "humidity": "Humidity 64% • Perfect Touring",
+      "todaysOverview": "Today's Overview",
+      "scheduled": "Scheduled",
+      "active": "Active",
+      "unavailable": "Unavailable",
+      "noToursScheduled": "No Tours Scheduled",
+      "freeDayDesc": "Enjoy your free day or update your availability.",
+      "blockAvailability": "Block Availability",
+      "meetingPoint": "Meeting Point:",
+      "meetingPointFallback": "Durame Hotel",
+      "travelersHours": "{travelers} Travelers · {hours} Hours",
+      "viewDetails": "View Details",
+      "navigate": "Navigate",
+      "markedUnavailable": "You are marked as unavailable.",
+      "meetingTime": "Meeting Time",
+      "pickupPoint": "Pickup Point",
+      "travelerDetails": "Traveler Details",
+      "groupSize": "Group Size",
+      "groupDemo": "2 Adults, 2 Children",
+      "logistics": "Logistics",
+      "paymentVerified": "Payment Verified via Platform",
+      "needsQrCheckin": "Needs QR Check-in",
+      "viewTourReport": "View Tour Report",
+      "viewCancellation": "View Cancellation Details",
+      "startTourNow": "Start Tour Now",
+      "viewFullDetails": "View Full Details",
+      "emergencySos": "Emergency SOS",
+      "blockDates": "Block Dates"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "subtitle": "Password, notifications, and preferences for the field portal.",
+      "rolePermissions": "Role & permissions (read-only)",
+      "roleDesc": "You are an operational guide. Admins create tours, schedules, and assignments. You execute assigned tours only.",
+      "whatYouCanDo": "What you can do",
+      "restrictedActions": "Restricted actions",
+      "canView": "View assigned schedules",
+      "canMessage": "Message travelers directly",
+      "canAttendance": "Mark attendance & progress",
+      "canIncidents": "Report incidents & emergencies",
+      "canStatus": "Update tour status",
+      "cannotCreate": "Create new tours",
+      "cannotBookings": "Manage global bookings",
+      "cannotPayments": "Process payments",
+      "cannotAnalytics": "View company analytics",
+      "interfaceTheme": "Interface Theme",
+      "themeDesc": "Switch to dark mode for low-light environments",
+      "securityAccess": "Security & Access",
+      "currentPassword": "Current Password",
+      "newPassword": "New Secure Password",
+      "passwordPlaceholder": "••••••••",
+      "minPassword": "Min. 8 characters",
+      "tfa": "Two-Factor Authentication",
+      "tfaDesc": "Secure your earnings with SMS verification.",
+      "notificationEcosystem": "Notification Ecosystem",
+      "systemBulletins": "System Bulletins",
+      "systemBulletinsDesc": "Platform updates and security logs.",
+      "realtimeBookings": "Real-time Bookings",
+      "realtimeBookingsDesc": "Instant alerts for new tourist inquiries.",
+      "financialIntegrity": "Financial Integrity",
+      "financialIntegrityDesc": "Notifications for payout completions.",
+      "payoutInfrastructure": "Payout Infrastructure",
+      "settlementBank": "Settlement Bank Account",
+      "bankInstitution": "Bank Institution",
+      "legalHolder": "Legal Account Holder",
+      "swiftAccount": "SWIFT / Account Number",
+      "mobileMoneyGateway": "Local Mobile Money Gateway",
+      "serviceOperator": "Service Operator",
+      "registeredPhone": "Registered Phone Terminal",
+      "mobileSettlement": "Mobile money settlements are processed within 24 hours of guest checkout.",
+      "profileDeactivation": "Profile Deactivation",
+      "deactivationDesc": "Deactivating your expert profile will remove all your public tour listings and pause any pending payouts.",
+      "requestDeactivation": "Request Deactivation",
+      "revertChanges": "Revert Changes",
+      "saveSettings": "Save Global Settings",
+      "preferencesSecured": "Preferences Secured",
+      "bankPlaceholder": "e.g. Commercial Bank of Ethiopia",
+      "holderPlaceholder": "Matches your National ID",
+      "accountPlaceholder": "Full account string",
+      "telebirrPlaceholder": "e.g. TeleBirr",
+      "phonePlaceholder": "+251 ...",
+      "deactivationDescFull": "Deactivating your expert profile will remove all your public tour listings and pause any pending payouts. Use this only if you wish to exit the platform.",
+      "deactivationConfirm": "You will be taken to support to request profile deactivation. Continue?"
+    },
+    "profile": {
+      "title": "Expert Identity",
+      "subtitle": "Maintain your professional guide persona and essential credentials.",
+      "profileStrength": "Profile Strength",
+      "actionRequired": "Action Required",
+      "expertStatus": "Expert Status",
+      "strengthDesc": "Complete your identity to gain priority placement and unlock premium assignments.",
+      "heritageAi": "Heritage AI Copilot",
+      "heritageAiDesc": "Our semantic engine can analyze your feedback and suggest portfolio improvements.",
+      "refinePortfolio": "Refine Portfolio",
+      "refine": "Refine",
+      "personalInfo": "Personal Information",
+      "verifiedExpert": "Verified Expert",
+      "verificationPending": "Verification Pending",
+      "changePhoto": "Change Photograph",
+      "changePhotoShort": "Change Photo",
+      "cloudinaryStorage": "Cloudinary Verified Storage",
+      "verified": "Verified",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "professionalEmail": "Professional Email",
+      "phoneNumber": "Phone Number",
+      "baseLocation": "Base Location",
+      "professionalCategory": "Professional Category",
+      "age": "Age",
+      "agePlaceholder": "e.g. 35",
+      "catStandard": "Standard Guide",
+      "catExpert": "Certified Expert",
+      "catStoryteller": "Master Storyteller",
+      "catGuardian": "Heritage Guardian",
+      "guideBiography": "Guide Biography",
+      "publicProfile": "Public Profile",
+      "bioLabel": "Public Bio (Tellers of Kambata Stories)",
+      "bioPlaceholder": "Tell your story to the world...",
+      "languagesSpoken": "Languages Spoken",
+      "specializations": "Core Specializations",
+      "credentialVault": "Credential Vault",
+      "vaultDesc": "Upload and manage your professional identity documents.",
+      "securityRequired": "Security Verification Required",
+      "nationalId": "National ID Document",
+      "nationalIdDesc": "Required for Payouts",
+      "idVerified": "ID Verified Successfully",
+      "idRejected": "Verification Rejected",
+      "idPending": "Verification Pending",
+      "retryUpload": "Retry Upload",
+      "uploadNationalId": "Upload National ID",
+      "professionalLicense": "Professional License",
+      "licenseDesc": "Expert Status Marker",
+      "licenseVerified": "License Verified Successfully",
+      "uploadLicense": "Upload License",
+      "uploading": "{n}% Uploading",
+      "cloudinarySecured": "Cloudinary Secured",
+      "secured": "Secured",
+      "awaitingReview": "Awaiting admin security review",
+      "verifiedProfile": "Verified Expert Profile",
+      "rejectedProfile": "Verification Rejected",
+      "unverifiedProfile": "Unverified Profile",
+      "incompleteProfile": "Incomplete: Needs Bio (50+ chars), Contact Info, and 2 Documents.",
+      "secureForm": "Secure Form System",
+      "saveIdentity": "Save Identity",
+      "saved": "Saved",
+      "submitForReview": "Submit for Review",
+      "resubmit": "Resubmit",
+      "submitting": "Submitting…",
+      "strengthDescLong": "Complete your identity to gain priority placement in search results and admin approval."
+    },
+    "scanner": {
+      "title": "QR Check-In Scanner",
+      "subtitle": "Scan a traveler's digital boarding pass to check them in.",
+      "readyToScan": "Ready to Scan",
+      "readyDesc": "Ask the traveler to open their Digital Boarding Pass in the Kambata app.",
+      "stepAsk": "Ask for Pass",
+      "stepPoint": "Point Camera",
+      "stepConfirm": "Confirm",
+      "openCamera": "Open Camera Scanner",
+      "cameraActive": "Camera Active — Hold Pass Steady",
+      "alignQr": "Align the QR code within the square frame…",
+      "travelerVerified": "✓ Traveler Verified",
+      "attendancePresent": "Attendance marked as Present",
+      "travelerName": "Traveler Name",
+      "bookingRef": "Booking Ref",
+      "partySize": "Party Size",
+      "traveler": "Traveler",
+      "travelers": "Travelers",
+      "checkedIn": "Checked In",
+      "tour": "Tour",
+      "scanNext": "Scan Next Traveler",
+      "alreadyCheckedIn": "Already Checked In",
+      "alreadyCheckedDesc": "This traveler has already been verified.",
+      "scanAnother": "Scan Another",
+      "invalidQr": "Invalid QR Code",
+      "invalidQrDesc": "This pass could not be verified.",
+      "tryAgain": "Try Again",
+      "enterManually": "Enter Reference Manually",
+      "openAttendance": "Open Attendance List",
+      "attendanceListHint": "Need to mark attendance from list?",
+      "offlineActive": "Offline Mode Active",
+      "lastSync": "Last Sync:",
+      "pendingSync": "{n} Pending Sync",
+      "syncNow": "Sync Now",
+      "syncing": "Syncing...",
+      "syncComplete": "Sync Complete (Last: {time})",
+      "cancel": "Cancel",
+      "securityPin": "Security PIN Required",
+      "securityPinDesc": "Ask the traveler for their 4-digit security PIN to confirm this pass.",
+      "verifyPin": "Verify PIN",
+      "locationWarning": "Location Warning",
+      "override": "Override",
+      "scansPendingSync": "{n} Scans Pending Sync",
+      "readyDescFull": "Ask the traveler to open their Digital Boarding Pass in the Kambata app, then tap the button below.",
+      "alignQrFull": "Align the QR code within the square frame. The scan will happen automatically."
+    }
+  }
+}
