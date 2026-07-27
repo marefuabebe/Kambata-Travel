@@ -1,0 +1,228 @@
+.trigger {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #145A41;
+  color: #D97706;
+  border: 4px solid #FDFCF0;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(20, 90, 65, 0.3);
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.trigger:hover {
+  background: #D97706;
+  color: white;
+}
+
+.pulse {
+  position: absolute;
+  inset: -8px;
+  border: 2px solid #D97706;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.oracleWindow {
+  position: fixed;
+  bottom: 120px;
+  right: 40px;
+  width: 380px;
+  max-width: calc(100vw - 80px);
+  height: 550px;
+  max-height: calc(100vh - 200px);
+  background: #FDFCF0;
+  border: 1px solid rgba(20, 90, 65, 0.1);
+  border-radius: 35px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(20, 90, 65, 0.15);
+  backdrop-filter: blur(20px);
+}
+
+.header {
+  padding: 24px 30px;
+  background: white;
+  border-bottom: 1px solid rgba(20, 90, 65, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.elderAvatar {
+  width: 40px;
+  height: 40px;
+  background: #FDFCF0;
+  border: 1px solid #D97706;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+}
+
+.whispersWrapper {
+  padding: 0 30px 20px;
+  background: white;
+}
+
+.whispersScroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none; /* Hide for Firefox */
+}
+
+.whispersScroll::-webkit-scrollbar {
+  display: none; /* Hide for Chrome/Safari */
+}
+
+.whisperChip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  background: #FDFCF0;
+  border: 1px solid rgba(20, 90, 65, 0.1);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #145A41;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.whisperChip:hover {
+  background: #145A41;
+  color: white;
+  border-color: #145A41;
+}
+
+.message {
+  max-width: 85%;
+  padding: 16px 20px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.elderMsg {
+  align-self: flex-start;
+  background: #145A41;
+  color: #FDFCF0;
+  border-bottom-left-radius: 4px;
+}
+
+.elderTag {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: #D97706;
+  margin-bottom: 8px;
+}
+
+.userMsg {
+  align-self: flex-end;
+  background: #D97706;
+  color: white;
+  border-bottom-right-radius: 4px;
+  font-weight: bold;
+}
+
+.typing {
+  font-size: 11px;
+  font-weight: 800;
+  color: #145A41;
+  font-style: italic;
+  opacity: 0.6;
+  margin-left: 10px;
+}
+
+.inputArea {
+  padding: 20px 30px 30px;
+  background: white;
+  display: flex;
+  gap: 12px;
+}
+
+.inputArea input {
+  flex: 1;
+  background: #FDFCF0;
+  border: 1px solid rgba(20, 90, 65, 0.1);
+  padding: 12px 20px;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  color: #145A41;
+  font-weight: 600;
+}
+
+.inputArea input:focus {
+  outline: none;
+  border-color: #D97706;
+}
+
+.sendBtn {
+  width: 45px;
+  height: 45px;
+  background: #145A41;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sendBtn:hover {
+  background: #D97706;
+  transform: rotate(10deg);
+}
+
+.oracleFooter {
+  padding: 10px;
+  background: #145A41;
+  color: rgba(253, 252, 240, 0.6);
+  font-size: 9px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+@media (max-width: 640px) {
+  .trigger { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+  .oracleWindow { bottom: 90px; right: 20px; width: calc(100vw - 40px); height: calc(100vh - 150px); }
+}
