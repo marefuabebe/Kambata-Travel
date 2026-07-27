@@ -99,22 +99,55 @@ const sendEmail = async (options) => {
 
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6uIUKlFL1dA1X5PHdffgk0e7bZCAHtPgxPV3Hc_d3X5zxd-T4dNrMImu0q5bIwK0v/exec";
 
-    const payload = {
+    const payload = JSON.stringify({
       token: "kambata-secret-12345",
       to: options.email || options.to,
       subject: options.subject,
       html: finalHtml
-    };
-
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
+    const https = require('https');
+    const url = require('url');
+    
+    // We need to handle HTTP 302 redirects because Google Apps Script always redirects POST requests
+    const makeRequest = (requestUrl, postData) => {
+      return new Promise((resolve, reject) => {
+        const parsedUrl = url.parse(requestUrl);
+        const requestOptions = {
+          hostname: parsedUrl.hostname,
+          path: parsedUrl.path,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(postData)
+          }
+        };
+
+        const req = https.request(requestOptions, (res) => {
+          if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+            // Handle redirect
+            makeRequest(res.headers.location, postData).then(resolve).catch(reject);
+            return;
+          }
+
+          let data = '';
+          res.on('data', (chunk) => { data += chunk; });
+          res.on('end', () => {
+            try {
+              resolve(JSON.parse(data));
+            } catch (e) {
+              resolve({ raw: data });
+            }
+          });
+        });
+
+        req.on('error', (e) => reject(e));
+        req.write(postData);
+        req.end();
+      });
+    };
+
+    const result = await makeRequest(GOOGLE_SCRIPT_URL, payload);
 
     if (result.error) {
       throw new Error(result.error);
