@@ -1,0 +1,1032 @@
+/* ── Heritage Page CSS Module ── */
+
+.pageWrapper {
+  background: #FFFFFF;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.section {
+  padding: 60px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.identityWrapper {
+  padding-top: 60px;
+}
+
+.preserveSectionWrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.ctaSectionWrapper {
+  padding-top: 10px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.sectionTitleSmall {
+  font-family: var(--font-display), serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #D4A017; /* Often used for small taglines here */
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.sectionTitleSmallGreen {
+  font-family: var(--font-display), serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #0F766E;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-display), serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  word-wrap: break-word;
+}
+
+.viewAllBtn {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.3s ease;
+}
+
+.viewAllBtn:hover {
+  opacity: 0.7;
+}
+
+/* ── 1. Hero Section ── */
+.heroSection {
+  position: relative;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 60px;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 20, 15, 0.9) 0%, rgba(10, 20, 15, 0.4) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 800px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroTitle {
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.heroSub {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.primaryBtn {
+  background: #0F766E;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.primaryBtn:hover {
+  background: #14532D;
+}
+
+.outlineBtn {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 0.7rem;
+  gap: 8px;
+  opacity: 0.8;
+}
+
+/* ── 2. Our Identity ── */
+.identitySection {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.identityImg {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.identityImg:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.identityContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.identityDesc {
+  color: #4A5568;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.identityIcons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.identityIconCard {
+  background: #FAFAFA;
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.idIcon {
+  color: #D4A017;
+  margin-bottom: 12px;
+}
+
+.idLabel {
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+/* ── 3. Heritage Categories ── */
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.categoryCard {
+  position: relative;
+  height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.categoryCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.categoryImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.5s ease;
+}
+
+.categoryCard:hover .categoryImg {
+  transform: scale(1.08);
+}
+
+.categoryOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20, 83, 45, 0.9) 0%, rgba(20, 83, 45, 0.2) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.categoryContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.catIconWrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: white;
+  color: #14532D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.catTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.catLink {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── 4. Timeline ── */
+.timelineSection {
+  text-align: center;
+}
+
+.timelineRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 60px;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 30px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+}
+
+.timelineItem {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 0 10px;
+}
+
+.timelineIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #F8F9F5;
+  border: 4px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0F766E;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.timelineIcon.gold { color: #D4A017; }
+
+.timelineTitle {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.timelineDesc {
+  font-size: 0.7rem;
+  color: #718096;
+  line-height: 1.5;
+}
+
+/* ── 5. Living in Harmony ── */
+.harmonySection {
+  background: #F8F9F5;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0;
+  overflow: hidden;
+}
+
+.harmonyContent {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.harmonyDesc {
+  color: #4A5568;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.harmonyList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.harmonyListItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.harmonyCheck {
+  color: white;
+  background: #0F766E;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.quoteBox {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  display: flex;
+  gap: 16px;
+}
+
+.quoteBox > div {
+  min-width: 0; /* Prevents flex blowout on long text */
+}
+
+.quoteIcon {
+  color: #D4A017;
+  flex-shrink: 0;
+}
+
+.quoteText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.quoteAuthor {
+  font-size: 0.7rem;
+  color: #718096;
+}
+
+.harmonyVideo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+}
+
+.harmonyImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.harmonyVideoOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+  color: white;
+}
+
+.playCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+/* ── 6. Split Section (Gallery & Festivals) ── */
+.splitLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.splitLayout > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.masonryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 150px 150px;
+  gap: 12px;
+}
+
+.masonryGrid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0.4s ease;
+}
+
+.masonryGrid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  position: relative;
+}
+.m1 { grid-column: 1 / 2; grid-row: 1 / 3; }
+.m2 { grid-column: 2 / 3; grid-row: 1 / 2; }
+.m3 { grid-column: 3 / 4; grid-row: 1 / 2; }
+.m4 { grid-column: 2 / 3; grid-row: 2 / 3; }
+.m5 { grid-column: 3 / 4; grid-row: 2 / 3; }
+
+.festivalsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.festivalCard {
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.festivalCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.festivalImg {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.festivalContent {
+  padding: 16px;
+}
+
+.festTitle {
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.festDate {
+  font-size: 0.7rem;
+  color: #718096;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.festDesc {
+  font-size: 0.75rem;
+  color: #4A5568;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.festLoc {
+  font-size: 0.7rem;
+  color: #0F766E;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+/* ── 7. Split Section (Arts & Leaders) ── */
+.artsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.artCard {
+  position: relative;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.artCard:hover .artImg {
+  transform: scale(1.05);
+}
+
+.artImg {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.artOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 118, 110, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.artCard:hover .artOverlay {
+  opacity: 1;
+}
+
+.artTitle {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 12px;
+  transform: translateY(15px);
+  transition: transform 0.4s ease;
+}
+
+.artDesc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+  transform: translateY(15px);
+  transition: transform 0.4s ease;
+}
+
+.artCard:hover .artTitle,
+.artCard:hover .artDesc {
+  transform: translateY(0);
+}
+
+.leadersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.leaderCard {
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.leaderCard:hover {
+  transform: translateY(-5px);
+}
+
+.leaderImg {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.leaderName {
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.leaderRole {
+  font-size: 0.7rem;
+  color: #0F766E;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.leaderDesc {
+  font-size: 0.7rem;
+  color: #718096;
+  line-height: 1.3;
+}
+
+/* ── 8. Split Section (Map & Preserving) ── */
+.mapSectionImg {
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
+  margin-top: 20px;
+  border-radius: 24px;
+  padding: 20px;
+  transition: transform 0.5s ease, filter 0.5s ease, background 0.5s ease;
+}
+
+.mapSectionImg:hover {
+  transform: scale(1.05) translateY(-5px);
+  filter: drop-shadow(0 15px 25px rgba(15, 118, 110, 0.15));
+  background: rgba(15, 118, 110, 0.05);
+}
+
+.preserveGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  width: 100%;
+}
+
+.preserveCard {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.preserveCard:hover {
+  transform: translateY(-5px);
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.preserveIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(15, 118, 110, 0.08);
+  color: #0F766E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.preserveCard:hover .outlineBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btnSecondary {
+  background: #C89B3C;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btnSecondary:hover {
+  background: #B68A2E;
+}
+
+.preserveCard:hover .preserveIcon {
+  background: rgba(20, 83, 45, 0.1);
+  transform: scale(1.1);
+}
+
+.preserveLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.preserveTitleBlock {
+  flex: 0 0 auto;
+  text-align: left;
+}
+
+.preserveTitle {
+  font-weight: 800;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+
+.preserveDesc {
+  font-size: 0.65rem;
+  color: #718096;
+  line-height: 1.4;
+}
+
+/* ── 9. CTA ── */
+.ctaBanner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 60px 40px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.ctaBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.ctaOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 83, 45, 0.85);
+  z-index: 1;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaContent h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.ctaContent p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 0;
+}
+
+.ctaActions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+/* Mobile & Tablet Adjustments */
+@media (max-width: 1200px) {
+  .identitySection, .harmonySection, .splitLayout {
+    grid-template-columns: 1fr;
+  }
+  .categoriesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ctaActions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 40px 20px;
+  }
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  .identityWrapper {
+    padding-top: 20px;
+  }
+  .heroSection {
+    padding: 60px 20px 0;
+    height: 45vh;
+    min-height: 400px;
+  }
+  .heroTitle {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+  }
+  .heroSub {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .scrollIndicator {
+    bottom: 10px;
+  }
+  .primaryBtn, .outlineBtn, .btnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+  .categoriesGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .identitySection {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #F8F9F5;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .identityContent {
+    padding: 30px 20px;
+  }
+  .identityImg {
+    border-radius: 0;
+    height: 200px;
+  }
+  .harmonySection {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .harmonyVideo {
+    min-height: 150px;
+  }
+  .identityIcons {
+    grid-template-columns: 1fr 1fr;
+  }
+  .timelineRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 20px;
+  }
+  .timelineLine {
+    display: none;
+  }
+  .harmonyContent {
+    padding: 30px 20px;
+  }
+  .masonryGrid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .masonryGrid img {
+    height: 150px;
+  }
+  .m1, .m2, .m3, .m4, .m5 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .festivalsGrid, .artsGrid, .leadersGrid {
+    grid-template-columns: 1fr;
+  }
+  .preserveGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .preserveLayout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .preserveTitleBlock {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .preserveMainTitle {
+    font-size: 1.55rem;
+    white-space: nowrap;
+  }
+  .ctaBanner {
+    flex-direction: column;
+    padding: 30px 20px;
+    text-align: center;
+    gap: 20px;
+  }
+  .ctaActions {
+    width: 100%;
+    flex-direction: column;
+  }
+}
