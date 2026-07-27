@@ -1,19 +1,5 @@
-const sgMail = require("@sendgrid/mail");
-
 const sendEmail = async (options) => {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.log("\n⚠️ [WARNING]: SENDGRID_API_KEY not found in .env");
-    console.log("Mocking email delivery instead of failing.");
-    console.log("-----------------------------------------");
-    console.log(`To: ${options.email || options.to}`);
-    console.log(`Subject: ${options.subject}`);
-    console.log(`OTP: ${options.otp || "N/A"}`);
-    console.log("-----------------------------------------\n");
-    return;
-  }
-
   try {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const logoUrl = "https://res.cloudinary.com/dzf4st3t2/image/upload/v1777659922/kambata-travel/assets/picsvg_download_psbhbc.png";
     const year = new Date().getFullYear();
     let emailBodyHtml = "";
@@ -111,18 +97,32 @@ const sendEmail = async (options) => {
       </html>
     `;
 
-    const msg = {
-      from: process.env.EMAIL_FROM || "Kambata Travel <kambatatravel@gmail.com>",
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6uIUKlFL1dA1X5PHdffgk0e7bZCAHtPgxPV3Hc_d3X5zxd-T4dNrMImu0q5bIwK0v/exec";
+
+    const payload = {
+      token: "kambata-secret-12345",
       to: options.email || options.to,
       subject: options.subject,
-      html: finalHtml,
-      text: options.message || "Please view this email in an HTML compatible client.",
+      html: finalHtml
     };
 
-    const response = await sgMail.send(msg);
-    console.log("SendGrid Message sent:", response[0].statusCode);
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (result.error) {
+      throw new Error(result.error);
+    }
+
+    console.log("Google Apps Script Email sent successfully!");
   } catch (error) {
-    console.error("Error sending email via SendGrid:", error.response ? error.response.body : error.message);
+    console.error("Error sending email via Google Apps Script:", error.message);
     throw error;
   }
 };
