@@ -22,7 +22,8 @@ const checkUserBlock = (user) => {
 // @access  Public
 const registerUser = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, password, role } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
 
     const userExists = await User.findOne({ email });
 
@@ -127,7 +128,8 @@ const registerUser = async (req, res, next) => {
 // @access  Public
 const loginUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { password } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
@@ -296,7 +298,7 @@ const refreshAccessToken = async (req, res, next) => {
 // @access  Public
 const forgotPassword = async (req, res, next) => {
   try {
-    const { email } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
@@ -386,7 +388,8 @@ const forgotPassword = async (req, res, next) => {
 // @access  Public
 const verifyOTP = async (req, res, next) => {
   try {
-    const { email, otp } = req.body;
+    const { otp } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
@@ -434,7 +437,8 @@ const verifyOTP = async (req, res, next) => {
 // @access  Public
 const resetPassword = async (req, res, next) => {
   try {
-    const { email, otp, newPassword } = req.body;
+    const { otp, newPassword } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
@@ -473,7 +477,8 @@ const resetPassword = async (req, res, next) => {
 // @access  Public
 const verifyEmail = async (req, res, next) => {
   try {
-    const { email, otp } = req.body;
+    const { otp } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
     const bcrypt = require("bcryptjs");
@@ -530,7 +535,7 @@ const verifyEmail = async (req, res, next) => {
 // @access  Public
 const resendVerificationOTP = async (req, res, next) => {
   try {
-    const { email } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
     const bcrypt = require("bcryptjs");
@@ -608,7 +613,8 @@ const resendVerificationOTP = async (req, res, next) => {
  */
 const adminLogin = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { password } = req.body;
+    const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const user = await User.findOne({ email });
 
     if (!user || user.role !== "admin") {
