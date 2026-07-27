@@ -1,0 +1,1245 @@
+/* ── Explore Page CSS Module ── */
+
+.pageWrapper {
+  background: #FFFFFF; /* Match the bright white background of the image */
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  font-family: var(--font-inter), sans-serif; /* Clean modern font */
+}
+
+.mainContent {
+  flex: 1;
+}
+
+/* ── Common Section Styles ── */
+.section {
+  padding: 60px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.sectionTitleSmall {
+  font-family: var(--font-display), serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #0F766E;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-display), serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+}
+
+.viewAllBtn {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0F766E;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.3s ease;
+}
+
+.viewAllBtn:hover {
+  opacity: 0.7;
+}
+
+/* ── 1. Hero Section ── */
+.heroSection {
+  position: relative;
+  height: 85vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  padding: 0 60px;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 15, 0.5);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 800px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroTag {
+  display: inline-block;
+  color: #D4A017;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.heroTitle {
+  font-family: var(--font-display), serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primaryBtn {
+  background: #0F766E;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.primaryBtn:hover {
+  background: #14532D;
+}
+
+.secondaryBtn {
+  background: white;
+  color: #1a1a1a;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.secondaryBtn:hover {
+  background: #f0f0f0;
+}
+
+.heroNavLeft, .heroNavRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 10;
+  cursor: pointer;
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.heroNavLeft { left: 40px; }
+.heroNavRight { right: 40px; }
+
+.heroNavLeft:hover, .heroNavRight:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 0.7rem;
+  gap: 8px;
+  opacity: 0.8;
+}
+
+/* ── 2. Smart Search ── */
+.searchContainer {
+  position: relative;
+  margin-top: -45px;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+.searchBar {
+  background: white;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 1400px;
+  border: 1px solid #f0f0f0;
+}
+
+.searchGroup {
+  flex: 1;
+  padding: 12px 24px;
+  border-right: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchGroup:nth-last-child(2) {
+  border-right: none;
+}
+
+.searchGroupText {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.searchLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+
+.searchValue {
+  font-size: 0.85rem;
+  color: #718096;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  appearance: none;
+}
+
+.searchIcon {
+  color: #718096;
+}
+
+.searchActions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.clearBtn {
+  background: transparent;
+  border: none;
+  color: #718096;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 4px;
+  margin-top: -4px;
+}
+
+.clearBtn:hover {
+  color: #1a1a1a;
+}
+
+.searchBtn {
+  background: #0F766E;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.searchBtn:hover {
+  background: #14532D;
+}
+
+/* ── 3. Popular Destinations (Row of 6) ── */
+.destinationsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.tourCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.tourCard:hover .tourImage {
+  transform: scale(1.05);
+}
+
+.tourImageWrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.tourImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.tourCardBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255,255,255,0.9);
+  color: #0F766E;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+.tourCardHeart {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: white;
+  background: rgba(0,0,0,0.2);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tourHoverOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 42, 34, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 5;
+}
+
+.tourCard:hover .tourHoverOverlay {
+  opacity: 1;
+}
+
+.tourHoverTitle {
+  color: #D4A017;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-align: center;
+  transform: translateY(15px);
+  transition: transform 0.4s ease;
+}
+
+.tourCard:hover .tourHoverTitle {
+  transform: translateY(0);
+}
+
+.tourHoverDesc {
+  color: white;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 500;
+  transform: translateY(15px);
+  transition: transform 0.4s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tourCard:hover .tourHoverDesc {
+  transform: translateY(0);
+}
+
+.tourCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tourCardTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.tourCardLocation {
+  font-size: 0.75rem;
+  color: #718096;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tourCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.tourCardRating {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tourCardRating span {
+  color: #D4A017;
+}
+
+.tourCardRatingCount {
+  color: #718096;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+/* ── 4. Explore By Category ── */
+.categorySection {
+  padding: 20px 40px 60px 40px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.categoryRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.categoryIcon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 118, 110, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0F766E;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.categoryItem:hover .categoryIcon {
+  background: rgba(15, 118, 110, 0.05);
+  border-color: rgba(15, 118, 110, 0.2);
+}
+
+.categoryName {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.categoryArrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+/* ── 5. Featured Destination ── */
+.featuredContainer {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.5fr;
+  gap: 30px;
+  background: #F8F7F2;
+  border-radius: 24px;
+  padding: 30px;
+}
+
+.featuredMainImg {
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.featuredContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.featuredTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 8px 0 16px 0;
+}
+
+.featuredLocation {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0F766E;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.featuredDesc {
+  color: #4A5568;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.featuredMetaRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.featuredMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featuredMetaIcon {
+  color: #718096;
+}
+
+.featuredMetaLabel {
+  font-size: 0.7rem;
+  color: #718096;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.featuredMetaValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.featuredSideImgs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 500px;
+}
+
+.featuredSideImgWrapper {
+  flex: 1;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.featuredSideImgWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredImgOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* ── 6. Traditional Culture ── */
+.cultureContainer {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  background: #FAF9F0;
+  padding: 0;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.cultureImage {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+}
+
+.cultureContent {
+  padding: 60px 60px 60px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.cultureTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 8px 0 24px 0;
+}
+
+.cultureDesc {
+  color: #4A5568;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.cultureIconsRow {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.cultureIconItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.cultureIconWrapper {
+  color: #D4A017;
+}
+
+.cultureIconLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4A5568;
+}
+
+.culturePattern {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0.05;
+  width: 200px;
+}
+
+/* ── 7. Experience Gallery (Masonry style specific layout) ── */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  gap: 16px;
+}
+
+.galleryGrid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.gal1 { grid-column: 1 / 2; grid-row: 1 / 3; }
+.gal2 { grid-column: 2 / 3; grid-row: 1 / 2; }
+.gal3 { grid-column: 3 / 4; grid-row: 1 / 2; }
+.gal4 { grid-column: 2 / 4; grid-row: 2 / 3; }
+.gal5 { grid-column: 4 / 5; grid-row: 1 / 3; }
+.gal6 { grid-column: 5 / 6; grid-row: 1 / 2; }
+.gal7 { grid-column: 6 / 7; grid-row: 1 / 2; }
+.gal8 { grid-column: 5 / 7; grid-row: 2 / 3; }
+
+/* ── 8. Split Section (Hidden Gems + Travel Stories) ── */
+.splitSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.gemsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.gemCard {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 200px;
+}
+
+.gemCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gemOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
+}
+
+.gemBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #D4A017;
+  color: white;
+  font-size: 0.5rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+.gemTitle {
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.gemLoc {
+  color: #cbd5e1;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.storiesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.storyCard {
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.storyCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.storyCardWrapper {
+  overflow: hidden;
+}
+
+.storyCard img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.storyCard:hover img {
+  transform: scale(1.08);
+}
+
+.storyContent {
+  padding: 16px;
+}
+
+.storyDate {
+  font-size: 0.65rem;
+  color: #718096;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.storyTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+/* ── 9. Split Section (Map & Stats) ── */
+.mapImg {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+  margin-top: 20px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 40px;
+  align-items: flex-start;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.statIconWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(15, 118, 110, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.statIcon {
+  color: #0F766E;
+}
+
+.statNumber {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  color: #718096;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ── 10. Why Explore ── */
+.whyRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.whyCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid #f0f0f0;
+  border-radius: 16px;
+  background: white;
+}
+
+.whyIcon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(15, 118, 110, 0.08);
+  color: #0F766E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.whyCardTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.whyCardDesc {
+  font-size: 0.75rem;
+  color: #718096;
+  line-height: 1.4;
+}
+
+/* ── 11. Newsletter ── */
+.newsletterSection {
+  position: relative;
+  padding: 60px;
+  border-radius: 24px;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.newsletterBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.newsletterOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 118, 110, 0.9);
+  z-index: 1;
+}
+
+.newsletterLeft {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+}
+
+.newsletterTag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #D4A017;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.newsletterTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.newsletterDesc {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.newsletterRight {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  background: white;
+  border-radius: 100px;
+  padding: 6px;
+  width: 400px;
+}
+
+.newsletterInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0 20px;
+  font-size: 0.9rem;
+  outline: none;
+  color: #1a1a1a;
+}
+
+.newsletterBtn {
+  background: #14532D;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 1200px) {
+  .featuredContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cultureContainer, .splitSection {
+    grid-template-columns: 1fr 1fr;
+  }
+  .galleryGrid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .galleryGrid > * {
+    width: calc(50% - 8px);
+    height: 200px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .searchBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 20px;
+    gap: 12px;
+    padding: 16px;
+  }
+  .searchGroup {
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+    width: 100%;
+  }
+  .searchActions {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .searchBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 40px 20px;
+  }
+  .heroSection {
+    padding: 0;
+    align-items: flex-start;
+    height: auto;
+    min-height: auto;
+  }
+  .heroContent {
+    padding: 100px 20px 60px 20px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .heroTitle {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  .heroSub {
+    text-align: center;
+    font-size: 0.95rem;
+    margin: 0 auto 30px auto;
+  }
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+  .scrollIndicator {
+    display: none;
+  }
+  .searchContainer {
+    padding: 0 16px;
+    margin-top: -30px;
+    position: relative;
+    z-index: 20;
+  }
+  .searchBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 16px;
+    border-radius: 24px;
+    gap: 10px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+  .searchGroup {
+    border: none;
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 12px 14px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+  }
+  .searchGroup:nth-child(1) {
+    grid-column: span 2;
+  }
+  .searchGroup:nth-child(2), .searchGroup:nth-child(3), .searchGroup:nth-child(4), .searchGroup:nth-child(5) {
+    grid-column: span 1;
+  }
+  .searchLabel {
+    display: none;
+  }
+  .searchGroupText {
+    width: 100%;
+  }
+  .searchValue {
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: 100%;
+    background: transparent;
+  }
+  .searchIcon {
+    width: 18px;
+    height: 18px;
+    color: #0F766E;
+  }
+  .searchActions {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 4px 0 0 0;
+    width: 100%;
+  }
+  .searchBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+  }
+  .featuredContainer, .cultureContainer, .splitSection, .destinationsRow, .gemsGrid, .storiesGrid, .statsGrid, .whyRow {
+    grid-template-columns: 1fr;
+  }
+  .categoryRow {
+    gap: 20px;
+  }
+  .galleryGrid > * {
+    width: 100%;
+  }
+  .featuredMetaRow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .featuredSideImgs {
+    display: none;
+  }
+  .newsletterSection {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 24px;
+    text-align: center;
+  }
+  .newsletterRight {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+    flex-direction: column;
+    border-radius: 0;
+    gap: 12px;
+  }
+  .newsletterInput {
+    width: 100%;
+    background: white;
+    padding: 16px 24px;
+    border-radius: 100px;
+  }
+  .newsletterBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .heroNavLeft, .heroNavRight {
+    display: none;
+  }
+  .cultureContent {
+    padding: 15px 10px;
+  }
+  .cultureIconsRow {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .cultureIconItem {
+    width: calc(50% - 10px);
+  }
+}
