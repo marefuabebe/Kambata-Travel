@@ -1,0 +1,322 @@
+.main {
+  display: flex;
+  gap: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tableSection {
+  flex: 1;
+}
+
+.detailSection {
+  width: 380px;
+  background: #FDFCF0;
+  border-radius: 32px;
+  padding: 32px;
+  position: sticky;
+  top: 24px;
+  height: fit-content;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1A1A1A;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.tabs {
+  display: flex;
+  background: #EBEAE1/50;
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.tab {
+  padding: 8px 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6B7280;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.activeTab {
+  background: #1A331B;
+  color: white;
+}
+
+.filterBtn, .exportBtn {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4B5563;
+}
+
+/* Table Card */
+.tableCard {
+  background: white;
+  border-radius: 32px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th {
+  text-align: left;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  letter-spacing: 0.1em;
+  padding: 16px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.tr {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tr:hover {
+  background: #F9FAFB;
+}
+
+.activeTr {
+  background: #FDFCF0 !important;
+}
+
+.td {
+  padding: 20px 16px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #F9FAFB;
+}
+
+.customerInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  overflow: hidden;
+  background: #F3F4F6;
+}
+
+.tourSubtitle {
+  font-size: 0.65rem;
+  color: #9CA3AF;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.peoplePill {
+  background: #F3F4F6;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #4B5563;
+}
+
+.dateText {
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.timeText {
+  font-size: 0.65rem;
+  color: #9CA3AF;
+}
+
+/* Detail Side Panel */
+.sideHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.sideTitle {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.tourDetailCard {
+  background: #1A331B;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 32px;
+  height: 160px;
+}
+
+.tourImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.tourCardTitle {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.label {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.contactGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.contactPill {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4B5563;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.specialRequest {
+  background: #FFEDD5;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.requestText {
+  font-size: 0.8rem;
+  color: #92400E;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.timelineMarker {
+  width: 12px;
+  height: 12px;
+  border-radius: 100px;
+  background: #1A331B;
+  margin-top: 4px;
+  z-index: 1;
+}
+
+.timelineItem:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 15px;
+  bottom: -30px;
+  width: 2px;
+  background: #E5E7EB;
+}
+
+.timelineContent h4 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #1F2937;
+  margin-bottom: 2px;
+}
+
+.timelineContent p {
+  font-size: 0.7rem;
+  color: #9CA3AF;
+  font-weight: 600;
+}
+
+.sideActions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.acceptBtn {
+  background: #1A331B;
+  color: white;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.rescheduleBtn {
+  background: #EBEAE1;
+  color: #1F2937;
+  padding: 16px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .main { flex-direction: column; }
+  .detailSection { width: 100%; position: static; }
+}
