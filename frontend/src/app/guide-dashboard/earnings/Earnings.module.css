@@ -1,0 +1,159 @@
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1F2937;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #6B7280;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.statCard {
+  background: #FFFFFF;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5E7EB;
+  transition: transform 0.2s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08);
+}
+
+.statCardHighlight {
+  background: linear-gradient(135deg, #0F3D2E 0%, #145A41 100%);
+  color: white;
+  border: none;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6B7280;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statCardHighlight .statLabel {
+  color: rgba(255,255,255,0.7);
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1F2937;
+}
+
+.statCardHighlight .statValue {
+  color: white;
+}
+
+.cardSection {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E5E7EB;
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6B7280;
+  text-transform: uppercase;
+  padding: 16px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.td {
+  padding: 16px;
+  font-size: 0.875rem;
+  color: #374151;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.statusPill {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.statusPaid { background: #DCFCE7; color: #166534; }
+.statusPending { background: #FEF3C7; color: #92400E; }
+
+.chartContainer {
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding-top: 20px;
+}
+
+.chartBar {
+  flex: 1;
+  background: #F3F4F6;
+  border-radius: 4px;
+  min-height: 20px;
+  transition: all 0.3s ease;
+}
+
+.chartBar:hover {
+  background: #145A41;
+}
+
+.payoutBtn {
+  background: #D97706; /* SaaS Gold */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.payoutBtn:hover {
+  background: #B45309;
+  transform: translateY(-1px);
+}
