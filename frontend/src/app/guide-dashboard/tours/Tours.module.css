@@ -1,0 +1,374 @@
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+
+.titleSection {
+  max-width: 600px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin-bottom: 12px;
+  letter-spacing: -0.025em;
+}
+
+.subtitle {
+  color: #6B7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.exportBtn {
+  background: #EBEAE1;
+  color: #1A1A1A;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.exportBtn:hover {
+  background: #D6D8C6;
+}
+
+/* Controls: Tabs & Search */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 4px;
+}
+
+.tab {
+  padding: 8px 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9CA3AF;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activeTab {
+  color: #1A1A1A;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #1A1A1A;
+}
+
+.tabBadge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 100px;
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+.activeTab .tabBadge {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.searchBar {
+  background: #EBEAE1/50;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 10px 24px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 320px;
+}
+
+.searchBar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+/* Tour Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.tourCard {
+  background: white;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.tourCard:hover {
+  transform: translateY(-8px);
+}
+
+.imageContainer {
+  height: 240px;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badgeActive { background: #EBEAE1; color: #1A331B; }
+.badgeDraft { background: #4B5563; color: white; }
+
+.cardContent {
+  padding: 32px;
+  background: #FDFCF0;
+  flex: 1;
+}
+
+.locationLabel {
+  font-size: 10px;
+  font-weight: 900;
+  color: #C2410C;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.tourTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  color: #1A1A1A;
+  padding-right: 72px;
+}
+
+.priceSection {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  position: absolute;
+  top: 32px;
+  right: 32px;
+}
+
+.priceValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.priceUnit {
+  font-size: 8px;
+  font-weight: 700;
+  color: #6B7280;
+  text-transform: uppercase;
+}
+
+.statsRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #6B7280;
+}
+
+.actionRow {
+  display: flex;
+  gap: 12px;
+}
+
+.actionBtn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btnEdit { background: #E5E7EB; color: #1A1A1A; }
+.btnBookings { background: #E67E22; color: white; }
+.btnPublish { background: #1A331B; color: white; }
+.btnDelete { background: #F3F4F6; color: #6B7280; flex: 0 0 44px; }
+
+/* Quick Stats Card */
+.statsCard {
+  background: #224223;
+  color: white;
+  padding: 48px;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.statsHeader {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 24px;
+}
+
+.mainStatVal {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.mainStatLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 48px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: auto;
+}
+
+.statSubBox {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+.statSubVal {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.statSubLabel {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.statsBtn {
+  margin-top: 48px;
+  width: 100%;
+  padding: 16px;
+  background: #FDFCF0;
+  color: #1A331B;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* Design Card */
+.designCard {
+  border: 2px dashed #D6D8C6;
+  background: #FDFCF0;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 48px;
+  text-align: center;
+}
+
+.plusIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 100px;
+  background: #D1FAE5;
+  color: #065F46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.designTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #1A1A1A;
+}
+
+.designSub {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6B7280;
+  line-height: 1.6;
+}
+
+@media (max-width: 1200px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .header { flex-direction: column; gap: 24px; }
+  .grid { grid-template-columns: 1fr; }
+  .controls { flex-direction: column; gap: 24px; align-items: flex-start; }
+}
