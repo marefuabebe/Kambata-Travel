@@ -1,0 +1,221 @@
+.main {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pageHeader {
+  margin-bottom: 48px;
+}
+
+.pageTitle {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.pageSubtitle {
+  font-size: 0.95rem;
+  color: #6B7280;
+  font-weight: 500;
+  max-width: 600px;
+}
+
+.layoutGrid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* Submit Form Block */
+.formCard {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  height: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #4B5563;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input, .textarea {
+  background: #FDFCF0;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: #1F2937;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input:focus, .textarea:focus {
+  border-color: #1A331B;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(26,51,27,0.05);
+}
+
+.textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.submitBtn {
+  background: #1A331B;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+/* Dark AI Network Status Layout */
+.darkPanel {
+  background: linear-gradient(180deg, #1A1A1A, #0A0A0A);
+  border-radius: 24px;
+  border: 1px solid #333;
+  padding: 32px;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.glowLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #22C55E, transparent);
+  box-shadow: 0 0 20px #22C55E, 0 0 10px #22C55E;
+  animation: scanDown 4s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes scanDown {
+  0% { top: -10px; }
+  100% { top: 100%; }
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.panelTitle {
+  font-weight: 800;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusTag {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #4ADE80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.systemFeed {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.feedItem {
+  display: flex;
+  gap: 12px;
+}
+
+.feedTime {
+  font-family: monospace;
+  color: #6B7280;
+  font-size: 0.75rem;
+}
+
+.feedText {
+  font-family: monospace;
+  color: #D1D5DB;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.pingMap {
+  margin-top: auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.pingNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pingLabel {
+  color: #9CA3AF;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pingValue {
+  color: white;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
