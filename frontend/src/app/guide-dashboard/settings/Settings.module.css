@@ -1,0 +1,268 @@
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.titleSection {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1F2937;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #6B7280;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Section Layout */
+.midGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+/* Card Styling */
+.sectionCard {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  color: #1F2937;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.sectionHeader svg {
+  color: #145A41;
+}
+
+/* Form Elements */
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1F2937;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  background: white;
+  border-color: #145A41;
+  box-shadow: 0 0 0 4px rgba(20, 90, 65, 0.08);
+  outline: none;
+}
+
+/* Toggle Switch */
+.toggleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #F9FAFB;
+  border-radius: 16px;
+  margin-top: 12px;
+}
+
+.toggleMeta h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 2px;
+}
+
+.toggleMeta p {
+  font-size: 0.75rem;
+  color: #6B7280;
+  font-weight: 500;
+}
+
+.switch {
+  width: 44px;
+  height: 24px;
+  background: #E5E7EB;
+  border-radius: 100px;
+  padding: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.switchOn {
+  background: #145A41;
+}
+
+.knob {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.knobOn {
+  transform: translateX(20px);
+}
+
+/* Preference Cards */
+.prefCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #F3F4F6;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.prefCard:hover {
+  border-color: #E5E7EB;
+  transform: translateX(4px);
+}
+
+.prefIcon {
+  width: 40px;
+  height: 40px;
+  background: #F3F4F6;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #145A41;
+}
+
+.prefInfo {
+  flex: 1;
+}
+
+.prefInfo h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+.prefInfo p {
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+/* Payout Grid */
+.payoutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.payoutCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.payoutLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4B5563;
+  margin-bottom: 24px;
+}
+
+.payoutNote {
+  background: #F3F4F6;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: #4B5563;
+  font-weight: 600;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* Action Buttons */
+.footerActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+.discardBtn {
+  padding: 12px 24px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #6B7280;
+  transition: color 0.2s ease;
+}
+
+.discardBtn:hover {
+  color: #1F2937;
+}
+
+.saveBtn {
+  background: #145A41;
+  color: white;
+  padding: 12px 40px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(20, 90, 65, 0.15);
+}
+
+.saveBtn:hover {
+  background: #0F3D2E;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(20, 90, 65, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .midGrid, .payoutGrid {
+    grid-template-columns: 1fr;
+  }
+}
