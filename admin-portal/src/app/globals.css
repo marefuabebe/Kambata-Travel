@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 248, 250, 249;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Admin sidebar — mirrors dashboard card tokens */
+  .admin-sidebar {
+    --sb-surface: rgba(255, 255, 255, 0.85);
+    --sb-border: rgba(226, 232, 240, 1);
+  }
+
+  .dark .admin-sidebar {
+    --sb-surface: rgba(30, 41, 59, 0.45);
+    --sb-border: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Mobile Responsive Tables */
+@media (max-width: 768px) {
+  table.table-responsive,
+  .table-responsive thead,
+  .table-responsive tbody,
+  .table-responsive th,
+  .table-responsive td,
+  .table-responsive tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none, for accessibility) */
+  .table-responsive thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table-responsive tr {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .table-responsive tr {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .table-responsive td {
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    position: relative;
+    padding-left: 45%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: right;
+    min-height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .dark .table-responsive td {
+    border-bottom-color: #334155;
+  }
+
+  .table-responsive td:last-child {
+    border-bottom: 0;
+  }
+
+  .table-responsive td:before {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 12px;
+    width: 40%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    content: attr(data-label);
+  }
+
+  .dark .table-responsive td:before {
+    color: #94a3b8;
+  }
+}
+
+/* Fix option tag visibility in dark mode */
+.dark option {
+  background-color: #0F172A;
+  color: #f8fafc;
+}
