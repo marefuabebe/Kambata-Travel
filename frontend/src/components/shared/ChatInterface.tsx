@@ -326,7 +326,7 @@ export default function ChatInterface() {
 
   useEffect(() => {
     window.dispatchEvent(new Event(activeConvo ? "chat-opened" : "chat-closed"));
-    return () => window.dispatchEvent(new Event("chat-closed"));
+    return () => { window.dispatchEvent(new Event("chat-closed")); };
   }, [activeConvo]);
 
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
@@ -964,7 +964,7 @@ export default function ChatInterface() {
                         <div className="absolute bottom-[calc(100%+0.5rem)] left-0 z-50 shadow-2xl rounded-2xl overflow-hidden">
                           <EmojiPicker 
                             onEmojiClick={(emoji) => setNewMessage(prev => prev + emoji.emoji)}
-                            theme="auto"
+                            theme={"auto" as any}
                             height={320}
                             width={300}
                           />
