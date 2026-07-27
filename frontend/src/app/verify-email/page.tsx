@@ -11,8 +11,14 @@ const VerifyEmailContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const email = searchParams.get("email");
+  const otpQuery = searchParams.get("otp");
 
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [otp, setOtp] = useState(() => {
+    if (otpQuery && otpQuery.length === 6) {
+      return otpQuery.split("");
+    }
+    return ["", "", "", "", "", ""];
+  });
   const [loading, setLoading] = useState(false);
   const [resending, setResending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,6 +30,26 @@ const VerifyEmailContent = () => {
       router.push("/login");
     }
   }, [email, router]);
+
+  useEffect(() => {
+    if (otpQuery && otpQuery.length === 6 && email && !success && !error && !loading) {
+      const verifyAutomatically = async () => {
+        setLoading(true);
+        try {
+          await apiClient.post("/auth/verify-email", { email, otp: otpQuery });
+          setSuccess("Email verified successfully! Redirecting to login...");
+          setTimeout(() => {
+            router.push("/login?verified=true");
+          }, 2000);
+        } catch (err: any) {
+          setError(err.response?.data?.message || "Invalid or expired OTP. Please try again.");
+        } finally {
+          setLoading(false);
+        }
+      };
+      verifyAutomatically();
+    }
+  }, [otpQuery, email, router, success, error, loading]);
 
   useEffect(() => {
     if (countdown > 0) {
