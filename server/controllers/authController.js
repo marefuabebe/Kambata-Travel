@@ -95,11 +95,11 @@ const registerUser = async (req, res, next) => {
           }
         });
 
-        await sendEmail({
+        sendEmail({
           to: user.email,
           subject: "Welcome to Kambata Travel - Verify Your Email",
           html: emailHtml,
-        });
+        }).catch(err => logger.error(`Background email failed: ${err.message}`));
       } catch (emailError) {
         logger.error(`Failed to send verification email to ${email}: ${emailError.message}`);
         // We still return success but maybe log the error.
@@ -360,11 +360,11 @@ const forgotPassword = async (req, res, next) => {
         }
       });
 
-      await sendEmail({
+      sendEmail({
         to: user.email,
-        subject: "Password Reset Code - Kambata Travel",
+        subject: "Password Reset - Kambata Travel",
         html: emailHtml,
-      });
+      }).catch(err => logger.error(`Forgot password email failed: ${err.message}`));
 
       logger.info(`OTP sent: ${email}`, { ip, userAgent, eventType: "OTP_SENT" });
       res.status(200).json({ success: true, message: "OTP sent to email" });
@@ -584,11 +584,11 @@ const resendVerificationOTP = async (req, res, next) => {
         }
       });
 
-      await sendEmail({
-        to: user.email,
-        subject: "Your New Verification Code - Kambata Travel",
-        html: emailHtml,
-      });
+      sendEmail({
+      to: user.email,
+      subject: "Your New Verification Code - Kambata Travel",
+      html: emailHtml,
+    }).catch(err => logger.error(`Resend email failed: ${err.message}`));
 
       logger.info(`Verification OTP resent: ${email}`, { ip, userAgent, eventType: "EMAIL_OTP_RESENT" });
       res.status(200).json({ success: true, message: "New verification code sent." });
