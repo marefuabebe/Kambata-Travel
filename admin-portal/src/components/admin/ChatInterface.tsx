@@ -715,7 +715,7 @@ export default function AdminChatInterface() {
                         <div className="absolute bottom-[calc(100%+1rem)] left-0 z-50 shadow-2xl">
                           <EmojiPicker 
                             onEmojiClick={(emoji) => setNewMessage(prev => prev + emoji.emoji)}
-                            theme="auto"
+                            theme={"auto" as any}
                           />
                         </div>
                       )}

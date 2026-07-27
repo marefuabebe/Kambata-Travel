@@ -248,7 +248,7 @@ export default function ManagePackagesPage() {
                 <div>
                   <h3 className="text-base font-bold text-gray-900 dark:text-white tracking-tight leading-tight mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{pkg.name?.en}</h3>
                   <div className="text-xs font-medium text-gray-500 dark:text-gray-400 flex flex-col gap-1 mt-2">
-                    <span className="flex items-center gap-1.5"><Tent size={12} /> {pkg.tour?.title?.en}</span>
+                    <span className="flex items-center gap-1.5"><Tent size={12} /> {(pkg.tour?.title as any)?.en || pkg.tour?.title}</span>
                     <span className="flex items-center gap-1.5"><MapPin size={12} /> {pkg.hotel?.name}</span>
                   </div>
                 </div>

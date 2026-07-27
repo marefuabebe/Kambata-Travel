@@ -525,9 +525,9 @@ export default function ManageSchedulesPage() {
             
             {/* Panel container */}
             <motion.div 
-              initial={{ y: "100%", md: { y: 0, x: "100%" } }} 
+              initial={{ y: "100%", md: { y: 0, x: "100%" } } as any} 
               animate={{ y: 0, x: 0 }} 
-              exit={{ y: "100%", md: { y: 0, x: "100%" } }}
+              exit={{ y: "100%", md: { y: 0, x: "100%" } } as any}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed inset-x-0 bottom-0 md:inset-x-auto md:right-0 md:top-0 md:bottom-0 md:w-[480px] bg-white dark:bg-[#0B1120] rounded-t-[32px] md:rounded-none shadow-2xl z-[110] flex flex-col h-[85vh] md:h-full border-t md:border-t-0 md:border-l border-slate-200 dark:border-white/10 overflow-hidden"
             >
