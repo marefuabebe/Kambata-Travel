@@ -1,0 +1,932 @@
+/* ── Contact Page CSS Module ── */
+
+.pageWrapper {
+  background: #f8fafc;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+/* ── Hero Section ── */
+.heroContainer {
+  position: relative;
+  height: 85vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  color: white;
+  width: 100%;
+  padding: 0 5%;
+  max-width: 900px;
+  margin: -40px auto 0 auto; /* Negative margin to shift it higher up */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroTag {
+  display: block;
+  color: #C89B3C;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-family: var(--font-display), serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.heroContactRow {
+  position: absolute;
+  bottom: 140px; /* Increased bottom to shift the row higher up */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px 40px;
+  z-index: 2;
+}
+
+.heroContactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.heroContactIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C89B3C;
+}
+
+.heroContactText {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroContactLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+.heroContactValue {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Content Container ── */
+.contentContainer {
+  max-width: 1400px;
+  margin: -60px auto 0;
+  padding: 0 40px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Top Grid (Form + Help Card) ── */
+.topGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/* Form Card */
+.formCard {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.formCard h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #13382D;
+  margin-bottom: 32px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.formLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4A5568;
+}
+
+.formInput {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.formInput:focus {
+  border-color: #13382D;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(19, 56, 45, 0.1);
+}
+
+.formInput::placeholder {
+  color: #94a3b8;
+}
+
+.submitBtn {
+  background: #13382D;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+  background: #0f2c23;
+}
+
+/* Help Card */
+.helpCard {
+  background: #13382D;
+  border-radius: 16px;
+  padding: 40px;
+  color: white;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.helpCard h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+}
+
+.helpList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.helpItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.helpIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 155, 60, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #C89B3C;
+  flex-shrink: 0;
+}
+
+.helpText h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.helpText p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+}
+
+/* ── Contact Methods Row ── */
+.methodsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.methodCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+}
+
+.methodIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #13382D;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.methodText {
+  display: flex;
+  flex-direction: column;
+}
+
+.methodTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.methodDesc {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.methodValue {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.methodLink {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #13382D;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+/* ── Map Section ── */
+.mapSection {
+  background: #0f2c23;
+  border-radius: 16px;
+  padding: 40px;
+  color: white;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.realMapIframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 1;
+}
+
+.mapBg {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://res.cloudinary.com/dzf4st3t2/image/upload/v1776362718/Gemini_Generated_Image_bmo32hbmo32hbmo3_axyzig.png"); /* Just a placeholder for the map background */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.mapContent {
+  position: relative;
+  z-index: 2;
+  max-width: 280px;
+  margin-left: 20px;
+}
+
+.mapBtn {
+  background: #13382D;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.mapVisual {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 300px;
+  pointer-events: none;
+}
+
+.mapPin {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mapPinIcon {
+  color: #C89B3C;
+}
+
+.mapPinText {
+  font-size: 0.75rem;
+  color: white;
+  font-weight: 600;
+}
+
+.mapControls {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+}
+
+.mapControlBtn {
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  border: none;
+  cursor: pointer;
+}
+
+.mapExpandBtn {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* ── FAQ Section ── */
+.faqSection {
+  margin-bottom: 40px;
+}
+
+.faqHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.faqTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.faqContactLink {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.faqContactLink span {
+  color: #C89B3C;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.faqItem {
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.faqItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.faqAnswer {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+  padding-left: 30px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 16px;
+  padding-top: 16px;
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faqItem:hover {
+  border-color: #cbd5e1;
+}
+
+.faqItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.faqIcon {
+  color: #C89B3C;
+}
+
+.faqQuestion {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+}
+
+/* ── Urgent Banner ── */
+.urgentBanner {
+  background: #8B0000;
+  border-radius: 16px;
+  padding: 30px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.urgentLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.urgentIconBox {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B0000;
+}
+
+.urgentText h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.urgentText p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.urgentRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.urgentBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.urgentBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.urgentHotline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 20px;
+}
+
+.urgentHotlineLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.urgentHotlineNum {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+/* ── Bottom Banner ── */
+.bottomBanner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 60px 40px;
+  text-align: center;
+  color: white;
+  margin-bottom: 60px;
+}
+
+.bottomBannerBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.bottomBannerOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.bottomBannerContent {
+  position: relative;
+  z-index: 2;
+}
+
+.bottomBannerContent h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.bottomBannerContent p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 30px;
+}
+
+.bottomBannerBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btnPrimary {
+  background: #0F766E;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btnSecondary {
+  background: #C89B3C;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+  .methodsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .faqGrid {
+    grid-template-columns: 1fr;
+  }
+  .urgentBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .urgentRight {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .urgentHotline {
+    margin-left: 0;
+    align-items: flex-start;
+  }
+  .mapVisual {
+    left: 0;
+    opacity: 0.3;
+  }
+}
+@media (max-width: 1024px) {
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+  .helpList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    position: relative;
+    padding: 12px 0;
+  }
+  .helpList::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 0;
+  }
+  .helpItem {
+    width: calc(50% - 16px);
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .helpItem::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #C89B3C;
+    border-radius: 50%;
+    border: 3px solid #13382D;
+    box-shadow: 0 0 0 2px rgba(200, 155, 60, 0.3);
+  }
+  .helpItem:nth-child(odd) {
+    justify-self: start;
+    align-items: flex-end;
+    text-align: right;
+  }
+  .helpItem:nth-child(odd)::after {
+    right: -23px;
+  }
+  .helpItem:nth-child(even) {
+    justify-self: end;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .helpItem:nth-child(even)::after {
+    left: -23px;
+  }
+  .helpIcon {
+    margin-bottom: 4px;
+  }
+  .helpText h4 {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .helpText p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  .methodsRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .methodCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px 12px;
+    gap: 12px;
+  }
+  .methodIcon {
+    width: 36px;
+    height: 36px;
+  }
+  .methodTitle {
+    font-size: 0.9rem;
+  }
+  .methodDesc, .methodValue {
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+  }
+  .methodLink {
+    font-size: 0.7rem;
+    justify-content: center;
+  }
+  .urgentRight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+  .urgentBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 10px;
+  }
+  .urgentHotline {
+    grid-column: 1 / -1;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .heroContainer {
+    height: 45vh;
+    min-height: 400px;
+  }
+  .heroContactRow {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
+    bottom: 60px;
+    width: 100%;
+    left: 0;
+    padding: 0 10px;
+    transform: none;
+  }
+  .heroContactItem {
+    flex: 1;
+    width: auto;
+    max-width: none;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 12px 6px;
+    border-radius: 12px;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .heroContactIcon {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+  }
+  .heroContactIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .heroContactText {
+    align-items: center;
+  }
+  .heroContactLabel {
+    font-size: 0.75rem;
+  }
+  .heroContactValue {
+    font-size: 0.65rem;
+    word-break: break-word;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .contentContainer {
+    padding: 0 16px;
+    margin-top: -40px;
+  }
+  .formCard, .helpCard {
+    padding: 24px 20px;
+  }
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  .mapSection {
+    padding: 20px;
+    height: 500px;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .mapContent {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 20px;
+  }
+  .bottomBanner {
+    padding: 40px 20px;
+  }
+  .bottomBannerBtns {
+    flex-direction: column;
+  }
+  .btnPrimary, .btnSecondary {
+    width: 100%;
+  }
+}
