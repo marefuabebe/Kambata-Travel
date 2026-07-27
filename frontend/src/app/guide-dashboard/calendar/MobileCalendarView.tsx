@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   ChevronLeft, ChevronRight, MapPin, Users, Clock, CloudSun, 
   MessageCircle, Navigation, Play, MoreVertical, Phone, QrCode, 
-  AlertCircle, Shield, Plus, Calendar as CalendarIcon 
+  AlertCircle, Shield, Plus, Calendar as CalendarIcon, X 
 } from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
 import { useLanguage } from "@/context/LanguageContext";
