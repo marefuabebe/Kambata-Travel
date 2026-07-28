@@ -485,7 +485,7 @@ const approveGuide = async (req, res, next) => {
       throw new Error("Application not found");
     }
 
-    user.guideStatus = "verified";
+    user.guideStatus = "approved";
 
     let guide = await Guide.findOne({ user: user._id });
     if (!guide) {
@@ -498,7 +498,7 @@ const approveGuide = async (req, res, next) => {
       throw new Error("Cannot verify guide without National ID and Tour Guide License on file.");
     }
     
-    guide.status = "verified";
+    guide.status = "approved";
     guide.isVerified = true;
     if (guide.nationalId?.url) guide.nationalId.status = "verified";
     if (guide.license?.url) guide.license.status = "verified";
