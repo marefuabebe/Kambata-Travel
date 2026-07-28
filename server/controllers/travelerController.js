@@ -136,7 +136,13 @@ const getAllBookings = async (req, res, next) => {
     const userId = req.user._id;
 
     const [toursRaw, packages] = await Promise.all([
-      Booking.find({ user: userId })
+      Booking.find({ 
+        user: userId,
+        $or: [
+          { bookingSource: { $ne: "request" } },
+          { status: { $ne: "pending" } }
+        ]
+      })
         .populate("tour", "title images destination duration schedules")
         .populate("guide", "name email phone profilePicture")
         .sort("-createdAt")

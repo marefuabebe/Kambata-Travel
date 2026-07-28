@@ -479,7 +479,13 @@ const getGuideBookings = async (req, res, next) => {
 // @access  Private (User)
 const getMyBookings = async (req, res, next) => {
   try {
-    const bookings = await Booking.find({ user: req.user._id })
+    const bookings = await Booking.find({ 
+      user: req.user._id,
+      $or: [
+        { bookingSource: { $ne: "request" } },
+        { status: { $ne: "pending" } }
+      ]
+    })
       .populate({
         path: "tour",
         select: "title destination images duration category schedules bookingType",
