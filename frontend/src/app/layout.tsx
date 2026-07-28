@@ -24,6 +24,7 @@ const dmSerif = DM_Serif_Display({
 
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import EnterpriseChatbot from "@/components/chat/EnterpriseChatbot";
 import SplashScreen from "@/components/layout/SplashScreen";
 import { Toaster } from "react-hot-toast";
@@ -62,36 +63,38 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <AuthProvider>
-          <LanguageProvider>
-            <SplashScreen />
-            {children}
-            <Analytics />
-            <EnterpriseChatbot />
-            <Toaster
-              position="top-right"
-              toastOptions={{
-                duration: 4000,
-                style: {
-                  background: "#1F2937",
-                  color: "#F9FAFB",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  borderRadius: "12px",
-                  padding: "14px 18px",
-                  boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-                },
-                success: {
-                  iconTheme: { primary: "#22c55e", secondary: "#fff" },
-                },
-                error: {
-                  iconTheme: { primary: "#ef4444", secondary: "#fff" },
-                },
-              }}
-            />
-          </LanguageProvider>
-        </AuthProvider>
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+          <AuthProvider>
+            <LanguageProvider>
+              <SplashScreen />
+              {children}
+              <Analytics />
+              <EnterpriseChatbot />
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: "#1F2937",
+                    color: "#F9FAFB",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    borderRadius: "12px",
+                    padding: "14px 18px",
+                    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+                  },
+                  success: {
+                    iconTheme: { primary: "#22c55e", secondary: "#fff" },
+                  },
+                  error: {
+                    iconTheme: { primary: "#ef4444", secondary: "#fff" },
+                  },
+                }}
+              />
+            </LanguageProvider>
+          </AuthProvider>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

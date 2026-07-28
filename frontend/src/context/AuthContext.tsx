@@ -20,6 +20,7 @@ interface AuthContextType {
   loading: boolean;
   error: string | null;
   login: (credentials: any) => Promise<void>;
+  loginWithGoogle: (token: string, role?: string) => Promise<void>;
   register: (data: any) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -81,6 +82,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
          setError(errorMessage);
          throw err;
       }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginWithGoogle = async (token: string, role?: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { data } = await apiClient.post("/auth/google", { token, role });
+      setUser(data);
+      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("user", JSON.stringify(data));
+      
+      if (data.role === "admin") {
+        const adminPortalUrl =
+          process.env.NEXT_PUBLIC_ADMIN_PORTAL_URL || "http://localhost:3001/login";
+        window.location.href = adminPortalUrl;
+        return;
+      } else if (data.role === "guide") {
+        router.push("/guide-dashboard");
+      } else {
+        router.push("/explorer-dashboard");
+      }
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.message || "Google Login failed. Please try again.";
+      setError(errorMessage);
+      throw err;
     } finally {
       setLoading(false);
     }
@@ -154,7 +183,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, error, login, register, logout, refreshUser, syncGuideStatus }}>
+    <AuthContext.Provider value={{ user, setUser, loading, error, login, loginWithGoogle, register, logout, refreshUser, syncGuideStatus }}>
       {children}
     </AuthContext.Provider>
   );

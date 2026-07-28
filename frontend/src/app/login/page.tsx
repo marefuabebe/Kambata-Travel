@@ -7,6 +7,7 @@ import { Mail, Lock, ArrowLeft, ArrowRight, Quote, LogIn, Compass, Eye, EyeOff, 
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +15,16 @@ const LoginPage = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const { login, loading, error } = useAuth();
+  const { login, loginWithGoogle, loading, error } = useAuth();
   const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      loginWithGoogle(codeResponse.access_token);
+    },
+    onError: (error) => console.log('Google Login Failed:', error)
+  });
   const searchParams = useSearchParams();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -222,7 +230,11 @@ const LoginPage = () => {
 
           {/* Social Buttons */}
           <div className="flex flex-col gap-2.5">
-            <button className="w-full flex items-center gap-3 py-3 px-4 bg-white rounded-full hover:bg-gray-50 transition-all font-bold text-xs text-gray-800 border border-gray-200 shadow-sm hover:shadow">
+            <button 
+              type="button"
+              onClick={() => handleGoogleLogin()}
+              className="w-full flex items-center gap-3 py-3 px-4 bg-white rounded-full hover:bg-gray-50 transition-all font-bold text-xs text-gray-800 border border-gray-200 shadow-sm hover:shadow"
+            >
                <img loading="lazy" src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" />
                <span className="flex-1 text-center pr-5">{t("auth.continueGoogle")}</span>
             </button>

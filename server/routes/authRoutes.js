@@ -10,6 +10,7 @@ const {
   resetPassword,
   verifyEmail,
   resendVerificationOTP,
+  googleAuth,
 } = require("../controllers/authController");
 const { authRateLimiter, resendOtpRateLimiter } = require("../middleware/rateLimiter");
 const { checkIPBlock } = require("../middleware/blockMiddleware");
@@ -20,6 +21,7 @@ router.use(checkIPBlock);
 
 router.post("/register", authLimiter, registerUser);
 router.post("/login", authLimiter, loginUser);
+router.post("/google", authLimiter, googleAuth);
 router.post("/refresh", refreshAccessToken);
 router.post("/forgot-password", forgotPassword);
 router.post("/verify-otp", verifyOTP);

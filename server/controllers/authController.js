@@ -655,6 +655,125 @@ const adminLogin = async (req, res, next) => {
   }
 };
 
+// @desc    Auth with Google
+// @route   POST /api/auth/google
+// @access  Public
+const googleAuth = async (req, res, next) => {
+  try {
+    const { token, role } = req.body;
+    
+    if (!token) {
+      res.status(400);
+      throw new Error("No Google token provided");
+    }
+
+    const { default: axios } = require("axios");
+    const response = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const { sub, email, name, picture, email_verified } = response.data;
+
+    if (!email_verified) {
+      res.status(400);
+      throw new Error("Google email not verified");
+    }
+
+    let user = await User.findOne({ email });
+
+    if (user) {
+      // User exists, check if blocked
+      if (checkUserBlock(user)) {
+        res.status(403);
+        throw new Error("Account suspended or blocked");
+      }
+      
+      // If they originally signed up via local, maybe link googleId?
+      if (!user.googleId) {
+        user.googleId = sub;
+        await user.save();
+      }
+
+      // Generate token and login
+      const refreshToken = generateRefreshToken(user._id);
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV !== "development",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+
+      logger.info(`Successful Google login for user: ${user.email}`, {
+        ip: req.ip,
+        userAgent: req.headers["user-agent"],
+        eventType: "LOGIN_SUCCESS",
+      });
+
+      return res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        guideStatus: user.guideStatus,
+        profilePicture: user.profilePicture,
+        isEmailVerified: user.isEmailVerified,
+        accessToken: generateAccessToken(user._id),
+      });
+    }
+
+    // New user
+    const finalRole = ["user", "guide"].includes(role) ? role : "user";
+    const userPayload = {
+      name,
+      email,
+      googleId: sub,
+      authProvider: 'google',
+      role: finalRole,
+      isEmailVerified: true, // Google verifies emails
+      profilePicture: picture,
+    };
+
+    if (finalRole === "guide") {
+      userPayload.guideStatus = "pending"; // Per user feedback
+    }
+
+    user = await User.create(userPayload);
+    
+    if (finalRole === "guide") {
+      await Guide.create({ user: user._id });
+    }
+
+    logger.info(`User registered via Google: ${email} as ${finalRole}`, {
+      ip: req.ip,
+      userAgent: req.headers["user-agent"],
+      eventType: "REGISTRATION_SUCCESS",
+    });
+
+    const refreshToken = generateRefreshToken(user._id);
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      guideStatus: user.guideStatus,
+      profilePicture: user.profilePicture,
+      isEmailVerified: user.isEmailVerified,
+      accessToken: generateAccessToken(user._id),
+    });
+
+  } catch (error) {
+    logger.error(`Google auth failed: ${error.message}`);
+    next(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -665,4 +784,5 @@ module.exports = {
   verifyEmail,
   resendVerificationOTP,
   adminLogin,
+  googleAuth,
 };
