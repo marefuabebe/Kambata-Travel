@@ -35,10 +35,6 @@ const createRequest = async (req, res, next) => {
         res.status(404);
         throw new Error("Tour not found");
       }
-      if (tourExists.bookingType === "instant") {
-        res.status(400);
-        throw new Error("This tour only supports instant booking on published schedules");
-      }
     }
 
     if (packageId) {
