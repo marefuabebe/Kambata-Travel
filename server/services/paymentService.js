@@ -19,8 +19,8 @@ const initializePayment = async (booking, user) => {
       first_name: user.name.split(" ")[0] || "Customer",
       last_name: user.name.split(" ")[1] || "Kambata",
       tx_ref: booking.tx_ref,
-      callback_url: `${process.env.APP_BACKEND_URL || "http://localhost:5000"}/api/payments/webhook`,
-      return_url: `${process.env.APP_FRONTEND_URL || "http://localhost:3000"}/payment-callback?trx_ref=${booking.tx_ref}`,
+      callback_url: `${process.env.BACKEND_URL || process.env.APP_BACKEND_URL || "http://localhost:5000"}/api/payments/webhook`,
+      return_url: `${process.env.FRONTEND_URL || process.env.APP_FRONTEND_URL || "http://localhost:3000"}/payment-callback?trx_ref=${booking.tx_ref}`,
       "customization[title]": "Kambata Travel Booking",
       "customization[description]": `Payment for booking ${booking._id}`,
     };
