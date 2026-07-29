@@ -7,6 +7,10 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  // A simple pass-through fetch handler is enough to satisfy the PWA installability requirements
-  // For production, you can implement standard caching strategies here.
+  // A simple cache-falling-back-to-network strategy to satisfy PWABuilder offline check
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
 });
