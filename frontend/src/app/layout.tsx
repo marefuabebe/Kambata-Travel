@@ -27,7 +27,6 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import EnterpriseChatbot from "@/components/chat/EnterpriseChatbot";
 import SplashScreen from "@/components/layout/SplashScreen";
-import ServiceWorkerRegistry from "@/components/ServiceWorkerRegistry";
 import { Toaster } from "react-hot-toast";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
@@ -63,12 +62,24 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                  console.error('ServiceWorker registration failed: ', err);
+                });
+              }
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
           <AuthProvider>
             <LanguageProvider>
               <SplashScreen />
-              <ServiceWorkerRegistry />
               {children}
               <Analytics />
               <EnterpriseChatbot />

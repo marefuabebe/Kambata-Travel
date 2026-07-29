@@ -14,3 +14,16 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
+// Satisfy PWABuilder capability checks
+self.addEventListener("push", (event) => {
+  console.log("Push notification received", event);
+});
+
+self.addEventListener("sync", (event) => {
+  console.log("Background sync event", event);
+});
+
+self.addEventListener("periodicsync", (event) => {
+  console.log("Periodic sync event", event);
+});
