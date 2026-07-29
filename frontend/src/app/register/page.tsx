@@ -24,9 +24,15 @@ const RegisterPage = () => {
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      loginWithGoogle(codeResponse.access_token, formData.role);
+      console.log("[DEBUG GOOGLE OAUTH] Register Success! codeResponse:", codeResponse);
+      const token = codeResponse.access_token || (codeResponse as any).credential;
+      if (!token) {
+        console.error("[DEBUG GOOGLE OAUTH] Missing token in response!");
+        return;
+      }
+      loginWithGoogle(token, formData.role);
     },
-    onError: (error) => console.log('Google Login Failed:', error)
+    onError: (error) => console.error("[DEBUG GOOGLE OAUTH] Register Failed:", error)
   });
 
   const visualStories = [

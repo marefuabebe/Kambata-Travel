@@ -88,29 +88,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loginWithGoogle = async (token: string, role?: string) => {
+    console.log(`[DEBUG GOOGLE OAUTH] loginWithGoogle called. Token exists: ${!!token}, role: ${role}`);
     setLoading(true);
     setError(null);
     try {
+      console.log(`[DEBUG GOOGLE OAUTH] Sending POST request to /auth/google...`);
       const { data } = await apiClient.post("/auth/google", { token, role });
+      
+      console.log(`[DEBUG GOOGLE OAUTH] Received response data:`, data);
+      
       setUser(data);
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("user", JSON.stringify(data));
       
+      console.log(`[DEBUG GOOGLE OAUTH] Context and localStorage updated. Evaluating redirect for role: ${data.role}`);
+      
       if (data.role === "admin") {
         const adminPortalUrl =
           process.env.NEXT_PUBLIC_ADMIN_PORTAL_URL || "http://localhost:3001/login";
+        console.log(`[DEBUG GOOGLE OAUTH] Redirecting to admin: ${adminPortalUrl}`);
         window.location.href = adminPortalUrl;
         return;
       } else if (data.role === "guide") {
+        console.log(`[DEBUG GOOGLE OAUTH] Redirecting to /guide-dashboard`);
         window.location.href = "/guide-dashboard";
       } else {
+        console.log(`[DEBUG GOOGLE OAUTH] Redirecting to /explorer-dashboard`);
         window.location.href = "/explorer-dashboard";
       }
     } catch (err: any) {
+      console.error(`[DEBUG GOOGLE OAUTH] Error in loginWithGoogle:`, err);
       const errorMessage = err.response?.data?.message || "Google Login failed. Please try again.";
       setError(errorMessage);
       throw err;
     } finally {
+      console.log(`[DEBUG GOOGLE OAUTH] loginWithGoogle finally block reached.`);
       setLoading(false);
     }
   };

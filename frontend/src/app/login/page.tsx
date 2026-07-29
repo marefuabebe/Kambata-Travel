@@ -21,9 +21,15 @@ const LoginPage = () => {
 
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      loginWithGoogle(codeResponse.access_token);
+      console.log("[DEBUG GOOGLE OAUTH] Login Success! codeResponse:", codeResponse);
+      const token = codeResponse.access_token || (codeResponse as any).credential;
+      if (!token) {
+        console.error("[DEBUG GOOGLE OAUTH] Missing token in response!");
+        return;
+      }
+      loginWithGoogle(token);
     },
-    onError: (error) => console.log('Google Login Failed:', error)
+    onError: (error) => console.error("[DEBUG GOOGLE OAUTH] Login Failed:", error)
   });
   const searchParams = useSearchParams();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
