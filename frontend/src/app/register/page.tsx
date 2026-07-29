@@ -23,6 +23,7 @@ const RegisterPage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleGoogleLogin = useGoogleLogin({
+    flow: 'implicit',
     onSuccess: (codeResponse) => {
       console.log("[DEBUG GOOGLE OAUTH] Register Success! codeResponse:", codeResponse);
       const token = codeResponse.access_token || (codeResponse as any).credential;
