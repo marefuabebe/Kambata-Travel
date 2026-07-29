@@ -1,4 +1,5 @@
 {
+  "id": "/",
   "name": "Kambata Travel",
   "short_name": "Kambata",
   "description": "Discover the hidden wonders of Kambata Zone",
@@ -19,6 +20,20 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://res.cloudinary.com/dzf4st3t2/image/upload/w_512,h_512,c_pad,b_white/v1782037998/kambata/dkpheumdufifku4djspm.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://res.cloudinary.com/dzf4st3t2/image/upload/w_512,h_512,c_pad,b_white/v1782037998/kambata/dkpheumdufifku4djspm.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ]
 }

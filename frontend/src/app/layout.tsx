@@ -27,6 +27,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import EnterpriseChatbot from "@/components/chat/EnterpriseChatbot";
 import SplashScreen from "@/components/layout/SplashScreen";
+import ServiceWorkerRegistry from "@/components/ServiceWorkerRegistry";
 import { Toaster } from "react-hot-toast";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
@@ -67,6 +68,7 @@ export default function RootLayout({
           <AuthProvider>
             <LanguageProvider>
               <SplashScreen />
+              <ServiceWorkerRegistry />
               {children}
               <Analytics />
               <EnterpriseChatbot />
