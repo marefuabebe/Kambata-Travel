@@ -35,5 +35,44 @@
       "type": "image/png",
       "form_factor": "narrow"
     }
-  ]
+  ],
+  "categories": ["travel", "navigation", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Explore Tours",
+      "short_name": "Tours",
+      "description": "View all available tours",
+      "url": "/explorer-dashboard/explore-tours",
+      "icons": [{"src": "https://res.cloudinary.com/dzf4st3t2/image/upload/w_192,h_192,c_pad,b_white/v1782037998/kambata/dkpheumdufifku4djspm.png", "sizes": "192x192"}]
+    }
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "display_override": ["window-controls-overlay", "minimal-ui", "standalone"],
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "note_taking": {
+    "new_note_url": "/explorer-dashboard"
+  },
+  "file_handlers": [],
+  "protocol_handlers": [],
+  "share_target": {
+    "action": "/explorer-dashboard",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "widgets": [],
+  "iarc_rating_id": "",
+  "scope_extensions": []
 }
