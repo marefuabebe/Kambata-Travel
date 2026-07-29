@@ -102,9 +102,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         window.location.href = adminPortalUrl;
         return;
       } else if (data.role === "guide") {
-        router.push("/guide-dashboard");
+        window.location.href = "/guide-dashboard";
       } else {
-        router.push("/explorer-dashboard");
+        window.location.href = "/explorer-dashboard";
       }
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || "Google Login failed. Please try again.";
