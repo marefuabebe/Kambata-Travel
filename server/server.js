@@ -124,6 +124,20 @@ app.use("/api/qr", require("./routes/qrVerificationRoutes"));
 app.use(notFound);
 app.use(errorHandler);
 
+// Start Cron Jobs
+if (process.env.NODE_ENV !== "test") {
+  try {
+    startExpirationJobs();
+    startReminderJobs();
+    startAttendanceLockCron();
+    startDualBookingCron();
+    startPostTourJobs();
+    console.log("Cron jobs started successfully.");
+  } catch (error) {
+    console.error("Failed to start cron jobs:", error);
+  }
+}
+
 // Server
 const PORT = process.env.PORT || 5000;
 
