@@ -19,6 +19,7 @@ import {
   Mountain, Waves, Globe, Compass, Award, HelpCircle, ChevronRight, Plus, Minus
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
@@ -157,11 +158,11 @@ export default function Home() {
                 style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
               >
                 <Image
-                  src={heroImages[currentImageIndex].replace('/upload/', '/upload/f_auto,q_auto/')}
+                  src={heroImages[currentImageIndex].replace('/upload/', '/upload/f_auto,q_auto,w_1920/')}
                   alt="Hero Background"
                   fill
                   priority
-                  sizes="100vw"
+                  unoptimized={true}
                   className="object-cover"
                 />
               </motion.div>

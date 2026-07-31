@@ -136,10 +136,10 @@ const Destinations = () => {
   const renderCard = (dest: any, isLarge = false) => (
     <div key={dest._id} className="relative group rounded-3xl overflow-hidden w-full h-full min-h-[250px] shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
       <Image
-        src={(dest.images?.[0] || "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg").replace('/upload/', '/upload/f_auto,q_auto/')}
+        src={(dest.images?.[0] || "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg").replace('/upload/', '/upload/f_auto,q_auto,w_800/')}
         alt={dest.name?.en || dest.name || "Destination"}
         fill
-        sizes={isLarge ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 33vw'}
+        unoptimized={true}
         className="object-cover group-hover:scale-105 transition-transform duration-700"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
