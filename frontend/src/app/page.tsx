@@ -29,18 +29,18 @@ const heroImages = [
 ];
 
 const fallbackDestinations = [
-  { _id: 1, name: { en: "Ajora Falls", am: "áŠ áŒ†áˆ« ááá‰´" }, location: { en: "Damboya District", am: "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³" }, rating: 4.8, reviews: 126, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037883/kambata/bmq1irrn8nugtb0z2ztg.jpg" },
-  { _id: 2, name: { en: "Mount Hambericho", am: "áˆ€áˆá‰ áˆªá‰¾ á‰°áˆ«áˆ«" }, location: { en: "Damboya District", am: "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³" }, rating: 4.9, reviews: 96, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782068782/kambata/z1ywastrf42kyud4krbs.png" },
-  { _id: 3, name: { en: "Damboya Highlands", am: "á‹³áˆá‰¦á‹« á‹°áŒ‹áˆ› áŠ áŠ«á‰£á‰¢á‹Žá‰½" }, location: { en: "Damboya District", am: "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³" }, rating: 4.7, reviews: 74, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038012/kambata/wiv5jowt9wkkt82rukal.png" },
-  { _id: 4, name: { en: "Sarobira Valley", am: "áˆ³áˆ®á‰¢áˆ« áˆ¸áˆˆá‰†" }, location: { en: "Tembaro District", am: "áŒ áˆá‰£áˆ® á‹ˆáˆ¨á‹³" }, rating: 4.6, reviews: 68, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1776359619/kambata-travel/tours/kambata_hero_bg_a6e9ce.jpg" },
-  { _id: 5, name: { en: "Kambata Cultural Village", am: "áŠ¨áˆá‰£á‰³ á‹¨á‰£áˆ…áˆ áˆ˜áŠ•á‹°áˆ­" }, location: { en: "Tembaro District", am: "áŒ áˆá‰£áˆ® á‹ˆáˆ¨á‹³" }, rating: 4.6, reviews: 55, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038014/kambata/ibdkyyuqop0vx0zjvukw.jpg" },
+  { _id: 1, name: { en: "Ajora Falls", am: "አጆራ ፏፏቴ" }, location: { en: "Damboya District", am: "ዳምቦያ ወረዳ" }, rating: 4.8, reviews: 126, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037883/kambata/bmq1irrn8nugtb0z2ztg.jpg" },
+  { _id: 2, name: { en: "Mount Hambericho", am: "ሀምበሪቾ ተራራ" }, location: { en: "Damboya District", am: "ዳምቦያ ወረዳ" }, rating: 4.9, reviews: 96, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782068782/kambata/z1ywastrf42kyud4krbs.png" },
+  { _id: 3, name: { en: "Damboya Highlands", am: "ዳምቦያ ደጋማ አካባቢዎች" }, location: { en: "Damboya District", am: "ዳምቦያ ወረዳ" }, rating: 4.7, reviews: 74, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038012/kambata/wiv5jowt9wkkt82rukal.png" },
+  { _id: 4, name: { en: "Sarobita Valley", am: "ሳሮቢታ ሸለቆ" }, location: { en: "Tembaro District", am: "ጠምባሮ ወረዳ" }, rating: 4.6, reviews: 68, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1776359619/kambata-travel/tours/kambata_hero_bg_a6e9ce.jpg" },
+  { _id: 5, name: { en: "Kambata Cultural Village", am: "ከምባታ የባህል መንደር" }, location: { en: "Tembaro District", am: "ጠምባሮ ወረዳ" }, rating: 4.6, reviews: 55, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038014/kambata/ibdkyyuqop0vx0zjvukw.jpg" },
 ];
 
 const fallbackTours = [
-  { _id: 1, title: { en: "Ajora Falls Day Trip", am: "á‹¨áŠ áŒ†áˆ« ááá‰´ á‹¨á‰€áŠ• áŒ‰á‹ž" }, badge: "Popular", duration: "1 Day", difficulty: "Easy", price: 250, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037883/kambata/bmq1irrn8nugtb0z2ztg.jpg" },
-  { _id: 2, title: { en: "Kambata Cultural Experience", am: "áŠ¨áˆá‰£á‰³ á‹¨á‰£áˆ…áˆ áˆáˆá‹µ" }, badge: "", duration: "2 Days", difficulty: "Easy", price: 180, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782070859/kambata/vrals1tsgawrs3irypkw.jpg" },
-  { _id: 3, title: { en: "The Majestic Doje'e Waterfall", am: "á‰³áˆ‹á‰ á‹¨á‹¶áŒ„ ááá‰´" }, badge: "Best Seller", duration: "2 Days", difficulty: "Moderate", price: 300, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782053030/kambata/g146rbijvhsiwutsgf3x.jpg" },
-  { _id: 4, title: { en: "Mount Hambericho Hiking Tour", am: "á‹¨áˆ€áˆá‰ áˆªá‰¾ á‰°áˆ«áˆ« á‹¨áŠ¥áŒáˆ­ áŒ‰á‹ž" }, badge: "", duration: "1 Day", difficulty: "Moderate", price: 400, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782068782/kambata/z1ywastrf42kyud4krbs.png" },
+  { _id: 1, title: { en: "Ajora Falls Day Trip", am: "የአጆራ ፏፏቴ የቀን ጉዞ" }, badge: "Popular", duration: "1 Day", difficulty: "Easy", price: 250, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037883/kambata/bmq1irrn8nugtb0z2ztg.jpg" },
+  { _id: 2, title: { en: "Kambata Cultural Experience", am: "የከምባታ ባህል ልምድ" }, badge: "", duration: "2 Days", difficulty: "Easy", price: 180, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782070859/kambata/vrals1tsgawrs3irypkw.jpg" },
+  { _id: 3, title: { en: "The Majestic Doje'e Waterfall", am: "ታላቁ የዶጄ ፏፏቴ" }, badge: "Best Seller", duration: "2 Days", difficulty: "Moderate", price: 300, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782053030/kambata/g146rbijvhsiwutsgf3x.jpg" },
+  { _id: 4, title: { en: "Mount Hambericho Hiking Tour", am: "የሀምበሪቾ ተራራ የእግር ጉዞ" }, badge: "", duration: "1 Day", difficulty: "Moderate", price: 400, image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782068782/kambata/z1ywastrf42kyud4krbs.png" },
 ];
 
 // Simple CountUp Hook
