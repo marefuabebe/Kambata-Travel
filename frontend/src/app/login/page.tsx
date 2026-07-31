@@ -7,8 +7,7 @@ import { Mail, Lock, ArrowLeft, ArrowRight, Quote, LogIn, Compass, Eye, EyeOff, 
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { useGoogleLogin } from "@react-oauth/google";
-
+import { GoogleLogin } from "@react-oauth/google";
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -21,28 +20,22 @@ const LoginPage = () => {
 
   const [googleError, setGoogleError] = useState<string | null>(null);
 
-  const handleGoogleLogin = useGoogleLogin({
-    flow: 'implicit',
-    onSuccess: (codeResponse) => {
-      console.log("[DEBUG GOOGLE OAUTH] Login Success! codeResponse:", codeResponse);
-      setGoogleError(null);
-      const token = codeResponse.access_token;
-      if (!token) {
-        console.error("[DEBUG GOOGLE OAUTH] No access_token in response!");
-        setGoogleError("Google login failed: No access token received.");
-        return;
-      }
-      loginWithGoogle(token);
-    },
-    onError: (errorResponse) => {
-      console.error("[DEBUG GOOGLE OAUTH] Login Error:", errorResponse);
-      setGoogleError(`Google login error: ${errorResponse.error_description || errorResponse.error || "Unknown error"}`);
-    },
-    onNonOAuthError: (error) => {
-      console.error("[DEBUG GOOGLE OAUTH] Non-OAuth Error (popup blocked/closed):", error);
-      setGoogleError(`Google login failed: ${error.type || "Popup was closed or blocked"}`);
-    },
-  });
+  const handleGoogleSuccess = (credentialResponse: any) => {
+    console.log("[DEBUG GOOGLE OAUTH] Login Success! credentialResponse:", credentialResponse);
+    setGoogleError(null);
+    const token = credentialResponse.credential;
+    if (!token) {
+      console.error("[DEBUG GOOGLE OAUTH] No credential in response!");
+      setGoogleError("Google login failed: No token received.");
+      return;
+    }
+    loginWithGoogle(token);
+  };
+
+  const handleGoogleError = () => {
+    console.error("[DEBUG GOOGLE OAUTH] Login Error");
+    setGoogleError("Google login failed.");
+  };
   const searchParams = useSearchParams();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -254,14 +247,16 @@ const LoginPage = () => {
 
           {/* Social Buttons */}
           <div className="flex flex-col gap-2.5">
-            <button 
-              type="button"
-              onClick={() => handleGoogleLogin()}
-              className="w-full flex items-center gap-3 py-3 px-4 bg-white rounded-full hover:bg-gray-50 transition-all font-bold text-xs text-gray-800 border border-gray-200 shadow-sm hover:shadow"
-            >
-               <img loading="lazy" src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" />
-               <span className="flex-1 text-center pr-5">{t("auth.continueGoogle")}</span>
-            </button>
+            <div className="w-full flex justify-center">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+                shape="pill"
+                text="continue_with"
+                size="large"
+                theme="outline"
+              />
+            </div>
             <button className="w-full flex items-center gap-3 py-3 px-4 bg-white rounded-full hover:bg-gray-50 transition-all font-bold text-xs text-gray-800 border border-gray-200 shadow-sm hover:shadow">
                <img loading="lazy" src="https://www.svgrepo.com/show/475647/facebook-color.svg" className="w-5 h-5" alt="Facebook" />
                <span className="flex-1 text-center pr-5">{t("auth.continueFacebook")}</span>
