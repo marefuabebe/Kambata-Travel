@@ -119,7 +119,7 @@ const PopularTours = () => {
             >
               <div className="relative w-full aspect-[16/10] overflow-hidden shrink-0">
                 <Image
-                  src={tour.images?.[0] || "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg"}
+                  src={(tour.images?.[0] || "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg").replace('/upload/', '/upload/f_auto,q_auto/')}
                   alt={getTitle()}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

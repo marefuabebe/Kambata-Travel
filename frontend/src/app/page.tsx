@@ -1,12 +1,18 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Destinations from "@/components/home/Destinations";
-import Hotels from "@/components/home/Hotels";
 import styles from "./Home.module.css";
 import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const Destinations = dynamic(() => import("@/components/home/Destinations"), {
+  ssr: true, // We want SEO for destinations if possible, but they are client components fetching data
+});
+const Hotels = dynamic(() => import("@/components/home/Hotels"), {
+  ssr: true,
+});
 import { 
   Search, MapPin, Calendar, Users, ArrowRight, Play, Star,
   Shield, Heart, CheckCircle2, Clock, Map, Tent, Camera,
@@ -14,7 +20,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -133,38 +138,12 @@ export default function Home() {
   const timeLeft = useCountdown("2026-09-27T00:00:00");
   const stat4 = useCountUp(98);
 
-  useEffect(() => {
-    // Hero Slideshow Timer removed completely
-  }, []);
-
-  useEffect(() => {
-    // Fetch data, fallback if empty
-    const fetchData = async () => {
-      try {
-        const destRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/destinations`);
-        if (destRes.data?.data?.length > 0) {
-          // Process to match structure if needed, or just use fallback for now to guarantee layout
-          // For now, let's keep the fallback for perfect visual fidelity, but here is the logic:
-          // setDestinations(destRes.data.data.slice(0, 5));
-        }
-        
-        const tourRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/tours?status=published&limit=4`);
-        if (tourRes.data?.data?.length > 0) {
-          // setTours(tourRes.data.data);
-        }
-      } catch (e) {
-        console.error("Failed to fetch dynamic data", e);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className={styles.pageWrapper}>
       <Header theme="light" />
 
       <main className={styles.mainContent}>
-        {/* â”€â”€ 1. Hero Section â”€â”€ */}
+        {/* ── 1. Hero Section ── */}
         <section className={styles.heroSection}>
           <div className={styles.heroInner}>
             <AnimatePresence mode="wait">
@@ -177,12 +156,13 @@ export default function Home() {
                 className={styles.heroBg}
                 style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
               >
-                <img
-                  src={heroImages[currentImageIndex]}
+                <Image
+                  src={heroImages[currentImageIndex].replace('/upload/', '/upload/f_auto,q_auto/')}
                   alt="Hero Background"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover"
                 />
               </motion.div>
             </AnimatePresence>

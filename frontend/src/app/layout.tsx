@@ -1,18 +1,19 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Plus_Jakarta_Sans, DM_Serif_Display } from "next/font/google";
+import dynamic from "next/dynamic";
 
 const outfit = Outfit({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
 });
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 const dmSerif = DM_Serif_Display({
@@ -25,11 +26,15 @@ const dmSerif = DM_Serif_Display({
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import EnterpriseChatbot from "@/components/chat/EnterpriseChatbot";
 import SplashScreen from "@/components/layout/SplashScreen";
 import { Toaster } from "react-hot-toast";
 import Analytics from "@/components/Analytics";
 import "./globals.css";
+
+// Lazy-load heavy components that aren't needed on initial render
+const EnterpriseChatbot = dynamic(() => import("@/components/chat/EnterpriseChatbot"), {
+  loading: () => null,
+});
 
 export const viewport: Viewport = {
   themeColor: "#0F766E",

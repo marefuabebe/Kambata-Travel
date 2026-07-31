@@ -26,7 +26,6 @@ const RegisterPage = () => {
 
   const handleGoogleLogin = useGoogleLogin({
     flow: 'implicit',
-    ux_mode: 'popup',
     onSuccess: (codeResponse) => {
       console.log("[DEBUG GOOGLE OAUTH] Register Success! codeResponse:", codeResponse);
       setGoogleError(null);

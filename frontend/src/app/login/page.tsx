@@ -23,7 +23,6 @@ const LoginPage = () => {
 
   const handleGoogleLogin = useGoogleLogin({
     flow: 'implicit',
-    ux_mode: 'popup',
     onSuccess: (codeResponse) => {
       console.log("[DEBUG GOOGLE OAUTH] Login Success! codeResponse:", codeResponse);
       setGoogleError(null);

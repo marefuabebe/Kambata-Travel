@@ -15,17 +15,16 @@ export default function SplashScreen() {
       return;
     }
 
-    // Simulate loading progress
-    const duration = 2500; // 2.5 seconds total loading
-    const interval = 50; // update every 50ms
+    // Fast loading animation — 600ms total
+    const duration = 600;
+    const interval = 30;
     const steps = duration / interval;
     let currentStep = 0;
 
     const timer = setInterval(() => {
       currentStep++;
-      // Add slight easing to the progress calculation for realism
       const rawProgress = (currentStep / steps);
-      const easeProgress = 1 - Math.pow(1 - rawProgress, 3); // easeOutCubic
+      const easeProgress = 1 - Math.pow(1 - rawProgress, 3);
       
       setProgress(Math.min(easeProgress * 100, 100));
 
@@ -34,7 +33,7 @@ export default function SplashScreen() {
         setTimeout(() => {
           setLoading(false);
           sessionStorage.setItem("hasSeenSplash", "true");
-        }, 500); // Hold at 100% for a moment before fading out
+        }, 150); // Brief hold at 100%
       }
     }, interval);
 
@@ -49,15 +48,15 @@ export default function SplashScreen() {
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0, 
-            transition: { duration: 0.8, ease: "easeInOut" } 
+            transition: { duration: 0.3, ease: "easeInOut" } 
           }}
           className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#071120] text-white overflow-hidden"
         >
           {/* Logo */}
           <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 10 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
             <img 
@@ -71,7 +70,7 @@ export default function SplashScreen() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.2 }}
             className="w-64 max-w-[70vw] flex flex-col items-center"
           >
             {/* Progress Bar Track */}
@@ -94,3 +93,4 @@ export default function SplashScreen() {
     </AnimatePresence>
   );
 }
+
