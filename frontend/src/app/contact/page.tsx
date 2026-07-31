@@ -43,8 +43,8 @@ const ContactPage = () => {
       <main className={styles.mainContent}>
         {/* ── 1. Hero Section ── */}
         <div className={styles.heroContainer}>
-          <img loading="lazy" 
-            src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1781974271/Gemini_Generated_Image_9u8k9z9u8k9z9u8k_c8mfjb.png" 
+          <img loading="eager" fetchPriority="high" 
+            src={"https://res.cloudinary.com/dzf4st3t2/image/upload/v1781974271/Gemini_Generated_Image_9u8k9z9u8k9z9u8k_c8mfjb.png".replace('/upload/', '/upload/f_auto,q_auto,w_1920/')} 
             className={styles.heroBg} 
             alt="Contact Hero" 
           />

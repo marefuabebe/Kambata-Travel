@@ -25,7 +25,7 @@ const AboutPage = () => {
       <main className={styles.mainContent}>
         {/* ── 1. Hero Section ── */}
         <section className={styles.heroSection}>
-          <img loading="lazy" src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1776589710/Gemini_Generated_Image_2purzt2purzt2pur_xaqzdx.png" className={styles.heroBg} alt="Kambata Locals" />
+          <img loading="eager" fetchPriority="high" src={"https://res.cloudinary.com/dzf4st3t2/image/upload/v1776589710/Gemini_Generated_Image_2purzt2purzt2pur_xaqzdx.png".replace('/upload/', '/upload/f_auto,q_auto,w_1920/')} className={styles.heroBg} alt="Kambata Locals" />
           <div className={styles.heroOverlay} />
           
           <motion.div 

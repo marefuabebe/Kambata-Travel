@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import styles from "./Explore.module.css";
@@ -104,7 +104,7 @@ const ExplorePage = () => {
         {/* â”€â”€ 1. Hero Section â”€â”€ */}
         <section className={styles.heroSection}>
           <div className={styles.heroBg} style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-            <img src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782159938/Gemini_Generated_Image_nn8ogfnn8ogfnn8o_tvhxy5.png" alt="Hero Background" loading="lazy" decoding="async" className="w-full h-full object-cover" />
+            <img src={"https://res.cloudinary.com/dzf4st3t2/image/upload/v1782159938/Gemini_Generated_Image_nn8ogfnn8ogfnn8o_tvhxy5.png".replace('/upload/', '/upload/f_auto,q_auto,w_1920/')} alt="Hero Background" loading="eager" fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
           </div>
           <div className={styles.heroOverlay} />
           
