@@ -257,10 +257,7 @@ const LoginPage = () => {
                 theme="outline"
               />
             </div>
-            <button className="w-full flex items-center gap-3 py-3 px-4 bg-white rounded-full hover:bg-gray-50 transition-all font-bold text-xs text-gray-800 border border-gray-200 shadow-sm hover:shadow">
-               <img loading="lazy" src="https://www.svgrepo.com/show/475647/facebook-color.svg" className="w-5 h-5" alt="Facebook" />
-               <span className="flex-1 text-center pr-5">{t("auth.continueFacebook")}</span>
-            </button>
+
           </div>
 
           {/* OPTION 2: Minimalist style (Commented out)
