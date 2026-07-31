@@ -35,19 +35,7 @@ const nextConfig: NextConfig = {
       }
     ];
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin-allow-popups",
-          },
-        ],
-      },
-    ];
-  },
+
   allowedDevOrigins: ['192.168.1.114', 'shamrock-survey-childhood.ngrok-free.dev'],
   images: {
     unoptimized: true,
