@@ -15,7 +15,8 @@ const withPWA = withPWAInit({
       /^\/api\/qr\/.*/i,
       /^\/checkout\/.*/i,
       /^\/login/i,
-      /^\/register/i
+      /^\/register/i,
+      /^https:\/\/accounts\.google\.com\/.*/i
     ],
   }
 });
@@ -36,6 +37,23 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "unsafe-none",
+          },
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "unsafe-none",
+          }
+        ],
+      },
+    ];
+  },
   allowedDevOrigins: ['192.168.1.114', 'shamrock-survey-childhood.ngrok-free.dev'],
   images: {
     unoptimized: true,
