@@ -22,18 +22,30 @@ const RegisterPage = () => {
   const [localError, setLocalError] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [googleError, setGoogleError] = useState<string | null>(null);
+
   const handleGoogleLogin = useGoogleLogin({
     flow: 'implicit',
+    ux_mode: 'popup',
     onSuccess: (codeResponse) => {
       console.log("[DEBUG GOOGLE OAUTH] Register Success! codeResponse:", codeResponse);
-      const token = codeResponse.access_token || (codeResponse as any).credential;
+      setGoogleError(null);
+      const token = codeResponse.access_token;
       if (!token) {
-        console.error("[DEBUG GOOGLE OAUTH] Missing token in response!");
+        console.error("[DEBUG GOOGLE OAUTH] No access_token in response!");
+        setGoogleError("Google login failed: No access token received.");
         return;
       }
       loginWithGoogle(token, formData.role);
     },
-    onError: (error) => console.error("[DEBUG GOOGLE OAUTH] Register Failed:", error)
+    onError: (errorResponse) => {
+      console.error("[DEBUG GOOGLE OAUTH] Register Error:", errorResponse);
+      setGoogleError(`Google login error: ${errorResponse.error_description || errorResponse.error || "Unknown error"}`);
+    },
+    onNonOAuthError: (error) => {
+      console.error("[DEBUG GOOGLE OAUTH] Non-OAuth Error (popup blocked/closed):", error);
+      setGoogleError(`Google login failed: ${error.type || "Popup was closed or blocked"}`);
+    },
   });
 
   const visualStories = [

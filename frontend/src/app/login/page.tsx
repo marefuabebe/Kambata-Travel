@@ -19,18 +19,30 @@ const LoginPage = () => {
   const { t } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [googleError, setGoogleError] = useState<string | null>(null);
+
   const handleGoogleLogin = useGoogleLogin({
     flow: 'implicit',
+    ux_mode: 'popup',
     onSuccess: (codeResponse) => {
       console.log("[DEBUG GOOGLE OAUTH] Login Success! codeResponse:", codeResponse);
-      const token = codeResponse.access_token || (codeResponse as any).credential;
+      setGoogleError(null);
+      const token = codeResponse.access_token;
       if (!token) {
-        console.error("[DEBUG GOOGLE OAUTH] Missing token in response!");
+        console.error("[DEBUG GOOGLE OAUTH] No access_token in response!");
+        setGoogleError("Google login failed: No access token received.");
         return;
       }
       loginWithGoogle(token);
     },
-    onError: (error) => console.error("[DEBUG GOOGLE OAUTH] Login Failed:", error)
+    onError: (errorResponse) => {
+      console.error("[DEBUG GOOGLE OAUTH] Login Error:", errorResponse);
+      setGoogleError(`Google login error: ${errorResponse.error_description || errorResponse.error || "Unknown error"}`);
+    },
+    onNonOAuthError: (error) => {
+      console.error("[DEBUG GOOGLE OAUTH] Non-OAuth Error (popup blocked/closed):", error);
+      setGoogleError(`Google login failed: ${error.type || "Popup was closed or blocked"}`);
+    },
   });
   const searchParams = useSearchParams();
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -139,6 +151,12 @@ const LoginPage = () => {
           {error && (
             <div className="mb-4 p-3 bg-red-50 border-l-4 border-red-500 text-red-700 text-xs font-medium rounded-r-lg">
               {error}
+            </div>
+          )}
+
+          {googleError && (
+            <div className="mb-4 p-3 bg-orange-50 border-l-4 border-orange-500 text-orange-700 text-xs font-medium rounded-r-lg">
+              {googleError}
             </div>
           )}
 
