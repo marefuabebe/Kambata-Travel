@@ -667,12 +667,17 @@ const googleAuth = async (req, res, next) => {
       throw new Error("No Google token provided");
     }
 
-    const { default: axios } = require("axios");
-    const response = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-      headers: { Authorization: `Bearer ${token}` }
+    const { OAuth2Client } = require('google-auth-library');
+    const client = new OAuth2Client();
+
+    // Verify the JWT credential returned by <GoogleLogin />
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: '167884286246-pae6qdcf9u587i1i961asqkjodd4els7.apps.googleusercontent.com'
     });
 
-    const { sub, email, name, picture, email_verified } = response.data;
+    const payload = ticket.getPayload();
+    const { sub, email, name, picture, email_verified } = payload;
 
     if (!email_verified) {
       res.status(400);
