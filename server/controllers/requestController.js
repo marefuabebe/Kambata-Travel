@@ -554,6 +554,7 @@ const assignGuide = async (req, res, next) => {
     try {
       const { sendNotification } = require("../services/notificationService");
       const { sendEmail } = require("../utils/mailService");
+      const { buildPremiumEmail } = require("../utils/emailTemplateBuilder");
       await sendNotification(guideId, {
         type: "system",
         priority: "HIGH",
@@ -649,6 +650,7 @@ const guideResponse = async (req, res, next) => {
       try {
         const { sendNotification } = require("../services/notificationService");
         const { sendEmail } = require("../utils/mailService");
+        const { buildPremiumEmail } = require("../utils/emailTemplateBuilder");
         const FRONTEND_URL = process.env.FRONTEND_URL || process.env.APP_FRONTEND_URL || "http://localhost:3000";
         await sendNotification(request.user._id, {
           type: "system",
