@@ -212,7 +212,7 @@ export default function GalleryPage() {
         <AnimatePresence mode="wait">
           <motion.img
             key={currentHeroIndex}
-            src={heroImages[currentHeroIndex]}
+            src={heroImages[currentHeroIndex].replace('/upload/', '/upload/f_auto,q_auto,w_1920/')}
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
