@@ -25,7 +25,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 
 const heroImages = [
-  "https://res.cloudinary.com/dzf4st3t2/image/upload/v1776362718/Gemini_Generated_Image_bmo32hbmo32hbmo3_axyzig.png"
+  "https://res.cloudinary.com/dzf4st3t2/image/upload/v1785579702/b3948742-d83b-49b3-a8a4-8acaec102fd1_lxxicy.png"
 ];
 
 const fallbackDestinations = [
