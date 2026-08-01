@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./Gallery.module.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
 import { 
   Mountain, Droplets, MapPin, Users, Heart, Share2, 
   X, ChevronLeft, ChevronRight, ExternalLink, Camera, Navigation,
@@ -152,6 +152,20 @@ export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  const heroImages = [
+    "https://res.cloudinary.com/dzf4st3t2/image/upload/v1785596018/7dd74985-37d2-4edd-93e7-c302209fb139_jee7h8.png",
+    "https://res.cloudinary.com/dzf4st3t2/image/upload/v1785596076/6e6478b0-50d2-4f4f-9ce4-b155069d0d6d_hfoiww.png",
+    "https://res.cloudinary.com/dzf4st3t2/image/upload/v1785596164/c5c4d2c3-4383-42b7-8d3b-ac11a933d7bd_fefscp.png"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Translate constants based on language
   const translatedStats = [
@@ -194,8 +208,22 @@ export default function GalleryPage() {
       <Header theme="light" />
 
       {/* 1. HERO SECTION */}
-      <section className={styles.heroContainer}>
-        <img src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1776362718/Gemini_Generated_Image_bmo32hbmo32hbmo3_axyzig.png" alt="Hero" className={styles.heroBg} loading="lazy" decoding="async" />
+      <section className={styles.heroContainer} style={{ position: 'relative', overflow: 'hidden' }}>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentHeroIndex}
+            src={heroImages[currentHeroIndex]}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            alt="Hero" 
+            className={styles.heroBg} 
+            loading="lazy" 
+            decoding="async" 
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </AnimatePresence>
         <div className={styles.heroOverlay} />
         <motion.div 
           className={styles.heroContent}
