@@ -571,7 +571,7 @@ export default function SaaSProfilePage() {
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
             <button type="submit" className="flex-1 sm:flex-none bg-gray-900 dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-200 text-white dark:text-gray-900 px-6 py-3.5 rounded-2xl font-black text-sm transition-all shadow-sm flex items-center justify-center gap-2">
-              {isSaved ? <><CheckCircle size={18} className={isSaved ? "text-emerald-500" : ""} /> Saved</> : "Save Identity"}
+              {isSaved ? <><CheckCircle size={18} className={isSaved ? "text-emerald-500" : ""} /> Saved</> : "Save Changes"}
             </button>
 
             {(guideStatus === "none" || guideStatus === "rejected") && (
