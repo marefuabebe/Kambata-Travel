@@ -156,7 +156,7 @@ export default function AssignedToursPage() {
                                 <Play size={18} />
                               </button>
                             )}
-                            {r.rawStatus === "in_progress" && (
+                            {!r.isLocked && r.rawStatus === "in_progress" && (
                               <button
                                 type="button"
                                 onClick={() => updateStatus(r.tourId, r.scheduleId, "complete")}
@@ -227,7 +227,7 @@ export default function AssignedToursPage() {
                           <Play size={14} /> {t("guidePages.assignedTours.start")}
                         </button>
                       )}
-                      {r.rawStatus === "in_progress" && (
+                      {!r.isLocked && r.rawStatus === "in_progress" && (
                         <button
                           type="button"
                           onClick={() => updateStatus(r.tourId, r.scheduleId, "complete")}

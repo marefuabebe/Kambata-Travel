@@ -376,6 +376,11 @@ const updateAssignmentStatus = async (req, res, next) => {
       req.params.scheduleId
     );
 
+    if (schedule.attendanceLocked) {
+      res.status(403);
+      throw new Error("Cannot change status. This tour/package is already locked.");
+    }
+
     if (status === "start" || status === "in_progress") {
       schedule.status = "in_progress";
     } else if (status === "complete" || status === "completed") {
