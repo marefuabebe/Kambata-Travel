@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { ArrowRight, MapPin, Star, Building } from "lucide-react";
@@ -92,13 +92,39 @@ const Hotels = () => {
   const getTranslatedLocation = (loc: string) => {
     if (language === 'am') {
       const locMap: Record<string, string> = {
-        "Durame": "á‹±áˆ«áˆœ",
-        "Shinshcho": "áˆ½áŠ•áˆ½á‰¾",
-        "Other": "áˆŒáˆ‹"
+        "Durame": "ዱራሜ",
+        "Shinshcho": "ሽንሽቾ",
+        "Other": "ሌላ"
       };
       return locMap[loc] || loc;
     }
     return loc;
+  };
+
+  const getTranslatedHotelName = (name: string) => {
+    if (language === 'am') {
+      const nameMap: Record<string, string> = {
+        "Durame Grand Hotel": "የዱራሜ ግራንድ ሆቴል",
+        "Shinshcho Resort": "የሽንሽቾ ሪዞርት",
+        "Kambata Valley Lodge": "የከምባታ ሸለቆ ሎጅ",
+        "Hadero Boutique Hotel": "ሀዴሮ ቡቲክ ሆቴል"
+      };
+      return nameMap[name] || name;
+    }
+    return name;
+  };
+
+  const getTranslatedHotelDesc = (desc: string) => {
+    if (language === 'am') {
+      const descMap: Record<string, string> = {
+        "A luxurious stay with breathtaking views of Kambata's vibrant landscapes.": "አስደናቂ የከምባታ መልክዓ ምድሮችን የሚመለከት የቅንጦት ቆይታ።",
+        "Experience absolute tranquility and modern comforts in Shinshcho.": "በሽንሽቾ ውስጥ ፍጹም መረጋጋትን እና ዘመናዊ ምቾትን ይለማመዱ።",
+        "Eco-friendly lodge offering an authentic cultural immersion.": "እውነተኛ የባህል ተሞክሮ የሚያቀርብ ተፈጥሮን የሚንከባከብ ሎጅ።",
+        "A cozy retreat perfect for relaxing after a day of hiking and exploration.": "ከእግር ጉዞ እና ማሰስ በኋላ ለመዝናናት ፍጹም የሆነ ምቹ ማረፊያ።"
+      };
+      return descMap[desc] || desc;
+    }
+    return desc;
   };
 
   return (
@@ -113,7 +139,7 @@ const Hotels = () => {
             className="cursor-default"
           >
             <span className={`${styles.sectionTitleSmall} inline-block hover:scale-105 hover:text-[#0F766E] transition-all duration-300`}>
-              {t('home.hotelsTag') || "STAY IN COMFORT"}
+              {t('home.hotelsTag') || (language === 'am' ? "በምቾት ያርፉ" : "STAY IN COMFORT")}
             </span>
           </motion.div>
         </div>
@@ -147,15 +173,15 @@ const Hotels = () => {
                   </div>
                 </div>
                 <div className={styles.tourContent}>
-                  <h3 className={styles.tourTitle}>{hotel.name}</h3>
+                  <h3 className={styles.tourTitle}>{getTranslatedHotelName(hotel.name)}</h3>
                   <div className={styles.tourMeta} style={{ marginBottom: '16px' }}>
                     <div className={styles.tourMetaItem}><MapPin size={14} /> {getTranslatedLocation(hotel.location)}</div>
-                    <div className={styles.tourMetaItem}>â€¢</div>
-                    <div className={styles.tourMetaItem}><Building size={14} /> {t('home.hotel') || "Hotel"}</div>
+                    <div className={styles.tourMetaItem}>•</div>
+                    <div className={styles.tourMetaItem}><Building size={14} /> {t('home.hotel') || (language === 'am' ? "ሆቴል" : "Hotel")}</div>
                   </div>
                   <div className={styles.tourFooter} style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid #eee' }}>
                     <p className="text-xs text-gray-500 leading-relaxed line-clamp-3">
-                      {hotel.description || "A beautiful hotel offering comfortable stays and excellent service."}
+                      {getTranslatedHotelDesc(hotel.description) || (language === 'am' ? "ምቹ ቆይታ እና ምርጥ አገልግሎት የሚሰጥ ውብ ሆቴል።" : "A beautiful hotel offering comfortable stays and excellent service.")}
                     </p>
                   </div>
                 </div>
