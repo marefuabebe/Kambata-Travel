@@ -67,8 +67,8 @@
 /* ── 1. Hero Section ── */
 .heroSection {
   position: relative;
-  height: 75vh;
-  min-height: 500px;
+  height: 85vh;
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;

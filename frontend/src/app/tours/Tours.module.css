@@ -14,8 +14,8 @@
 /* ── Hero Banner ── */
 .heroBanner {
   position: relative;
-  height: 50vh;
-  min-height: 380px;
+  height: 85vh;
+  min-height: 600px;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
