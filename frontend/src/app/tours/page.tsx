@@ -163,27 +163,26 @@ const ToursPageContent = () => {
     
     // Fallbacks if no valid DB description is found
     if (destName.includes("sarobira") || title.includes("sarobira")) {
-      return "Embark on an unforgettable trek through the lush Sarobira Highlands. Discover ancient terraced farming, immerse yourself in untouched nature, and capture spectacular panoramic photos of the rolling emerald hills.";
+      return language === 'am' ? "በለምለሙ የሳሮቢራ ደጋማ ቦታዎች ላይ የማይረሳ የእግር ጉዞ ያድርጉ። ጥንታዊውን የእርከን እርሻን ያግኙ፣ እና በሚያማምሩ አረንጓዴ ኮረብታዎች ላይ ተፈጥሮን ያጣጥሙ።" : "Embark on an unforgettable trek through the lush Sarobira Highlands. Discover ancient terraced farming, immerse yourself in untouched nature, and capture spectacular panoramic photos of the rolling emerald hills.";
     }
     if (destName.includes("durame") || title.includes("durame")) {
-      return "Dive into the vibrant heart of Kambata in Durame Town. Wander through bustling local markets, savor authentic Ethiopian coffee ceremonies, and experience the warm, welcoming culture of the local community.";
+      return language === 'am' ? "በዱራሜ ከተማ ውስጥ የከምባታን ባህል ይወቁ። በቅዳሜ ገበያ ይገበያዩ፣ የኢትዮጵያን የቡና ስነ-ስርዓት ያጣጥሙ እና የአካባቢውን ማህበረሰብ ሞቅ ያለ አቀባበል ይለማመዱ።" : "Dive into the vibrant heart of Kambata in Durame Town. Wander through bustling local markets, savor authentic Ethiopian coffee ceremonies, and experience the warm, welcoming culture of the local community.";
     }
     if (destName.includes("hambarcho") || title.includes("hambarcho")) {
-      return "Conquer the legendary Mount Hambarcho, Kambata's most iconic peak. This thrilling ascent rewards you with breathtaking 360-degree views of the Great Rift Valley and a sense of true accomplishment.";
+      return language === 'am' ? "በታዋቂው የሀምበሪቾ ተራራ ላይ ይውጡ። ይህ አስደሳች የእግር ጉዞ የታላቁን ስምጥ ሸለቆ እይታን እና እውነተኛ ስኬትን ያጎናጽፍዎታል።" : "Conquer the legendary Mount Hambarcho, Kambata's most iconic peak. This thrilling ascent rewards you with breathtaking 360-degree views of the Great Rift Valley and a sense of true accomplishment.";
     }
     if (destName.includes("ajora") || title.includes("ajora") || destName.includes("dara") || title.includes("waterfall")) {
-      return "Witness the awe-inspiring power of the twin Ajora Falls as they plunge dramatically into a deep gorge. A magnificent natural wonder perfect for sightseeing, relaxation, and connecting with nature.";
+      return language === 'am' ? "በጥልቅ ሸለቆ ውስጥ የሚወርደውን የአጆራ መንታ ፏፏቴዎችን አስደናቂ ኃይል ይመልከቱ። ለመዝናናት፣ ተፈጥሮን ለማድነቅ እና ፎቶ ለማንሳት ምቹ ቦታ።" : "Witness the awe-inspiring power of the twin Ajora Falls as they plunge dramatically into a deep gorge. A magnificent natural wonder perfect for sightseeing, relaxation, and connecting with nature.";
     }
     if (title.includes("gamosha") || title.includes("hot spring")) {
-      return "Relax and rejuvenate in the healing, natural thermal waters of Gamosha Hot Spring. Surrounded by peaceful nature, it is the perfect spot for wellness and relaxation after a long trek in the Kambata highlands.";
+      return language === 'am' ? "በጋሞሻ ፍል ውሃ ውስጥ ዘና ይበሉ። በተፈጥሮ የተከበበ ይህ ቦታ ከከምባታ ተራራ የእግር ጉዞ በኋላ ለጤና እና ለመዝናናት ተስማሚ ነው።" : "Relax and rejuvenate in the healing, natural thermal waters of Gamosha Hot Spring. Surrounded by peaceful nature, it is the perfect spot for wellness and relaxation after a long trek in the Kambata highlands.";
     }
     if (tour.category === "Heritage" || tour.category === "Culture") {
-      return "Step back in time to explore ancient heritage sites, traditional crafts, and historical monuments that define the rich legacy of Kambata.";
+      return language === 'am' ? "የከምባታን ታሪካዊ ቅርሶች፣ ጥንታዊ የዕደ-ጥበብ ስራዎች እና ሐውልቶች በማሰስ የባህል ጉዞ ያድርጉ።" : "Step back in time to explore ancient heritage sites, traditional crafts, and historical monuments that define the rich legacy of Kambata.";
     }
     if (tour.category === "Adventure" || tour.category === "Nature") {
-      return "An unforgettable outdoor adventure awaits you through the hidden natural wonders, valleys, and untamed beauty of the Ethiopian highlands.";
+      return language === 'am' ? "በኢትዮጵያ ደጋማ ቦታዎች እና ሸለቆዎች ውስጥ የማይረሳ የውጪ ጀብዱ ይጠብቅዎታል።" : "An unforgettable outdoor adventure awaits you through the hidden natural wonders, valleys, and untamed beauty of the Ethiopian highlands.";
     }
-    
     
     return t("toursPage.exploreBeauty");
   };
@@ -192,6 +191,7 @@ const ToursPageContent = () => {
     const name = tour.name || tour.title;
     const titleMap: Record<string, string> = {
       "Gamosha Hot Spring Retreat": "የጋሞሻ ሙቅ ውሃ መዝናኛ",
+      "The Gamasha Hot Springs": "የጋሞሻ ሙቅ ውሃ መዝናኛ",
       "The Majestic Doje'e Waterfall": "ታላቁ የዶጄ ፏፏቴ",
       "Durame Town": "ዱራሜ ከተማ",
       "Mount Hambarcho": "ሀምበሪቾ ተራራ",
@@ -201,7 +201,8 @@ const ToursPageContent = () => {
       "Damboya Highlands": "ዳምቦያ ደጋማ ቦታዎች",
       "Sarobira Valley": "ሳሮቢራ ሸለቆ",
       "Kambata Village": "ከምባታ መንደር",
-      "Wanchi Crater Lake": "ወንጪ ሀይቅ"
+      "Wanchi Crater Lake": "ወንጪ ሀይቅ",
+      "Durame Saturday Market": "የዱራሜ ቅዳሜ ገበያ"
     };
     if (language === 'am') return name?.am || titleMap[name?.en || name] || name?.en || name;
     return name?.en || name;
@@ -211,6 +212,25 @@ const ToursPageContent = () => {
     let cat = tour.category?.en || tour.category || tour.tour?.category?.en || tour.tour?.category || "Package";
     if (language === 'am') return tour.category?.am || tour.tour?.category?.am || t(`toursPage.categories.${cat}`) || cat;
     return cat;
+  };
+
+  const getTranslatedLocation = (tour: any) => {
+    const loc = tour.hotel?.location?.city || tour.destination?.name?.en || tour.destination?.name || "Kambata District";
+    const locMap: Record<string, string> = {
+      "Mount Hambarcho": "ሀምበሪቾ ተራራ",
+      "Ajora Falls": "አጆራ ፏፏቴ",
+      "Durame Town": "ዱራሜ ከተማ",
+      "Sarobira Highlands": "ሳሮቢራ ደጋማ ቦታዎች",
+      "Kambata Village": "ከምባታ መንደር",
+      "Wanchi Crater Lake": "ወንጪ ሀይቅ",
+      "Durame Saturday Market": "የዱራሜ ቅዳሜ ገበያ",
+      "The Gamasha Hot Springs": "የጋሞሻ ሙቅ ውሃ",
+      "Gamosha Hot Spring Retreat": "የጋሞሻ ሙቅ ውሃ",
+      "The Majestic Doje'e Waterfall": "ታላቁ የዶጄ ፏፏቴ",
+      "Kambata District": "ከምባታ ወረዳ"
+    };
+    if (language === 'am') return tour.destination?.name?.am || locMap[loc] || loc;
+    return loc;
   };
 
   const renderCard = (tour: any, idx: number, isPackage = false) => (
@@ -253,7 +273,7 @@ const ToursPageContent = () => {
           <div className="flex items-center gap-1 text-gray-400">
             <MapPin className="w-3.5 h-3.5" />
             <span className="text-[11px] uppercase tracking-wider font-bold">
-              {tour.hotel?.location?.city || tour.destination?.name?.[language] || tour.destination?.name?.en || tour.destination?.name || (language === 'am' ? "ከምባታ ወረዳ" : "Kambata District")}
+              {getTranslatedLocation(tour)}
             </span>
           </div>
           <button className="text-gray-300 hover:text-red-500 transition-colors bg-white rounded-full p-1 -mr-1 -mt-1">

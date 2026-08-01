@@ -238,32 +238,31 @@ const ExplorePage = () => {
           </div>
 
           <div className={styles.destinationsRow}>
-            {/* Fallback to static if API fails, but use API if possible.
-                The image shows 6 cards in a row. */}
             {(popularTours.length > 0 ? popularTours : [
-              { _id: 1, title: {en: "Ajora Falls", am: "áŠ áŒ†áˆ« ááá‰´"}, location: {region: {en: "Damboya District", am: "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³"}}, category: "Waterfall", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037881/kambata/gxxovihnkuiueo63dosk.png" },
-              { _id: 2, title: {en: "Mount Hambaricho", am: "áˆ€áˆá‰ áˆªá‰¾ á‰°áˆ«áˆ«"}, location: {region: {en: "Damboya District", am: "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³"}}, category: "Mountain", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037952/kambata/eadxdia83stxqodxf3vd.png" },
-              { _id: 3, title: {en: "Damboya Highlands", am: "á‹³áˆá‰¦á‹« á‹°áŒ‹áˆ› á‰¦á‰³á‹Žá‰½"}, location: {region: {en: "Damboya District", am: "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³"}}, category: "Highland", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038012/kambata/wiv5jowt9wkkt82rukal.png" },
-              { _id: 4, title: {en: "Sarobira Valley", am: "áˆ³áˆ®á‰¢áˆ« áˆ¸áˆˆá‰†"}, location: {region: {en: "Kacha Bira District", am: "á‰ƒáŒ« á‰¢áˆ« á‹ˆáˆ¨á‹³"}}, category: "Valley", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1776362718/Gemini_Generated_Image_bmo32hbmo32hbmo3_axyzig.png" },
-              { _id: 5, title: {en: "Kambata Village", am: "áŠ¨áˆá‰£á‰³ áˆ˜áŠ•á‹°áˆ­"}, location: {region: {en: "Tembaro District", am: "áŒ áˆá‰£áˆ® á‹ˆáˆ¨á‹³"}}, category: "Culture", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038014/kambata/ibdkyyuqop0vx0zjvukw.jpg" },
-              { _id: 6, title: {en: "Wanchi Crater Lake", am: "á‹ˆáŠ•áŒª áˆ€á‹­á‰…"}, location: {region: {en: "Tembaro District", am: "áŒ áˆá‰£áˆ® á‹ˆáˆ¨á‹³"}}, category: "Lake", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038005/kambata/dqqdx098zh4nieljug3t.jpg" },
+              { _id: 1, title: {en: "Ajora Falls", am: "አጆራ ፏፏቴ"}, location: {region: {en: "Damboya District", am: "ዳምቦያ ወረዳ"}}, category: "Waterfall", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037881/kambata/gxxovihnkuiueo63dosk.png" },
+              { _id: 2, title: {en: "Mount Hambaricho", am: "ሀምበርቾ ተራራ"}, location: {region: {en: "Damboya District", am: "ዳምቦያ ወረዳ"}}, category: "Mountain", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037952/kambata/eadxdia83stxqodxf3vd.png" },
+              { _id: 3, title: {en: "Damboya Highlands", am: "ዳምቦያ ደጋማ ቦታዎች"}, location: {region: {en: "Damboya District", am: "ዳምቦያ ወረዳ"}}, category: "Highland", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038012/kambata/wiv5jowt9wkkt82rukal.png" },
+              { _id: 4, title: {en: "Sarobira Valley", am: "ሳሮቢራ ሸለቆ"}, location: {region: {en: "Kacha Bira District", am: "ቃጫ ቢራ ወረዳ"}}, category: "Valley", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1776362718/Gemini_Generated_Image_bmo32hbmo32hbmo3_axyzig.png" },
+              { _id: 5, title: {en: "Kambata Village", am: "ከምባታ መንደር"}, location: {region: {en: "Tembaro District", am: "ጠምባሮ ወረዳ"}}, category: "Culture", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038014/kambata/ibdkyyuqop0vx0zjvukw.jpg" },
+              { _id: 6, title: {en: "Wanchi Crater Lake", am: "ዋንጪ ሀይቅ"}, location: {region: {en: "Tembaro District", am: "ጠምባሮ ወረዳ"}}, category: "Lake", image: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038005/kambata/dqqdx098zh4nieljug3t.jpg" },
             ]).map((tour, idx) => {
               
               // Helper translations for DB strings
               const titleMap: Record<string, string> = {
-                "Ajora Falls": "áŠ áŒ†áˆ« ááá‰´", "Mount Hambaricho": "áˆ€áˆá‰ áˆªá‰¾ á‰°áˆ«áˆ«", "Damboya Highlands": "á‹³áˆá‰¦á‹« á‹°áŒ‹áˆ› á‰¦á‰³á‹Žá‰½", "Sarobira Valley": "áˆ³áˆ®á‰¢áˆ« áˆ¸áˆˆá‰†", "Kambata Village": "áŠ¨áˆá‰£á‰³ áˆ˜áŠ•á‹°áˆ­", "Wanchi Crater Lake": "á‹ˆáŠ•áŒª áˆ€á‹­á‰…",
-                "Gamosha Hot Spring Retreat": "á‹¨áŒ‹áˆžáˆ» áˆ™á‰… á‹áˆƒ áˆ˜á‹áŠ“áŠ›",
-                "The Majestic Doje'e Waterfall": "á‰³áˆ‹á‰ á‹¨á‹¶áŒ„ ááá‰´",
-                "Durame Town": "á‹±áˆ«áˆœ áŠ¨á‰°áˆ›",
-                "Mount Hambarcho": "áˆ€áˆá‰ áˆªá‰¾ á‰°áˆ«áˆ«",
-                "Sarobira Highlands": "áˆ³áˆ®á‰¢áˆ« á‹°áŒ‹áˆ› á‰¦á‰³á‹Žá‰½"
+                "Ajora Falls": "አጆራ ፏፏቴ", "Mount Hambaricho": "ሀምበርቾ ተራራ", "Damboya Highlands": "ዳምቦያ ደጋማ ቦታዎች", "Sarobira Valley": "ሳሮቢራ ሸለቆ", "Kambata Village": "ከምባታ መንደር", "Wanchi Crater Lake": "ዋንጪ ሀይቅ",
+                "Gamosha Hot Spring Retreat": "የጋሞሻ ፍል ውሃ መዝናኛ",
+                "The Majestic Doje'e Waterfall": "የዶጄ ፏፏቴ",
+                "Durame Town": "ዱራሜ ከተማ",
+                "Mount Hambarcho": "ሀምበርቾ ተራራ",
+                "Sarobira Highlands": "ሳሮቢራ ደጋማ ቦታዎች",
+                "Durame Saturday Market": "የዱራሜ ቅዳሜ ገበያ"
               };
               const locMap: Record<string, string> = {
-                "Damboya District": "á‹³áˆá‰¦á‹« á‹ˆáˆ¨á‹³", "Kacha Bira District": "á‰ƒáŒ« á‰¢áˆ« á‹ˆáˆ¨á‹³", "Tembaro District": "áŒ áˆá‰£áˆ® á‹ˆáˆ¨á‹³", "Kambata Zone": "áŠ¨áˆá‰£á‰³ á‹žáŠ•"
+                "Damboya District": "ዳምቦያ ወረዳ", "Kacha Bira District": "ቃጫ ቢራ ወረዳ", "Tembaro District": "ጠምባሮ ወረዳ", "Kambata Zone": "ከምባታ ዞን", "Durame": "ዱራሜ"
               };
               const catMap: Record<string, string> = {
-                "Waterfall": "ááá‰´", "Mountain": "á‰°áˆ«áˆ«", "Highland": "á‹°áŒ‹áˆ› á‰¦á‰³", "Valley": "áˆ¸áˆˆá‰†", "Culture": "á‰£áˆ…áˆ", "Lake": "áˆ€á‹­á‰…", "Adventure": "áŒ€á‰¥á‹±",
-                "Retreat": "áˆ˜á‹áŠ“áŠ›", "Town": "áŠ¨á‰°áˆ›"
+                "Waterfall": "ፏፏቴ", "Mountain": "ተራራ", "Highland": "ደጋማ ቦታ", "Valley": "ሸለቆ", "Culture": "ባህል", "Lake": "ሀይቅ", "Adventure": "ጀብዱ",
+                "Retreat": "መዝናኛ", "Town": "ከተማ", "Relax": "መዝናናት", "Nature": "ተፈጥሮ", "Heritage": "ቅርስ"
               };
 
               const getTitle = () => {
