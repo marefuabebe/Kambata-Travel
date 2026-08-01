@@ -462,7 +462,7 @@ const ExplorePage = () => {
               {[
                 { date: t('explore.stories.s1Date') || "May 12, 2026", title: t('explore.stories.s1Title') || "Camping adventure at Bilate Benarraa", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782071378/kambata/azwukolts7nkqs12np6o.jpg" },
                 { date: t('explore.stories.s2Date') || "May 28, 2026", title: t('explore.stories.s2Title') || "Cultural Experience in Kambata Villages", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782070859/kambata/vrals1tsgawrs3irypkw.jpg" },
-                { date: t('explore.stories.s3Date') || "Jun 20, 2026", title: t('explore.stories.s3Title') || "A Journey to Ajora Falls", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037952/kambata/eadxdia83stxqodxf3vd.png" },
+                { date: t('explore.stories.s3Date') || "Jun 20, 2026", title: t('explore.stories.s3Title') || "A Journey to Mount Hambarcho", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037952/kambata/eadxdia83stxqodxf3vd.png" },
               ].map((s, i) => (
                 <div key={i} className={styles.storyCard}>
                   <img src={s.img} alt={s.title} loading="lazy" decoding="async" />
