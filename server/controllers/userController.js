@@ -32,7 +32,7 @@ const applyForGuideRole = async (req, res, next) => {
 
     // Update profile and status
     user.role = "guide";
-    user.guideStatus = "pending";
+    user.guideStatus = "none";
     
     let guide = await Guide.findOne({ user: user._id });
     if (!guide) {
@@ -49,19 +49,11 @@ const applyForGuideRole = async (req, res, next) => {
 
     await user.save();
 
-    // Notify Admin (High Priority)
-    // Find first admin to notify (or implement a more sophisticated admin alert system)
-    const admin = await User.findOne({ role: "admin" });
-    if (admin) {
-      await sendNotification(admin._id, {
-        type: "system",
-        priority: "HIGH",
-        message: `New Guide Application from ${user.name}. Please review.`,
-        referenceId: user._id,
-      });
-    }
-
-    res.json({ message: "Application submitted successfully", status: "pending" });
+    res.json({
+      success: true,
+      message: "Application started. Please complete your profile in the Guide Dashboard.",
+      data: { role: user.role, guideStatus: user.guideStatus },
+    });
   } catch (error) {
     next(error);
   }
