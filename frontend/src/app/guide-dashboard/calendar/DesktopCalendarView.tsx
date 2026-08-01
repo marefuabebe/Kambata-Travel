@@ -208,6 +208,10 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
       bgColor = "bg-gray-500/90";
       textColor = "text-gray-100";
       borderColor = "border-gray-500/30";
+    } else if (event.isLocked) {
+      bgColor = "bg-slate-700/90";
+      textColor = "text-slate-100";
+      borderColor = "border-slate-700/30";
     } else if (event.status === "cancelled") {
       bgColor = "bg-red-500/90";
       textColor = "text-red-100";
@@ -220,10 +224,6 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
       bgColor = "bg-amber-500/90";
       textColor = "text-amber-100";
       borderColor = "border-amber-500/30";
-    } else if (event.isLocked) {
-      bgColor = "bg-slate-700/90";
-      textColor = "text-slate-100";
-      borderColor = "border-slate-700/30";
     }
 
     return (

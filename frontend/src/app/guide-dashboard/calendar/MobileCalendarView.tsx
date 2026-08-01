@@ -54,18 +54,18 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
   const getEventColor = (event: any) => {
     if (event.type === "timeOff") return "bg-gray-400";
     if (event.isLocked) return "bg-slate-700";
-    if (event.assignmentStatus === "pending") return "bg-amber-500";
-    if (event.status === "completed") return "bg-blue-500";
     if (event.status === "cancelled") return "bg-red-500";
+    if (event.status === "completed") return "bg-blue-500";
+    if (event.assignmentStatus === "pending") return "bg-amber-500";
     return "bg-emerald-500"; // Assigned / Active
   };
 
   const getEventBadge = (event: any) => {
     if (event.type === "timeOff") return { label: "Unavailable", color: "text-gray-600 bg-gray-100 dark:text-gray-300 dark:bg-gray-800" };
     if (event.isLocked) return { label: "Locked", color: "text-slate-600 bg-slate-50 dark:text-slate-400 dark:bg-slate-700/10" };
-    if (event.assignmentStatus === "pending") return { label: "Pending", color: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-500/10" };
-    if (event.status === "completed") return { label: "Completed", color: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-500/10" };
     if (event.status === "cancelled") return { label: "Cancelled", color: "text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-500/10" };
+    if (event.status === "completed") return { label: "Completed", color: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-500/10" };
+    if (event.assignmentStatus === "pending") return { label: "Pending", color: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-500/10" };
     return { label: "Assigned", color: "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-500/10" };
   };
 

@@ -61,8 +61,8 @@ const flattenGuideAssignments = async (guideId) => {
         rawStatus: schedule.status || "draft",
         assignmentStatus: schedule.assignmentStatus || "pending",
         isLocked: (() => {
-          if (schedule.status === "completed" || schedule.status === "cancelled") return false;
           if (schedule.attendanceLocked) return true;
+          if (schedule.status === "completed" || schedule.status === "cancelled") return false;
           const endDateObj = new Date(schedule.endDate || schedule.date);
           if (schedule.endTime && schedule.endTime !== "—") {
             const [h, m] = schedule.endTime.split(":");
@@ -120,8 +120,8 @@ const flattenGuideAssignments = async (guideId) => {
       rawStatus: sch.status || "draft",
       assignmentStatus: sch.assignmentStatus || "pending",
       isLocked: (() => {
-        if (sch.status === "completed" || sch.status === "cancelled") return false;
         if (sch.attendanceLocked) return true;
+        if (sch.status === "completed" || sch.status === "cancelled") return false;
         const endDateObj = new Date(sch.endDate || sch.date);
         if (sch.endTime && sch.endTime !== "—") {
           const [h, m] = sch.endTime.split(":");
