@@ -200,6 +200,77 @@
   opacity: 0.8;
 }
 
+.statsBarWrapper {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.statsBar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  padding: 30px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.statNumber {
+  font-family: var(--font-display), serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #1A331B;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statDivider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1), transparent);
+  margin: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .statsBar {
+    flex-direction: column;
+    padding: 30px;
+    gap: 24px;
+    margin-top: -40px;
+  }
+  .statDivider {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.1), transparent);
+    margin: 0;
+  }
+}
+
 /* ── 2. Our Identity ── */
 .identitySection {
   display: grid;

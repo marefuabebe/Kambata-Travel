@@ -58,6 +58,31 @@ const HeritagePage = () => {
           </div>
         </section>
 
+        {/* ── Floating Stats Bar ── */}
+        <div className={styles.statsBarWrapper}>
+          <div className={styles.statsBar}>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>100+</span>
+              <span className={styles.statLabel}>Years of History</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>7</span>
+              <span className={styles.statLabel}>Indigenous Clans</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>50+</span>
+              <span className={styles.statLabel}>Cultural Festivals</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>1</span>
+              <span className={styles.statLabel}>Unique Heritage</span>
+            </div>
+          </div>
+        </div>
+
         {/* ── 2. Our Identity ── */}
         <ScrollReveal delay={0.1}>
         <section className={`${styles.section} ${styles.identityWrapper}`}>
