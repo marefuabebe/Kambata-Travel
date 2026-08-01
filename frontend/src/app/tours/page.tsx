@@ -308,7 +308,7 @@ const ToursPageContent = () => {
 
       <main className="flex-1">
         {/* ── Hero Banner ── */}
-        <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden">
+        <section className="relative h-[85vh] min-h-[600px] flex flex-col justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038014/kambata/ibdkyyuqop0vx0zjvukw.jpg" 
