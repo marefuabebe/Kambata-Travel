@@ -26,7 +26,7 @@ const HeritagePage = () => {
         {/* ── 1. Hero Section ── */}
         <section className={styles.heroSection}>
           <div className={styles.heroBg} style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-            <img src={"https://res.cloudinary.com/dzf4st3t2/image/upload/v1781979624/Gemini_Generated_Image_pjkk9epjkk9epjkk_sr3fna.png".replace('/upload/', '/upload/f_auto,q_auto,w_1920/')} alt="Kambata Culture" loading="eager" fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
+            <img src={"https://res.cloudinary.com/dzf4st3t2/image/upload/v1785583893/e64d104d-f56f-4889-804b-06966f2bbbd7_ezoipc.png".replace('/upload/', '/upload/f_auto,q_auto,w_1920/')} alt="Kambata Culture" loading="eager" fetchPriority="high" decoding="async" className="w-full h-full object-cover" />
           </div>
           <div className={styles.heroOverlay} />
           
