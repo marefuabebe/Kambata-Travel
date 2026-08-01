@@ -11,7 +11,7 @@ import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/context/LanguageContext";
 import Hotels from "@/components/home/Hotels";
-
+import homeStyles from "@/app/Home.module.css";
 // ── Countdown Timer Component ──
 const CountdownTimer = ({ t }: { t: any }) => {
   const [timeLeft, setTimeLeft] = useState({
@@ -344,48 +344,42 @@ const ToursPageContent = () => {
         </section>
 
         {/* ── Interactive Search & Quick Filter Bar ── */}
-        <div className="container mx-auto px-4 md:px-6 relative z-20 -mt-16 sm:-mt-24 mb-12">
-          <div className="bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-4 md:p-6 lg:p-8 flex flex-col md:flex-row gap-4 items-center justify-between border border-gray-100 backdrop-blur-xl">
-            <div className="flex-1 w-full relative">
-              <label className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5 block ml-1">Destination</label>
-              <div className="relative">
-                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+        <div className={homeStyles.searchContainer}>
+          <div className={`${homeStyles.searchBar} shadow-2xl`}>
+            <div className={homeStyles.searchGroup}>
+              <MapPin className={homeStyles.searchIcon} size={20} />
+              <div className={homeStyles.searchGroupText}>
+                <span className={homeStyles.searchLabel}>Destination</span>
                 <select 
-                  className="w-full bg-gray-50 border-none rounded-xl py-3.5 pl-12 pr-4 text-gray-700 font-medium focus:ring-2 focus:ring-[#0F766E] appearance-none cursor-pointer"
+                  className={homeStyles.searchValue}
                   value={activeDistrict}
                   onChange={(e) => setActiveDistrict(e.target.value)}
                 >
                   {districts.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
-                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
-            <div className="w-px h-12 bg-gray-100 hidden md:block"></div>
-
-            <div className="flex-1 w-full relative">
-              <label className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5 block ml-1">Category</label>
-              <div className="relative">
-                <Tag className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <div className={homeStyles.searchGroup}>
+              <Search className={homeStyles.searchIcon} size={20} />
+              <div className={homeStyles.searchGroupText}>
+                <span className={homeStyles.searchLabel}>Category</span>
                 <select 
-                  className="w-full bg-gray-50 border-none rounded-xl py-3.5 pl-12 pr-4 text-gray-700 font-medium focus:ring-2 focus:ring-[#0F766E] appearance-none cursor-pointer"
+                  className={homeStyles.searchValue}
                   value={activeCategory}
                   onChange={(e) => setActiveCategory(e.target.value)}
                 >
                   {categories.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
-                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
-            <div className="w-px h-12 bg-gray-100 hidden md:block"></div>
-
-            <div className="flex-1 w-full relative">
-              <label className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5 block ml-1">Duration</label>
-              <div className="relative">
-                <Clock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <div className={homeStyles.searchGroup}>
+              <Clock className={homeStyles.searchIcon} size={20} />
+              <div className={homeStyles.searchGroupText}>
+                <span className={homeStyles.searchLabel}>Duration</span>
                 <select 
-                  className="w-full bg-gray-50 border-none rounded-xl py-3.5 pl-12 pr-4 text-gray-700 font-medium focus:ring-2 focus:ring-[#0F766E] appearance-none cursor-pointer"
+                  className={homeStyles.searchValue}
                   value={activeDuration}
                   onChange={(e) => setActiveDuration(e.target.value)}
                 >
@@ -394,16 +388,11 @@ const ToursPageContent = () => {
                   <option value="4-7 Days">4-7 Days</option>
                   <option value="8+ Days">8+ Days</option>
                 </select>
-                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
             </div>
 
-            <button 
-              onClick={handleSearch}
-              className="w-full md:w-auto bg-[#0F766E] hover:bg-[#0a5c55] text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(15,118,110,0.3)] hover:shadow-[0_12px_25px_rgba(15,118,110,0.4)] hover:-translate-y-1 mt-6 md:mt-0"
-            >
-              <Search className="w-5 h-5" />
-              <span>Find Tours</span>
+            <button className={homeStyles.searchBtn} onClick={handleSearch}>
+              Search <ArrowRight size={16} />
             </button>
           </div>
         </div>
