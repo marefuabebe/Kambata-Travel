@@ -89,41 +89,41 @@ export default function TravelerDashboard() {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-white/10 p-8 md:p-12 shadow-2xl mt-8"
+        className="relative overflow-hidden rounded-[2.5rem] bg-[#243447] dark:bg-[#1C2333] border border-white/10 p-8 md:p-12 shadow-2xl mt-8"
       >
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF8C00]/10 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#F59E0B]/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-[80px] pointer-events-none" />
         
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex items-center gap-6">
             <div className="w-20 h-20 rounded-3xl overflow-hidden ring-4 ring-white/10 shadow-xl shrink-0">
-              <img loading="lazy" src={user?.profilePicture || `https://ui-avatars.com/api/?name=${user?.name}&background=FF8C00&color=fff`} className="w-full h-full object-cover" alt="Profile" />
+              <img loading="lazy" src={user?.profilePicture || `https://ui-avatars.com/api/?name=${user?.name}&background=F59E0B&color=fff`} className="w-full h-full object-cover" alt="Profile" />
             </div>
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#FF8C00] bg-[#FF8C00]/10 px-3 py-1 rounded-lg border border-[#FF8C00]/20">
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-lg border border-[#F59E0B]/20">
                   {currentDate}
                 </span>
                 {weather?.temp && (
-                  <span className="text-[10px] font-bold text-gray-300 flex items-center gap-1 bg-white/5 px-3 py-1 rounded-lg border border-white/10">
-                    <Sun size={12} className="text-amber-400" /> {weather.temp}°C, {weather.desc}
+                  <span className="text-[10px] font-bold text-white/75 flex items-center gap-1 bg-white/5 px-3 py-1 rounded-lg border border-white/10">
+                    <Sun size={12} className="text-[#F59E0B]" /> {weather.temp}°C, {weather.desc}
                   </span>
                 )}
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-2">
+              <h1 className="text-4xl md:text-5xl font-black text-[#FFFFFF] tracking-tight mb-2">
                 {t("explorerDashboard.header.greeting").replace("{name}", user?.name?.split(" ")[0] || "Traveler")}
               </h1>
-              <p className="text-sm md:text-base font-medium text-gray-400 max-w-xl">
+              <p className="text-sm md:text-base font-medium text-white/75 max-w-xl">
                 {t("explorerDashboard.header.subtitle")}
               </p>
             </div>
           </div>
           
           <div className="hidden lg:flex items-center gap-4 shrink-0">
-            <Link href="/explorer-dashboard/explore-tours" className="flex items-center gap-2 px-6 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-white font-bold transition-all hover:-translate-y-1 active:scale-95">
-              <Compass size={18} className="text-emerald-400" /> Explore
+            <Link href="/explorer-dashboard/explore-tours" className="flex items-center gap-2 px-6 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-[#FFFFFF] font-bold transition-all hover:-translate-y-1 active:scale-95 rounded-2xl">
+              <Compass size={18} className="text-[#10B981]" /> Explore
             </Link>
-            <Link href="/explorer-dashboard/bookings" className="flex items-center gap-2 px-6 py-4 bg-[#FF8C00] hover:bg-[#FF8C00]/90 shadow-lg shadow-[#FF8C00]/20 rounded-2xl text-white font-bold transition-all hover:-translate-y-1 active:scale-95">
+            <Link href="/explorer-dashboard/bookings" className="flex items-center gap-2 px-6 py-4 bg-[#F59E0B] hover:bg-[#F59E0B]/90 shadow-lg shadow-[#F59E0B]/20 text-[#FFFFFF] font-bold transition-all hover:-translate-y-1 active:scale-95 rounded-2xl">
               <CalendarCheck size={18} /> My Bookings
             </Link>
           </div>
