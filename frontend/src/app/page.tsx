@@ -171,7 +171,8 @@ export default function Home() {
 
             <div className={styles.heroContent}>
 
-            <span className={styles.heroTag}>{t('home.welcomeTag') !== 'home.welcomeTag' ? t('home.welcomeTag') : "WELCOME TO KAMBATA"}</span>
+            <style dangerouslySetInnerHTML={{__html: "@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');"}} />
+            <span className={styles.heroTag} style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, fontSize: "2.5rem", textTransform: "capitalize", letterSpacing: "normal", color: "#F4A261" }}>{t('home.welcomeTag') !== 'home.welcomeTag' ? t('home.welcomeTag') : "Welcome to Kambata"}</span>
             <h1 className={styles.heroTitle}>
               <span dangerouslySetInnerHTML={{ __html: t('home.heroTitle1') !== 'home.heroTitle1' ? t('home.heroTitle1') : "Explore the Untouched" }} />
               <br />

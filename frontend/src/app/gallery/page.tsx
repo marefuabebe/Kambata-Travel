@@ -231,7 +231,8 @@ export default function GalleryPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className={styles.heroTag}>{t("galleryPage.hero.tag")}</span>
+          <style dangerouslySetInnerHTML={{__html: "@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');"}} />
+          <span className={styles.heroTag} style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, fontSize: "2.5rem", textTransform: "capitalize", letterSpacing: "normal", color: "#F4A261" }}>{t("galleryPage.hero.tag")}</span>
           <h1 className={styles.heroTitle} dangerouslySetInnerHTML={{ __html: t("galleryPage.hero.title").replace('The', '<br/>The') }}></h1>
           <p className={styles.heroSub}>
             {t("galleryPage.hero.sub")}

@@ -51,7 +51,8 @@ const ContactPage = () => {
           <div className={styles.heroOverlay} />
           
           <div className={styles.heroContent}>
-            <span className={styles.heroTag}>{t("contactPage.hero.tag")}</span>
+            <style dangerouslySetInnerHTML={{__html: "@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');"}} />
+            <span className={styles.heroTag} style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, fontSize: "2.5rem", textTransform: "capitalize", letterSpacing: "normal", color: "#F4A261" }}>{t("contactPage.hero.tag")}</span>
             <h1 className={styles.heroTitle}>{t("contactPage.hero.title")}</h1>
             <p className={styles.heroSub}>
               {t("contactPage.hero.sub")}

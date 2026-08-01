@@ -109,7 +109,8 @@ const ExplorePage = () => {
           <div className={styles.heroOverlay} />
           
           <div className={styles.heroContent}>
-            <span className={styles.heroTag}>{t('explore.hero.tag') || "DISCOVER KAMBATA"}</span>
+            <style dangerouslySetInnerHTML={{__html: "@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');"}} />
+            <span className={styles.heroTag} style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, fontSize: "2.5rem", textTransform: "capitalize", letterSpacing: "normal", color: "#F4A261" }}>{t('explore.hero.tag') || "Discover Kambata"}</span>
             <h1 className={styles.heroTitle}>{t('explore.hero.title') || "Explore Hidden Wonders of Kambata"}</h1>
             <p className={styles.heroSub}>
               {t('explore.hero.sub') || "Experience breathtaking mountains, waterfalls, rich culture, and unforgettable local adventures."}

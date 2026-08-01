@@ -34,7 +34,8 @@ const AboutPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className={styles.heroTag}>{t("aboutPage.hero.tag")}</span>
+            <style dangerouslySetInnerHTML={{__html: "@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');"}} />
+            <span className={styles.heroTag} style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, fontSize: "2.5rem", textTransform: "capitalize", letterSpacing: "normal", color: "#F4A261" }}>{t("aboutPage.hero.tag")}</span>
             <h1 className={styles.heroTitle}>{t("aboutPage.hero.title")}</h1>
             <p className={styles.heroSub}>
               {t("aboutPage.hero.sub")}

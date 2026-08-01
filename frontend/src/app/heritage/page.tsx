@@ -31,7 +31,8 @@ const HeritagePage = () => {
           <div className={styles.heroOverlay} />
           
           <div className={styles.heroContent}>
-            <span className={styles.sectionTitleSmall}>{t("heritagePage.hero.tag")}</span>
+            <style dangerouslySetInnerHTML={{__html: "@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');"}} />
+            <span className={styles.sectionTitleSmall} style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, fontSize: "2.5rem", textTransform: "capitalize", letterSpacing: "normal", color: "#F4A261" }}>{t("heritagePage.hero.tag")}</span>
             <h1 className={styles.heroTitle}>{t("heritagePage.hero.title")}</h1>
             <p className={styles.heroSub}>
               {t("heritagePage.hero.sub")}
