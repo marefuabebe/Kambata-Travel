@@ -591,7 +591,7 @@ export function DigitalPassModal({
       className="fixed inset-0 z-[200] overflow-y-auto bg-black/40 backdrop-blur-xl"
       onClick={onClose}
     >
-      <div className="flex min-h-full items-start justify-center p-4 pt-24 pb-12">
+      <div className="flex min-h-full items-start justify-center p-4 pt-24 pb-32 md:pb-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
