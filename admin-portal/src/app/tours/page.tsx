@@ -510,7 +510,7 @@ export default function ToursPage() {
                     </button>
                     <button type="submit" disabled={isSaving || !formData.destinationId} className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-rose-500 text-white px-8 py-4 rounded-xl font-black text-sm hover:scale-[1.02] hover:shadow-[0_10px_25px_-5px_rgba(249,115,22,0.6)] transition-all disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none">
                       {isSaving && <Loader2 size={18} className="animate-spin" />}
-                      {editingTour ? "Update Blueprint" : "Publish Tour"}
+                      {editingTour ? "Save Changes" : "Create New"}
                     </button>
                   </div>
                 </form>

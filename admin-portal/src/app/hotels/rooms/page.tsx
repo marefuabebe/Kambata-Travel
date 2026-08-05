@@ -292,7 +292,7 @@ export default function RoomTypesPage() {
                 </button>
                 <button type="submit" disabled={isSaving} className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-sm hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
                   {isSaving && <Loader2 className="animate-spin" size={16} />}
-                  Save Room Type
+                  {editingRoom ? "Save Changes" : "Create New"}
                 </button>
               </div>
             </form>

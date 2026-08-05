@@ -314,7 +314,7 @@ export default function DestinationsPage() {
                     </button>
                     <button type="submit" disabled={isSaving} className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-rose-500 text-white px-8 py-4 rounded-xl font-black text-sm hover:scale-[1.02] hover:shadow-[0_10px_25px_-5px_rgba(249,115,22,0.6)] transition-all disabled:opacity-50 disabled:hover:scale-100 disabled:shadow-none">
                       {isSaving && <Loader2 size={18} className="animate-spin" />}
-                      {editingDest ? "Update Destination" : "Create Destination"}
+                      {editingDest ? "Save Changes" : "Create New"}
                     </button>
                   </div>
                 </form>

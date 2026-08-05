@@ -419,7 +419,8 @@ export default function ManagePackagesPage() {
               <div className="pt-8 mt-4 flex justify-end gap-4 border-t border-gray-100 dark:border-white/5">
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-8 py-3.5 rounded-xl font-bold text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">Cancel</button>
                 <button type="submit" disabled={isSaving} className="flex items-center justify-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3.5 rounded-xl font-bold text-base hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-sm disabled:opacity-50 min-w-[160px]">
-                  {isSaving ? <Loader2 size={20} className="animate-spin" /> : "Save Package"}
+                  {isSaving && <Loader2 size={20} className="animate-spin" />}
+                  {editingPackage ? "Save Changes" : "Create New"}
                 </button>
               </div>
             </form>
