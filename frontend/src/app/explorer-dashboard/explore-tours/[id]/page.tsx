@@ -12,6 +12,9 @@ import apiClient from "@/utils/apiClient";
 import { PageHeader, LoadingCenter } from "@/components/explorer/ui";
 import { tourTitle } from "@/utils/dashboardHelpers";
 import RequestCustomDateModal from "@/components/explorer/RequestCustomDateModal";
+import dynamic from "next/dynamic";
+
+const ItineraryMap = dynamic(() => import("@/components/shared/ItineraryMap"), { ssr: false });
 
 export default function TourDetailsPage() {
   const params = useParams();
@@ -315,19 +318,48 @@ export default function TourDetailsPage() {
             <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-3">
               <Compass className="text-[#FF8C00]" /> Itinerary Preview
             </h2>
-            <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 dark:before:via-gray-800 before:to-transparent">
-               {[1, 2, 3].map((day) => (
-                 <div key={day} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                   <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-[#0F172A] bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-black text-xs shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
-                     D{day}
+            
+            {tour.itinerary && tour.itinerary.length > 0 ? (
+              <>
+                <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 dark:before:via-gray-800 before:to-transparent mb-12">
+                   {tour.itinerary.map((stop: any, index: number) => (
+                     <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                       <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-[#0F172A] bg-[#FF8C00] text-white font-black text-xs shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
+                         D{stop.day || index + 1}
+                       </div>
+                       <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
+                         <h4 className="font-black text-lg text-gray-900 dark:text-white mb-2">{stop.title?.en || "Exploration"}</h4>
+                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{stop.description?.en || ""}</p>
+                         {stop.startTime && (
+                           <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-gray-50 dark:bg-black/20 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300">
+                             <Clock size={12} /> {stop.startTime}
+                           </div>
+                         )}
+                       </div>
+                     </div>
+                   ))}
+                </div>
+                
+                <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                  <MapIcon className="text-[#FF8C00]" /> Interactive Route Map
+                </h3>
+                <ItineraryMap itinerary={tour.itinerary} />
+              </>
+            ) : (
+              <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 dark:before:via-gray-800 before:to-transparent">
+                 {[1, 2, 3].map((day) => (
+                   <div key={day} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                     <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-[#0F172A] bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-black text-xs shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
+                       D{day}
+                     </div>
+                     <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
+                       <h4 className="font-black text-lg text-gray-900 dark:text-white mb-2">Day {day} Exploration</h4>
+                       <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Discover local landmarks, engage with the community, and experience breathtaking landscapes.</p>
+                     </div>
                    </div>
-                   <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
-                     <h4 className="font-black text-lg text-gray-900 dark:text-white mb-2">Day {day} Exploration</h4>
-                     <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Discover local landmarks, engage with the community, and experience breathtaking landscapes.</p>
-                   </div>
-                 </div>
-               ))}
-            </div>
+                 ))}
+              </div>
+            )}
           </section>
 
           <section>

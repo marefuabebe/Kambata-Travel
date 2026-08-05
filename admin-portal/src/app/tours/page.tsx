@@ -4,7 +4,10 @@ import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Search, Plus, Loader2, Map, Calendar, Users, DollarSign, Clock, MapPin, Pencil, Trash2, Star, Tent, AlertTriangle, XCircle, CheckCircle } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Search, Plus, Loader2, Map, Calendar, Users, DollarSign, Clock, MapPin, Pencil, Trash2, Star, Tent, AlertTriangle, XCircle, CheckCircle, PlusCircle, MinusCircle } from "lucide-react";
+
+const MapPicker = dynamic(() => import("@/components/shared/MapPicker"), { ssr: false });
 import apiClient from "@/utils/apiClient";
 import toast from "react-hot-toast";
 import { confirmAction } from "@/utils/confirmAlert";
@@ -19,6 +22,7 @@ interface Tour {
   rating?: { average: number; numReviews: number };
   destinations: { _id: string; name: { en: string } }[];
   schedules: any[];
+  itinerary?: any[];
 }
 
 export default function ToursPage() {
@@ -37,7 +41,8 @@ export default function ToursPage() {
   const [formData, setFormData] = useState({
     titleEn: "", titleAm: "", descEn: "", descAm: "", 
     price: 0, durationValue: 1, durationUnit: "days", 
-    difficulty: "moderate", maxCapacity: 10, imageUrl: "", destinationId: ""
+    difficulty: "moderate", maxCapacity: 10, imageUrl: "", destinationId: "",
+    itinerary: [] as any[]
   });
 
   // Schedule Management State
@@ -70,7 +75,8 @@ export default function ToursPage() {
       titleEn: "", titleAm: "", descEn: "", descAm: "", 
       price: 0, durationValue: 1, durationUnit: "days", 
       difficulty: "moderate", maxCapacity: 10, imageUrl: "", 
-      destinationId: destinations[0]?._id || ""
+      destinationId: destinations[0]?._id || "",
+      itinerary: []
     });
     setIsModalOpen(true);
   };
@@ -88,7 +94,8 @@ export default function ToursPage() {
       difficulty: tour.difficulty || "moderate",
       maxCapacity: 10, // Default since it might not be in the list view
       imageUrl: tour.images?.[0] || "",
-      destinationId: tour.destinations?.[0]?._id || destinations[0]?._id || ""
+      destinationId: tour.destinations?.[0]?._id || destinations[0]?._id || "",
+      itinerary: tour.itinerary || []
     });
     setIsModalOpen(true);
   };
@@ -124,6 +131,35 @@ export default function ToursPage() {
     }
   };
 
+  const addItineraryDay = () => {
+    setFormData(prev => ({
+      ...prev,
+      itinerary: [
+        ...prev.itinerary,
+        { day: prev.itinerary.length + 1, title: { en: "", am: "" }, description: { en: "", am: "" }, startTime: "08:00", location: null }
+      ]
+    }));
+  };
+
+  const removeItineraryDay = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      itinerary: prev.itinerary.filter((_, i) => i !== index).map((stop, i) => ({ ...stop, day: i + 1 }))
+    }));
+  };
+
+  const updateItineraryDay = (index: number, field: string, value: any, subfield?: string) => {
+    setFormData(prev => {
+      const newItin = [...prev.itinerary];
+      if (subfield) {
+        newItin[index][field] = { ...newItin[index][field], [subfield]: value };
+      } else {
+        newItin[index][field] = value;
+      }
+      return { ...prev, itinerary: newItin };
+    });
+  };
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -137,6 +173,7 @@ export default function ToursPage() {
         maxCapacity: formData.maxCapacity,
         images: formData.imageUrl ? [formData.imageUrl] : [],
         destination: formData.destinationId,
+        itinerary: formData.itinerary,
         isPublished: true
       };
 
@@ -419,6 +456,51 @@ export default function ToursPage() {
                           <option key={d._id} value={d._id} className="bg-white dark:bg-slate-900">{d.name?.en || "Unknown"}</option>
                         ))}
                       </select>
+                    </div>
+                  </div>
+
+                  {/* Itinerary Builder */}
+                  <div className="pt-4 border-t border-gray-100 dark:border-white/5 mt-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-sm font-black text-gray-900 dark:text-white uppercase tracking-widest flex items-center gap-2">
+                        <Map size={16} className="text-[#FF8C00]" /> Itinerary
+                      </h3>
+                      <button type="button" onClick={addItineraryDay} className="flex items-center gap-1 bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-400 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-orange-100 dark:hover:bg-orange-500/20 transition-colors">
+                        <PlusCircle size={14} /> Add Stop
+                      </button>
+                    </div>
+
+                    <div className="space-y-6">
+                      {formData.itinerary.map((stop, index) => (
+                        <div key={index} className="p-4 bg-gray-50/50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl relative">
+                          <button type="button" onClick={() => removeItineraryDay(index)} className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors">
+                            <MinusCircle size={18} />
+                          </button>
+                          
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-4">
+                              <div>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 pl-1">Stop {index + 1} Title (EN) *</label>
+                                <input required type="text" value={stop.title?.en} onChange={e => updateItineraryDay(index, 'title', e.target.value, 'en')} className="w-full bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all" />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 pl-1">Description (EN) *</label>
+                                <textarea required value={stop.description?.en} onChange={e => updateItineraryDay(index, 'description', e.target.value, 'en')} rows={2} className="w-full bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all resize-none" />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 pl-1">Start Time</label>
+                                <input type="time" value={stop.startTime} onChange={e => updateItineraryDay(index, 'startTime', e.target.value)} className="w-full bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all" />
+                              </div>
+                            </div>
+                            <div className="h-[200px] md:h-auto rounded-xl overflow-hidden border border-gray-200 dark:border-white/10">
+                              <MapPicker 
+                                initialLocation={stop.location} 
+                                onLocationSelect={(lat, lng) => updateItineraryDay(index, 'location', { lat, lng })}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
 

@@ -165,6 +165,10 @@ const tourSchema = mongoose.Schema(
           am: { type: String },
         },
         startTime: String,
+        location: {
+          lat: Number,
+          lng: Number,
+        },
       },
     ],
     gallery: [{ type: String }],

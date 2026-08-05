@@ -739,7 +739,7 @@ const googleAuth = async (req, res, next) => {
     };
 
     if (finalRole === "guide") {
-      userPayload.guideStatus = "pending"; // Per user feedback
+      userPayload.guideStatus = "none";
     }
 
     user = await User.create(userPayload);
