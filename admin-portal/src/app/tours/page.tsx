@@ -495,7 +495,17 @@ export default function ToursPage() {
                             <div className="h-[200px] md:h-auto rounded-xl overflow-hidden border border-gray-200 dark:border-white/10">
                               <MapPicker 
                                 initialLocation={stop.location} 
-                                onLocationSelect={(lat, lng) => updateItineraryDay(index, 'location', { lat, lng })}
+                                onLocationSelect={(lat, lng, placeName) => {
+                                  updateItineraryDay(index, 'location', { lat, lng });
+                                  if (placeName) {
+                                    const shortName = placeName.split(',')[0].trim();
+                                    const currentTitle = formData.itinerary[index].title?.en || "";
+                                    if (!currentTitle) updateItineraryDay(index, 'title', shortName, 'en');
+                                    
+                                    const currentDesc = formData.itinerary[index].description?.en || "";
+                                    if (!currentDesc) updateItineraryDay(index, 'description', `Visit to ${shortName}`, 'en');
+                                  }
+                                }}
                               />
                             </div>
                           </div>

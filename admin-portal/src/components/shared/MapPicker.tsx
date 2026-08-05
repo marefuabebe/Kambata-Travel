@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
 });
 
 interface MapPickerProps {
-  onLocationSelect: (lat: number, lng: number) => void;
+  onLocationSelect: (lat: number, lng: number, placeName?: string) => void;
   initialLocation?: { lat: number; lng: number } | null;
 }
 
@@ -51,9 +51,18 @@ export default function MapPicker({ onLocationSelect, initialLocation }: MapPick
     }
   }, [initialLocation]);
 
-  const handleLocationSelect = (lat: number, lng: number) => {
+  const handleLocationSelect = async (lat: number, lng: number) => {
     setPosition({ lat, lng });
-    onLocationSelect(lat, lng);
+    
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+      const data = await res.json();
+      const placeName = data.display_name || "";
+      onLocationSelect(lat, lng, placeName);
+    } catch (err) {
+      console.error("Reverse geocoding failed", err);
+      onLocationSelect(lat, lng);
+    }
   };
 
   const center = position ? [position.lat, position.lng] : DEFAULT_CENTER;
