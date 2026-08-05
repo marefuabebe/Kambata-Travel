@@ -130,17 +130,22 @@ const Hotels = () => {
   return (
     <ScrollReveal>
       <section className={styles.section} style={{ paddingTop: "20px" }}>
-        <div className={styles.sectionHeader}>
+        <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="cursor-default"
+            className="flex flex-col items-center"
           >
-            <span className={`${styles.sectionTitleSmall} inline-block hover:scale-105 hover:text-[#0F766E] transition-all duration-300`}>
+            <span className="text-[#0F766E] font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs mb-3 block">
               {t('home.hotelsTag') || (language === 'am' ? "በምቾት ያርፉ" : "STAY IN COMFORT")}
             </span>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+              {t('home.hotelsTitle') || (language === 'am' ? "ምርጥ ሆቴሎችና ሪዞርቶች" : "Top Hotels & Resorts")}
+            </h2>
+            <p className="text-gray-500 font-medium text-sm sm:text-base leading-relaxed">
+              {t('home.hotelsDesc') || (language === 'am' ? "በከምባታ ከሚገኙ ምርጥ የዕረፍት ቦታዎች በመምረጥ ማራኪ ጊዜን ያሳልፉ።" : "Discover the finest accommodations in Kambata, carefully selected to ensure a relaxing and memorable stay.")}
+            </p>
           </motion.div>
         </div>
 

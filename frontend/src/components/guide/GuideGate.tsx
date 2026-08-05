@@ -84,9 +84,15 @@ export default function GuideGate({ children }: { children: React.ReactNode }) {
             <li className="flex items-center gap-3 text-sm font-bold text-gray-400">
               <span className="w-2 h-2 bg-emerald-500 rounded-full" /> Profile submitted
             </li>
-            <li className="flex items-center gap-3 text-sm font-bold text-gray-400">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full" /> Documents uploaded
-            </li>
+            {(user.nationalId || user.tourGuideLicense) ? (
+              <li className="flex items-center gap-3 text-sm font-bold text-gray-400">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full" /> Documents uploaded
+              </li>
+            ) : (
+              <li className="flex items-center gap-3 text-sm font-bold text-red-500">
+                <span className="w-2 h-2 bg-red-500 rounded-full" /> Documents missing (Action required)
+              </li>
+            )}
             <li className="flex items-center gap-3 text-sm font-bold text-amber-500">
               <span className="w-2 h-2 bg-amber-500 rounded-full animate-pulse" /> Admin vetting in progress
             </li>
