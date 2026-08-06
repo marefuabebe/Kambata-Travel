@@ -5,6 +5,7 @@ const getWishlist = async (req, res, next) => {
     const items = await Wishlist.find({ user: req.user._id })
       .populate("tour", "title images price duration rating destination")
       .populate("hotel", "name images location amenities rating roomTypes")
+      .populate("package", "name images price duration rating destination")
       .sort("-createdAt");
     res.json({ success: true, data: items });
   } catch (error) {
@@ -14,17 +15,19 @@ const getWishlist = async (req, res, next) => {
 
 const addToWishlist = async (req, res, next) => {
   try {
-    const { itemType, tourId, hotelId } = req.body;
+    const { itemType, tourId, hotelId, packageId } = req.body;
     if (itemType === "tour" && !tourId) throw new Error("tourId required");
     if (itemType === "hotel" && !hotelId) throw new Error("hotelId required");
+    if (itemType === "package" && !packageId) throw new Error("packageId required");
 
     const payload = { user: req.user._id, itemType };
     if (itemType === "tour") payload.tour = tourId;
     if (itemType === "hotel") payload.hotel = hotelId;
+    if (itemType === "package") payload.package = packageId;
 
     const existing = await Wishlist.findOne({
       user: req.user._id,
-      ...(tourId ? { tour: tourId } : { hotel: hotelId }),
+      ...(tourId ? { tour: tourId } : hotelId ? { hotel: hotelId } : { package: packageId }),
     });
     if (existing) {
       return res.json({ success: true, data: existing, message: "Already in wishlist" });

@@ -19,24 +19,10 @@ export default function WishlistPage() {
   const { t } = useLanguage();
 
   const fetchList = () => {
-    // We mock the package items for now if they don't exist in the backend
     apiClient
       .get("/wishlist")
       .then((res) => {
         let fetched = res.data.data || [];
-        // Mock a saved package if none exist for demonstration of the 10/10 layout
-        if (!fetched.some((i: any) => i.itemType === "package")) {
-          fetched.push({
-            _id: "mock-pkg-wishlist-1",
-            itemType: "package",
-            package: {
-              _id: "pkg-1",
-              name: { en: "Kambata Cultural Experience" },
-              duration: { value: 2, unit: "Days" },
-              images: ["https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=600&h=400"]
-            }
-          });
-        }
         setItems(fetched);
       })
       .catch(console.error)
@@ -48,11 +34,6 @@ export default function WishlistPage() {
   }, []);
 
   const remove = async (id: string) => {
-    if (id.startsWith("mock")) {
-      setItems((prev) => prev.filter((i) => i._id !== id));
-      toast.success("Removed from wishlist");
-      return;
-    }
     try {
       await apiClient.delete(`/wishlist/${id}`);
       setItems((prev) => prev.filter((i) => i._id !== id));
