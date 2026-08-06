@@ -305,7 +305,7 @@ export default function BookingMonitor() {
                           </>
                         ) : (
                           <>
-                            {booking.status !== "cancelled" && (
+                            {booking.status !== "cancelled" && booking.status !== "completed" && (
                               <button
                                 onClick={() => handleForceCancel(booking._id, booking.paymentStatus === "paid")}
                                 className="w-10 h-10 bg-slate-50 dark:bg-[#0F172A] text-red-500 hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white rounded-xl transition-colors flex items-center justify-center border border-slate-100 dark:border-[#334155]"
