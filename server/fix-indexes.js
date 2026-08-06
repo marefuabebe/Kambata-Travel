@@ -25,7 +25,22 @@ mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/kambata-tra
       console.log("Dropped guide_1_user_1_booking_1 index");
     } catch (err) {}
     
+    const Wishlist = require("./models/Wishlist");
+    try {
+      await Wishlist.collection.dropIndex("user_1_tour_1");
+      console.log("Dropped user_1_tour_1 index from Wishlist");
+    } catch (err) {}
+    try {
+      await Wishlist.collection.dropIndex("user_1_hotel_1");
+      console.log("Dropped user_1_hotel_1 index from Wishlist");
+    } catch (err) {}
+    try {
+      await Wishlist.collection.dropIndex("user_1_package_1");
+      console.log("Dropped user_1_package_1 index from Wishlist");
+    } catch (err) {}
+    
     await Review.syncIndexes();
+    await Wishlist.syncIndexes();
     console.log("Re-synced indexes");
     process.exit(0);
   });

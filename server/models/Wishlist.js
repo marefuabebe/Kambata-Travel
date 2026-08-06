@@ -20,8 +20,10 @@ const wishlistSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-wishlistSchema.index({ user: 1, tour: 1 }, { unique: true, sparse: true });
-wishlistSchema.index({ user: 1, hotel: 1 }, { unique: true, sparse: true });
-wishlistSchema.index({ user: 1, package: 1 }, { unique: true, sparse: true });
+// We rely on wishlistController.js to enforce uniqueness. 
+// Standard compound unique indexes in MongoDB treat `null` as a value, causing E11000 errors.
+// wishlistSchema.index({ user: 1, tour: 1 }, { unique: true, sparse: true });
+// wishlistSchema.index({ user: 1, hotel: 1 }, { unique: true, sparse: true });
+// wishlistSchema.index({ user: 1, package: 1 }, { unique: true, sparse: true });
 
 module.exports = mongoose.model("Wishlist", wishlistSchema);
