@@ -173,6 +173,8 @@ const getAllBookings = async (req, res, next) => {
         ...b,
         scheduleStartDate: schedule?.startDate,
         scheduleEndDate: schedule?.endDate,
+        scheduleStatus: schedule?.status,
+        attendanceLocked: schedule?.attendanceLocked,
       };
     });
 
