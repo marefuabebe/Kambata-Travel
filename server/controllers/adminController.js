@@ -804,7 +804,7 @@ const cancelBookingAdmin = async (req, res, next) => {
       refundResult = await refundTransaction(booking.tx_ref, {
         reason: reason || "Admin force-cancel",
         amount: booking.totalPrice,
-        reference: `ADMIN-CANCEL-${booking._id}`,
+        reference: `CNCL-${booking._id}`,
       });
       booking.paymentStatus = "refunded";
     }
@@ -1104,7 +1104,7 @@ const overridePaymentStatus = async (req, res, next) => {
       refundResult = await refundTransaction(booking.tx_ref, {
         reason: reason || "Admin manual refund",
         amount: booking.totalPrice,
-        reference: `ADMIN-REFUND-${booking._id}`,
+        reference: `RFND-${booking._id}`,
       });
     }
 
