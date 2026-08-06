@@ -60,6 +60,24 @@ const tourSchema = mongoose.Schema(
       enum: ["instant", "request", "both"],
       default: "both",
     },
+    itinerary: [
+      {
+        day: { type: Number },
+        title: {
+          en: { type: String, required: true },
+          am: { type: String },
+        },
+        description: {
+          en: { type: String, required: true },
+          am: { type: String },
+        },
+        startTime: { type: String },
+        location: {
+          lat: { type: Number },
+          lng: { type: Number },
+        },
+      }
+    ],
     images: [{ type: String }],
     maxCapacity: {
       type: Number,
