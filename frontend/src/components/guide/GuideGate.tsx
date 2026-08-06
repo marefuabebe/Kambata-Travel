@@ -84,7 +84,7 @@ export default function GuideGate({ children }: { children: React.ReactNode }) {
             <li className="flex items-center gap-3 text-sm font-bold text-gray-400">
               <span className="w-2 h-2 bg-emerald-500 rounded-full" /> Profile submitted
             </li>
-            {(user.nationalId || user.tourGuideLicense) ? (
+            {((user as any).nationalId || (user as any).tourGuideLicense) ? (
               <li className="flex items-center gap-3 text-sm font-bold text-gray-400">
                 <span className="w-2 h-2 bg-emerald-500 rounded-full" /> Documents uploaded
               </li>
