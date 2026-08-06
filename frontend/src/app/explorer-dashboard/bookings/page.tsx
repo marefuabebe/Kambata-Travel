@@ -227,7 +227,7 @@ export default function MyBookingsPage() {
                               {t("bookings.actions.cancelBooking")}
                             </button>
                           )}
-                          {b.status === 'confirmed' && !b.attendanceLocked && b.scheduleStatus !== 'cancelled' && (b.scheduleEndDate ? new Date(b.scheduleEndDate) < new Date() : (b.scheduleStartDate ? new Date(b.scheduleStartDate) < new Date() : false)) && (
+                          {b.status === 'confirmed' && b.payoutStatus === 'pending_clearance' && (
                              <button
                                onClick={() => { setConfirmId(b._id); setShowConfirmModal(true); }}
                                className="text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1.5 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-colors"
