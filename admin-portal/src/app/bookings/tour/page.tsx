@@ -247,8 +247,35 @@ export default function BookingMonitor() {
                         </span>
                         <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-2 mt-1">
                           <Calendar size={14} className="text-slate-400" />
-                          {new Date(booking.createdAt).toLocaleDateString()}
+                          {(() => {
+                            const schedule = booking.tour?.schedules?.find((s: any) => s._id?.toString() === booking.scheduleId?.toString());
+                            if (schedule && (schedule.startDate || schedule.date)) {
+                              return new Date(schedule.startDate || schedule.date).toLocaleDateString();
+                            }
+                            return new Date(booking.createdAt).toLocaleDateString();
+                          })()}
                         </span>
+                        
+                        {/* Lock/Expired Badge logic */}
+                        {(() => {
+                          const schedule = booking.tour?.schedules?.find((s: any) => s._id?.toString() === booking.scheduleId?.toString());
+                          const isExpired = schedule && new Date(schedule.endDate || schedule.startDate || schedule.date) < new Date();
+                          const isLocked = schedule?.attendanceLocked;
+                          
+                          if (booking.status === "confirmed" && booking.payoutStatus === "pending_completion" && isExpired) {
+                            return (
+                              <div className="mt-2">
+                                <span className={`px-2 py-1 rounded-md text-[10px] font-black uppercase tracking-wider ${isLocked ? 'bg-red-500 text-white' : 'bg-orange-500 text-white'}`}>
+                                  {isLocked ? 'LOCKED' : 'EXPIRED'}
+                                </span>
+                                <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-semibold leading-tight">
+                                  Guide did not complete tour
+                                </p>
+                              </div>
+                            );
+                          }
+                          return null;
+                        })()}
                       </div>
 
                       {/* Revenue */}

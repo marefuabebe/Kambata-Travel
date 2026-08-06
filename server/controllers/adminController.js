@@ -333,10 +333,11 @@ const getAllBookings = async (req, res, next) => {
 
     const bookings = await Booking.find(query)
       .populate("user", "name email")
-      .populate("tour", "title price")
+      .populate("tour", "title price schedules")
       .sort("-createdAt")
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .lean();
 
     const total = await Booking.countDocuments(query);
 
