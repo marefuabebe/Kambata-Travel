@@ -26,4 +26,4 @@ const wishlistSchema = mongoose.Schema(
 // wishlistSchema.index({ user: 1, hotel: 1 }, { unique: true, sparse: true });
 // wishlistSchema.index({ user: 1, package: 1 }, { unique: true, sparse: true });
 
-module.exports = mongoose.model("Wishlist", wishlistSchema);
+module.exports = mongoose.model("Wishlist", wishlistSchema, "wishlist_items");
