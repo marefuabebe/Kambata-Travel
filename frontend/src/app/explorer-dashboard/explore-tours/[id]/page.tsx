@@ -412,10 +412,7 @@ export default function TourDetailsPage() {
                       whileHover={isAvailable ? { scale: 1.02 } : {}}
                       className={`group border ${isAvailable ? 'border-gray-200 dark:border-white/10 hover:border-[#FF8C00] dark:hover:border-[#FF8C00]' : 'border-gray-100 dark:border-white/5 opacity-60'} rounded-2xl p-5 transition-all bg-white dark:bg-[#0F172A] shadow-sm overflow-hidden relative`}
                     >
-                      {/* Decorative background shape */}
-                      {isAvailable && (
-                        
-                      )}
+
                       
                       <div className="flex justify-between items-start mb-3 relative z-10">
                         <div>
