@@ -69,7 +69,7 @@ export function StatCard({
       {/* Icon block */}
       {Icon && (
         <div className={`w-14 h-14 ${accents[accent]} rounded-[1.25rem] flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-all relative z-10 shrink-0`}>
-          <Icon size={26} />
+          <Icon width={26} height={26} />
         </div>
       )}
       

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Calendar, Package, CheckCircle2, Compass, ArrowRight, MessageSquare, MapPin, Sparkles, Map, Star, TrendingUp, Search, QrCode, Heart, ChevronRight, Clock, User, Menu, Siren, CalendarCheck, Sun, Moon, Bell, Hand } from "lucide-react";
+import { Globe, Suitcase, CheckCircle, MessageText } from "iconoir-react";
 import apiClient from "@/utils/apiClient";
 import { useAuth } from "@/context/AuthContext";
 import { PageHeader, StatCard, LoadingCenter } from "@/components/explorer/ui";
@@ -129,10 +130,10 @@ export default function TravelerDashboard() {
 
       {/* ── Stat Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard label={t("explorerDashboard.stats.upcomingTours")} value={w.upcomingTours ?? 0} icon={Calendar} accent="emerald" />
-        <StatCard label={t("explorerDashboard.stats.upcomingPackages")} value={w.upcomingPackages ?? 0} icon={Package} accent="amber" />
-        <StatCard label={t("explorerDashboard.stats.completedTrips")} value={w.completedTrips ?? 0} icon={CheckCircle2} accent="blue" />
-        <StatCard label={t("explorerDashboard.stats.unreadMessages")} value={unreadMessagesCount} icon={MessageSquare} accent="orange" />
+        <StatCard label={t("explorerDashboard.stats.upcomingTours")} value={w.upcomingTours ?? 0} icon={Globe} accent="emerald" />
+        <StatCard label={t("explorerDashboard.stats.upcomingPackages")} value={w.upcomingPackages ?? 0} icon={Suitcase} accent="amber" />
+        <StatCard label={t("explorerDashboard.stats.completedTrips")} value={w.completedTrips ?? 0} icon={CheckCircle} accent="blue" />
+        <StatCard label={t("explorerDashboard.stats.unreadMessages")} value={unreadMessagesCount} icon={MessageText} accent="orange" />
       </div>
 
       {/* Featured Destination Showcase (Desktop - Panoramic Hero) */}
@@ -427,15 +428,15 @@ export default function TravelerDashboard() {
         {/* Stat Cards (2x2 Grid) */}
         <div className="grid grid-cols-2 gap-3">
           {[
-            { label: t("explorerDashboard.stats.upcoming"), value: w.upcomingTours ?? 0, icon: Calendar, color: "text-[#0F766E]" },
-            { label: t("explorerDashboard.stats.completed"), value: w.completedTrips ?? 0, icon: CheckCircle2, color: "text-blue-500" },
+            { label: t("explorerDashboard.stats.upcoming"), value: w.upcomingTours ?? 0, icon: Globe, color: "text-[#0F766E]" },
+            { label: t("explorerDashboard.stats.completed"), value: w.completedTrips ?? 0, icon: CheckCircle, color: "text-blue-500" },
             { label: t("explorerDashboard.stats.wishlist"), value: 12, icon: Sparkles, color: "text-[#D4A017]" }, // Mock wishlist count
             { label: t("explorerDashboard.stats.points"), value: 450, icon: Star, color: "text-amber-500" } // Mock points
           ].map((stat, i) => (
              <div key={i} className="bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between h-28">
                <div className="flex justify-between items-start">
                  <div className={`w-8 h-8 rounded-full bg-gray-50 dark:bg-black/20 flex items-center justify-center ${stat.color}`}>
-                   <stat.icon size={16} />
+                   <stat.icon width={16} height={16} />
                  </div>
                </div>
                <div>
