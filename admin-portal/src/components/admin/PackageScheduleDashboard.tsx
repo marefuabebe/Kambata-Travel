@@ -159,7 +159,7 @@ export default function PackageScheduleDashboard({ packageData, onClose }: Packa
             {(["list", "calendar", "timeline"] as const).map(v => (
               <button 
                 key={v} onClick={() => setView(v)} 
-                className={`px-4 py-2 rounded-lg text-sm font-bold capitalize transition-all ${view === v ? 'bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+                className={`px-4 py-2 rounded-lg text-sm font-bold capitalize transition-all ${view === v ? 'bg-white dark:bg-[#161B26] text-gray-900 dark:text-white shadow-sm' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
               >
                 {v}
               </button>
@@ -204,7 +204,7 @@ export default function PackageScheduleDashboard({ packageData, onClose }: Packa
           ) : view === "list" ? (
             <div className="space-y-4">
               {filteredSchedules.map((schedule) => (
-                <div key={schedule._id} className="bg-white dark:bg-[#0A0F1C] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm p-6 flex flex-col xl:flex-row gap-6 hover:shadow-md transition-shadow">
+                <div key={schedule._id} className="bg-white dark:bg-[#161B26] rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm p-6 flex flex-col xl:flex-row gap-6 hover:shadow-md transition-shadow">
                   {/* Left Column: Dates & Meta */}
                   <div className="xl:w-1/4 space-y-4">
                     <div>

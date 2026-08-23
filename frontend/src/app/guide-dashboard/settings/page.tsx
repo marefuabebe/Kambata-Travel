@@ -139,7 +139,7 @@ export default function AccountSettings() {
           {t("guidePages.settings.roleDesc")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white dark:bg-[#0A0F1C] rounded-[1.25rem] p-5 border border-gray-100 dark:border-white/5">
+          <div className="bg-white dark:bg-[#161B26]/50 rounded-[1.25rem] p-5 border border-gray-100 dark:border-white/5">
             <h4 className="text-xs font-black text-gray-900 dark:text-white mb-4 uppercase tracking-wider flex items-center gap-2">
               <CheckCircle className="text-[#0F766E] w-4 h-4" /> {t("guidePages.settings.whatYouCanDo")}
             </h4>
@@ -152,7 +152,7 @@ export default function AccountSettings() {
               ))}
             </ul>
           </div>
-          <div className="bg-white dark:bg-[#0A0F1C] rounded-[1.25rem] p-5 border border-gray-100 dark:border-white/5 opacity-80">
+          <div className="bg-white dark:bg-[#161B26]/50 rounded-[1.25rem] p-5 border border-gray-100 dark:border-white/5 opacity-80">
             <h4 className="text-xs font-black text-gray-900 dark:text-white mb-4 uppercase tracking-wider flex items-center gap-2">
               <Lock className="text-gray-400 w-4 h-4" /> {t("guidePages.settings.restrictedActions")}
             </h4>
@@ -193,7 +193,7 @@ export default function AccountSettings() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {/* Security Section */}
-        <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+        <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
           <div className="flex items-center gap-3 border-b border-gray-100 dark:border-white/5 pb-6 mb-8">
             <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
               <Lock size={20} />
@@ -232,7 +232,7 @@ export default function AccountSettings() {
         </div>
 
         {/* Notifications Section */}
-        <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+        <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
           <div className="flex items-center gap-3 border-b border-gray-100 dark:border-white/5 pb-6 mb-8">
             <div className="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-500/10 flex items-center justify-center text-amber-600 dark:text-amber-400">
               <Bell size={20} />
@@ -284,7 +284,7 @@ export default function AccountSettings() {
       </div>
 
       {/* Payout Channels Section */}
-      <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm mb-8">
+      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm mb-8">
         <div className="flex items-center gap-3 border-b border-gray-100 dark:border-white/5 pb-6 mb-8">
           <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
             <CreditCard size={20} />
@@ -302,7 +302,7 @@ export default function AccountSettings() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide">{t("guidePages.settings.bankInstitution")}</label>
                   <input 
                     type="text" 
-                    className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
+                    className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
                     placeholder="e.g. Commercial Bank of Ethiopia"
                     value={bankDetails.bankName}
                     onChange={e => setBankDetails({...bankDetails, bankName: e.target.value})}
@@ -312,7 +312,7 @@ export default function AccountSettings() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Legal Account Holder</label>
                   <input 
                     type="text" 
-                    className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
+                    className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
                     placeholder="Matches your National ID"
                     value={bankDetails.accountHolder}
                     onChange={e => setBankDetails({...bankDetails, accountHolder: e.target.value})}
@@ -322,7 +322,7 @@ export default function AccountSettings() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide">SWIFT / Account Number</label>
                   <input 
                     type="text" 
-                    className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
+                    className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
                     placeholder="Full account string"
                     value={bankDetails.accountNumber}
                     onChange={e => setBankDetails({...bankDetails, accountNumber: e.target.value})}
@@ -341,7 +341,7 @@ export default function AccountSettings() {
                   <div className="relative">
                     <input 
                       type="text" 
-                      className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm pr-10" 
+                      className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm pr-10" 
                       placeholder="e.g. TeleBirr"
                       value={mobileMoney.provider}
                       onChange={e => setMobileMoney({...mobileMoney, provider: e.target.value})}
@@ -353,7 +353,7 @@ export default function AccountSettings() {
                   <label className="text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide">Registered Phone Terminal</label>
                   <input 
                     type="text" 
-                    className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
+                    className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:border-[#1A331B] focus:ring-1 focus:ring-[#1A331B] transition-all shadow-sm" 
                     placeholder="+251 ..."
                     value={mobileMoney.phoneNumber}
                     onChange={e => setMobileMoney({...mobileMoney, phoneNumber: e.target.value})}
@@ -394,7 +394,7 @@ export default function AccountSettings() {
 
       {/* Final Actions */}
       <div className="w-full mt-4">
-        <div className="bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-[2rem] p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+        <div className="bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-[2rem] p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
           <button 
             className="flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-bold text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors ml-2" 
             onClick={() => window.location.reload()}

@@ -557,7 +557,7 @@ export default function ChatInterface() {
       <div className="flex h-full w-full bg-white dark:bg-[#0F172A] md:rounded-2xl overflow-hidden md:shadow-lg border-y md:border border-gray-100 dark:border-white/5">
 
         {/* Sidebar */}
-        <div className={`${activeConvo ? "hidden md:flex" : "flex"} flex-col w-full md:w-[320px] lg:w-[380px] shrink-0 border-r border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-[#0A0F1C]`}>
+        <div className={`${activeConvo ? "hidden md:flex" : "flex"} flex-col w-full md:w-[320px] lg:w-[380px] shrink-0 border-r border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-[#161B26]`}>
           <div className="p-6 border-b border-gray-100 dark:border-white/5 flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <button
@@ -714,13 +714,13 @@ export default function ChatInterface() {
                                 className={`flex items-center gap-1 mb-1 shrink-0 ${isMe ? 'flex-col' : 'flex-col-reverse'}`}
                                 style={{ opacity: hoveredMsgId === msg._id ? 1 : 0, transition: 'opacity 0.15s', pointerEvents: hoveredMsgId === msg._id ? 'auto' : 'none' }}
                               >
-                                <button onClick={() => handleCopy(msg.text)} title="Copy" className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-[#FF8C00] transition-colors">
+                                <button onClick={() => handleCopy(msg.text)} title="Copy" className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-[#FF8C00] transition-colors">
                                   <Copy size={13} />
                                 </button>
-                                <button onClick={() => setReplyingToMessage(msg)} title="Reply" className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-[#FF8C00] transition-colors">
+                                <button onClick={() => setReplyingToMessage(msg)} title="Reply" className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-[#FF8C00] transition-colors">
                                   <Reply size={13} />
                                 </button>
-                                <button onClick={() => setForwardingMessage(msg)} title="Forward" className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-[#FF8C00] transition-colors">
+                                <button onClick={() => setForwardingMessage(msg)} title="Forward" className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-gray-500 hover:text-[#FF8C00] transition-colors">
                                   <Forward size={13} />
                                 </button>
 
@@ -729,14 +729,14 @@ export default function ChatInterface() {
                                     <button
                                       onClick={() => startEdit(msg)}
                                       title="Edit message"
-                                      className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-500/10 shadow-sm transition-colors"
+                                      className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-500/10 shadow-sm transition-colors"
                                     >
                                       <Pencil size={13} />
                                     </button>
                                     <button
                                       onClick={() => handleDelete(msg._id)}
                                       title="Delete message"
-                                      className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 shadow-sm transition-colors"
+                                      className="w-7 h-7 flex items-center justify-center rounded-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 shadow-sm transition-colors"
                                     >
                                       <Trash2 size={13} />
                                     </button>
@@ -748,7 +748,7 @@ export default function ChatInterface() {
                             <div>
                               {/* Inline edit mode */}
                               {isEditing ? (
-                                <div className="flex items-center gap-2 bg-white dark:bg-[#0A0F1C] border border-[#FF8C00] rounded-2xl px-3 py-2 shadow-md min-w-[180px]">
+                                <div className="flex items-center gap-2 bg-white dark:bg-[#161B26] border border-[#FF8C00] rounded-2xl px-3 py-2 shadow-md min-w-[180px]">
                                   <input
                                     ref={editInputRef}
                                     value={editText}
@@ -766,7 +766,7 @@ export default function ChatInterface() {
                                 <div className={`px-4 py-3 rounded-2xl text-sm font-medium shadow-sm flex flex-col relative ${
                                   isMe
                                     ? "bg-[#1A331B] text-white rounded-br-none"
-                                    : "bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white rounded-bl-none border border-gray-100 dark:border-white/5"
+                                    : "bg-white dark:bg-[#161B26] text-gray-900 dark:text-white rounded-bl-none border border-gray-100 dark:border-white/5"
                                 }`}>
                                   
                                   {msg.isForwarded && (
@@ -867,7 +867,7 @@ export default function ChatInterface() {
                 {/* Reply Preview Strip */}
                 {replyingToMessage && (
                   <div className="px-4 pt-3 pb-1 flex items-center">
-                    <div className="flex items-center justify-between w-full max-w-md bg-gray-50 dark:bg-[#0A0F1C] border-l-4 border-[#FF8C00] rounded-r-xl p-3 shadow-sm relative">
+                    <div className="flex items-center justify-between w-full max-w-md bg-gray-50 dark:bg-[#161B26] border-l-4 border-[#FF8C00] rounded-r-xl p-3 shadow-sm relative">
                       <div className="flex flex-col gap-1 overflow-hidden">
                         <span className="text-xs font-bold text-[#FF8C00] flex items-center gap-1.5"><Reply size={12}/> Replying to {replyingToMessage.sender.name}</span>
                         <span className="text-sm text-gray-600 dark:text-gray-300 truncate">{replyingToMessage.text || (replyingToMessage.attachment ? 'Attachment' : '')}</span>
@@ -883,7 +883,7 @@ export default function ChatInterface() {
                 {(attachmentPreview || audioPreviewUrl) && !recording && (
                   <div className="px-4 pt-3 flex items-center gap-3">
                     {attachmentPreview && (
-                      <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#0A0F1C] rounded-xl px-3 py-2 border border-gray-200 dark:border-white/10 max-w-xs">
+                      <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#161B26] rounded-xl px-3 py-2 border border-gray-200 dark:border-white/10 max-w-xs">
                         {attachmentPreview.fileType === "image" ? (
                           <img src={attachmentPreview.url} alt="" className="w-10 h-10 rounded-lg object-cover shrink-0" />
                         ) : (
@@ -896,7 +896,7 @@ export default function ChatInterface() {
                       </div>
                     )}
                     {audioPreviewUrl && (
-                      <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#0A0F1C] rounded-xl px-3 py-2 border border-gray-200 dark:border-white/10">
+                      <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#161B26] rounded-xl px-3 py-2 border border-gray-200 dark:border-white/10">
                         <button onClick={toggleAudioPlay} className="w-8 h-8 rounded-full bg-[#FF8C00] text-white flex items-center justify-center shrink-0">
                           {audioPlaying ? <Pause size={14} /> : <Play size={14} />}
                         </button>
@@ -971,7 +971,7 @@ export default function ChatInterface() {
                         </div>
                       </>
                     )}
-                    <div className="flex-1 flex items-end bg-gray-50 dark:bg-[#0A0F1C] rounded-[1.5rem] border border-gray-100 dark:border-white/5 focus-within:border-[#FF8C00] transition-colors pl-2 pr-4 py-1.5 relative group">
+                    <div className="flex-1 flex items-end bg-gray-50 dark:bg-[#161B26] rounded-[1.5rem] border border-gray-100 dark:border-white/5 focus-within:border-[#FF8C00] transition-colors pl-2 pr-4 py-1.5 relative group">
                       <button type="button" onClick={() => setShowEmojiPicker(!showEmojiPicker)} className="p-2 text-gray-400 hover:text-gray-600 transition-colors shrink-0 mb-0.5">
                         <Smile size={18} />
                       </button>
@@ -1004,7 +1004,7 @@ export default function ChatInterface() {
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-[#F1F5F9]/50 dark:bg-[#0F172A]">
-              <div className="w-24 h-24 bg-white dark:bg-[#0A0F1C] rounded-full flex items-center justify-center shadow-sm mb-6 border border-gray-100 dark:border-white/5">
+              <div className="w-24 h-24 bg-white dark:bg-[#161B26] rounded-full flex items-center justify-center shadow-sm mb-6 border border-gray-100 dark:border-white/5">
                 <Send size={32} className="text-gray-300 dark:text-gray-600 ml-1" />
               </div>
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">Select a Conversation</h3>
@@ -1017,7 +1017,7 @@ export default function ChatInterface() {
       {/* Forward Modal */}
       {forwardingMessage && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
+          <div className="bg-white dark:bg-[#161B26] rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
             <div className="p-6 border-b border-gray-100 dark:border-white/10 flex justify-between items-center">
               <h3 className="text-lg font-black text-gray-900 dark:text-white flex items-center gap-2">
                 <Forward className="text-[#FF8C00]" /> Forward Message
@@ -1035,7 +1035,7 @@ export default function ChatInterface() {
                   placeholder="Search conversations..." 
                   value={forwardSearchQuery}
                   onChange={e => setForwardSearchQuery(e.target.value)}
-                  className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm outline-none focus:border-[#FF8C00]"
+                  className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm outline-none focus:border-[#FF8C00]"
                 />
                </div>
             </div>
@@ -1072,7 +1072,7 @@ export default function ChatInterface() {
       {/* Delete Confirmation Modal */}
       {messageToDelete && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
+          <div className="bg-white dark:bg-[#161B26] rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
             <div className="p-6">
               <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-500/20 text-red-500 flex items-center justify-center mb-4 mx-auto">
                 <Trash2 size={24} />

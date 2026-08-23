@@ -187,7 +187,7 @@ export default function SettingsPage() {
           </div>
 
           {/* Segmented Tabs */}
-          <div className="flex bg-slate-100 dark:bg-[#0A0F1C] p-1.5 rounded-2xl border border-slate-200 dark:border-[#334155] shadow-inner relative w-full md:w-auto overflow-hidden">
+          <div className="flex bg-slate-100 dark:bg-[#161B26] p-1.5 rounded-2xl border border-slate-200 dark:border-[#334155] shadow-inner relative w-full md:w-auto overflow-hidden">
             <button
               type="button"
               onClick={() => setActiveTab("profile")}
@@ -234,7 +234,7 @@ export default function SettingsPage() {
             >
               
               {/* Profile Card */}
-              <div className="bg-white dark:bg-[#0A0F1C] rounded-[24px] p-6 md:p-10 border border-slate-200 dark:border-[#334155] shadow-sm relative overflow-hidden">
+              <div className="bg-white dark:bg-[#161B26] rounded-[24px] p-6 md:p-10 border border-slate-200 dark:border-[#334155] shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 
                 <h3 className="text-xl font-black text-slate-900 dark:text-white mb-8 flex items-center gap-3 relative z-10">
@@ -261,7 +261,7 @@ export default function SettingsPage() {
                   <div className="space-y-8 relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-6">
                       <div className="relative group self-start">
-                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-100 dark:bg-[#0A0F1C] border-4 border-white dark:border-[#1E293B] shadow-md overflow-hidden flex items-center justify-center">
+                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-100 dark:bg-[#161B26] border-4 border-white dark:border-[#1E293B] shadow-md overflow-hidden flex items-center justify-center">
                           {profileData.profilePicture ? (
                             <img src={profileData.profilePicture} alt="Profile" className="w-full h-full object-cover" />
                           ) : (
@@ -303,7 +303,7 @@ export default function SettingsPage() {
                           id="email"
                           disabled
                           value={profileData.email}
-                          className="peer w-full bg-slate-100 dark:bg-[#0A0F1C] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 pt-6 pb-2 text-sm font-bold text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed min-h-[56px] placeholder-transparent" 
+                          className="peer w-full bg-slate-100 dark:bg-[#161B26] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 pt-6 pb-2 text-sm font-bold text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed min-h-[56px] placeholder-transparent" 
                           placeholder="Email"
                         />
                         <Mail className="absolute left-4 top-[22px] text-slate-400" size={16} />
@@ -350,7 +350,7 @@ export default function SettingsPage() {
 
               {/* Security Card */}
               {!profileLoading && (
-                <div className="bg-white dark:bg-[#0A0F1C] rounded-[24px] p-6 md:p-10 border border-slate-200 dark:border-[#334155] shadow-sm relative overflow-hidden">
+                <div className="bg-white dark:bg-[#161B26] rounded-[24px] p-6 md:p-10 border border-slate-200 dark:border-[#334155] shadow-sm relative overflow-hidden">
                   <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2 flex items-center gap-3 relative z-10">
                     <KeyRound className="text-[#FF8C00]" /> Security
                   </h3>
@@ -454,7 +454,7 @@ export default function SettingsPage() {
               className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-8"
             >
               {/* ── Announcement Center ── */}
-              <div className="lg:col-span-3 bg-white dark:bg-[#0A0F1C] rounded-[24px] p-6 md:p-10 border border-slate-200 dark:border-[#334155] shadow-sm flex flex-col relative overflow-hidden group">
+              <div className="lg:col-span-3 bg-white dark:bg-[#161B26] rounded-[24px] p-6 md:p-10 border border-slate-200 dark:border-[#334155] shadow-sm flex flex-col relative overflow-hidden group">
                 {/* Subtle Background Glow */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none transition-opacity duration-500 opacity-50 group-hover:opacity-100" />
                 
@@ -529,7 +529,7 @@ export default function SettingsPage() {
 
                       {/* Animated Priority Indicator */}
                       <motion.div
-                        className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white dark:bg-[#0A0F1C] rounded-xl shadow border ${announcement.priority === 'HIGH' ? 'border-[#FF8C00]/30 shadow-[#FF8C00]/10' : 'border-slate-200 dark:border-slate-700'}`}
+                        className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white dark:bg-[#161B26] rounded-xl shadow border ${announcement.priority === 'HIGH' ? 'border-[#FF8C00]/30 shadow-[#FF8C00]/10' : 'border-slate-200 dark:border-slate-700'}`}
                         initial={false}
                         animate={{ left: announcement.priority === "NORMAL" ? "6px" : "calc(50% + 0px)" }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -554,7 +554,7 @@ export default function SettingsPage() {
               <div className="lg:col-span-2 space-y-6">
                 
                 {/* Booking Rules Card */}
-                <div className="bg-white dark:bg-[#0A0F1C] rounded-[24px] p-6 border border-slate-200 dark:border-[#334155] shadow-sm flex items-center gap-5 relative overflow-hidden group cursor-not-allowed">
+                <div className="bg-white dark:bg-[#161B26] rounded-[24px] p-6 border border-slate-200 dark:border-[#334155] shadow-sm flex items-center gap-5 relative overflow-hidden group cursor-not-allowed">
                   <div className="absolute inset-0 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-[1px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-slate-900/80 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5">
                       <Lock size={12} /> Locked by Admin
@@ -576,7 +576,7 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Refund Policy Card */}
-                <div className="bg-white dark:bg-[#0A0F1C] rounded-[24px] p-6 border border-slate-200 dark:border-[#334155] shadow-sm flex items-center gap-5 relative overflow-hidden group cursor-not-allowed">
+                <div className="bg-white dark:bg-[#161B26] rounded-[24px] p-6 border border-slate-200 dark:border-[#334155] shadow-sm flex items-center gap-5 relative overflow-hidden group cursor-not-allowed">
                   <div className="absolute inset-0 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-[1px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-slate-900/80 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5">
                       <Lock size={12} /> Locked by Admin

@@ -273,7 +273,7 @@ export default function EnterpriseChatbot() {
       <ul {...props} className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 list-none pl-0" />
     ),
     li: ({ ...props }) => (
-      <li {...props} className="bg-white/70 dark:bg-[#0A0F1C] backdrop-blur-xl border border-gray-200/60 dark:border-slate-700/60 p-5 rounded-2xl shadow-sm hover:shadow-lg transition-all m-0 flex flex-col gap-2 relative overflow-hidden" />
+      <li {...props} className="bg-white/70 dark:bg-[#161B26]/70 backdrop-blur-xl border border-gray-200/60 dark:border-slate-700/60 p-5 rounded-2xl shadow-sm hover:shadow-lg transition-all m-0 flex flex-col gap-2 relative overflow-hidden" />
     ),
     strong: ({ ...props }) => (
       <strong {...props} className="font-extrabold text-gray-900 dark:text-white text-lg tracking-tight block mb-1" />
@@ -335,7 +335,7 @@ export default function EnterpriseChatbot() {
               <div className="px-5 mb-8">
                 <button 
                   onClick={() => { setMessages([]); setHistory([]); }}
-                  className="w-full bg-[#0A0F1C] hover:bg-[#0A0F1C] text-white border border-slate-700/50 rounded-xl py-2.5 flex items-center justify-center gap-2 font-semibold text-sm transition-all hover:shadow-md active:scale-95 shadow-sm"
+                  className="w-full bg-[#161B26] hover:bg-[#161B26]/80 text-white border border-slate-700/50 rounded-xl py-2.5 flex items-center justify-center gap-2 font-semibold text-sm transition-all hover:shadow-md active:scale-95 shadow-sm"
                 >
                   <Plus size={16} /> {t.newConversation}
                 </button>
@@ -345,21 +345,21 @@ export default function EnterpriseChatbot() {
                 <div>
                   <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-2">{t.today}</h3>
                   <div className="space-y-0.5">
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl bg-[#0A0F1C] text-slate-200 text-sm truncate font-medium shadow-sm">{t.hist1}</button>
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#0A0F1C] text-slate-400 text-sm truncate transition-colors">{t.hist2}</button>
+                    <button className="w-full text-left px-3 py-2.5 rounded-xl bg-[#161B26] text-slate-200 text-sm truncate font-medium shadow-sm">{t.hist1}</button>
+                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#161B26]/50 text-slate-400 text-sm truncate transition-colors">{t.hist2}</button>
                   </div>
                 </div>
                 <div>
                   <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-2">{t.yesterday}</h3>
                   <div className="space-y-0.5">
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#0A0F1C] text-slate-400 text-sm truncate transition-colors">{t.hist3}</button>
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#0A0F1C] text-slate-400 text-sm truncate transition-colors">{t.hist4}</button>
+                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#161B26]/50 text-slate-400 text-sm truncate transition-colors">{t.hist3}</button>
+                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#161B26]/50 text-slate-400 text-sm truncate transition-colors">{t.hist4}</button>
                   </div>
                 </div>
               </div>
 
               <div className="p-5 border-t border-slate-800/50 bg-[#0F172A]">
-                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#0A0F1C] hover:bg-[#0A0F1C] cursor-pointer transition-all mb-5 border border-slate-800/50 hover:shadow-md">
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-[#161B26]/50 hover:bg-[#161B26] cursor-pointer transition-all mb-5 border border-slate-800/50 hover:shadow-md">
                   <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center shrink-0">
                     <User size={20} />
                   </div>
@@ -408,7 +408,7 @@ export default function EnterpriseChatbot() {
                   <div className="relative hidden sm:block">
                     <button 
                       onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                      className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-[#0A0F1C] px-3 py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm transition-all hover:shadow-md"
+                      className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-[#161B26] px-3 py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm transition-all hover:shadow-md"
                     >
                       {language} <ChevronDown size={14} />
                     </button>
@@ -425,7 +425,7 @@ export default function EnterpriseChatbot() {
                             key={lang}
                             onClick={() => { setLanguage(lang as 'en'|'am'); setShowLanguageMenu(false); }}
                             className={`w-full text-left px-4 py-2.5 text-xs font-bold hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors ${
-                              language === lang ? "text-[#0F766E] dark:text-[#2DD4BF] bg-gray-50 dark:bg-[#0A0F1C]" : "text-gray-700 dark:text-gray-300"
+                              language === lang ? "text-[#0F766E] dark:text-[#2DD4BF] bg-gray-50 dark:bg-[#161B26]/50" : "text-gray-700 dark:text-gray-300"
                             }`}
                           >
                             {lang === 'en' ? 'English' : 'Amharic'}
@@ -438,7 +438,7 @@ export default function EnterpriseChatbot() {
                   <button onClick={toggleTheme} className="p-2.5 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors sm:hidden">
                     {theme === 'dark' ? <Moon size={20}/> : <Sun size={20}/>}
                   </button>
-                  <button onClick={() => setIsOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-[#0A0F1C] text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md">
+                  <button onClick={() => setIsOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-[#161B26] text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md">
                     <X size={18} />
                   </button>
                 </div>
@@ -478,7 +478,7 @@ export default function EnterpriseChatbot() {
                             { icon: Calendar, label: t.heroBtn5 },
                             { icon: Compass, label: t.heroBtn6 },
                           ].map((item, i) => (
-                            <button key={i} className="bg-[#0A0F1C] hover:bg-[#0A0F1C] backdrop-blur-md border border-slate-500/50 rounded-xl p-1.5 sm:p-3 flex flex-col items-center justify-center gap-1 sm:gap-1.5 transition-all hover:scale-[1.03] hover:border-[#2DD4BF]/50 group text-center min-h-[3.5rem] sm:min-h-[5.5rem]">
+                            <button key={i} className="bg-[#161B26]/70 hover:bg-[#161B26]/90 backdrop-blur-md border border-slate-500/50 rounded-xl p-1.5 sm:p-3 flex flex-col items-center justify-center gap-1 sm:gap-1.5 transition-all hover:scale-[1.03] hover:border-[#2DD4BF]/50 group text-center min-h-[3.5rem] sm:min-h-[5.5rem]">
                               <item.icon size={14} className="text-[#2DD4BF] group-hover:text-emerald-300 sm:w-[20px] sm:h-[20px]" />
                               <span className="text-[8px] sm:text-xs font-bold text-white whitespace-pre-line leading-tight">{item.label}</span>
                             </button>
@@ -620,7 +620,7 @@ export default function EnterpriseChatbot() {
                     <div className={`max-w-[85%] sm:max-w-[80%] rounded-3xl px-6 py-5 text-[15px] leading-relaxed shadow-sm ${
                       msg.role === "user" 
                         ? "bg-gradient-to-br from-[#0F766E] to-emerald-600 text-white rounded-tr-sm shadow-md shadow-[#0F766E]/20 font-medium" 
-                        : "bg-white/80 dark:bg-[#0A0F1C] backdrop-blur-xl border border-gray-200/80 dark:border-slate-700/80 text-gray-800 dark:text-gray-100 rounded-tl-sm shadow-xl shadow-slate-200/20 dark:shadow-none"
+                        : "bg-white/80 dark:bg-[#161B26]/80 backdrop-blur-xl border border-gray-200/80 dark:border-slate-700/80 text-gray-800 dark:text-gray-100 rounded-tl-sm shadow-xl shadow-slate-200/20 dark:shadow-none"
                     }`}>
                       {msg.role === "model" ? (
                         <div className="prose prose-slate sm:prose-base dark:prose-invert max-w-none prose-p:leading-relaxed prose-a:text-[#0F766E]">
@@ -642,7 +642,7 @@ export default function EnterpriseChatbot() {
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-100 to-white dark:from-slate-800 dark:to-slate-900 border border-gray-200 dark:border-slate-700 flex items-center justify-center shrink-0 mr-4 mt-1 shadow-sm">
                       <Sparkles size={18} className="text-[#0F766E]" />
                     </div>
-                    <div className="bg-white/80 dark:bg-[#0A0F1C] backdrop-blur-xl border border-gray-200/80 dark:border-slate-700/80 rounded-3xl rounded-tl-sm px-6 py-5 shadow-xl min-w-[240px]">
+                    <div className="bg-white/80 dark:bg-[#161B26]/80 backdrop-blur-xl border border-gray-200/80 dark:border-slate-700/80 rounded-3xl rounded-tl-sm px-6 py-5 shadow-xl min-w-[240px]">
                       <div className="flex items-center gap-3 mb-3">
                         <Loader2 size={16} className="animate-spin text-[#0F766E]" />
                         <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{loadingText}</span>
@@ -665,7 +665,7 @@ export default function EnterpriseChatbot() {
                 <div className="relative max-w-4xl mx-auto">
                   <form 
                     onSubmit={(e) => { e.preventDefault(); handleSend(input); }}
-                    className="relative flex items-center bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-slate-700 rounded-2xl p-1.5 transition-all shadow-xl shadow-slate-200/50 dark:shadow-none focus-within:shadow-[0_8px_30px_rgb(15,118,110,0.15)] focus-within:border-[#0F766E] focus-within:ring-1 focus-within:ring-[#0F766E]"
+                    className="relative flex items-center bg-white dark:bg-[#161B26] border border-gray-200 dark:border-slate-700 rounded-2xl p-1.5 transition-all shadow-xl shadow-slate-200/50 dark:shadow-none focus-within:shadow-[0_8px_30px_rgb(15,118,110,0.15)] focus-within:border-[#0F766E] focus-within:ring-1 focus-within:ring-[#0F766E]"
                   >
                     <button type="button" className="p-3.5 text-slate-400 hover:text-[#0F766E] transition-colors shrink-0">
                       <Paperclip size={20} />

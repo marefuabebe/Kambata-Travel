@@ -183,7 +183,7 @@ export default function GuideCalendarPage() {
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/10 rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-2xl relative mb-10"
+              className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-2xl relative mb-10"
             >
               
               <div className="p-8 relative">

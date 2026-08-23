@@ -47,7 +47,7 @@ function PaymentCallbackPage() {
       <main className="flex-1 flex items-center justify-center p-6 relative overflow-hidden pt-32">
         {/* Decorative Background Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D97706]/5 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#0A0F1C] rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#161B26]/5 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="bg-white/70 backdrop-blur-2xl rounded-[2.5rem] p-10 md:p-16 max-w-2xl w-full text-center shadow-[0_20px_60px_-15px_rgba(15,23,42,0.1)] border border-white relative z-10 transition-colors">
           {status === "loading" && (
@@ -72,7 +72,7 @@ function PaymentCallbackPage() {
               
               <Link
                 href="/explorer-dashboard/bookings"
-                className="group relative inline-flex items-center justify-center bg-[#0A0F1C] text-white px-10 py-4 rounded-2xl font-black tracking-wide overflow-hidden transition-all hover:scale-105 hover:bg-[#0F172A] hover:shadow-[0_10px_40px_-10px_rgba(15,23,42,0.5)] active:scale-95"
+                className="group relative inline-flex items-center justify-center bg-[#161B26] text-white px-10 py-4 rounded-2xl font-black tracking-wide overflow-hidden transition-all hover:scale-105 hover:bg-[#0F172A] hover:shadow-[0_10px_40px_-10px_rgba(15,23,42,0.5)] active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   View My Expeditions

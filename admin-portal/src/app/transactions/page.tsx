@@ -103,7 +103,7 @@ export default function TransactionsPage() {
             <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">Monitor all platform payments, track revenue, and issue refunds.</p>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto bg-white dark:bg-[#0A0F1C] p-2 rounded-2xl border border-slate-200 dark:border-[#334155] shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto bg-white dark:bg-[#161B26] p-2 rounded-2xl border border-slate-200 dark:border-[#334155] shadow-sm">
             <div className="relative w-full sm:w-64 group px-2 py-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
               <input
@@ -131,7 +131,7 @@ export default function TransactionsPage() {
       {/* List Area */}
       <div className="w-full">
         {filtered.length === 0 ? (
-          <div className="bg-white dark:bg-[#0A0F1C] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
+          <div className="bg-white dark:bg-[#161B26] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
             <div className="w-16 h-16 bg-slate-50 dark:bg-[#0F172A] rounded-full flex items-center justify-center mb-4">
               <Receipt size={24} className="text-slate-400" />
             </div>
@@ -152,7 +152,7 @@ export default function TransactionsPage() {
               {filtered.map((tx) => (
                 <div
                   key={tx._id}
-                  className="bg-white dark:bg-[#0A0F1C] rounded-[1.5rem] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow group"
+                  className="bg-white dark:bg-[#161B26] rounded-[1.5rem] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow group"
                 >
                   {/* Desktop Layout */}
                   <div className="hidden lg:grid grid-cols-12 gap-4 items-center">

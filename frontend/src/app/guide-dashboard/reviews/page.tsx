@@ -82,7 +82,7 @@ export default function GuideReviewsPage() {
               <span className="text-sm font-medium text-gray-400">{t("guidePages.reviews.basedOn").replace("{n}", String(reviews.length))}</span>
             </div>
 
-            <div className="md:col-span-2 bg-white dark:bg-[#0A0F1C] rounded-3xl p-8 shadow-sm border border-gray-100 dark:border-white/5 grid grid-cols-2 gap-x-8 gap-y-6">
+            <div className="md:col-span-2 bg-white dark:bg-[#161B26] rounded-3xl p-8 shadow-sm border border-gray-100 dark:border-white/5 grid grid-cols-2 gap-x-8 gap-y-6">
                <h3 className="col-span-2 text-sm font-black uppercase tracking-widest text-gray-400">{t("guidePages.reviews.categoryBreakdown")}</h3>
                {[
                  { label: t("guidePages.reviews.knowledge"), value: stats.knowledge },
@@ -111,7 +111,7 @@ export default function GuideReviewsPage() {
             <h3 className="text-xl font-black text-gray-900 dark:text-white">{t("guidePages.reviews.recentFeedback")}</h3>
             
             {reviews.length === 0 ? (
-              <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl p-12 text-center border border-gray-100 dark:border-white/5">
+              <div className="bg-white dark:bg-[#161B26] rounded-3xl p-12 text-center border border-gray-100 dark:border-white/5">
                 <MessageSquare size={32} className="mx-auto text-gray-300 mb-4" />
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{t("guidePages.reviews.emptyTitle")}</h4>
                 <p className="text-sm text-gray-500">{t("guidePages.reviews.emptyDesc")}</p>
@@ -124,7 +124,7 @@ export default function GuideReviewsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-white dark:bg-[#0A0F1C] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5"
+                    className="bg-white dark:bg-[#161B26] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center gap-4">

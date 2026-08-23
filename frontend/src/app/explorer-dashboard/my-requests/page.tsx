@@ -57,7 +57,7 @@ export default function MyRequestsPage() {
       <div className="relative mb-8 z-20">
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="w-full md:w-64 flex items-center justify-between bg-white dark:bg-[#0A0F1C] backdrop-blur-xl border border-gray-200 dark:border-gray-700 px-5 py-3.5 rounded-2xl shadow-sm text-gray-900 dark:text-white font-bold transition-all hover:border-[#FF8C00]"
+          className="w-full md:w-64 flex items-center justify-between bg-white dark:bg-[#161B26]/80 backdrop-blur-xl border border-gray-200 dark:border-gray-700 px-5 py-3.5 rounded-2xl shadow-sm text-gray-900 dark:text-white font-bold transition-all hover:border-[#FF8C00]"
         >
           <span className="flex items-center gap-2">
             {activeTab === "awaiting_payment" ? t("requests.paymentPending") : activeTab.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -122,7 +122,7 @@ export default function MyRequestsPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[1.5rem] p-4 md:p-5 shadow-sm relative flex flex-col gap-4 overflow-hidden"
+              className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[1.5rem] p-4 md:p-5 shadow-sm relative flex flex-col gap-4 overflow-hidden"
             >
               {/* Header Row: Title & Actions */}
               <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
@@ -147,7 +147,7 @@ export default function MyRequestsPage() {
                       <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1A331B] text-emerald-400 border border-emerald-800/30 rounded-lg text-xs font-black uppercase tracking-widest shadow-sm">
                         <CheckCircle2 size={12} /> {t("requests.status.actionRequired")}
                       </div>
-                      <div className="flex items-center gap-2 bg-emerald-50 dark:bg-[#0A0F1C] border border-emerald-200 dark:border-white/10 px-3 py-1 rounded-lg shadow-sm">
+                      <div className="flex items-center gap-2 bg-emerald-50 dark:bg-[#161B26] border border-emerald-200 dark:border-white/10 px-3 py-1 rounded-lg shadow-sm">
                         <span className="text-[10px] font-bold text-gray-500 uppercase">Amount:</span>
                         <span className="text-sm font-black text-emerald-600 dark:text-emerald-400">
                            {(req.finalPrice || req.customPrice * req.travelers).toLocaleString()} ETB
@@ -290,7 +290,7 @@ export default function MyRequestsPage() {
         </AnimatePresence>
 
         {filteredRequests.length === 0 && (
-          <div className="text-center py-16 bg-white dark:bg-[#0A0F1C] border border-dashed border-gray-200 dark:border-gray-700 rounded-3xl">
+          <div className="text-center py-16 bg-white dark:bg-[#161B26]/30 border border-dashed border-gray-200 dark:border-gray-700 rounded-3xl">
             <Calendar size={48} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{t("requests.empty.title")}</h3>
             <p className="text-gray-500">{t("requests.empty.subtitle")}</p>

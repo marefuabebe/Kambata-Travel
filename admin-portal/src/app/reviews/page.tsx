@@ -67,7 +67,7 @@ export default function AdminReviewsPage() {
       />
 
       {/* Tabs & Search */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center bg-white dark:bg-[#0A0F1C] p-2 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center bg-white dark:bg-[#161B26] p-2 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
         <div className="flex overflow-x-auto custom-scrollbar w-full md:w-auto">
           {[
             { id: "all", label: "Published Reviews" },
@@ -105,7 +105,7 @@ export default function AdminReviewsPage() {
       {loading ? (
         <div className="flex justify-center py-12"><div className="w-8 h-8 border-4 border-[#FF8C00] border-t-transparent rounded-full animate-spin" /></div>
       ) : (
-        <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-[#161B26] rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden">
           <div className="overflow-x-auto custom-scrollbar">
             <table className="w-full text-left border-collapse table-responsive">
               <thead>

@@ -100,7 +100,7 @@ export default function PayoutsPage() {
       case "rejected":
         return <span className="px-3 py-1 bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-500/20 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">Rejected</span>;
       default:
-        return <span className="px-3 py-1 bg-slate-100 dark:bg-[#0A0F1C] text-slate-700 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">{status}</span>;
+        return <span className="px-3 py-1 bg-slate-100 dark:bg-[#161B26] text-slate-700 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">{status}</span>;
     }
   };
 
@@ -123,7 +123,7 @@ export default function PayoutsPage() {
             
             {/* Stats/Summary Mini-Badge */}
             {!loading && (
-              <div className="hidden md:flex items-center gap-4 bg-white dark:bg-[#0A0F1C] px-4 py-2 rounded-xl border border-slate-200 dark:border-[#334155] shadow-sm">
+              <div className="hidden md:flex items-center gap-4 bg-white dark:bg-[#161B26] px-4 py-2 rounded-xl border border-slate-200 dark:border-[#334155] shadow-sm">
                 <div className="text-center px-2 border-r border-slate-200 dark:border-slate-700">
                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Total</p>
                   <p className="text-sm font-bold text-slate-900 dark:text-white">{requests.length}</p>
@@ -148,7 +148,7 @@ export default function PayoutsPage() {
                 placeholder="Search by guide name or email..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white dark:bg-[#0A0F1C] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 py-3 text-sm font-bold text-slate-900 dark:text-white outline-none focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00] transition-all min-h-[44px] shadow-sm"
+                className="w-full bg-white dark:bg-[#161B26] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 py-3 text-sm font-bold text-slate-900 dark:text-white outline-none focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00] transition-all min-h-[44px] shadow-sm"
               />
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#FF8C00] transition-colors" size={18} />
             </div>
@@ -157,7 +157,7 @@ export default function PayoutsPage() {
               <select 
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as any)}
-                className="w-full bg-white dark:bg-[#0A0F1C] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 py-3 text-sm font-bold text-slate-900 dark:text-white outline-none focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00] transition-all min-h-[44px] appearance-none shadow-sm cursor-pointer"
+                className="w-full bg-white dark:bg-[#161B26] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 py-3 text-sm font-bold text-slate-900 dark:text-white outline-none focus:border-[#FF8C00] focus:ring-1 focus:ring-[#FF8C00] transition-all min-h-[44px] appearance-none shadow-sm cursor-pointer"
               >
                 <option value="all">All Statuses</option>
                 <option value="pending">Pending</option>
@@ -176,7 +176,7 @@ export default function PayoutsPage() {
         {loading ? (
           <div className="grid grid-cols-1 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white dark:bg-[#0A0F1C] rounded-[24px] p-6 md:p-8 border border-slate-200 dark:border-[#334155] animate-pulse">
+              <div key={i} className="bg-white dark:bg-[#161B26] rounded-[24px] p-6 md:p-8 border border-slate-200 dark:border-[#334155] animate-pulse">
                 <div className="flex flex-col xl:flex-row gap-8">
                   <div className="flex-1 space-y-6">
                     <div className="flex items-center gap-4">
@@ -200,11 +200,11 @@ export default function PayoutsPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="relative overflow-hidden rounded-[24px] p-12 md:p-20 text-center border border-slate-200 dark:border-[#334155] bg-white dark:bg-[#0A0F1C] shadow-sm flex flex-col items-center justify-center mt-8"
+            className="relative overflow-hidden rounded-[24px] p-12 md:p-20 text-center border border-slate-200 dark:border-[#334155] bg-white dark:bg-[#161B26] shadow-sm flex flex-col items-center justify-center mt-8"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
-            <div className="w-24 h-24 bg-slate-50 dark:bg-[#0A0F1C] rounded-full flex items-center justify-center mb-6 border-4 border-white dark:border-[#0F172A] shadow-md relative z-10">
+            <div className="w-24 h-24 bg-slate-50 dark:bg-[#161B26] rounded-full flex items-center justify-center mb-6 border-4 border-white dark:border-[#0F172A] shadow-md relative z-10">
               <Wallet className="text-slate-400" size={40} />
             </div>
             <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight relative z-10">No Payouts Found</h3>
@@ -216,7 +216,7 @@ export default function PayoutsPage() {
             {(searchQuery || statusFilter !== "all") && (
               <button 
                 onClick={() => { setSearchQuery(""); setStatusFilter("all"); }}
-                className="mt-6 px-6 py-2.5 bg-slate-100 dark:bg-[#0A0F1C] hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-bold transition-colors relative z-10"
+                className="mt-6 px-6 py-2.5 bg-slate-100 dark:bg-[#161B26] hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-bold transition-colors relative z-10"
               >
                 Clear Filters
               </button>
@@ -232,7 +232,7 @@ export default function PayoutsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
                   transition={{ delay: i * 0.05 }}
-                  className="group relative overflow-hidden bg-white dark:bg-[#0A0F1C] rounded-[24px] border border-slate-200 dark:border-[#334155] p-6 md:p-8 flex flex-col xl:flex-row xl:items-stretch gap-6 md:gap-8 shadow-sm hover:shadow-lg hover:border-[#FF8C00]/30 transition-all duration-300 pb-24 md:pb-8 xl:pb-8"
+                  className="group relative overflow-hidden bg-white dark:bg-[#161B26] rounded-[24px] border border-slate-200 dark:border-[#334155] p-6 md:p-8 flex flex-col xl:flex-row xl:items-stretch gap-6 md:gap-8 shadow-sm hover:shadow-lg hover:border-[#FF8C00]/30 transition-all duration-300 pb-24 md:pb-8 xl:pb-8"
                 >
                   {/* Decorative Glow */}
                   <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -241,7 +241,7 @@ export default function PayoutsPage() {
                   <div className="flex-1 flex flex-col justify-between space-y-6 relative z-10">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-100 dark:bg-[#0A0F1C] border-2 border-white dark:border-[#1E293B] flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
+                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-100 dark:bg-[#161B26] border-2 border-white dark:border-[#1E293B] flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
                           {req.guide?.profilePicture ? (
                             <img src={req.guide.profilePicture} alt="Avatar" className="w-full h-full object-cover" />
                           ) : (
@@ -329,7 +329,7 @@ export default function PayoutsPage() {
                             <button
                               disabled={processingId === req._id}
                               onClick={() => { setInputValue(""); setModalState({ id: req._id, type: "reject" }); }}
-                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1C] text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
+                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#161B26] text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
                             >
                               {processingId === req._id ? <Loader2 size={16} className="animate-spin" /> : <XCircle size={16} />} 
                               Reject
@@ -349,7 +349,7 @@ export default function PayoutsPage() {
                             <button
                               disabled={processingId === req._id}
                               onClick={() => { setInputValue(""); setModalState({ id: req._id, type: "reject" }); }}
-                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1C] text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
+                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#161B26] text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
                             >
                               {processingId === req._id ? <Loader2 size={16} className="animate-spin" /> : <XCircle size={16} />} 
                               Reject
@@ -365,7 +365,7 @@ export default function PayoutsPage() {
                           </>
                         )}
                         {(req.status === "completed" || req.status === "rejected") && (
-                           <div className="w-full flex items-center justify-center py-3 bg-slate-50 dark:bg-[#0A0F1C] border border-slate-200 dark:border-slate-700 rounded-xl min-h-[44px] text-slate-500 dark:text-slate-400 text-sm font-bold">
+                           <div className="w-full flex items-center justify-center py-3 bg-slate-50 dark:bg-[#161B26]/50 border border-slate-200 dark:border-slate-700 rounded-xl min-h-[44px] text-slate-500 dark:text-slate-400 text-sm font-bold">
                              {req.status === "completed" ? "Payment Completed" : "Payout Rejected"}
                            </div>
                         )}
@@ -388,7 +388,7 @@ export default function PayoutsPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white dark:bg-[#0A0F1C] border border-slate-200 dark:border-[#334155] rounded-[2.5rem] p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden"
+              className="bg-white dark:bg-[#161B26] border border-slate-200 dark:border-[#334155] rounded-[2.5rem] p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden"
             >
               {modalState.type === "approve" && (
                 <>

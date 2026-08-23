@@ -185,7 +185,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
             
             <div className="hidden sm:flex flex-1 max-w-2xl relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-[#FF8C00] to-orange-500 rounded-2xl opacity-0 group-focus-within:opacity-100 blur transition-opacity duration-500" />
-              <div className="relative flex items-center gap-3 bg-white dark:bg-[#0A0F1C] rounded-2xl px-5 py-3 w-full border border-gray-200 dark:border-white/5 shadow-sm group-focus-within:border-transparent transition-all">
+              <div className="relative flex items-center gap-3 bg-white dark:bg-[#161B26] rounded-2xl px-5 py-3 w-full border border-gray-200 dark:border-white/5 shadow-sm group-focus-within:border-transparent transition-all">
                 <Search size={18} className="text-gray-400 dark:text-gray-500" />
                 <input 
                   type="text"

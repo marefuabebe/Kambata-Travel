@@ -126,14 +126,14 @@ export default function BioEditor({ value, onChange }: BioEditorProps) {
   };
 
   return (
-    <div className={`flex flex-col bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-black/50 transition-all duration-300
+    <div className={`flex flex-col bg-white dark:bg-[#161B26] border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-black/50 transition-all duration-300
       ${isFullscreen 
         ? 'fixed inset-4 z-[200] rounded-3xl shadow-2xl dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]' 
         : 'relative flex-1 rounded-2xl focus-within:border-[#FF8C00] focus-within:ring-1 focus-within:ring-[#FF8C00] min-h-[350px]'}
     `}>
       
       {/* TOOLBAR & TABS */}
-      <div className="shrink-0 relative z-10 flex flex-wrap items-center p-2 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-[#0A0F1C] gap-1 rounded-t-2xl">
+      <div className="shrink-0 relative z-10 flex flex-wrap items-center p-2 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-[#161B26] gap-1 rounded-t-2xl">
         
         {mode === 'write' && (
           <>
@@ -198,7 +198,7 @@ export default function BioEditor({ value, onChange }: BioEditorProps) {
               <span className="hidden sm:inline">Ask AI</span>
             </button>
             {showAiMenu && (
-              <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-[#0A0F1C] rounded-xl shadow-xl border border-gray-100 dark:border-white/10 overflow-hidden z-50">
+              <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-[#161B26] rounded-xl shadow-xl border border-gray-100 dark:border-white/10 overflow-hidden z-50">
                 <div className="py-1">
                   <button type="button" onClick={() => handleAiAction('Generate')} className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 flex items-center gap-2"><Sparkles size={14} className="text-purple-500"/> Generate Bio</button>
                   <button type="button" onClick={() => handleAiAction('Expand')} className="w-full text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 flex items-center gap-2"><AlignJustify size={14} className="text-blue-500"/> Expand Text</button>
@@ -261,7 +261,7 @@ export default function BioEditor({ value, onChange }: BioEditorProps) {
       </div>
 
       {/* FOOTER COUNTERS */}
-      <div className={`px-4 py-2 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gray-50 dark:bg-[#0A0F1C] shrink-0 ${isFullscreen ? 'rounded-b-3xl' : 'rounded-b-2xl'}`}>
+      <div className={`px-4 py-2 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gray-50 dark:bg-[#161B26] shrink-0 ${isFullscreen ? 'rounded-b-3xl' : 'rounded-b-2xl'}`}>
         <div className="flex items-center gap-3">
            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-1">
              <FileText size={12} /> Rich Text Active

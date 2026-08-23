@@ -78,7 +78,7 @@ export default function ContactPage() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex-1"
+          className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex-1"
         >
           <h2 className="font-black text-xl text-gray-900 dark:text-white mb-8 border-b border-gray-100 dark:border-white/5 pb-6">{t("guidePages.contact.submitTicket")}</h2>
 
@@ -145,7 +145,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm mt-8 lg:mt-0"
+            className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm mt-8 lg:mt-0"
           >
             <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6">{t("guidePages.contact.myTickets")}</h3>
 
@@ -168,7 +168,7 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-700 dark:text-gray-300 font-medium mb-4">{ticket.message}</p>
 
                   {ticket.adminResponse && (
-                    <div className="bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/10 p-4 rounded-xl mt-6">
+                    <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 p-4 rounded-xl mt-6">
                       <div className="bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest w-max mb-2">{t("guidePages.contact.adminReply")}</div>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{ticket.adminResponse}</p>
                     </div>

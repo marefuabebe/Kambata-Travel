@@ -306,7 +306,7 @@ export default function TourDetailsPage() {
                  { icon: Coffee, label: "Breakfast" },
                  { icon: Shield, label: "Insurance" }
                ].map((inc, i) => (
-                 <div key={i} className="flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+                 <div key={i} className="flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
                    <inc.icon size={24} className="text-[#FF8C00] mb-3" />
                    <span className="font-bold text-sm text-gray-900 dark:text-white">{inc.label}</span>
                  </div>
@@ -327,7 +327,7 @@ export default function TourDetailsPage() {
                        <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-[#0F172A] bg-[#FF8C00] text-white font-black text-xs shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
                          D{stop.day || index + 1}
                        </div>
-                       <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#0A0F1C] backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
+                       <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
                          <h4 className="font-black text-lg text-gray-900 dark:text-white mb-2">{stop.title?.en || "Exploration"}</h4>
                          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{stop.description?.en || ""}</p>
                          {stop.startTime && (
@@ -352,7 +352,7 @@ export default function TourDetailsPage() {
                      <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-[#0F172A] bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400 font-black text-xs shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
                        D{day}
                      </div>
-                     <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#0A0F1C] backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
+                     <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow">
                        <h4 className="font-black text-lg text-gray-900 dark:text-white mb-2">Day {day} Exploration</h4>
                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Discover local landmarks, engage with the community, and experience breathtaking landscapes.</p>
                      </div>
@@ -366,7 +366,7 @@ export default function TourDetailsPage() {
             <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6">Traveler Reviews ({tour.rating?.numReviews || 0})</h2>
             <div className="grid gap-6">
                {reviews.length > 0 ? reviews.map((r: any) => (
-                 <div key={r._id} className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+                 <div key={r._id} className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
                    <div className="flex items-center gap-4 mb-4">
                      <div className="w-12 h-12 rounded-full bg-[#1A331B] flex items-center justify-center text-white font-black text-lg overflow-hidden">
                        {r.user?.profilePicture ? <img src={r.user.profilePicture} className="w-full h-full object-cover" /> : r.user?.name?.charAt(0) || "U"}
@@ -395,7 +395,7 @@ export default function TourDetailsPage() {
           <div className="sticky top-8 space-y-8">
           
           {canInstantBook && tour.schedules?.length > 0 ? (
-            <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+            <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                 <Calendar className="text-[#FF8C00]" size={20} />
                 Join a Scheduled Tour
@@ -460,7 +460,7 @@ export default function TourDetailsPage() {
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">Request a private tour on your own schedule.</p>
                   <button 
                     onClick={() => openModal("custom_date")}
-                    className="w-full py-3 bg-white dark:bg-[#0A0F1C] border-2 border-gray-200 dark:border-gray-700 rounded-xl font-bold text-sm text-gray-900 dark:text-white hover:border-[#FF8C00] dark:hover:border-[#FF8C00] hover:text-[#FF8C00] transition-colors"
+                    className="w-full py-3 bg-white dark:bg-[#161B26] border-2 border-gray-200 dark:border-gray-700 rounded-xl font-bold text-sm text-gray-900 dark:text-white hover:border-[#FF8C00] dark:hover:border-[#FF8C00] hover:text-[#FF8C00] transition-colors"
                   >
                     Request a Private Tour
                   </button>
@@ -468,7 +468,7 @@ export default function TourDetailsPage() {
               </div>
             </div>
           ) : (
-            <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm text-center relative overflow-hidden">
+            <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm text-center relative overflow-hidden">
               <div className="absolute -left-10 -top-10 w-40 h-40 bg-[#FF8C00]/10 rounded-full blur-3xl" />
               <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#1A331B]/10 rounded-full blur-3xl" />
               

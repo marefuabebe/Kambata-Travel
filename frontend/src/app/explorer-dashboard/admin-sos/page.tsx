@@ -56,7 +56,7 @@ const SEVERITY_COLORS: Record<string, string> = {
 
 function StatCard({ label, value, color, icon }: { label: string; value: number; color: string; icon: React.ReactNode }) {
   return (
-    <div className={`bg-white dark:bg-[#0A0F1C] rounded-3xl border ${color} p-6 shadow-sm`}>
+    <div className={`bg-white dark:bg-[#161B26] rounded-3xl border ${color} p-6 shadow-sm`}>
       <div className="flex items-center gap-3 mb-3">
         <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-current/10" style={{ color: "inherit" }}>
           {icon}
@@ -105,7 +105,7 @@ function AlertCard({ alert, onUpdate }: { alert: any; onUpdate: () => void }) {
   return (
     <motion.div
       layout
-      className={`bg-white dark:bg-[#0A0F1C] rounded-[2rem] border shadow-sm overflow-hidden transition-all ${
+      className={`bg-white dark:bg-[#161B26] rounded-[2rem] border shadow-sm overflow-hidden transition-all ${
         alert.severity === "critical" || alert.status === "open"
           ? "border-red-200 dark:border-red-500/20"
           : "border-gray-100 dark:border-white/5"
@@ -290,7 +290,7 @@ export default function AdminSOSPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400">Monitor and respond to traveler & guide emergencies.</p>
           </div>
         </div>
-        <button onClick={fetchData} className="w-11 h-11 rounded-2xl bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-400 shadow-sm transition-colors">
+        <button onClick={fetchData} className="w-11 h-11 rounded-2xl bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-400 shadow-sm transition-colors">
           <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
         </button>
       </div>
@@ -304,21 +304,21 @@ export default function AdminSOSPage() {
           </div>
           <p className="text-4xl font-black">{stats.open}</p>
         </div>
-        <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl border border-red-100 dark:border-red-500/20 p-6 shadow-sm">
+        <div className="bg-white dark:bg-[#161B26] rounded-3xl border border-red-100 dark:border-red-500/20 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
             <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">Critical</span>
           </div>
           <p className="text-4xl font-black text-gray-900 dark:text-white">{stats.critical}</p>
         </div>
-        <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl border border-indigo-100 dark:border-indigo-500/20 p-6 shadow-sm">
+        <div className="bg-white dark:bg-[#161B26] rounded-3xl border border-indigo-100 dark:border-indigo-500/20 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <Activity size={16} className="text-indigo-500" />
             <span className="text-[10px] font-black text-indigo-500 uppercase tracking-widest">In Progress</span>
           </div>
           <p className="text-4xl font-black text-gray-900 dark:text-white">{stats.inProgress}</p>
         </div>
-        <div className="bg-white dark:bg-[#0A0F1C] rounded-3xl border border-emerald-100 dark:border-emerald-500/20 p-6 shadow-sm">
+        <div className="bg-white dark:bg-[#161B26] rounded-3xl border border-emerald-100 dark:border-emerald-500/20 p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle2 size={16} className="text-emerald-500" />
             <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Resolved</span>
@@ -338,7 +338,7 @@ export default function AdminSOSPage() {
             key={f.key}
             value={filters[f.key as keyof typeof filters]}
             onChange={(e) => setFilters(prev => ({ ...prev, [f.key]: e.target.value }))}
-            className="bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-2.5 text-sm font-bold text-gray-700 dark:text-gray-300 focus:outline-none focus:border-[#1A331B] dark:focus:border-emerald-500 transition-colors cursor-pointer"
+            className="bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-2.5 text-sm font-bold text-gray-700 dark:text-gray-300 focus:outline-none focus:border-[#1A331B] dark:focus:border-emerald-500 transition-colors cursor-pointer"
           >
             <option value="">All {f.label}s</option>
             {f.options.map((o) => <option key={o} value={o}>{o.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</option>)}
@@ -361,7 +361,7 @@ export default function AdminSOSPage() {
           </div>
         </div>
       ) : alerts.length === 0 ? (
-        <div className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm p-16 text-center">
+        <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm p-16 text-center">
           <Shield size={48} className="text-gray-300 dark:text-gray-600 mx-auto mb-4" />
           <p className="font-black text-gray-700 dark:text-white text-xl mb-2">All Clear</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">No SOS alerts match the current filters. Travelers and guides are safe!</p>
