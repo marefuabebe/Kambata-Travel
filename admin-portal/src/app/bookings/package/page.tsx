@@ -103,17 +103,17 @@ export default function PackageBookingMonitor() {
             <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1">Supervise and manage all bundled travel package reservations.</p>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto bg-white dark:bg-[#161B26] p-2 rounded-2xl border border-slate-200 dark:border-[#334155] shadow-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto bg-white dark:bg-[#0A0F1C] p-2 rounded-2xl border border-slate-200 dark:border-[#334155] shadow-sm">
             <select 
               value={filters.status} 
               onChange={e => setFilters({...filters, status: e.target.value})}
               className="w-full sm:w-auto bg-transparent border-none px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-300 outline-none cursor-pointer"
             >
-              <option value="" className="dark:bg-[#161B26]">All Statuses</option>
-              <option value="confirmed" className="dark:bg-[#161B26]">Confirmed</option>
-              <option value="pending" className="dark:bg-[#161B26]">Pending</option>
-              <option value="completed" className="dark:bg-[#161B26]">Completed</option>
-              <option value="cancelled" className="dark:bg-[#161B26]">Cancelled</option>
+              <option value="" className="dark:bg-[#0A0F1C]">All Statuses</option>
+              <option value="confirmed" className="dark:bg-[#0A0F1C]">Confirmed</option>
+              <option value="pending" className="dark:bg-[#0A0F1C]">Pending</option>
+              <option value="completed" className="dark:bg-[#0A0F1C]">Completed</option>
+              <option value="cancelled" className="dark:bg-[#0A0F1C]">Cancelled</option>
             </select>
             
             <div className="w-full sm:w-[1px] h-[1px] sm:h-6 bg-slate-200 dark:bg-[#334155]" />
@@ -136,7 +136,7 @@ export default function PackageBookingMonitor() {
             <Loader2 className="animate-spin text-slate-900 dark:text-white" size={32} />
           </div>
         ) : visibleBookings.length === 0 ? (
-          <div className="bg-white dark:bg-[#161B26] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
+          <div className="bg-white dark:bg-[#0A0F1C] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
             <div className="w-16 h-16 bg-slate-50 dark:bg-[#0F172A] rounded-full flex items-center justify-center mb-4">
               <Package size={24} className="text-slate-400" />
             </div>
@@ -177,7 +177,7 @@ export default function PackageBookingMonitor() {
                   <motion.div
                     key={booking._id}
                     variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                    className="bg-white dark:bg-[#161B26] rounded-[1.5rem] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow relative group"
+                    className="bg-white dark:bg-[#0A0F1C] rounded-[1.5rem] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow relative group"
                   >
                     {/* Desktop Layout */}
                     <div className="hidden lg:grid grid-cols-12 gap-4 items-center">

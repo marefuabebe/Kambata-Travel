@@ -108,7 +108,7 @@ export default function PackagesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="bg-white dark:bg-[#161B26] rounded-3xl border border-gray-200 dark:border-white/10 overflow-hidden flex flex-col group hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-1 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
+                className="bg-white dark:bg-[#0A0F1C] rounded-3xl border border-gray-200 dark:border-white/10 overflow-hidden flex flex-col group hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-1 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
               >
                 {/* Image Header */}
                 <div className="w-full h-64 relative overflow-hidden shrink-0 bg-gray-100 dark:bg-white/5">
@@ -245,7 +245,7 @@ export default function PackagesPage() {
                     />
                   </div>
                   
-                  <div className="bg-gray-50 dark:bg-[#161B26]/60 border border-gray-100 dark:border-white/5 p-6 rounded-2xl flex justify-between items-center mt-6">
+                  <div className="bg-gray-50 dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/5 p-6 rounded-2xl flex justify-between items-center mt-6">
                      <span className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">{t("packagesPage.modal.totalPrice")}</span>
                      <span className="text-2xl font-black text-[#1A331B] dark:text-emerald-400">
                        ETB {(bookPkg.basePrice * form.travelersCount).toLocaleString()}

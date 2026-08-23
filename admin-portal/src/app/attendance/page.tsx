@@ -30,7 +30,7 @@ export default function AttendancePage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "draft":
-        return <span className="px-3 py-1 bg-slate-100 text-slate-700 dark:bg-[#161B26] dark:text-slate-300 rounded-full text-[10px] font-black uppercase tracking-wider border border-slate-200 dark:border-slate-700">Draft</span>;
+        return <span className="px-3 py-1 bg-slate-100 text-slate-700 dark:bg-[#0A0F1C] dark:text-slate-300 rounded-full text-[10px] font-black uppercase tracking-wider border border-slate-200 dark:border-slate-700">Draft</span>;
       case "published":
         return <span className="px-3 py-1 bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400 rounded-full text-[10px] font-black uppercase tracking-wider border border-blue-100 dark:border-blue-500/20">Published</span>;
       case "full":
@@ -42,7 +42,7 @@ export default function AttendancePage() {
       case "cancelled":
         return <span className="px-3 py-1 bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-1 border border-red-100 dark:border-red-500/20"><XCircle size={10} /> Cancelled</span>;
       default:
-        return <span className="px-3 py-1 bg-slate-100 text-slate-700 dark:bg-[#161B26] dark:text-slate-300 rounded-full text-[10px] font-black uppercase tracking-wider border border-slate-200 dark:border-slate-700">{status}</span>;
+        return <span className="px-3 py-1 bg-slate-100 text-slate-700 dark:bg-[#0A0F1C] dark:text-slate-300 rounded-full text-[10px] font-black uppercase tracking-wider border border-slate-200 dark:border-slate-700">{status}</span>;
     }
   };
 
@@ -63,7 +63,7 @@ export default function AttendancePage() {
             <div className="w-10 h-10 border-4 border-slate-200 dark:border-[#334155] border-t-[#FF8C00] rounded-full animate-spin" />
           </div>
         ) : schedules.length === 0 ? (
-          <div className="bg-white dark:bg-[#161B26] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
+          <div className="bg-white dark:bg-[#0A0F1C] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
             <div className="w-16 h-16 bg-slate-50 dark:bg-[#0F172A] rounded-full flex items-center justify-center mb-4">
               <Calendar size={24} className="text-slate-400" />
             </div>
@@ -96,7 +96,7 @@ export default function AttendancePage() {
                   <motion.div
                     key={`${sched.scheduleId}-${idx}`}
                     variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                    className="bg-white dark:bg-[#161B26] rounded-2xl md:rounded-[20px] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow relative group"
+                    className="bg-white dark:bg-[#0A0F1C] rounded-2xl md:rounded-[20px] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow relative group"
                   >
                     {/* Desktop & Tablet Layout (Grid) */}
                     <div className="hidden md:grid grid-cols-12 gap-4 items-center">
@@ -113,7 +113,7 @@ export default function AttendancePage() {
                       </div>
 
                       <div className="col-span-3 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-[#161B26] border-2 border-white dark:border-[#334155] shadow-sm overflow-hidden flex-shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-[#0A0F1C] border-2 border-white dark:border-[#334155] shadow-sm overflow-hidden flex-shrink-0">
                           {sched.guideProfilePicture ? (
                             <img src={sched.guideProfilePicture} alt={sched.guideName} className="w-full h-full object-cover" />
                           ) : (
@@ -162,7 +162,7 @@ export default function AttendancePage() {
                       <div className="bg-slate-50 dark:bg-[#0F172A] rounded-xl p-3 mb-4 border border-slate-100 dark:border-[#334155]">
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-[#161B26] overflow-hidden flex-shrink-0">
+                            <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-[#0A0F1C] overflow-hidden flex-shrink-0">
                               {sched.guideProfilePicture ? (
                                 <img src={sched.guideProfilePicture} alt={sched.guideName} className="w-full h-full object-cover" />
                               ) : (

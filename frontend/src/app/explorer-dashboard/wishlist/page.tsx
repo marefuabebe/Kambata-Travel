@@ -61,7 +61,7 @@ export default function WishlistPage() {
         initial={{ opacity: 0, y: 10 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ delay: 0.2 }}
-        className="flex flex-wrap gap-2 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-2 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm w-fit"
+        className="flex flex-wrap gap-2 bg-white dark:bg-[#0A0F1C] backdrop-blur-xl p-2 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm w-fit"
       >
         <button
           onClick={() => setTab("tours")}
@@ -133,7 +133,7 @@ export default function WishlistPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group hover:shadow-2xl dark:shadow-none hover:-translate-y-1 transition-all relative"
+                  className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group hover:shadow-2xl dark:shadow-none hover:-translate-y-1 transition-all relative"
                 >
                   <div className={`absolute top-0 right-0 w-32 h-32 ${isPackage ? 'bg-amber-500' : 'bg-red-500'} opacity-[0.03] dark:opacity-10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none`} />
                   

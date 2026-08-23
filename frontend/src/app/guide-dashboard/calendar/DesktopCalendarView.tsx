@@ -55,7 +55,7 @@ const customStyles = `
 `;
 
 const SkeletonLoader = () => (
-  <div className="absolute inset-0 z-50 bg-white dark:bg-[#161B26] rounded-[20px] p-6 flex flex-col gap-4">
+  <div className="absolute inset-0 z-50 bg-white dark:bg-[#0A0F1C] rounded-[20px] p-6 flex flex-col gap-4">
     <div className="h-16 w-full bg-gray-100 dark:bg-white/5 rounded-2xl animate-pulse"></div>
     <div className="flex-1 w-full bg-gray-50 dark:bg-black/20 rounded-2xl animate-pulse grid grid-cols-7 gap-4 p-4">
       {Array.from({ length: 35 }).map((_, i) => (
@@ -129,12 +129,12 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
   }, [date, view]);
 
   const renderToolbar = () => (
-    <div className="flex items-center justify-between p-4 bg-white dark:bg-[#161B26] border-b border-gray-100 dark:border-white/5 rounded-t-[20px] relative z-10">
+    <div className="flex items-center justify-between p-4 bg-white dark:bg-[#0A0F1C] border-b border-gray-100 dark:border-white/5 rounded-t-[20px] relative z-10">
       <div className="flex items-center gap-4">
         <div className="flex bg-[#F8F9F5] dark:bg-black/20 p-1 rounded-xl border border-gray-100 dark:border-white/5">
-          <button onClick={() => handleNavigate("PREV")} className="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#161B26] rounded-lg transition-colors"><ChevronLeft size={18} /></button>
-          <button onClick={() => handleNavigate("TODAY")} className="px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#161B26] rounded-lg transition-colors">Today</button>
-          <button onClick={() => handleNavigate("NEXT")} className="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#161B26] rounded-lg transition-colors"><ChevronRight size={18} /></button>
+          <button onClick={() => handleNavigate("PREV")} className="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#0A0F1C] rounded-lg transition-colors"><ChevronLeft size={18} /></button>
+          <button onClick={() => handleNavigate("TODAY")} className="px-4 py-2 text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#0A0F1C] rounded-lg transition-colors">Today</button>
+          <button onClick={() => handleNavigate("NEXT")} className="p-2 text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#0A0F1C] rounded-lg transition-colors"><ChevronRight size={18} /></button>
         </div>
         <h2 className="text-xl font-black text-gray-900 dark:text-white capitalize min-w-[180px]">
           {view === "month" ? moment(date).format("MMMM YYYY") : 
@@ -157,18 +157,18 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
         
         <div className="flex bg-[#F8F9F5] dark:bg-black/20 rounded-xl border border-gray-100 dark:border-white/5 p-1">
           <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="px-3 py-1.5 bg-transparent text-sm font-bold text-gray-700 dark:text-gray-300 outline-none cursor-pointer">
-            <option value="all" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">All Status</option>
-            <option value="assigned" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Assigned</option>
-            <option value="pending" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Pending</option>
-            <option value="completed" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Completed</option>
-            <option value="cancelled" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Cancelled</option>
+            <option value="all" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">All Status</option>
+            <option value="assigned" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Assigned</option>
+            <option value="pending" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Pending</option>
+            <option value="completed" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Completed</option>
+            <option value="cancelled" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Cancelled</option>
           </select>
           <div className="w-px bg-gray-200 dark:bg-white/10 mx-1"></div>
           <select value={districtFilter} onChange={(e) => setDistrictFilter(e.target.value)} className="px-3 py-1.5 bg-transparent text-sm font-bold text-gray-700 dark:text-gray-300 outline-none cursor-pointer">
-            <option value="all" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">All Districts</option>
-            <option value="durame" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Durame</option>
-            <option value="hadero" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Hadero</option>
-            <option value="ajora" className="bg-white dark:bg-[#161B26] text-gray-900 dark:text-white">Ajora</option>
+            <option value="all" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">All Districts</option>
+            <option value="durame" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Durame</option>
+            <option value="hadero" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Hadero</option>
+            <option value="ajora" className="bg-white dark:bg-[#0A0F1C] text-gray-900 dark:text-white">Ajora</option>
           </select>
         </div>
 
@@ -183,7 +183,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
             {showExportMenu && (
               <motion.div 
                 initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 rounded-xl shadow-xl overflow-hidden z-50"
+                className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/10 rounded-xl shadow-xl overflow-hidden z-50"
               >
                 <div className="p-1">
                   <button onClick={() => { setShowExportMenu(false); alert("Exporting PDF..."); }} className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-gray-700 dark:text-gray-300 hover:bg-[#F8F9F5] dark:hover:bg-white/5 rounded-lg transition-colors"><FileText size={16} className="text-red-500"/> Export PDF</button>
@@ -285,7 +285,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
           { label: "Estimated Revenue", value: (events.filter(e => e.type !== 'timeOff').length * 4500).toLocaleString(), icon: FileText, color: "text-purple-600", bg: "bg-purple-500/10", border: "border-purple-500/20", sub: "ETB" },
           { label: "Weather", value: weather.temp, icon: CloudSun, color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20", sub: weather.desc }
         ].map((stat, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="bg-white dark:bg-[#161B26] rounded-[20px] p-5 shadow-sm border border-gray-100 dark:border-white/5 hover:border-b-4 hover:-translate-y-1 transition-all flex flex-col justify-between" style={{ borderBottomColor: `var(--${stat.color.split('-')[1]})` }}>
+          <motion.div key={i} initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="bg-white dark:bg-[#0A0F1C] rounded-[20px] p-5 shadow-sm border border-gray-100 dark:border-white/5 hover:border-b-4 hover:-translate-y-1 transition-all flex flex-col justify-between" style={{ borderBottomColor: `var(--${stat.color.split('-')[1]})` }}>
             <div className="flex justify-between items-start mb-2">
                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${stat.bg} ${stat.color} border ${stat.border}`}>
                  <stat.icon size={18} />
@@ -337,7 +337,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
           </motion.div>
 
         {/* Calendar */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex-1 flex flex-col bg-white dark:bg-[#161B26] rounded-[20px] border border-gray-100 dark:border-white/5 shadow-sm relative">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }} className="flex-1 flex flex-col bg-white dark:bg-[#0A0F1C] rounded-[20px] border border-gray-100 dark:border-white/5 shadow-sm relative">
           {loading && <SkeletonLoader />}
           
           {renderToolbar()}
@@ -505,11 +505,11 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
 
                   {/* Fixed Bottom Action Bar */}
                   <div className="p-6 border-t border-gray-100 dark:border-white/10 bg-white dark:bg-[#0F172A] shrink-0 flex gap-4">
-                    <button className="w-14 h-14 bg-[#F8F9F5] dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-[16px] flex items-center justify-center text-[#D4A017] hover:scale-105 transition-transform shadow-sm">
+                    <button className="w-14 h-14 bg-[#F8F9F5] dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-[16px] flex items-center justify-center text-[#D4A017] hover:scale-105 transition-transform shadow-sm">
                       <MessageSquare size={20} />
                     </button>
                     {selectedEvent.isLocked ? (
-                      <button disabled className="flex-1 h-14 bg-slate-200 dark:bg-[#161B26]/50 rounded-[16px] text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 cursor-not-allowed">
+                      <button disabled className="flex-1 h-14 bg-slate-200 dark:bg-[#0A0F1C] rounded-[16px] text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 cursor-not-allowed">
                         <AlertTriangle size={20} /> Locked
                       </button>
                     ) : moment().isAfter(moment(selectedEvent.end), 'day') ? (

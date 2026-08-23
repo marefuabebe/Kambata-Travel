@@ -75,7 +75,7 @@ export default function PaymentsPage() {
       
       {/* ── Mobile Back Button ── */}
       <div className="lg:hidden mb-6">
-        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform w-fit">
+        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform w-fit">
           <ChevronLeft size={18} />
           Back
         </button>
@@ -89,7 +89,7 @@ export default function PaymentsPage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/10 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/10 shadow-sm overflow-hidden">
         {transactions.length === 0 ? (
           <div className="p-8 text-center text-gray-500 dark:text-gray-400">
             {t("payments.noTransactions")}
@@ -198,7 +198,7 @@ export default function PaymentsPage() {
                 }
 
                 return (
-                  <div key={tx._id} className="bg-white dark:bg-[#161B26] p-4 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col gap-3">
+                  <div key={tx._id} className="bg-white dark:bg-[#0A0F1C] p-4 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col gap-3">
                     <div className="flex justify-between items-start">
                       <div>
                         <span className="font-mono text-[10px] text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded">

@@ -96,7 +96,7 @@ export default function AdminAnalytics() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05, duration: 0.3 }}
-              className="bg-white dark:bg-[#161B26] p-5 md:p-6 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md dark:shadow-none hover:border-gray-300 dark:hover:border-white/20 transition-all flex flex-col justify-between relative overflow-hidden h-full"
+              className="bg-white dark:bg-[#0A0F1C] p-5 md:p-6 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md dark:shadow-none hover:border-gray-300 dark:hover:border-white/20 transition-all flex flex-col justify-between relative overflow-hidden h-full"
             >
               <div>
                 <div className="flex items-start justify-between mb-4">
@@ -117,7 +117,7 @@ export default function AdminAnalytics() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white dark:bg-[#161B26] rounded-2xl border border-gray-200 dark:border-white/10 p-6 shadow-sm relative overflow-hidden flex flex-col">
+        <div className="lg:col-span-2 bg-white dark:bg-[#0A0F1C] rounded-2xl border border-gray-200 dark:border-white/10 p-6 shadow-sm relative overflow-hidden flex flex-col">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Trending Expeditions</h3>
           </div>
@@ -165,7 +165,7 @@ export default function AdminAnalytics() {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-full min-h-[250px] text-center border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-[#0F172A]/50">
-                <div className="w-12 h-12 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
+                <div className="w-12 h-12 bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
                   <Map size={24} />
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Awaiting Explorers</h3>

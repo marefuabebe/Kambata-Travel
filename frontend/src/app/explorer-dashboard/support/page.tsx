@@ -159,7 +159,7 @@ export default function SupportPage() {
         
         {/* ── Left Column: FAQs & Search ── */}
         <div className="col-span-1 lg:col-span-6 space-y-8">
-          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
             <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-6">{t("support.faqs")}</h3>
             
             <div className="relative mb-8">
@@ -223,7 +223,7 @@ export default function SupportPage() {
         {/* ── Right Column: Send Message ── */}
         <div className="col-span-1 lg:col-span-6 space-y-8 h-full">
           
-          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex flex-col h-full">
+          <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex flex-col h-full">
             <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6">{t("support.sendMessage")}</h3>
             
             {submitted ? (
@@ -277,7 +277,7 @@ export default function SupportPage() {
 
 {/* My Tickets Section */}
           {myTickets.length > 0 && (
-            <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+            <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6">{t("support.mySupportTickets")}</h3>
               
               <div className="space-y-4 max-h-[350px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-white/10">

@@ -81,7 +81,7 @@ export default function AttendancePage() {
         </motion.div>
       ) : (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.5 }}>
-          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-4 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm mb-8 flex items-center focus-within:border-[#145A41] transition-colors">
+          <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl p-4 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm mb-8 flex items-center focus-within:border-[#145A41] transition-colors">
             <select
               value={selected}
               onChange={(e) => setSelected(e.target.value)}
@@ -96,7 +96,7 @@ export default function AttendancePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-3xl border border-gray-100 dark:border-white/5 p-6 text-center shadow-sm">
+            <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-3xl border border-gray-100 dark:border-white/5 p-6 text-center shadow-sm">
               <div className="w-10 h-10 mx-auto bg-gray-50 dark:bg-gray-800 rounded-xl flex items-center justify-center text-gray-500 mb-3">
                 <Users size={18} />
               </div>
@@ -127,7 +127,7 @@ export default function AttendancePage() {
           </div>
 
           {isLocked && (
-            <div className="bg-slate-50 dark:bg-[#161B26]/50 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl flex items-center gap-3 mb-6 shadow-sm">
+            <div className="bg-slate-50 dark:bg-[#0A0F1C] border border-slate-200 dark:border-slate-700 p-4 rounded-2xl flex items-center gap-3 mb-6 shadow-sm">
               <Lock size={20} className="text-slate-500" />
               <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
                 This schedule is locked. Attendance can no longer be modified.
@@ -167,14 +167,14 @@ export default function AttendancePage() {
                   }))
                 )
               }
-              className="flex items-center gap-2 text-sm font-bold px-6 py-3.5 rounded-2xl bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+              className="flex items-center gap-2 text-sm font-bold px-6 py-3.5 rounded-2xl bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
             >
               <Download size={16} />
               {t("guidePages.attendance.exportReport")}
             </button>
           </div>
 
-          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm">
+          <div className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm">
             <div className="divide-y divide-gray-100 dark:divide-white/5">
               <AnimatePresence>
                 {roster.map((traveler, idx) => (

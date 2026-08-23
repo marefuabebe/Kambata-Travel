@@ -152,7 +152,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
       />
 
       <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0">
-        <header className="h-24 bg-white/80 dark:bg-[#161B26]/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 flex items-center px-4 sm:px-8 gap-4 sm:gap-6 sticky top-0 z-40 shrink-0 relative">
+        <header className="h-24 bg-white/80 dark:bg-[#0A0F1C] backdrop-blur-xl border-b border-gray-100 dark:border-white/5 flex items-center px-4 sm:px-8 gap-4 sm:gap-6 sticky top-0 z-40 shrink-0 relative">
           <button 
             className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-white/5 text-gray-600 dark:text-gray-300 shadow-sm border border-gray-200 dark:border-white/5 shrink-0 active:scale-95 transition-transform relative z-10"
             onClick={() => React_setIsMobileMenuOpen(true)}
@@ -190,7 +190,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
              </div>
 
              {/* Duty Status */}
-             <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-2xl cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm group">
+             <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl cursor-pointer hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm group">
                 <span className="relative flex h-2.5 w-2.5 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -206,25 +206,25 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
           <div className="flex items-center gap-4 border-l border-gray-100 dark:border-white/5 pl-6 ml-auto relative z-10">
             <button
               onClick={() => setLanguage(language === "en" ? "am" : "en")}
-              className="lg:hidden px-3 h-10 rounded-xl flex items-center justify-center font-bold text-[11px] bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 shadow-sm text-gray-700 dark:text-gray-300"
+              className="lg:hidden px-3 h-10 rounded-xl flex items-center justify-center font-bold text-[11px] bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/5 shadow-sm text-gray-700 dark:text-gray-300"
             >
               {language === "en" ? "አማ" : "EN"}
             </button>
             <button
               onClick={() => setLanguage(language === "en" ? "am" : "en")}
-              className="hidden lg:flex px-3 h-12 rounded-[1.25rem] items-center justify-center font-bold text-sm bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md text-gray-700 dark:text-gray-300 hover:text-[#1A331B] dark:hover:text-emerald-500 transition-all"
+              className="hidden lg:flex px-3 h-12 rounded-[1.25rem] items-center justify-center font-bold text-sm bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md text-gray-700 dark:text-gray-300 hover:text-[#1A331B] dark:hover:text-emerald-500 transition-all"
             >
               {language === "en" ? "አማ" : "EN"}
             </button>
             <button 
               onClick={toggleTheme} 
-              className="relative w-12 h-12 flex items-center justify-center rounded-[1.25rem] bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-500"
+              className="relative w-12 h-12 flex items-center justify-center rounded-[1.25rem] bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-500"
             >
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <Link
               href="/guide-dashboard/notifications"
-              className="relative w-12 h-12 flex items-center justify-center rounded-[1.25rem] bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-500"
+              className="relative w-12 h-12 flex items-center justify-center rounded-[1.25rem] bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-500"
             >
               <Bell size={20} />
               {unreadNotificationsCount > 0 && (

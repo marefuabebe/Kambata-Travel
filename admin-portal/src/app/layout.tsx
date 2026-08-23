@@ -126,7 +126,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
       toast.custom(
         (t) => (
           <div
-            className={`${t.visible ? "animate-enter" : "animate-leave"} max-w-md w-full bg-white dark:bg-[#161B26] shadow-2xl rounded-2xl pointer-events-auto flex ring-1 ring-black/5 dark:ring-white/10 p-4 border-l-4 border-[#FF8C00]`}
+            className={`${t.visible ? "animate-enter" : "animate-leave"} max-w-md w-full bg-white dark:bg-[#0A0F1C] shadow-2xl rounded-2xl pointer-events-auto flex ring-1 ring-black/5 dark:ring-white/10 p-4 border-l-4 border-[#FF8C00]`}
           >
             <div className="flex-1 w-0">
               <div className="flex items-start">
@@ -214,7 +214,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-[#161B26] border border-transparent hover:border-[#E2E8F0] dark:hover:border-[#334155] transition-colors"
+              className="lg:hidden shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-[#0A0F1C] border border-transparent hover:border-[#E2E8F0] dark:hover:border-[#334155] transition-colors"
               aria-label="Open menu"
             >
               <Menu size={22} />
@@ -231,7 +231,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                 onKeyDown={handleHeaderSearch}
                 placeholder="Search..."
                 aria-label="Search"
-                className="w-full min-h-[44px] bg-white dark:bg-[#161B26] border border-[#E2E8F0] dark:border-[#334155] rounded-xl py-2 pl-10 pr-4 text-sm font-medium text-[#0F172A] dark:text-white outline-none focus:border-[#FF8C00] focus:ring-2 focus:ring-[#FF8C00]/20 transition-all shadow-sm"
+                className="w-full min-h-[44px] bg-white dark:bg-[#0A0F1C] border border-[#E2E8F0] dark:border-[#334155] rounded-xl py-2 pl-10 pr-4 text-sm font-medium text-[#0F172A] dark:text-white outline-none focus:border-[#FF8C00] focus:ring-2 focus:ring-[#FF8C00]/20 transition-all shadow-sm"
               />
             </div>
           </div>
@@ -247,14 +247,14 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             <button
               type="button"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="min-h-[44px] min-w-[44px] bg-white dark:bg-[#161B26] border border-[#E2E8F0] dark:border-[#334155] rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-[#FF8C00] transition-colors shadow-sm"
+              className="min-h-[44px] min-w-[44px] bg-white dark:bg-[#0A0F1C] border border-[#E2E8F0] dark:border-[#334155] rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-[#FF8C00] transition-colors shadow-sm"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <Link
               href="/notifications"
-              className="min-h-[44px] min-w-[44px] bg-white dark:bg-[#161B26] border border-[#E2E8F0] dark:border-[#334155] rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-[#FF8C00] transition-colors relative shadow-sm"
+              className="min-h-[44px] min-w-[44px] bg-white dark:bg-[#0A0F1C] border border-[#E2E8F0] dark:border-[#334155] rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-[#FF8C00] transition-colors relative shadow-sm"
               aria-label="Notifications"
             >
               <Bell size={18} />

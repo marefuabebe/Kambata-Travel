@@ -382,7 +382,7 @@ export default function QRScannerPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-white dark:bg-[#161B26] rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center border border-amber-200 dark:border-amber-500/30"
+              className="bg-white dark:bg-[#0A0F1C] rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center border border-amber-200 dark:border-amber-500/30"
             >
               <div className="w-16 h-16 bg-amber-100 dark:bg-amber-500/20 text-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <AlertTriangle size={32} />
@@ -415,7 +415,7 @@ export default function QRScannerPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-white dark:bg-[#161B26] rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center border border-gray-100 dark:border-white/10"
+              className="bg-white dark:bg-[#0A0F1C] rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center border border-gray-100 dark:border-white/10"
             >
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">Security PIN Required</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Ask the traveler for their 4-digit security PIN to confirm this pass.</p>
@@ -488,7 +488,7 @@ export default function QRScannerPage() {
       <div className="flex items-center gap-4 mb-10">
         <Link
           href="/guide-dashboard/attendance"
-          className="w-11 h-11 rounded-2xl bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-400 shadow-sm transition-colors"
+          className="w-11 h-11 rounded-2xl bg-white dark:bg-[#0A0F1C] border border-gray-100 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-400 shadow-sm transition-colors"
         >
           <ChevronLeft size={20} />
         </Link>
@@ -510,7 +510,7 @@ export default function QRScannerPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-xl p-12 text-center"
+            className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-xl p-12 text-center"
           >
             <div className="w-28 h-28 bg-[#1A331B]/5 dark:bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mx-auto mb-8 border border-[#1A331B]/10 dark:border-emerald-500/20">
               <QrCode size={56} className="text-[#1A331B] dark:text-emerald-400" />
@@ -553,7 +553,7 @@ export default function QRScannerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-xl overflow-hidden"
+            className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-xl overflow-hidden"
           >
             <div className="p-6 border-b border-gray-100 dark:border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -575,7 +575,7 @@ export default function QRScannerPage() {
             <div className="p-4">
               <div
                 id={scannerDivId}
-                className="[&_video]:rounded-[1.5rem] [&_img]:rounded-[1.5rem] [&_select]:bg-white [&_select]:dark:bg-[#161B26] [&_select]:text-gray-900 [&_select]:dark:text-white [&_select]:rounded-xl [&_select]:border [&_select]:border-gray-200 [&_select]:dark:border-white/10 [&_select]:px-3 [&_select]:py-2 [&_select]:text-sm"
+                className="[&_video]:rounded-[1.5rem] [&_img]:rounded-[1.5rem] [&_select]:bg-white [&_select]:dark:bg-[#0A0F1C] [&_select]:text-gray-900 [&_select]:dark:text-white [&_select]:rounded-xl [&_select]:border [&_select]:border-gray-200 [&_select]:dark:border-white/10 [&_select]:px-3 [&_select]:py-2 [&_select]:text-sm"
               />
             </div>
 
@@ -595,7 +595,7 @@ export default function QRScannerPage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl shadow-emerald-500/10 overflow-hidden"
+            className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl shadow-emerald-500/10 overflow-hidden"
           >
             {/* Green success banner */}
             <div className="bg-emerald-500 p-8 text-center relative overflow-hidden">
@@ -696,7 +696,7 @@ export default function QRScannerPage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-amber-200 dark:border-amber-500/30 shadow-2xl shadow-amber-500/10 overflow-hidden"
+            className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-amber-200 dark:border-amber-500/30 shadow-2xl shadow-amber-500/10 overflow-hidden"
           >
             <div className="bg-amber-500 p-8 text-center">
               <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -729,7 +729,7 @@ export default function QRScannerPage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-red-200 dark:border-red-500/30 shadow-2xl shadow-red-500/10 overflow-hidden"
+            className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-red-200 dark:border-red-500/30 shadow-2xl shadow-red-500/10 overflow-hidden"
           >
             <div className="bg-red-500 p-8 text-center">
               <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -766,7 +766,7 @@ export default function QRScannerPage() {
                   placeholder="KT-XXXXX"
                   value={manualRef}
                   onChange={(e) => setManualRef(e.target.value)}
-                  className="flex-1 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-mono uppercase focus:ring-2 focus:ring-[#1A331B] dark:focus:ring-emerald-500 outline-none"
+                  className="flex-1 bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm font-mono uppercase focus:ring-2 focus:ring-[#1A331B] dark:focus:ring-emerald-500 outline-none"
                 />
                 <button
                   type="submit"
@@ -786,7 +786,7 @@ export default function QRScannerPage() {
             ) : (
               <button
                 onClick={() => setShowManual(true)}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#1A331B] dark:text-emerald-400 hover:opacity-80 transition-opacity bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 shadow-sm"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#1A331B] dark:text-emerald-400 hover:opacity-80 transition-opacity bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2 shadow-sm"
               >
                 <Edit3 size={16} /> Enter Reference Manually
               </button>

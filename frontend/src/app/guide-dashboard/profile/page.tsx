@@ -239,7 +239,7 @@ export default function SaaSProfilePage() {
       {/* WIDGETS ROW (MOVED TO TOP TO ELIMINATE UNEQUAL SIDEBAR HEIGHTS) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
          {/* Completeness Widget */}
-         <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-6 sm:p-8 shadow-sm flex flex-row items-center gap-4 sm:gap-8">
+         <div className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-6 sm:p-8 shadow-sm flex flex-row items-center gap-4 sm:gap-8">
             <div className="relative w-20 h-20 sm:w-32 sm:h-32 shrink-0">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="45" fill="transparent" stroke="currentColor" strokeWidth="8" className="text-gray-100 dark:text-white/10" />
@@ -279,7 +279,7 @@ export default function SaaSProfilePage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {/* LEFT COLUMN: Personal Information */}
         <div className="flex flex-col h-full">
-          <div className="bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5 p-4 sm:p-5 shadow-sm h-full flex flex-col">
+          <div className="bg-white dark:bg-[#0A0F1C] rounded-[2rem] border border-gray-100 dark:border-white/5 p-4 sm:p-5 shadow-sm h-full flex flex-col">
             {/* --- PERSONAL INFORMATION SECTION --- */}
             <div className="flex items-center justify-between border-b border-gray-100 dark:border-white/5 pb-3 mb-4 shrink-0">
               <h2 className="font-black text-xl text-gray-900 dark:text-white">Personal Information</h2>
@@ -396,7 +396,7 @@ export default function SaaSProfilePage() {
 
         {/* RIGHT COLUMN: Guide Biography */}
         <div className="flex flex-col h-full">
-          <div className="bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5 p-4 sm:p-5 shadow-sm h-full flex flex-col">
+          <div className="bg-white dark:bg-[#0A0F1C] rounded-[2rem] border border-gray-100 dark:border-white/5 p-4 sm:p-5 shadow-sm h-full flex flex-col">
             {/* --- GUIDE BIOGRAPHY SECTION --- */}
             <div className="flex items-center justify-between border-b border-gray-100 dark:border-white/5 pb-3 mb-4 shrink-0">
                <h2 className="font-black text-xl text-gray-900 dark:text-white">Guide Biography</h2>
@@ -439,7 +439,7 @@ export default function SaaSProfilePage() {
 
       {/* BOTTOM SECTION: Credential Vault */}
       <div className="mb-8">
-        <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+        <div className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
            <div className="flex flex-col items-center text-center justify-center border-b border-gray-100 dark:border-white/5 pb-6 mb-8 gap-4">
               <div className="flex flex-col items-center gap-1">
                  <h2 className="font-black text-xl text-gray-900 dark:text-white">Credential Vault</h2>
@@ -548,7 +548,7 @@ export default function SaaSProfilePage() {
       </div>
 
       {/* ACTION BAR (MOVED TO BOTTOM) */}
-      <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center sm:items-start">
             {guideStatus === "pending" && (
               <span className="text-sm font-black text-amber-600 flex items-center gap-2"><Clock size={16} /> Awaiting admin security review</span>

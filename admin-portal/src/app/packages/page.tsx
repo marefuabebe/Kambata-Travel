@@ -223,7 +223,7 @@ export default function ManagePackagesPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search packages..."
-              className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-lg py-2 pl-9 pr-3 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-gray-300 dark:focus:border-white/20 transition-all shadow-sm"
+              className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-lg py-2 pl-9 pr-3 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-gray-300 dark:focus:border-white/20 transition-all shadow-sm"
             />
           </div>
           <button onClick={openAddModal} className="flex items-center justify-center gap-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-sm flex-shrink-0">
@@ -235,7 +235,7 @@ export default function ManagePackagesPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {filteredPackages.length === 0 ? (
           <div className="col-span-full border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl p-12 text-center flex flex-col items-center bg-gray-50/50 dark:bg-[#0F172A]/50">
-            <div className="w-12 h-12 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
+            <div className="w-12 h-12 bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
               <PackageIcon size={24} />
             </div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">No packages found</h3>
@@ -243,7 +243,7 @@ export default function ManagePackagesPage() {
           </div>
         ) : (
           filteredPackages.map((pkg) => (
-            <div key={pkg._id} className="bg-white dark:bg-[#161B26] rounded-xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-white/20 transition-all p-5 flex flex-col group">
+            <div key={pkg._id} className="bg-white dark:bg-[#0A0F1C] rounded-xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-white/20 transition-all p-5 flex flex-col group">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-base font-bold text-gray-900 dark:text-white tracking-tight leading-tight mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{pkg.name?.en}</h3>

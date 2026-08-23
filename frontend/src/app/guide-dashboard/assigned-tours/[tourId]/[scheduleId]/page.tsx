@@ -136,7 +136,7 @@ export default function TourDetailPage() {
       </motion.div>
 
       <motion.div variants={staggerContainer} initial="hidden" animate="show" className="grid md:grid-cols-2 gap-8">
-        <motion.div variants={fadeUp} className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-[#161B26] transition-all relative overflow-hidden group">
+        <motion.div variants={fadeUp} className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-[#0A0F1C] transition-all relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 opacity-5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
           <h3 className="font-black uppercase tracking-widest text-[10px] text-gray-400 dark:text-gray-500 mb-6">
             Tour Information
@@ -181,7 +181,7 @@ export default function TourDetailPage() {
           </div>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex flex-col justify-between">
+        <motion.div variants={fadeUp} className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex flex-col justify-between">
           <h3 className="font-black uppercase tracking-widest text-[10px] text-gray-400 dark:text-gray-500 mb-6">
             Attendance Summary
           </h3>
@@ -206,7 +206,7 @@ export default function TourDetailPage() {
         </motion.div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
         <h3 className="font-black uppercase tracking-widest text-[10px] text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
           <Megaphone size={14} /> Group Announcement
         </h3>
@@ -239,7 +239,7 @@ export default function TourDetailPage() {
         </div>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="bg-white dark:bg-[#0A0F1C] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
         <h3 className="font-black uppercase tracking-widest text-[10px] text-gray-400 dark:text-gray-500 mb-6">
           Travelers
         </h3>
@@ -316,7 +316,7 @@ export default function TourDetailPage() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
           >
-            <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] p-8 max-w-md w-full shadow-2xl relative">
+            <div className="bg-white dark:bg-[#0A0F1C] rounded-[2.5rem] p-8 max-w-md w-full shadow-2xl relative">
               <button 
                 onClick={() => setShowScanner(false)}
                 className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"

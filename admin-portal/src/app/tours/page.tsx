@@ -260,7 +260,7 @@ export default function ToursPage() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search tours..."
-              className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-lg py-2 pl-9 pr-3 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-gray-300 dark:focus:border-white/20 transition-all shadow-sm"
+              className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-lg py-2 pl-9 pr-3 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-gray-300 dark:focus:border-white/20 transition-all shadow-sm"
             />
           </div>
           <button onClick={openAddModal} className="flex items-center justify-center gap-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-sm flex-shrink-0">
@@ -273,7 +273,7 @@ export default function ToursPage() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {filteredTours.length === 0 ? (
           <div className="col-span-full border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl p-12 text-center flex flex-col items-center bg-gray-50/50 dark:bg-[#0F172A]/50">
-            <div className="w-12 h-12 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
+            <div className="w-12 h-12 bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
               <Tent size={24} />
             </div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">No tours found</h3>
@@ -281,7 +281,7 @@ export default function ToursPage() {
           </div>
         ) : (
           filteredTours.map((tour) => (
-            <div key={tour._id} className="bg-white dark:bg-[#161B26] rounded-xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-white/20 transition-all flex flex-col sm:flex-row overflow-hidden group">
+            <div key={tour._id} className="bg-white dark:bg-[#0A0F1C] rounded-xl border border-gray-200 dark:border-white/10 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-white/20 transition-all flex flex-col sm:flex-row overflow-hidden group">
               
               {/* Tour Image */}
               <div className="w-full sm:w-48 h-48 sm:h-auto bg-gray-100 dark:bg-[#0F172A] relative flex-shrink-0 overflow-hidden border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-white/10">
@@ -481,15 +481,15 @@ export default function ToursPage() {
                             <div className="space-y-4">
                               <div>
                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 pl-1">Stop {index + 1} Title (EN) *</label>
-                                <input required type="text" value={stop.title?.en} onChange={e => updateItineraryDay(index, 'title', e.target.value, 'en')} className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all" />
+                                <input required type="text" value={stop.title?.en} onChange={e => updateItineraryDay(index, 'title', e.target.value, 'en')} className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 pl-1">Description (EN) *</label>
-                                <textarea required value={stop.description?.en} onChange={e => updateItineraryDay(index, 'description', e.target.value, 'en')} rows={2} className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all resize-none" />
+                                <textarea required value={stop.description?.en} onChange={e => updateItineraryDay(index, 'description', e.target.value, 'en')} rows={2} className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all resize-none" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 pl-1">Start Time</label>
-                                <input type="time" value={stop.startTime} onChange={e => updateItineraryDay(index, 'startTime', e.target.value)} className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all" />
+                                <input type="time" value={stop.startTime} onChange={e => updateItineraryDay(index, 'startTime', e.target.value)} className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-bold text-gray-900 dark:text-white outline-none focus:border-orange-500 transition-all" />
                               </div>
                             </div>
                             <div className="h-[200px] md:h-auto rounded-xl overflow-hidden border border-gray-200 dark:border-white/10">
@@ -568,7 +568,7 @@ export default function ToursPage() {
                         const isUpcoming = schedule.status === "upcoming";
                         
                         return (
-                          <div key={schedule._id} className={`p-4 rounded-2xl border ${isCancelled ? 'border-red-100 bg-red-50/50 dark:border-red-900/30 dark:bg-red-900/10' : 'border-gray-200 dark:border-white/10 bg-white dark:bg-[#161B26]'} flex flex-col md:flex-row md:items-center justify-between gap-4`}>
+                          <div key={schedule._id} className={`p-4 rounded-2xl border ${isCancelled ? 'border-red-100 bg-red-50/50 dark:border-red-900/30 dark:bg-red-900/10' : 'border-gray-200 dark:border-white/10 bg-white dark:bg-[#0A0F1C]'} flex flex-col md:flex-row md:items-center justify-between gap-4`}>
                             <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-4">
                               <div>
                                 <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-1">Dates</p>

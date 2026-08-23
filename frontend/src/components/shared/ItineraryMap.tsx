@@ -100,7 +100,7 @@ export default function ItineraryMap({ itinerary }: ItineraryMapProps) {
 
       {positions.length === 0 && (
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-[400] flex items-center justify-center p-6 pointer-events-none">
-          <div className="bg-white dark:bg-[#161B26] p-6 rounded-2xl shadow-xl max-w-sm text-center pointer-events-auto">
+          <div className="bg-white dark:bg-[#0A0F1C] p-6 rounded-2xl shadow-xl max-w-sm text-center pointer-events-auto">
             <h3 className="font-black text-gray-900 dark:text-white mb-2 text-lg">No Map Data Available</h3>
             <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
               The exact route coordinates for this tour have not been published yet. Check the itinerary list below for details.
