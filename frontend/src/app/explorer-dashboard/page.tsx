@@ -373,20 +373,20 @@ export default function TravelerDashboard() {
               {/* Travel Package */}
               <Link
                 href="/explorer-dashboard/packages"
-                className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-900 dark:border-black hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
+                className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
               >
                 
                 
                 <div className="flex items-center gap-3 mb-2 relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/20 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/10 dark:bg-[#FF8C00]/20 flex items-center justify-center shrink-0">
                     <Package size={20} className="text-[#FF8C00]" />
                   </div>
                   <div>
-                    <h3 className="font-black text-white group-hover:text-[#FF8C00] transition-colors text-lg tracking-tight">{t("explorerDashboard.chooseExperience.package.title")}</h3>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">{t("explorerDashboard.chooseExperience.package.tag")}</p>
+                    <h3 className="font-black text-gray-900 dark:text-white group-hover:text-[#FF8C00] transition-colors text-lg tracking-tight">{t("explorerDashboard.chooseExperience.package.title")}</h3>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{t("explorerDashboard.chooseExperience.package.tag")}</p>
                   </div>
                 </div>
-                <p className="text-sm font-bold text-emerald-100/80 pl-[3.25rem] relative z-10 leading-snug">
+                <p className="text-sm font-bold text-gray-500 dark:text-emerald-100/80 pl-[3.25rem] relative z-10 leading-snug">
                   {t("explorerDashboard.chooseExperience.package.desc")}
                 </p>
               </Link>
