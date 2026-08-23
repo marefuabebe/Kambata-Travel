@@ -437,12 +437,12 @@ export default function ExplorerReviewsPage() {
                     onChange={(e) => setComment(e.target.value)}
                     placeholder={t("reviews.tellUsWhatYouLoved")}
                     rows={4}
-                    className="w-full bg-white dark:bg-[#0B1120] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium outline-none focus:border-[#FF8C00] dark:focus:border-[#FF8C00] resize-none"
+                    className="w-full bg-white dark:bg-[#0A0F1C] border border-gray-200 dark:border-white/10 rounded-2xl px-4 py-3 text-sm font-medium outline-none focus:border-[#FF8C00] dark:focus:border-[#FF8C00] resize-none"
                   />
                 </div>
               </div>
 
-              <div className="p-6 border-t border-gray-100 dark:border-white/10 flex gap-3 shrink-0 bg-gray-50/50 dark:bg-[#0B1120]/50">
+              <div className="p-6 border-t border-gray-100 dark:border-white/10 flex gap-3 shrink-0 bg-gray-50/50 dark:bg-[#0A0F1C]/50">
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="flex-1 py-3.5 rounded-xl font-bold text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"

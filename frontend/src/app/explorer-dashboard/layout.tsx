@@ -140,7 +140,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
   ].includes(pathname || "");
 
   return (
-    <div className="bg-[#F8FAFC] dark:bg-[#0B1120] min-h-screen flex selection:bg-[#FF8C00]/30 selection:text-[#FF8C00] overflow-hidden">
+    <div className="bg-[#F8FAFC] dark:bg-[#0A0F1C] min-h-screen flex selection:bg-[#FF8C00]/30 selection:text-[#FF8C00] overflow-hidden">
       
       {/* ── Background Glow Effects ── */}
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
@@ -238,7 +238,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
         <main className={`flex-1 overflow-y-auto overflow-x-auto min-h-0 custom-scrollbar relative z-10 ${(isMessages && isChatActive) ? "p-0 pb-0" : "pb-24 lg:pb-10"}`}>
           {/* ── Unified Mobile Header (Visible on ALL mobile pages) ── */}
           {!isMessages && (
-            <div className="lg:hidden h-16 bg-white/80 dark:bg-[#0B1120]/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 flex items-center justify-between px-4 shrink-0 sticky top-0 z-40 mb-4 relative">
+            <div className="lg:hidden h-16 bg-white/80 dark:bg-[#0A0F1C]/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 flex items-center justify-between px-4 shrink-0 sticky top-0 z-40 mb-4 relative">
               <div className="flex items-center gap-2 relative z-10">
                 <button onClick={() => setIsMobileMenuOpen(true)} className="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 active:scale-95 transition-transform">
                   <Menu size={20} />

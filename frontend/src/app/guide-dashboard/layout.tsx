@@ -134,7 +134,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
   const isMessages = pathname === "/guide-dashboard/messages";
 
   return (
-    <div className="bg-[#F8FAFC] dark:bg-[#0B1120] h-screen overflow-hidden flex selection:bg-[#FF8C00]/30 selection:text-[#FF8C00]">
+    <div className="bg-[#F8FAFC] dark:bg-[#0A0F1C] h-screen overflow-hidden flex selection:bg-[#FF8C00]/30 selection:text-[#FF8C00]">
       {/* ── Universal Sidebar ── */}
       <Sidebar 
         user={user}
@@ -242,7 +242,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
                 />
               </div>
               {((user?.guideStatus as any) === "approved" || (user?.guideStatus as any) === "verified") && (
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#10B981] rounded-full flex items-center justify-center border-2 border-white dark:border-[#0B1120] shadow-sm pointer-events-none">
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#10B981] rounded-full flex items-center justify-center border-2 border-white dark:border-[#0A0F1C] shadow-sm pointer-events-none">
                   <ShieldCheck size={10} className="text-white" />
                 </div>
               )}
