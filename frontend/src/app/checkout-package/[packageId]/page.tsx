@@ -136,7 +136,7 @@ function PackageCheckoutPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex flex-col">
+      <div className="min-h-screen bg-[#0F172A] flex flex-col">
         <Header />
         <div className="flex-1 flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay pointer-events-none"></div>
@@ -472,13 +472,13 @@ function PackageCheckoutPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-xl flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-[#0F172A] backdrop-blur-xl flex items-center justify-center p-6"
           >
             <motion.div
               initial={{ scale: 0.9, y: 30, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="bg-slate-800 border border-slate-700/50 rounded-[2.5rem] p-12 w-full max-w-lg text-center shadow-2xl relative overflow-hidden"
+              className="bg-[#1E293B] border border-slate-700/50 rounded-[2.5rem] p-12 w-full max-w-lg text-center shadow-2xl relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-emerald-500 to-teal-400"></div>
               <div className="w-24 h-24 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-8 border border-emerald-500/30">
@@ -515,7 +515,7 @@ export default function PackageCheckoutWrapper() {
   return (
     <React.Suspense
       fallback={
-        <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="min-h-screen bg-[#0F172A] flex items-center justify-center">
           <Loader2 className="animate-spin text-emerald-500 w-12 h-12" />
         </div>
       }

@@ -416,11 +416,11 @@ export default function AdminChatInterface() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-10rem)] bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden shadow-sm border border-gray-200 dark:border-slate-700">
+      <div className="flex h-[calc(100vh-10rem)] bg-white dark:bg-[#1E293B] rounded-[2rem] overflow-hidden shadow-sm border border-gray-200 dark:border-slate-700">
         
         {/* Sidebar List */}
-        <div className={`${activeRoom ? 'hidden md:flex' : 'flex'} flex-col w-full md:w-96 border-r border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 z-10`}>
-          <div className="p-6 border-b border-gray-100 dark:border-slate-700 flex flex-col gap-5 bg-white dark:bg-slate-800">
+        <div className={`${activeRoom ? 'hidden md:flex' : 'flex'} flex-col w-full md:w-96 border-r border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-[#0F172A] z-10`}>
+          <div className="p-6 border-b border-gray-100 dark:border-slate-700 flex flex-col gap-5 bg-white dark:bg-[#1E293B]">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center border border-blue-100 dark:border-blue-500/20">
                 <MessageSquare className="text-blue-600 dark:text-blue-400" size={20} />
@@ -434,7 +434,7 @@ export default function AdminChatInterface() {
                 placeholder="Search guides..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-white/10 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                className="w-full bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-white/10 rounded-xl py-3 pl-11 pr-4 text-sm font-medium text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
               />
             </div>
           </div>
@@ -452,7 +452,7 @@ export default function AdminChatInterface() {
                       <button
                         key={guide._id}
                         onClick={() => startDirectChat(guide._id)}
-                        className={`w-full text-left p-4 border-b border-gray-100 dark:border-white/5 flex gap-4 transition-colors hover:bg-white dark:hover:bg-slate-800 border-l-4 border-l-transparent group`}
+                        className={`w-full text-left p-4 border-b border-gray-100 dark:border-white/5 flex gap-4 transition-colors hover:bg-white dark:hover:bg-[#1E293B] border-l-4 border-l-transparent group`}
                       >
                         <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-white/10 shadow-sm relative">
                            {guide.profilePicture ? (
@@ -493,11 +493,11 @@ export default function AdminChatInterface() {
         </div>
 
         {/* Main Chat Area */}
-        <div className={`${activeRoom ? 'flex' : 'hidden md:flex'} flex-1 flex-col relative z-10 bg-white dark:bg-slate-900`}>
+        <div className={`${activeRoom ? 'flex' : 'hidden md:flex'} flex-1 flex-col relative z-10 bg-white dark:bg-[#0F172A]`}>
           {activeRoom ? (
             <>
               {/* Header */}
-              <div className="h-[88px] shrink-0 border-b border-gray-100 dark:border-slate-700 px-6 flex items-center justify-between bg-white dark:bg-slate-800">
+              <div className="h-[88px] shrink-0 border-b border-gray-100 dark:border-slate-700 px-6 flex items-center justify-between bg-white dark:bg-[#1E293B]">
                 <div className="flex items-center gap-4">
                   <button onClick={() => setActiveRoom(null)} className="md:hidden w-10 h-10 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
                     <ArrowLeft size={18} />
@@ -517,12 +517,12 @@ export default function AdminChatInterface() {
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 custom-scrollbar bg-gray-50 dark:bg-slate-900">
+              <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6 custom-scrollbar bg-gray-50 dark:bg-[#0F172A]">
                 {loadingMessages ? (
                   <div className="flex justify-center items-center h-full"><Loader2 className="animate-spin text-blue-500" /></div>
                 ) : messages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-center p-8 text-gray-500 dark:text-gray-400">
-                    <div className="w-20 h-20 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm rounded-full flex items-center justify-center mb-6">
+                    <div className="w-20 h-20 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-slate-700 shadow-sm rounded-full flex items-center justify-center mb-6">
                       <MessageSquare size={32} className="text-blue-500" />
                     </div>
                     <h3 className="text-lg font-black text-gray-900 dark:text-white mb-2">Secure Communications Channel</h3>
@@ -587,7 +587,7 @@ export default function AdminChatInterface() {
                             <div className={`px-5 py-3.5 rounded-2xl text-sm font-medium shadow-sm flex flex-col gap-2 relative ${
                                 isMe 
                                 ? 'bg-blue-600 text-white rounded-br-sm border border-blue-500' 
-                                : 'bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 rounded-bl-sm border border-gray-100 dark:border-slate-700'
+                                : 'bg-white dark:bg-[#1E293B] text-gray-900 dark:text-gray-100 rounded-bl-sm border border-gray-100 dark:border-slate-700'
                             }`}>
                               {msg.isForwarded && (
                                 <div className={`text-[10px] font-bold italic mb-1 flex items-center gap-1 ${isMe ? 'text-blue-200' : 'text-gray-400'}`}>
@@ -656,7 +656,7 @@ export default function AdminChatInterface() {
               </div>
 
               {/* Input Area */}
-              <div className="p-6 bg-white dark:bg-slate-800 border-t border-gray-100 dark:border-slate-700 shrink-0 flex flex-col gap-3">
+              <div className="p-6 bg-white dark:bg-[#1E293B] border-t border-gray-100 dark:border-slate-700 shrink-0 flex flex-col gap-3">
                 
                 {/* Reply Preview */}
                 {replyingToMessage && (
@@ -671,9 +671,9 @@ export default function AdminChatInterface() {
                   </div>
                 )}
 
-                <form onSubmit={handleSend} className={`flex items-center gap-3 bg-gray-50 dark:bg-slate-900 rounded-[1.5rem] p-2 pr-2 border ${isRecording ? 'border-red-500/50 ring-2 ring-red-500/20' : 'border-gray-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-blue-500/50'} transition-all shadow-sm relative`}>
+                <form onSubmit={handleSend} className={`flex items-center gap-3 bg-gray-50 dark:bg-[#0F172A] rounded-[1.5rem] p-2 pr-2 border ${isRecording ? 'border-red-500/50 ring-2 ring-red-500/20' : 'border-gray-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-blue-500/50'} transition-all shadow-sm relative`}>
                   <div className="flex gap-2 items-center ml-2">
-                    <div className="w-8 h-8 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-gray-400 dark:text-gray-500 shadow-sm shrink-0 border border-gray-200 dark:border-white/5">
+                    <div className="w-8 h-8 rounded-full bg-white dark:bg-[#1E293B] flex items-center justify-center text-gray-400 dark:text-gray-500 shadow-sm shrink-0 border border-gray-200 dark:border-white/5">
                       <ShieldAlert size={14} />
                     </div>
                     <input
@@ -687,7 +687,7 @@ export default function AdminChatInterface() {
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
                       disabled={uploadingAttachment || isRecording}
-                      className="w-8 h-8 rounded-full bg-gray-200 dark:bg-slate-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/10 transition-all border border-transparent dark:border-white/5"
+                      className="w-8 h-8 rounded-full bg-gray-200 dark:bg-[#1E293B] flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/10 transition-all border border-transparent dark:border-white/5"
                     >
                       {uploadingAttachment ? <Loader2 size={14} className="animate-spin" /> : <Paperclip size={14} />}
                     </button>
@@ -698,7 +698,7 @@ export default function AdminChatInterface() {
                       className={`w-8 h-8 rounded-full flex items-center justify-center transition-all border ${
                         isRecording 
                           ? 'bg-red-500 text-white border-red-600 animate-pulse' 
-                          : 'bg-gray-200 dark:bg-slate-800 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/10 border-transparent dark:border-white/5'
+                          : 'bg-gray-200 dark:bg-[#1E293B] text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-white/10 border-transparent dark:border-white/5'
                       }`}
                     >
                       {isRecording ? <Square size={12} fill="currentColor" /> : <Mic size={14} />}
@@ -749,8 +749,8 @@ export default function AdminChatInterface() {
               </div>
             </>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-gray-50 dark:bg-slate-900">
-              <div className="w-32 h-32 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-sm border border-gray-200 dark:border-slate-700 mb-6">
+            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-gray-50 dark:bg-[#0F172A]">
+              <div className="w-32 h-32 bg-white dark:bg-[#1E293B] rounded-full flex items-center justify-center shadow-sm border border-gray-200 dark:border-slate-700 mb-6">
                 <MessageSquare size={48} className="text-blue-500" />
               </div>
               <h3 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight mb-4">Command Center</h3>
@@ -765,7 +765,7 @@ export default function AdminChatInterface() {
       {/* Forward Modal */}
       {forwardingMessage && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-800 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-gray-200 dark:border-slate-700">
+          <div className="bg-white dark:bg-[#1E293B] rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-gray-200 dark:border-slate-700">
             <div className="p-6 border-b border-gray-100 dark:border-slate-700 flex justify-between items-center">
               <h3 className="text-lg font-black text-gray-900 dark:text-white flex items-center gap-2">
                 <Forward className="text-blue-500" /> Forward Message
@@ -775,7 +775,7 @@ export default function AdminChatInterface() {
               </button>
             </div>
             
-            <div className="p-4 bg-gray-50 dark:bg-slate-900 border-b border-gray-100 dark:border-slate-700">
+            <div className="p-4 bg-gray-50 dark:bg-[#0F172A] border-b border-gray-100 dark:border-slate-700">
                <div className="relative">
                 <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input 
@@ -783,7 +783,7 @@ export default function AdminChatInterface() {
                   placeholder="Search guides to forward to..." 
                   value={forwardSearchTerm}
                   onChange={e => setForwardSearchTerm(e.target.value)}
-                  className="w-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm outline-none focus:ring-2 focus:ring-blue-500/50"
+                  className="w-full bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl py-2 pl-9 pr-4 text-sm outline-none focus:ring-2 focus:ring-blue-500/50"
                 />
                </div>
             </div>
@@ -834,7 +834,7 @@ export default function AdminChatInterface() {
       {/* Delete Confirmation Modal */}
       {messageToDelete && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-800 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
+          <div className="bg-white dark:bg-[#1E293B] rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
             <div className="p-6">
               <div className="w-12 h-12 rounded-full bg-red-100 dark:bg-red-500/20 text-red-500 flex items-center justify-center mb-4 mx-auto">
                 <Trash size={24} />

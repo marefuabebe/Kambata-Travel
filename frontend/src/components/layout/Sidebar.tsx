@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { LogOut, HelpCircle, PanelLeftClose, PanelLeftOpen, BadgeCheck, ShieldCheck } from "lucide-react";
+import { HelpCircle, PanelLeftClose, PanelLeftOpen, BadgeCheck, ShieldCheck } from "lucide-react";
+import { LogOut } from "iconoir-react";
 
 export type NavItem = {
   name: string;
@@ -172,7 +173,7 @@ export default function Sidebar({
                   }`}
                 >
                   <Icon 
-                    size={18} 
+                    width={18} height={18} 
                     className={`relative z-10 transition-colors shrink-0 ${
                       isActive ? 'text-[#FF8C00]' 
                       : item.sos ? 'text-red-500 dark:text-red-400'
@@ -263,7 +264,7 @@ export default function Sidebar({
               aria-label="Sign Out"
               className={`w-full flex items-center rounded-[12px] text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-500/5 hover:text-red-600 dark:hover:text-red-400 border border-transparent hover:border-red-200 dark:hover:border-red-500/20 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500/20 ${collapsed ? 'justify-center p-3' : 'gap-3 px-3 py-2.5'}`}
             >
-              <LogOut size={18} className="text-gray-400 dark:text-gray-500 group-hover:text-red-500 transition-colors shrink-0" /> 
+              <LogOut width={18} height={18} className="text-gray-400 dark:text-gray-500 group-hover:text-red-500 transition-colors shrink-0" /> 
               {!collapsed && <span className="truncate min-w-0 flex-1 text-left">Sign Out</span>}
             </button>
             {collapsed && (

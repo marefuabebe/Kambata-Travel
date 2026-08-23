@@ -310,7 +310,7 @@ export default function EnterpriseChatbot() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[10000] hidden sm:block"
+              className="fixed inset-0 bg-[#0F172A] backdrop-blur-sm z-[10000] hidden sm:block"
             />
             
             <motion.div
@@ -408,7 +408,7 @@ export default function EnterpriseChatbot() {
                   <div className="relative hidden sm:block">
                     <button 
                       onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                      className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm transition-all hover:shadow-md"
+                      className="flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-[#1E293B] px-3 py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm transition-all hover:shadow-md"
                     >
                       {language} <ChevronDown size={14} />
                     </button>
@@ -424,8 +424,8 @@ export default function EnterpriseChatbot() {
                           <button
                             key={lang}
                             onClick={() => { setLanguage(lang as 'en'|'am'); setShowLanguageMenu(false); }}
-                            className={`w-full text-left px-4 py-2.5 text-xs font-bold hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors ${
-                              language === lang ? "text-[#0F766E] dark:text-[#2DD4BF] bg-gray-50 dark:bg-slate-800/50" : "text-gray-700 dark:text-gray-300"
+                            className={`w-full text-left px-4 py-2.5 text-xs font-bold hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors ${
+                              language === lang ? "text-[#0F766E] dark:text-[#2DD4BF] bg-gray-50 dark:bg-[#1E293B]" : "text-gray-700 dark:text-gray-300"
                             }`}
                           >
                             {lang === 'en' ? 'English' : 'Amharic'}
@@ -435,10 +435,10 @@ export default function EnterpriseChatbot() {
                     )}
                     </AnimatePresence>
                   </div>
-                  <button onClick={toggleTheme} className="p-2.5 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors sm:hidden">
+                  <button onClick={toggleTheme} className="p-2.5 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-[#1E293B] hover:text-slate-900 dark:hover:text-white transition-colors sm:hidden">
                     {theme === 'dark' ? <Moon size={20}/> : <Sun size={20}/>}
                   </button>
-                  <button onClick={() => setIsOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md">
+                  <button onClick={() => setIsOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-lg bg-white dark:bg-[#1E293B] text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md">
                     <X size={18} />
                   </button>
                 </div>

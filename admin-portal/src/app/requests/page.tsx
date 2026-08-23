@@ -136,7 +136,7 @@ export default function RequestsPage() {
       case "cancelled":
         return <span className="px-3 py-1 bg-slate-50 text-slate-700 dark:bg-slate-500/10 dark:text-slate-400 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-1 border border-slate-200 dark:border-slate-500/20"><XCircle size={10} /> {status.replace(/_/g, ' ')}</span>;
       default:
-        return <span className="px-3 py-1 bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 rounded-full text-[10px] font-black uppercase tracking-wider border border-slate-200 dark:border-slate-700">{status}</span>;
+        return <span className="px-3 py-1 bg-slate-100 text-slate-700 dark:bg-[#1E293B] dark:text-slate-300 rounded-full text-[10px] font-black uppercase tracking-wider border border-slate-200 dark:border-slate-700">{status}</span>;
     }
   };
 
@@ -269,7 +269,7 @@ export default function RequestsPage() {
                       <button onClick={() => openAssignModal(req)} className="flex-1 bg-[#FF8C00] text-white font-bold py-2.5 px-4 rounded-xl hover:bg-[#E67E00] flex items-center justify-center gap-2 transition-colors">
                         <Users size={14} /> Assign
                       </button>
-                      <button onClick={() => handleReject(req._id)} className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold py-2.5 px-4 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors">
+                      <button onClick={() => handleReject(req._id)} className="bg-slate-100 dark:bg-[#1E293B] text-slate-700 dark:text-slate-300 font-bold py-2.5 px-4 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors">
                         <X size={14} /> Reject
                       </button>
                     </div>
@@ -319,7 +319,7 @@ export default function RequestsPage() {
                     Ranked by availability (40%), rating (30%), workload (20%), completion rate (10%)
                   </p>
                 </div>
-                <button onClick={() => setAssigningRequest(null)} className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500">
+                <button onClick={() => setAssigningRequest(null)} className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-[#1E293B] transition-colors text-slate-500">
                   <X size={18} />
                 </button>
               </div>
@@ -336,7 +336,7 @@ export default function RequestsPage() {
                   className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${
                     selectedGuideId === g.guideId
                       ? "border-[#FF8C00] bg-[#FF8C00]/5 dark:bg-[#FF8C00]/10"
-                      : "border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700 bg-white dark:bg-slate-800/50"
+                      : "border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700 bg-white dark:bg-[#1E293B]"
                   }`}
                 >
                   {g.profilePicture ? (
@@ -376,7 +376,7 @@ export default function RequestsPage() {
               <div className="flex gap-3 pt-2">
                 <button
                   onClick={() => setAssigningRequest(null)}
-                  className="flex-1 py-3 rounded-xl border border-slate-200 dark:border-slate-700 font-bold text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  className="flex-1 py-3 rounded-xl border border-slate-200 dark:border-slate-700 font-bold text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1E293B] transition-colors"
                 >
                   Cancel
                 </button>
@@ -504,7 +504,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
                 Creating a Private Schedule for <strong className="text-slate-900 dark:text-white">{request.user?.name}</strong>
               </p>
             </div>
-            <button onClick={onClose} className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500">
+            <button onClick={onClose} className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-[#1E293B] transition-colors text-slate-500">
               <X size={18} />
             </button>
           </div>
@@ -515,12 +515,12 @@ function ConvertModal({ request, onClose, onConvert }: any) {
               <Calendar size={12} />
               {request.preferredDate ? new Date(request.preferredDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : "No date"}
             </span>
-            <span className="flex items-center gap-1.5 text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+            <span className="flex items-center gap-1.5 text-xs font-bold bg-slate-100 dark:bg-[#1E293B] text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
               <Users size={12} />
               {request.travelers || 1} traveler{(request.travelers || 1) !== 1 ? "s" : ""}
             </span>
             {request.preferredTime && (
-              <span className="flex items-center gap-1.5 text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
+              <span className="flex items-center gap-1.5 text-xs font-bold bg-slate-100 dark:bg-[#1E293B] text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700">
                 {request.preferredTime}
               </span>
             )}
@@ -568,7 +568,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
             {loading && (
               <div className="space-y-2">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="h-14 rounded-xl bg-slate-100 dark:bg-slate-800 animate-pulse border border-slate-200 dark:border-slate-700" />
+                  <div key={i} className="h-14 rounded-xl bg-slate-100 dark:bg-[#1E293B] animate-pulse border border-slate-200 dark:border-slate-700" />
                 ))}
               </div>
             )}
@@ -634,7 +634,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
                           className={`flex items-center gap-3 p-3 rounded-xl border-2 ${
                             isNear
                               ? "border-[#FF8C00]/30 bg-[#FF8C00]/5"
-                              : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50"
+                              : "border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#1E293B]"
                           }`}
                         >
                           {/* Avatar */}
@@ -676,7 +676,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
                             className={`flex items-center gap-1 text-[11px] font-black text-white px-2.5 py-1.5 rounded-lg transition-colors flex-shrink-0 ${
                               isNear
                                 ? "bg-[#FF8C00] hover:bg-[#E67E00]"
-                                : "bg-slate-800 hover:bg-slate-900 dark:bg-slate-600 dark:hover:bg-slate-500"
+                                : "bg-[#1E293B] hover:bg-[#0F172A] dark:bg-slate-600 dark:hover:bg-slate-500"
                             }`}
                           >
                             Use This <ArrowRight size={10} />
@@ -736,7 +736,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
                     className={`flex items-center gap-3 p-3 rounded-xl border-2 transition-all cursor-pointer
                       ${selectedGuide === g._id
                         ? "border-[#FF8C00] bg-[#FF8C00]/5 dark:bg-[#FF8C00]/10"
-                        : "border-transparent bg-slate-50 dark:bg-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700"}`}
+                        : "border-transparent bg-slate-50 dark:bg-[#1E293B] hover:border-slate-200 dark:hover:border-slate-700"}`}
                   >
                     <div className="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex-shrink-0 border border-slate-200 dark:border-slate-600">
                       {g.profilePicture
@@ -760,7 +760,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
                 ))}
 
                 {busyGuides.map(g => (
-                  <div key={g._id} className="flex items-start gap-3 p-3 rounded-xl border-2 border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30 opacity-60 cursor-not-allowed">
+                  <div key={g._id} className="flex items-start gap-3 p-3 rounded-xl border-2 border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-[#1E293B] opacity-60 cursor-not-allowed">
                     <div className="w-9 h-9 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden flex-shrink-0 grayscale">
                       {g.profilePicture
                         ? <img src={g.profilePicture} alt={g.name} className="w-full h-full object-cover" />
@@ -819,7 +819,7 @@ function ConvertModal({ request, onClose, onConvert }: any) {
         <div className="p-6 pt-0 flex-shrink-0 border-t border-slate-100 dark:border-[#334155] flex gap-3 pt-4">
           <button
             onClick={onClose}
-            className="flex-1 py-3 bg-slate-100 dark:bg-slate-800 font-bold rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
+            className="flex-1 py-3 bg-slate-100 dark:bg-[#1E293B] font-bold rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700"
           >
             Cancel
           </button>

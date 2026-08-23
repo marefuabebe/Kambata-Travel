@@ -136,7 +136,7 @@ function ChangeBadge({ change, mode = "percent" }: { change: number; mode?: "per
 
   if (isFlat) {
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
+      <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#1E293B] text-slate-500">
         <Minus size={10} /> Flat
       </span>
     );

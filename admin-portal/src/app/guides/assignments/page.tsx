@@ -162,7 +162,7 @@ export default function MasterAssignmentsPage() {
             placeholder="Search guides or tours..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3.5 font-medium text-sm outline-none focus:border-orange-500 dark:focus:border-orange-500 shadow-sm transition-all"
+            className="w-full bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3.5 font-medium text-sm outline-none focus:border-orange-500 dark:focus:border-orange-500 shadow-sm transition-all"
           />
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
         </div>
@@ -170,7 +170,7 @@ export default function MasterAssignmentsPage() {
 
       {/* Summary Statistic Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
-        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
+        <div className="bg-white dark:bg-[#1E293B] p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
           <div>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Total Guides</p>
             <h3 className="text-2xl md:text-3xl font-black">{roster.length}</h3>
@@ -179,7 +179,7 @@ export default function MasterAssignmentsPage() {
             <Users size={24} />
           </div>
         </div>
-        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
+        <div className="bg-white dark:bg-[#1E293B] p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
           <div>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Available Now</p>
             <h3 className="text-2xl md:text-3xl font-black text-green-600 dark:text-green-500">{roster.filter(r => r.status === 'Available').length}</h3>
@@ -188,7 +188,7 @@ export default function MasterAssignmentsPage() {
             <CheckCircle size={24} />
           </div>
         </div>
-        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all sm:col-span-1">
+        <div className="bg-white dark:bg-[#1E293B] p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all sm:col-span-1">
           <div>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Highly Active</p>
             <h3 className="text-2xl md:text-3xl font-black text-violet-600 dark:text-violet-500">{roster.filter(r => r.status === 'Highly Active').length}</h3>
@@ -199,10 +199,10 @@ export default function MasterAssignmentsPage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#1E293B] rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center px-4">
-            <div className="w-16 h-16 bg-slate-50 dark:bg-slate-900 rounded-[20px] flex items-center justify-center mb-6 shadow-sm border border-slate-200 dark:border-slate-700">
+            <div className="w-16 h-16 bg-slate-50 dark:bg-[#0F172A] rounded-[20px] flex items-center justify-center mb-6 shadow-sm border border-slate-200 dark:border-slate-700">
               <Users className="text-slate-400 dark:text-slate-500" size={32} />
             </div>
             <h3 className="text-xl font-black mb-2">No Guides Found</h3>
@@ -215,7 +215,7 @@ export default function MasterAssignmentsPage() {
             {/* Desktop Table */}
             <div className="hidden lg:block overflow-x-auto custom-scrollbar">
               <table className="w-full text-left border-collapse">
-                <thead className="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
+                <thead className="bg-slate-50 dark:bg-[#0F172A] border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10">
                   <tr>
                     <th className="px-6 py-5 text-[11px] font-black uppercase tracking-wider text-slate-500">Guide Name</th>
                     <th className="px-6 py-5 text-[11px] font-black uppercase tracking-wider text-slate-500">Status</th>
@@ -231,11 +231,11 @@ export default function MasterAssignmentsPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="hover:bg-slate-50/50 dark:hover:bg-slate-900/50 transition-colors"
+                      className="hover:bg-slate-50/50 dark:hover:bg-[#0F172A] transition-colors"
                     >
                       <td className="px-6 py-5 align-top">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-[14px] bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 overflow-hidden flex-shrink-0 shadow-sm">
+                          <div className="w-12 h-12 rounded-[14px] bg-slate-100 dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700 overflow-hidden flex-shrink-0 shadow-sm">
                             {g.guideProfile ? (
                               <img src={g.guideProfile} alt={g.guideName} className="w-full h-full object-cover" />
                             ) : (
@@ -270,7 +270,7 @@ export default function MasterAssignmentsPage() {
                         ) : (
                           <div className="space-y-3">
                             {g.assignments.map(a => (
-                              <div key={a.scheduleId} className="flex items-center gap-3 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700">
+                              <div key={a.scheduleId} className="flex items-center gap-3 bg-slate-50 dark:bg-[#0F172A] p-2.5 rounded-xl border border-slate-200 dark:border-slate-700">
                                 <p className="font-bold text-sm truncate max-w-[200px]" title={a.tourTitle}>
                                   {a.tourTitle}
                                 </p>
@@ -314,14 +314,14 @@ export default function MasterAssignmentsPage() {
                                     if (editingScheduleId === a.scheduleId) setEditingScheduleId(null);
                                     else setEditingScheduleId(a.scheduleId);
                                   }}
-                                  className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-orange-500 hover:border-orange-200 dark:hover:border-orange-500/30 transition-all shadow-sm"
+                                  className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-orange-500 hover:border-orange-200 dark:hover:border-orange-500/30 transition-all shadow-sm"
                                   title="Change Guide"
                                 >
                                   <Edit2 size={16} />
                                 </button>
                                 <button 
                                   onClick={() => handleRemove(a.tourId, a.scheduleId)}
-                                  className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-red-600 dark:hover:text-red-500 hover:border-red-200 dark:hover:border-red-500/30 transition-all shadow-sm"
+                                  className="w-9 h-9 rounded-xl bg-slate-50 dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-red-600 dark:hover:text-red-500 hover:border-red-200 dark:hover:border-red-500/30 transition-all shadow-sm"
                                   title="Remove Assignment"
                                 >
                                   <Trash2 size={16} />
@@ -339,7 +339,7 @@ export default function MasterAssignmentsPage() {
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          className="bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-700"
+                          className="bg-slate-50/50 dark:bg-[#0F172A] border-y border-slate-200 dark:border-slate-700"
                         >
                           <td colSpan={5} className="px-6 py-5">
                             <div className="flex items-center justify-end gap-3 max-w-xl ml-auto">
@@ -349,7 +349,7 @@ export default function MasterAssignmentsPage() {
                               <div className="relative flex-1">
                                 <select 
                                   id={`select-${editingScheduleId}`}
-                                  className="w-full appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
+                                  className="w-full appearance-none bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
                                 >
                                   <option value="">Select new guide...</option>
                                   {guidesList.filter(newG => newG._id !== g.guideId).map(newG => (
@@ -374,7 +374,7 @@ export default function MasterAssignmentsPage() {
                               </button>
                               <button 
                                 onClick={() => setEditingScheduleId(null)}
-                                className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
+                                className="w-10 h-10 rounded-xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
                               >
                                 <X size={18} />
                               </button>
@@ -390,19 +390,19 @@ export default function MasterAssignmentsPage() {
             </div>
 
             {/* Mobile / Tablet Cards Grid (hidden on large desktop) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 p-4 md:p-6 lg:hidden bg-slate-50/50 dark:bg-slate-900/20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 p-4 md:p-6 lg:hidden bg-slate-50/50 dark:bg-[#0F172A]">
               {filtered.map((g, idx) => (
                 <motion.div 
                   key={g.guideId}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-white dark:bg-slate-800 rounded-2xl md:rounded-[20px] border border-slate-200 dark:border-slate-700 p-5 shadow-sm space-y-5"
+                  className="bg-white dark:bg-[#1E293B] rounded-2xl md:rounded-[20px] border border-slate-200 dark:border-slate-700 p-5 shadow-sm space-y-5"
                 >
                   {/* Top Row: Avatar, Name, Status */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-[14px] bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 overflow-hidden flex-shrink-0 shadow-sm">
+                      <div className="w-12 h-12 rounded-[14px] bg-slate-100 dark:bg-[#0F172A] border border-slate-200 dark:border-slate-700 overflow-hidden flex-shrink-0 shadow-sm">
                         {g.guideProfile ? (
                           <img src={g.guideProfile} alt={g.guideName} className="w-full h-full object-cover" />
                         ) : (
@@ -441,11 +441,11 @@ export default function MasterAssignmentsPage() {
                   <div>
                     <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 pl-1">Current Tours & Actions</h4>
                     {g.assignments.length === 0 ? (
-                      <div className="flex items-center justify-center py-6 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
+                      <div className="flex items-center justify-center py-6 bg-slate-50 dark:bg-[#0F172A] rounded-xl border border-dashed border-slate-200 dark:border-slate-700">
                         <p className="text-sm font-medium text-slate-400">No active assignments</p>
                       </div>
                     ) : (
-                      <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-4">
+                      <div className="bg-slate-50 dark:bg-[#0F172A] rounded-xl p-4 border border-slate-200 dark:border-slate-700 space-y-4">
                         {g.assignments.map(a => {
                           const dateObj = new Date(a.startDate);
                           const isValid = !isNaN(dateObj.getTime());
@@ -477,7 +477,7 @@ export default function MasterAssignmentsPage() {
                                     <div className="relative">
                                       <select 
                                         id={`m-select-${a.scheduleId}`}
-                                        className="w-full min-h-[44px] appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
+                                        className="w-full min-h-[44px] appearance-none bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
                                       >
                                         <option value="">Select new guide...</option>
                                         {guidesList.filter(newG => newG._id !== g.guideId).map(newG => (
@@ -499,7 +499,7 @@ export default function MasterAssignmentsPage() {
                                       </button>
                                       <button 
                                         onClick={() => setEditingScheduleId(null)}
-                                        className="w-[44px] h-[44px] rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
+                                        className="w-[44px] h-[44px] rounded-xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
                                       >
                                         <X size={18} />
                                       </button>
@@ -514,7 +514,7 @@ export default function MasterAssignmentsPage() {
                                   >
                                     <button 
                                       onClick={() => setEditingScheduleId(a.scheduleId)}
-                                      className="flex-1 min-h-[44px] flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm"
+                                      className="flex-1 min-h-[44px] flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm"
                                     >
                                       <Edit2 size={14} /> Reassign
                                     </button>

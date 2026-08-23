@@ -261,7 +261,7 @@ export default function SettingsPage() {
                   <div className="space-y-8 relative z-10">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-6">
                       <div className="relative group self-start">
-                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-100 dark:bg-slate-800 border-4 border-white dark:border-[#1E293B] shadow-md overflow-hidden flex items-center justify-center">
+                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-100 dark:bg-[#1E293B] border-4 border-white dark:border-[#1E293B] shadow-md overflow-hidden flex items-center justify-center">
                           {profileData.profilePicture ? (
                             <img src={profileData.profilePicture} alt="Profile" className="w-full h-full object-cover" />
                           ) : (
@@ -303,7 +303,7 @@ export default function SettingsPage() {
                           id="email"
                           disabled
                           value={profileData.email}
-                          className="peer w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 pt-6 pb-2 text-sm font-bold text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed min-h-[56px] placeholder-transparent" 
+                          className="peer w-full bg-slate-100 dark:bg-[#1E293B] border border-slate-200 dark:border-[#334155] rounded-xl px-4 pl-10 pt-6 pb-2 text-sm font-bold text-slate-500 dark:text-slate-400 outline-none cursor-not-allowed min-h-[56px] placeholder-transparent" 
                           placeholder="Email"
                         />
                         <Mail className="absolute left-4 top-[22px] text-slate-400" size={16} />
@@ -555,8 +555,8 @@ export default function SettingsPage() {
                 
                 {/* Booking Rules Card */}
                 <div className="bg-white dark:bg-[#1E293B] rounded-[24px] p-6 border border-slate-200 dark:border-[#334155] shadow-sm flex items-center gap-5 relative overflow-hidden group cursor-not-allowed">
-                  <div className="absolute inset-0 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-[1px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-slate-900/80 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5">
+                  <div className="absolute inset-0 bg-slate-50/50 dark:bg-[#0F172A] backdrop-blur-[1px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-[#0F172A] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5">
                       <Lock size={12} /> Locked by Admin
                     </div>
                   </div>
@@ -577,8 +577,8 @@ export default function SettingsPage() {
 
                 {/* Refund Policy Card */}
                 <div className="bg-white dark:bg-[#1E293B] rounded-[24px] p-6 border border-slate-200 dark:border-[#334155] shadow-sm flex items-center gap-5 relative overflow-hidden group cursor-not-allowed">
-                  <div className="absolute inset-0 bg-slate-50/50 dark:bg-slate-900/50 backdrop-blur-[1px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-slate-900/80 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5">
+                  <div className="absolute inset-0 bg-slate-50/50 dark:bg-[#0F172A] backdrop-blur-[1px] z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-[#0F172A] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5">
                       <Lock size={12} /> Locked by Admin
                     </div>
                   </div>
@@ -613,10 +613,10 @@ export default function SettingsPage() {
                       </p>
                     </div>
                     <div className="pt-2 flex flex-wrap gap-2">
-                      <span className="px-3 py-1.5 bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300 shadow-sm flex items-center gap-1.5">
+                      <span className="px-3 py-1.5 bg-[#1E293B] backdrop-blur-sm border border-slate-700/50 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300 shadow-sm flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Audit Enabled
                       </span>
-                      <span className="px-3 py-1.5 bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300 shadow-sm flex items-center gap-1.5">
+                      <span className="px-3 py-1.5 bg-[#1E293B] backdrop-blur-sm border border-slate-700/50 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-300 shadow-sm flex items-center gap-1.5">
                         <Lock size={10} /> v1.0.4 Secure
                       </span>
                     </div>

@@ -12,9 +12,6 @@ import {
   Bell,
   Heart,
   Star,
-  Settings,
-  User,
-  LogOut,
   Search,
   Menu,
   LifeBuoy,
@@ -31,6 +28,7 @@ import { applyExplorerTheme, readExplorerTheme } from "@/utils/explorerTheme";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/components/layout/Sidebar";
+import { Settings, User, LogOut } from "iconoir-react";
 
 const getNav = (t: any) => [
   { name: t("sidebar.dashboard"), icon: LayoutDashboard, path: "/explorer-dashboard" },
@@ -303,7 +301,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
                    <Link key={item.name} href={item.path} className="relative flex-1 flex flex-col items-center justify-center h-full group transition-all duration-300">
                       <div className="relative z-10 flex flex-col items-center justify-center">
                         <item.icon 
-                          size={22} 
+                          width={22} height={22} 
                           className={`transition-all duration-300 ease-out ${isActive ? "text-[#0F766E] -translate-y-2 scale-110" : "text-gray-500 dark:text-gray-400 group-active:scale-90"}`} 
                           strokeWidth={isActive ? 3 : 2.5}
                         />

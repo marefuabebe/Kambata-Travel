@@ -427,10 +427,10 @@ export default function ToursPage() {
                     <div className="col-span-2 lg:col-span-1">
                       <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Unit</label>
                       <select value={formData.durationUnit} onChange={e => setFormData({...formData, durationUnit: e.target.value})} className="w-full bg-gray-50/50 dark:bg-black/20 border-2 border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 rounded-xl md:rounded-2xl px-4 py-2.5 md:py-4 text-sm font-bold text-gray-900 dark:text-white outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-all shadow-sm appearance-none">
-                        <option value="hours" className="bg-white dark:bg-slate-900">Hours</option>
-                        <option value="days" className="bg-white dark:bg-slate-900">Days</option>
-                        <option value="weeks" className="bg-white dark:bg-slate-900">Weeks</option>
-                        <option value="months" className="bg-white dark:bg-slate-900">Months</option>
+                        <option value="hours" className="bg-white dark:bg-[#0F172A]">Hours</option>
+                        <option value="days" className="bg-white dark:bg-[#0F172A]">Days</option>
+                        <option value="weeks" className="bg-white dark:bg-[#0F172A]">Weeks</option>
+                        <option value="months" className="bg-white dark:bg-[#0F172A]">Months</option>
                       </select>
                     </div>
                   </div>
@@ -439,9 +439,9 @@ export default function ToursPage() {
                     <div>
                       <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Difficulty</label>
                       <select value={formData.difficulty} onChange={e => setFormData({...formData, difficulty: e.target.value})} className="w-full bg-gray-50/50 dark:bg-black/20 border-2 border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 rounded-xl md:rounded-2xl px-4 py-2.5 md:py-4 text-sm font-bold text-gray-900 dark:text-white outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-all shadow-sm appearance-none">
-                        <option value="easy" className="bg-white dark:bg-slate-900">Easy</option>
-                        <option value="moderate" className="bg-white dark:bg-slate-900">Moderate</option>
-                        <option value="hard" className="bg-white dark:bg-slate-900">Hard</option>
+                        <option value="easy" className="bg-white dark:bg-[#0F172A]">Easy</option>
+                        <option value="moderate" className="bg-white dark:bg-[#0F172A]">Moderate</option>
+                        <option value="hard" className="bg-white dark:bg-[#0F172A]">Hard</option>
                       </select>
                     </div>
                     <div>
@@ -451,9 +451,9 @@ export default function ToursPage() {
                     <div className="col-span-2 lg:col-span-1">
                       <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Destination *</label>
                       <select required value={formData.destinationId} onChange={e => setFormData({...formData, destinationId: e.target.value})} className="w-full bg-gray-50/50 dark:bg-black/20 border-2 border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 rounded-xl md:rounded-2xl px-4 py-2.5 md:py-4 text-sm font-bold text-gray-900 dark:text-white outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-all shadow-sm appearance-none">
-                        <option value="" disabled className="bg-white dark:bg-slate-900">Select Destination</option>
+                        <option value="" disabled className="bg-white dark:bg-[#0F172A]">Select Destination</option>
                         {destinations.map(d => (
-                          <option key={d._id} value={d._id} className="bg-white dark:bg-slate-900">{d.name?.en || "Unknown"}</option>
+                          <option key={d._id} value={d._id} className="bg-white dark:bg-[#0F172A]">{d.name?.en || "Unknown"}</option>
                         ))}
                       </select>
                     </div>

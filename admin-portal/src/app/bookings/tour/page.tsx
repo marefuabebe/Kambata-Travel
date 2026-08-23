@@ -154,7 +154,7 @@ export default function BookingMonitor() {
             
             <button 
               onClick={fetchBookings} 
-              className="w-full sm:w-auto bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity whitespace-nowrap flex items-center justify-center gap-2 shadow-md"
+              className="w-full sm:w-auto bg-[#0F172A] dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity whitespace-nowrap flex items-center justify-center gap-2 shadow-md"
             >
               <Filter size={16} />
               Apply

@@ -127,7 +127,7 @@ export default function AttendancePage() {
           </div>
 
           {isLocked && (
-            <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl flex items-center gap-3 mb-6 shadow-sm">
+            <div className="bg-slate-50 dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 p-4 rounded-2xl flex items-center gap-3 mb-6 shadow-sm">
               <Lock size={20} className="text-slate-500" />
               <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
                 This schedule is locked. Attendance can no longer be modified.

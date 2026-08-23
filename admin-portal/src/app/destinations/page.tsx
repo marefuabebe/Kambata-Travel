@@ -290,10 +290,10 @@ export default function DestinationsPage() {
                     <div>
                       <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2 pl-1">Category</label>
                       <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full bg-gray-50/50 dark:bg-black/20 border-2 border-gray-100 dark:border-white/5 hover:border-gray-200 dark:hover:border-white/10 rounded-xl md:rounded-2xl px-4 py-2.5 md:py-4 text-sm font-bold text-gray-900 dark:text-white outline-none focus:ring-4 focus:ring-orange-500/20 focus:border-orange-500 transition-all shadow-sm appearance-none">
-                        <option value="nature" className="bg-white dark:bg-slate-900">Nature</option>
-                        <option value="culture" className="bg-white dark:bg-slate-900">Culture</option>
-                        <option value="historical" className="bg-white dark:bg-slate-900">Historical</option>
-                        <option value="adventure" className="bg-white dark:bg-slate-900">Adventure</option>
+                        <option value="nature" className="bg-white dark:bg-[#0F172A]">Nature</option>
+                        <option value="culture" className="bg-white dark:bg-[#0F172A]">Culture</option>
+                        <option value="historical" className="bg-white dark:bg-[#0F172A]">Historical</option>
+                        <option value="adventure" className="bg-white dark:bg-[#0F172A]">Adventure</option>
                       </select>
                     </div>
                   </div>

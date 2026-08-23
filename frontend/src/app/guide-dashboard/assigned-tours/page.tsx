@@ -184,7 +184,7 @@ export default function AssignedToursPage() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: idx * 0.05 }}
-                    className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col gap-4"
+                    className="bg-white dark:bg-[#1E293B] p-4 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col gap-4"
                   >
                     <div className="flex justify-between items-start">
                       <div>

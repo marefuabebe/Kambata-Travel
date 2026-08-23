@@ -75,7 +75,7 @@ function getStatusBadge(app: GuideApplicant, tab: TabKey) {
   return {
     label: "Unverified",
     className:
-      "bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600",
+      "bg-slate-100 text-slate-600 border-slate-200 dark:bg-[#1E293B] dark:text-slate-300 dark:border-slate-600",
   };
 }
 
@@ -477,7 +477,7 @@ export default function GuideAppsPage() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute inset-0 bg-slate-900/60 dark:bg-black/70 backdrop-blur-sm"
+                  className="absolute inset-0 bg-[#0F172A] dark:bg-black/70 backdrop-blur-sm"
                   onClick={() => setSelectedGuide(null)}
                 />
 

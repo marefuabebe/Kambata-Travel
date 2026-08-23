@@ -100,7 +100,7 @@ export default function PayoutsPage() {
       case "rejected":
         return <span className="px-3 py-1 bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-500/20 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">Rejected</span>;
       default:
-        return <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">{status}</span>;
+        return <span className="px-3 py-1 bg-slate-100 dark:bg-[#1E293B] text-slate-700 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">{status}</span>;
     }
   };
 
@@ -204,7 +204,7 @@ export default function PayoutsPage() {
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
-            <div className="w-24 h-24 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mb-6 border-4 border-white dark:border-[#0F172A] shadow-md relative z-10">
+            <div className="w-24 h-24 bg-slate-50 dark:bg-[#1E293B] rounded-full flex items-center justify-center mb-6 border-4 border-white dark:border-[#0F172A] shadow-md relative z-10">
               <Wallet className="text-slate-400" size={40} />
             </div>
             <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight relative z-10">No Payouts Found</h3>
@@ -216,7 +216,7 @@ export default function PayoutsPage() {
             {(searchQuery || statusFilter !== "all") && (
               <button 
                 onClick={() => { setSearchQuery(""); setStatusFilter("all"); }}
-                className="mt-6 px-6 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-bold transition-colors relative z-10"
+                className="mt-6 px-6 py-2.5 bg-slate-100 dark:bg-[#1E293B] hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-bold transition-colors relative z-10"
               >
                 Clear Filters
               </button>
@@ -241,7 +241,7 @@ export default function PayoutsPage() {
                   <div className="flex-1 flex flex-col justify-between space-y-6 relative z-10">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-[#1E293B] flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
+                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-100 dark:bg-[#1E293B] border-2 border-white dark:border-[#1E293B] flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
                           {req.guide?.profilePicture ? (
                             <img src={req.guide.profilePicture} alt="Avatar" className="w-full h-full object-cover" />
                           ) : (
@@ -329,7 +329,7 @@ export default function PayoutsPage() {
                             <button
                               disabled={processingId === req._id}
                               onClick={() => { setInputValue(""); setModalState({ id: req._id, type: "reject" }); }}
-                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
+                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
                             >
                               {processingId === req._id ? <Loader2 size={16} className="animate-spin" /> : <XCircle size={16} />} 
                               Reject
@@ -337,7 +337,7 @@ export default function PayoutsPage() {
                             <button
                               disabled={processingId === req._id}
                               onClick={() => { setInputValue(""); setModalState({ id: req._id, type: "approve" }); }}
-                              className="flex-[2] px-6 py-3 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-black hover:bg-slate-800 dark:hover:bg-white shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 min-h-[44px] text-sm"
+                              className="flex-[2] px-6 py-3 rounded-xl bg-[#0F172A] dark:bg-slate-100 text-white dark:text-slate-900 font-black hover:bg-[#1E293B] dark:hover:bg-white shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-50 min-h-[44px] text-sm"
                             >
                               {processingId === req._id ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle2 size={16} />} 
                               Approve
@@ -349,7 +349,7 @@ export default function PayoutsPage() {
                             <button
                               disabled={processingId === req._id}
                               onClick={() => { setInputValue(""); setModalState({ id: req._id, type: "reject" }); }}
-                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
+                              className="flex-1 px-4 py-3 rounded-xl bg-slate-50 dark:bg-[#1E293B] text-slate-600 dark:text-slate-300 font-bold hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-600 dark:hover:text-red-400 flex items-center justify-center gap-2 transition-all disabled:opacity-50 border border-slate-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30 min-h-[44px] text-sm"
                             >
                               {processingId === req._id ? <Loader2 size={16} className="animate-spin" /> : <XCircle size={16} />} 
                               Reject
@@ -365,7 +365,7 @@ export default function PayoutsPage() {
                           </>
                         )}
                         {(req.status === "completed" || req.status === "rejected") && (
-                           <div className="w-full flex items-center justify-center py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl min-h-[44px] text-slate-500 dark:text-slate-400 text-sm font-bold">
+                           <div className="w-full flex items-center justify-center py-3 bg-slate-50 dark:bg-[#1E293B] border border-slate-200 dark:border-slate-700 rounded-xl min-h-[44px] text-slate-500 dark:text-slate-400 text-sm font-bold">
                              {req.status === "completed" ? "Payment Completed" : "Payout Rejected"}
                            </div>
                         )}
@@ -383,7 +383,7 @@ export default function PayoutsPage() {
       {mounted && createPortal(
         <AnimatePresence>
           {modalState && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 dark:bg-black/60 backdrop-blur-sm">
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0F172A] dark:bg-black/60 backdrop-blur-sm">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

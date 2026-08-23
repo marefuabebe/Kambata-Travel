@@ -347,7 +347,7 @@ export default function GuideDashboardPage() {
                  
                  <div className="p-5">
                     {/* Live Progress */}
-                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 mb-5 border border-slate-100 dark:border-slate-800">
+                    <div className="bg-slate-50 dark:bg-[#1E293B] rounded-2xl p-4 mb-5 border border-slate-100 dark:border-slate-800">
                        <div className="flex justify-between items-center mb-3">
                          <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{t("guideDashboard.mobile.tourProgress")}</span>
                          <span className="text-sm font-black text-[#D97706]">65%</span>
@@ -374,7 +374,7 @@ export default function GuideDashboardPage() {
                     </div>
 
                     {/* Traveler Preview */}
-                    <div className="flex justify-between items-center bg-white dark:bg-slate-900 rounded-2xl p-4 border border-slate-100 dark:border-slate-800 shadow-sm mb-5">
+                    <div className="flex justify-between items-center bg-white dark:bg-[#0F172A] rounded-2xl p-4 border border-slate-100 dark:border-slate-800 shadow-sm mb-5">
                       <div>
                         <p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-1 tracking-wide uppercase">{t("guideDashboard.mobile.todaysTravelers")}</p>
                         <p className="text-sm font-black text-slate-800 dark:text-slate-200">John, Sarah +10 more</p>
@@ -382,7 +382,7 @@ export default function GuideDashboardPage() {
                       <div className="flex -space-x-2">
                         <div className="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm font-bold">US</div>
                         <div className="w-9 h-9 rounded-full bg-red-50 dark:bg-red-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm font-bold">UK</div>
-                        <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-900 flex justify-center items-center text-[10px] font-black text-slate-600 dark:text-slate-300 shadow-sm">+10</div>
+                        <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#1E293B] border-2 border-white dark:border-slate-900 flex justify-center items-center text-[10px] font-black text-slate-600 dark:text-slate-300 shadow-sm">+10</div>
                       </div>
                     </div>
 
@@ -393,14 +393,14 @@ export default function GuideDashboardPage() {
                          <p className="text-base font-black text-amber-900 dark:text-amber-400">{data.upcomingSchedule.meetingPoint}</p>
                          <p className="text-xs font-bold text-amber-600 dark:text-amber-500 mt-1 flex items-center gap-1"><Navigation size={12} /> {t("guideDashboard.mobile.minutesAway")}</p>
                        </div>
-                       <button className="w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-md text-amber-600 dark:text-amber-500 hover:scale-105 active:scale-95 transition-all">
+                       <button className="w-12 h-12 bg-white dark:bg-[#1E293B] rounded-full flex items-center justify-center shadow-md text-amber-600 dark:text-amber-500 hover:scale-105 active:scale-95 transition-all">
                           <Map size={20} className="stroke-[2.5]" />
                        </button>
                     </div>
                  </div>
                  
                  <div className="px-5 pb-5 flex gap-3">
-                    <Link href={`/guide-dashboard/assigned-tours/${data.upcomingSchedule.tourId}/${data.upcomingSchedule.scheduleId}`} className="flex-1 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600 text-slate-700 dark:text-slate-200 py-3.5 rounded-xl text-sm font-black text-center active:scale-95 transition-all">
+                    <Link href={`/guide-dashboard/assigned-tours/${data.upcomingSchedule.tourId}/${data.upcomingSchedule.scheduleId}`} className="flex-1 bg-white dark:bg-[#1E293B] border-2 border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600 text-slate-700 dark:text-slate-200 py-3.5 rounded-xl text-sm font-black text-center active:scale-95 transition-all">
                       {t("guideDashboard.mobile.viewDetails")}
                     </Link>
                     <button className="flex-1 bg-gradient-to-r from-[#D97706] to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white py-3.5 rounded-xl text-sm font-black text-center active:scale-95 transition-all shadow-[0_8px_20px_rgba(217,119,6,0.3)]">

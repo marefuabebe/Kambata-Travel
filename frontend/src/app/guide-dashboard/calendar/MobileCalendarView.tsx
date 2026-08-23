@@ -317,7 +317,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
 
                           <div className="flex gap-3">
                             {ev.isLocked ? (
-                              <button className="flex-1 bg-slate-700 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-slate-700/20 hover:bg-slate-800 transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Viewing details..."); }}>
+                              <button className="flex-1 bg-slate-700 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-slate-700/20 hover:bg-[#1E293B] transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Viewing details..."); }}>
                                 View Details (Locked)
                               </button>
                             ) : ev.status === "completed" ? (
@@ -449,7 +449,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
                 
                 <div className="pb-8 pt-4 space-y-3">
                   {selectedTour.isLocked ? (
-                    <button className="w-full bg-slate-700 hover:bg-slate-800 text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-slate-700/25 transition-colors">
+                    <button className="w-full bg-slate-700 hover:bg-[#1E293B] text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-slate-700/25 transition-colors">
                       View Details (Locked)
                     </button>
                   ) : selectedTour.status === "completed" ? (

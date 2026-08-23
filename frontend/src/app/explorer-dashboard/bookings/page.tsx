@@ -151,7 +151,7 @@ export default function MyBookingsPage() {
         initial={{ opacity: 0, y: 10 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ delay: 0.2 }}
-        className="flex bg-white dark:bg-[#1E1E1E] rounded-xl p-1 mb-8 w-max border border-gray-200 dark:border-white/10 shadow-sm relative z-[10]"
+        className="flex bg-white dark:bg-[#1E293B] rounded-xl p-1 mb-8 w-max border border-gray-200 dark:border-white/10 shadow-sm relative z-[10]"
       >
         {(["tours", "packages"] as Tab[]).map((tName) => (
           <button

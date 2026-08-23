@@ -99,7 +99,7 @@ export default function PaymentsPage() {
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left">
-                <thead className="bg-gray-50 dark:bg-slate-900/50 border-b border-gray-200 dark:border-slate-700">
+                <thead className="bg-gray-50 dark:bg-[#0F172A] border-b border-gray-200 dark:border-slate-700">
                   <tr>
                     <th className="px-6 py-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">{t("payments.table.transactionRef")}</th>
                     <th className="px-6 py-4 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">{t("payments.table.item")}</th>
@@ -120,7 +120,7 @@ export default function PaymentsPage() {
                     }
 
                     return (
-                      <tr key={tx._id} className="hover:bg-gray-50 dark:hover:bg-slate-800/50 transition-colors">
+                      <tr key={tx._id} className="hover:bg-gray-50 dark:hover:bg-[#1E293B] transition-colors">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className="font-mono text-xs text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded">
                             {tx.tx_ref}
@@ -198,7 +198,7 @@ export default function PaymentsPage() {
                 }
 
                 return (
-                  <div key={tx._id} className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col gap-3">
+                  <div key={tx._id} className="bg-white dark:bg-[#1E293B] p-4 rounded-xl border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col gap-3">
                     <div className="flex justify-between items-start">
                       <div>
                         <span className="font-mono text-[10px] text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded">
@@ -208,7 +208,7 @@ export default function PaymentsPage() {
                           {tourTitle}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1.5 bg-gray-50 dark:bg-slate-900 px-2.5 py-1 rounded-full">
+                      <div className="flex items-center gap-1.5 bg-gray-50 dark:bg-[#0F172A] px-2.5 py-1 rounded-full">
                         {tx.status === "success" && <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />}
                         {tx.status === "failed" && <XCircle className="w-3.5 h-3.5 text-red-500" />}
                         {tx.status === "pending" && <Clock className="w-3.5 h-3.5 text-amber-500" />}

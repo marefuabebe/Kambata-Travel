@@ -157,10 +157,10 @@ export default function CheckInsPage() {
             onChange={(e) => setStatusFilter(e.target.value)}
             className="w-full bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm font-medium text-gray-900 dark:text-white appearance-none focus:ring-2 focus:ring-[#1A331B] dark:focus:ring-emerald-500 outline-none"
           >
-            <option value="" className="dark:bg-slate-900 dark:text-white">All Statuses</option>
-            <option value="SUCCESS" className="dark:bg-slate-900 dark:text-white">Success</option>
-            <option value="FAILED" className="dark:bg-slate-900 dark:text-white">Failed</option>
-            <option value="OVERRIDE" className="dark:bg-slate-900 dark:text-white">Override</option>
+            <option value="" className="dark:bg-[#0F172A] dark:text-white">All Statuses</option>
+            <option value="SUCCESS" className="dark:bg-[#0F172A] dark:text-white">Success</option>
+            <option value="FAILED" className="dark:bg-[#0F172A] dark:text-white">Failed</option>
+            <option value="OVERRIDE" className="dark:bg-[#0F172A] dark:text-white">Override</option>
           </select>
         </div>
       </div>

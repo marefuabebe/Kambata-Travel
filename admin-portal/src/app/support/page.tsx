@@ -212,7 +212,7 @@ export default function AdminSupportPage() {
 
       {/* Ticket Modal */}
       {selectedTicket && (
-        <div className="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] bg-[#0F172A] backdrop-blur-sm flex items-center justify-center p-4">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -273,7 +273,7 @@ export default function AdminSupportPage() {
               <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6 border-t border-slate-200 dark:border-[#334155]">
                 <button 
                   onClick={() => setSelectedTicket(null)}
-                  className="px-6 py-3 bg-slate-100 dark:bg-[#0F172A] hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-bold transition-colors text-sm w-full sm:w-auto"
+                  className="px-6 py-3 bg-slate-100 dark:bg-[#0F172A] hover:bg-slate-200 dark:hover:bg-[#1E293B] text-slate-700 dark:text-slate-300 rounded-xl font-bold transition-colors text-sm w-full sm:w-auto"
                 >
                   Cancel
                 </button>

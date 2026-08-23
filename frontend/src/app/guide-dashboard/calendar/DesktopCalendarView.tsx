@@ -412,7 +412,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                       <div className="flex gap-2 mb-3">
                         {(() => {
                           const getBadgeProps = (e: any) => {
-                            if (e.isLocked) return { label: 'Locked', bg: 'bg-slate-800/90', border: 'border-slate-500/30', text: 'text-slate-300' };
+                            if (e.isLocked) return { label: 'Locked', bg: 'bg-[#1E293B]', border: 'border-slate-500/30', text: 'text-slate-300' };
                             if (e.status === 'completed') return { label: 'Completed', bg: 'bg-blue-900/90', border: 'border-blue-500/30', text: 'text-blue-300' };
                             if (e.status === 'cancelled') return { label: 'Cancelled', bg: 'bg-red-900/90', border: 'border-red-500/30', text: 'text-red-300' };
                             if (e.assignmentStatus === 'pending') return { label: 'Pending', bg: 'bg-amber-900/90', border: 'border-amber-500/30', text: 'text-amber-300' };
@@ -509,7 +509,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                       <MessageSquare size={20} />
                     </button>
                     {selectedEvent.isLocked ? (
-                      <button disabled className="flex-1 h-14 bg-slate-200 dark:bg-slate-800/50 rounded-[16px] text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 cursor-not-allowed">
+                      <button disabled className="flex-1 h-14 bg-slate-200 dark:bg-[#1E293B] rounded-[16px] text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 cursor-not-allowed">
                         <AlertTriangle size={20} /> Locked
                       </button>
                     ) : moment().isAfter(moment(selectedEvent.end), 'day') ? (

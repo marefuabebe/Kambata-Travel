@@ -509,7 +509,7 @@ export default function ManagePackageSchedulesPage() {
         {showGuidePanel && (
           <>
             {/* Backdrop */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClosePanel} className="fixed inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm z-[100]" />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClosePanel} className="fixed inset-0 bg-[#0F172A] dark:bg-black/60 backdrop-blur-sm z-[100]" />
             
             {/* Panel container */}
             <motion.div 
