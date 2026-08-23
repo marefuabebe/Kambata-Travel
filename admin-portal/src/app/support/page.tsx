@@ -67,7 +67,7 @@ export default function AdminSupportPage() {
               placeholder="Search by name or subject..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-[#334155] rounded-2xl outline-none focus:border-[#FF8C00] dark:focus:border-[#FF8C00] text-sm shadow-sm transition-colors text-slate-900 dark:text-white placeholder:text-slate-400"
+              className="w-full pl-12 pr-4 py-3 bg-white dark:bg-[#161B26] border border-slate-200 dark:border-[#334155] rounded-2xl outline-none focus:border-[#FF8C00] dark:focus:border-[#FF8C00] text-sm shadow-sm transition-colors text-slate-900 dark:text-white placeholder:text-slate-400"
             />
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function AdminSupportPage() {
             <div className="w-10 h-10 border-4 border-slate-200 dark:border-[#334155] border-t-[#FF8C00] rounded-full animate-spin" />
           </div>
         ) : filteredTickets.length === 0 ? (
-          <div className="bg-white dark:bg-[#1E293B] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
+          <div className="bg-white dark:bg-[#161B26] flex flex-col items-center justify-center py-32 rounded-3xl border border-slate-200 dark:border-[#334155] shadow-sm">
             <div className="w-16 h-16 bg-slate-50 dark:bg-[#0F172A] rounded-full flex items-center justify-center mb-4">
               <LifeBuoy size={24} className="text-slate-400" />
             </div>
@@ -115,7 +115,7 @@ export default function AdminSupportPage() {
                   <motion.div
                     key={ticket._id}
                     variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                    className="bg-white dark:bg-[#1E293B] rounded-2xl md:rounded-[20px] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow relative group"
+                    className="bg-white dark:bg-[#161B26] rounded-2xl md:rounded-[20px] p-5 md:p-6 border border-slate-200 dark:border-[#334155] shadow-sm hover:shadow-md transition-shadow relative group"
                   >
                     {/* Desktop & Tablet Layout (Grid) */}
                     <div className="hidden md:grid grid-cols-12 gap-4 items-center">
@@ -216,7 +216,7 @@ export default function AdminSupportPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="bg-white dark:bg-[#1E293B] rounded-[24px] p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-[#334155] shadow-xl"
+            className="bg-white dark:bg-[#161B26] rounded-[24px] p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-[#334155] shadow-xl"
           >
             <div className="flex justify-between items-start mb-6">
               <h2 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white">Support Ticket</h2>
@@ -229,7 +229,7 @@ export default function AdminSupportPage() {
               <div className="bg-slate-50 dark:bg-[#0F172A] p-5 rounded-2xl border border-slate-200 dark:border-[#334155]">
                 <div className="flex items-center justify-between mb-4 border-b border-slate-200 dark:border-[#334155] pb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white dark:bg-[#1E293B] flex items-center justify-center shrink-0 border border-slate-200 dark:border-[#334155] text-slate-500 font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-white dark:bg-[#161B26] flex items-center justify-center shrink-0 border border-slate-200 dark:border-[#334155] text-slate-500 font-bold text-sm">
                       {selectedTicket.user?.name ? selectedTicket.user.name.charAt(0).toUpperCase() : "U"}
                     </div>
                     <div>

@@ -81,7 +81,7 @@ export default function IncidentsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           onSubmit={submit} 
-          className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[3rem] border border-gray-100 dark:border-white/5 p-8 md:p-10 shadow-sm relative overflow-hidden md:sticky md:top-8 lg:top-10"
+          className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[3rem] border border-gray-100 dark:border-white/5 p-8 md:p-10 shadow-sm relative overflow-hidden md:sticky md:top-8 lg:top-10"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00] opacity-5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
           
@@ -200,7 +200,7 @@ export default function IncidentsPage() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}
                     key={i._id} 
-                    className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 p-6 shadow-sm hover:shadow-md transition-shadow group"
+                    className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 p-6 shadow-sm hover:shadow-md transition-shadow group"
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                       <div className="flex-1">

@@ -86,7 +86,7 @@ export default function AssignmentsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm flex flex-col"
+                className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm flex flex-col"
               >
                 {/* Image Header */}
                 <div className="h-40 relative bg-gray-200 dark:bg-gray-800">
@@ -149,7 +149,7 @@ export default function AssignmentsPage() {
                     {activeTab === "accepted" && (
                       <Link
                         href={`/guide-dashboard/assigned-tours/${a.tourId}/${a.scheduleId}`}
-                        className="w-full py-3 flex justify-center items-center gap-2 rounded-xl bg-[#1A331B] dark:bg-[#1E293B] text-white font-bold hover:opacity-90 transition-opacity"
+                        className="w-full py-3 flex justify-center items-center gap-2 rounded-xl bg-[#1A331B] dark:bg-[#161B26] text-white font-bold hover:opacity-90 transition-opacity"
                       >
                         {t("guidePages.assignments.viewDashboard")}
                       </Link>

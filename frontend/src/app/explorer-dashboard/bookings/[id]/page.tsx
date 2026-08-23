@@ -184,7 +184,7 @@ export default function BookingDetailsPage() {
         <div className="lg:col-span-8 space-y-8">
           
           {/* {t("bookings.details.bookingTimeline")} */}
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
             <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-8 flex items-center gap-2">
               <Clock size={14} className="text-[#FF8C00]" /> {t("bookings.details.bookingTimeline")}
             </h2>
@@ -208,7 +208,7 @@ export default function BookingDetailsPage() {
           </div>
 
           {/* Guide Profile Card or Package Coordinator */}
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
              <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
               <MapPin size={14} className="text-[#FF8C00]" /> {booking.guide ? t("bookings.details.yourGuide") : "Package Coordinator"}
             </h2>
@@ -238,7 +238,7 @@ export default function BookingDetailsPage() {
         <div className="lg:col-span-4 space-y-8">
           
           {/* Payment Summary */}
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
             <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
               Payment Summary
             </h2>
@@ -260,7 +260,7 @@ export default function BookingDetailsPage() {
           </div>
 
           {/* Travel Documents Center */}
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
             <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
               <FileText size={14} className="text-[#FF8C00]" /> {t("bookings.details.documentsReceipts")}
             </h2>
@@ -318,7 +318,7 @@ export default function BookingDetailsPage() {
               className="w-full max-w-sm"
             >
               {/* Boarding Pass Container */}
-              <div className="bg-white dark:bg-[#1E293B] rounded-[2rem] shadow-2xl overflow-hidden relative border border-gray-100 dark:border-white/10">
+              <div className="bg-white dark:bg-[#161B26] rounded-[2rem] shadow-2xl overflow-hidden relative border border-gray-100 dark:border-white/10">
                 
                 {/* Header */}
                 <div className={`p-6 text-center ${qrCodeData?.checkedInAt ? 'bg-emerald-600' : 'bg-[#1A331B]'} relative`}>

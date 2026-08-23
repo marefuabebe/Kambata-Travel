@@ -135,7 +135,7 @@ export default function NotificationsPage() {
         {unreadCount > 0 && (
           <button
             onClick={markAllAsRead}
-            className="flex items-center gap-2 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/5 text-gray-700 dark:text-gray-300 px-5 py-3 rounded-2xl font-bold text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm"
+            className="flex items-center gap-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/5 text-gray-700 dark:text-gray-300 px-5 py-3 rounded-2xl font-bold text-sm hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm"
           >
             <CheckCheck size={18} />
             Mark All as Read
@@ -143,7 +143,7 @@ export default function NotificationsPage() {
         )}
       </div>
 
-      <div className="bg-white dark:bg-[#1E293B] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-xl shadow-gray-200/40 dark:shadow-none overflow-hidden p-2">
+      <div className="bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-xl shadow-gray-200/40 dark:shadow-none overflow-hidden p-2">
         {notifications.length === 0 ? (
           <div className="p-16 text-center flex flex-col items-center">
             <div className="w-20 h-20 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">

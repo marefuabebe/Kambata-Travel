@@ -132,7 +132,7 @@ export default function NotificationsPage() {
 
       <div className="relative space-y-8 before:absolute before:inset-0 before:ml-[1.375rem] before:-translate-x-px sm:before:ml-[2.375rem] before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 dark:before:via-gray-800 before:to-transparent">
          {notifications.length === 0 ? (
-           <div className="relative z-10 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-16 text-center shadow-sm ml-12 sm:ml-20">
+           <div className="relative z-10 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-16 text-center shadow-sm ml-12 sm:ml-20">
               <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-500/10 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6">
                  <CheckCircle size={32} className="text-emerald-500" />
               </div>
@@ -158,7 +158,7 @@ export default function NotificationsPage() {
                     </div>
                  </div>
                  
-                 <div className={`flex-1 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[20px] sm:rounded-[2rem] p-5 sm:p-6 border transition-all group-hover:-translate-y-1 group-hover:shadow-lg ${
+                 <div className={`flex-1 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[20px] sm:rounded-[2rem] p-5 sm:p-6 border transition-all group-hover:-translate-y-1 group-hover:shadow-lg ${
                   !notif.isRead 
                     ? 'border-l-4 border-l-[#FF8C00] border-t-gray-100 border-r-gray-100 border-b-gray-100 dark:border-l-[#FF8C00] dark:border-t-white/5 dark:border-r-white/5 dark:border-b-white/5 shadow-md' 
                     : 'border-gray-100 dark:border-white/5 shadow-sm opacity-80 group-hover:opacity-100'

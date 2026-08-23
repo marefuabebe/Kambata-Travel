@@ -14,7 +14,7 @@ export default function EarningsRestricted() {
       animate={{ opacity: 1, y: 0 }}
       className="max-w-2xl mx-auto py-12"
     >
-      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-12 md:p-16 text-center shadow-sm relative overflow-hidden">
+      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-12 md:p-16 text-center shadow-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
         

@@ -174,7 +174,7 @@ export default function ExplorerReviewsPage() {
       
       {/* ── Mobile Back Button ── */}
       <div className="lg:hidden mb-6">
-        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform w-fit">
+        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform w-fit">
           <ChevronLeft size={18} />
           Back
         </button>
@@ -227,7 +227,7 @@ export default function ExplorerReviewsPage() {
       ) : activeTab === "pending" ? (
         <div className="grid gap-6">
           {pendingBookings.length === 0 ? (
-            <div className="bg-white dark:bg-[#1E293B] rounded-3xl p-12 text-center border border-gray-100 dark:border-white/5 shadow-sm">
+            <div className="bg-white dark:bg-[#161B26] rounded-3xl p-12 text-center border border-gray-100 dark:border-white/5 shadow-sm">
                <div className="w-20 h-20 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
                  <CheckCircle2 size={32} className="text-gray-400" />
                </div>
@@ -248,7 +248,7 @@ export default function ExplorerReviewsPage() {
                   key={booking._id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white dark:bg-[#1E293B] rounded-3xl p-6 border border-gray-100 dark:border-white/5 shadow-sm flex flex-col md:flex-row gap-6 items-center"
+                  className="bg-white dark:bg-[#161B26] rounded-3xl p-6 border border-gray-100 dark:border-white/5 shadow-sm flex flex-col md:flex-row gap-6 items-center"
                 >
                   <div className="w-full md:w-48 h-32 rounded-2xl overflow-hidden shrink-0 bg-gray-100 relative group">
                     {image ? (
@@ -299,7 +299,7 @@ export default function ExplorerReviewsPage() {
       ) : (
         <div className="grid gap-6 md:grid-cols-2">
           {submittedReviews.length === 0 ? (
-            <div className="col-span-full bg-white dark:bg-[#1E293B] rounded-3xl p-12 text-center border border-gray-100 dark:border-white/5 shadow-sm">
+            <div className="col-span-full bg-white dark:bg-[#161B26] rounded-3xl p-12 text-center border border-gray-100 dark:border-white/5 shadow-sm">
                <div className="w-20 h-20 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
                  <MessageSquare size={32} className="text-gray-400" />
                </div>
@@ -314,7 +314,7 @@ export default function ExplorerReviewsPage() {
               const title = isTour ? review.tour?.title?.en : isPkg ? review.package?.name?.en : `Guide: ${review.guide?.name}`;
               
               return (
-                <div key={review._id} className="bg-white dark:bg-[#1E293B] rounded-3xl p-6 border border-gray-100 dark:border-white/5 shadow-sm flex flex-col">
+                <div key={review._id} className="bg-white dark:bg-[#161B26] rounded-3xl p-6 border border-gray-100 dark:border-white/5 shadow-sm flex flex-col">
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <span className="text-[10px] font-black uppercase tracking-widest text-[#FF8C00] mb-1 block">
@@ -405,7 +405,7 @@ export default function ExplorerReviewsPage() {
                 </div>
 
                 {/* Detailed Ratings */}
-                <div className="bg-gray-50 dark:bg-[#1E293B] rounded-2xl p-5 space-y-4 border border-gray-100 dark:border-white/5">
+                <div className="bg-gray-50 dark:bg-[#161B26] rounded-2xl p-5 space-y-4 border border-gray-100 dark:border-white/5">
                   <h4 className="text-xs font-black uppercase tracking-widest text-gray-400 text-center mb-2">{t("reviews.categoryBreakdown")}</h4>
                   {Object.keys(detailedRatings).map(cat => (
                     <div key={cat} className="flex items-center justify-between">

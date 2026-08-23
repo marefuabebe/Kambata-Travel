@@ -162,7 +162,7 @@ export default function MasterAssignmentsPage() {
             placeholder="Search guides or tours..." 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3.5 font-medium text-sm outline-none focus:border-orange-500 dark:focus:border-orange-500 shadow-sm transition-all"
+            className="w-full bg-white dark:bg-[#161B26] border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-4 py-3.5 font-medium text-sm outline-none focus:border-orange-500 dark:focus:border-orange-500 shadow-sm transition-all"
           />
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
         </div>
@@ -170,7 +170,7 @@ export default function MasterAssignmentsPage() {
 
       {/* Summary Statistic Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
-        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
+        <div className="bg-white dark:bg-[#161B26] p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
           <div>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Total Guides</p>
             <h3 className="text-2xl md:text-3xl font-black">{roster.length}</h3>
@@ -179,7 +179,7 @@ export default function MasterAssignmentsPage() {
             <Users size={24} />
           </div>
         </div>
-        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
+        <div className="bg-white dark:bg-[#161B26] p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
           <div>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Available Now</p>
             <h3 className="text-2xl md:text-3xl font-black text-green-600 dark:text-green-500">{roster.filter(r => r.status === 'Available').length}</h3>
@@ -188,7 +188,7 @@ export default function MasterAssignmentsPage() {
             <CheckCircle size={24} />
           </div>
         </div>
-        <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all sm:col-span-1">
+        <div className="bg-white dark:bg-[#161B26] p-5 md:p-6 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between group hover:shadow-md transition-all sm:col-span-1">
           <div>
             <p className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Highly Active</p>
             <h3 className="text-2xl md:text-3xl font-black text-violet-600 dark:text-violet-500">{roster.filter(r => r.status === 'Highly Active').length}</h3>
@@ -199,7 +199,7 @@ export default function MasterAssignmentsPage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#161B26] rounded-[20px] md:rounded-[24px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center px-4">
             <div className="w-16 h-16 bg-slate-50 dark:bg-slate-900 rounded-[20px] flex items-center justify-center mb-6 shadow-sm border border-slate-200 dark:border-slate-700">
@@ -349,7 +349,7 @@ export default function MasterAssignmentsPage() {
                               <div className="relative flex-1">
                                 <select 
                                   id={`select-${editingScheduleId}`}
-                                  className="w-full appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
+                                  className="w-full appearance-none bg-white dark:bg-[#161B26] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
                                 >
                                   <option value="">Select new guide...</option>
                                   {guidesList.filter(newG => newG._id !== g.guideId).map(newG => (
@@ -374,7 +374,7 @@ export default function MasterAssignmentsPage() {
                               </button>
                               <button 
                                 onClick={() => setEditingScheduleId(null)}
-                                className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
+                                className="w-10 h-10 rounded-xl bg-white dark:bg-[#161B26] border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
                               >
                                 <X size={18} />
                               </button>
@@ -397,7 +397,7 @@ export default function MasterAssignmentsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-white dark:bg-slate-800 rounded-2xl md:rounded-[20px] border border-slate-200 dark:border-slate-700 p-5 shadow-sm space-y-5"
+                  className="bg-white dark:bg-[#161B26] rounded-2xl md:rounded-[20px] border border-slate-200 dark:border-slate-700 p-5 shadow-sm space-y-5"
                 >
                   {/* Top Row: Avatar, Name, Status */}
                   <div className="flex items-start justify-between gap-3">
@@ -477,7 +477,7 @@ export default function MasterAssignmentsPage() {
                                     <div className="relative">
                                       <select 
                                         id={`m-select-${a.scheduleId}`}
-                                        className="w-full min-h-[44px] appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
+                                        className="w-full min-h-[44px] appearance-none bg-white dark:bg-[#161B26] border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-bold outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all shadow-sm"
                                       >
                                         <option value="">Select new guide...</option>
                                         {guidesList.filter(newG => newG._id !== g.guideId).map(newG => (
@@ -499,7 +499,7 @@ export default function MasterAssignmentsPage() {
                                       </button>
                                       <button 
                                         onClick={() => setEditingScheduleId(null)}
-                                        className="w-[44px] h-[44px] rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
+                                        className="w-[44px] h-[44px] rounded-xl bg-white dark:bg-[#161B26] border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white transition-all shadow-sm"
                                       >
                                         <X size={18} />
                                       </button>
@@ -514,7 +514,7 @@ export default function MasterAssignmentsPage() {
                                   >
                                     <button 
                                       onClick={() => setEditingScheduleId(a.scheduleId)}
-                                      className="flex-1 min-h-[44px] flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm"
+                                      className="flex-1 min-h-[44px] flex items-center justify-center gap-2 rounded-xl bg-white dark:bg-[#161B26] border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm"
                                     >
                                       <Edit2 size={14} /> Reassign
                                     </button>

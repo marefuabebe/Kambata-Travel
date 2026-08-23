@@ -62,7 +62,7 @@ export function StatCard({
   };
 
   return (
-    <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
+    <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
       {/* Background ambient glow */}
       <div className={`absolute top-1/2 right-0 w-32 h-32 ${accents[accent]} opacity-5 dark:opacity-10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/4 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity`} />
       

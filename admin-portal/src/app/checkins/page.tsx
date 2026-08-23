@@ -131,7 +131,7 @@ export default function CheckInsPage() {
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           <button 
             onClick={handleExport}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 font-bold text-sm text-gray-900 dark:text-white hover:border-[#1A331B] dark:hover:border-emerald-500 transition-colors shadow-sm"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 font-bold text-sm text-gray-900 dark:text-white hover:border-[#1A331B] dark:hover:border-emerald-500 transition-colors shadow-sm"
           >
             <Download size={16} /> Export CSV
           </button>
@@ -139,7 +139,7 @@ export default function CheckInsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 p-6 shadow-sm flex flex-col md:flex-row gap-4">
+      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 p-6 shadow-sm flex flex-col md:flex-row gap-4">
         <div className="flex-1 relative">
           <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           <input 
@@ -166,7 +166,7 @@ export default function CheckInsPage() {
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse table-responsive">
             <thead>

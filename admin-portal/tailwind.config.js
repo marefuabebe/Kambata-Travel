@@ -7,7 +7,11 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dark-secondary': '#161B26',
+      }
+    },
   },
   plugins: [],
 }

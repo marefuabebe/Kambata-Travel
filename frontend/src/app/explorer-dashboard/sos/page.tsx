@@ -124,7 +124,7 @@ export default function ExplorerSOSPage() {
       
       {/* ── Mobile Back Button ── */}
       <div className="lg:hidden mb-6">
-        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform w-fit">
+        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform w-fit">
           <ChevronLeft size={18} />
           Back
         </button>
@@ -156,7 +156,7 @@ export default function ExplorerSOSPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-8 bg-gray-100 dark:bg-[#1E293B] p-1.5 rounded-2xl">
+      <div className="flex gap-2 mb-8 bg-gray-100 dark:bg-[#161B26] p-1.5 rounded-2xl">
         {[{ id: "submit", label: "Submit SOS", icon: <AlertTriangle size={16} /> }, { id: "history", label: "My Alerts", icon: <Clock size={16} /> }].map((t) => (
           <button
             key={t.id}
@@ -181,7 +181,7 @@ export default function ExplorerSOSPage() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl shadow-emerald-500/10 overflow-hidden"
+                className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl shadow-emerald-500/10 overflow-hidden"
               >
                 <div className="bg-emerald-500 p-10 text-center">
                   <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -219,7 +219,7 @@ export default function ExplorerSOSPage() {
                 </div>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-xl p-8 space-y-6">
+              <form onSubmit={handleSubmit} className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-xl p-8 space-y-6">
                 {/* Emergency Type */}
                 <div>
                   <label className="block text-xs font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-3">Emergency Type *</label>
@@ -329,7 +329,7 @@ export default function ExplorerSOSPage() {
                 <Loader2 size={28} className="animate-spin text-red-500" />
               </div>
             ) : alerts.length === 0 ? (
-              <div className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm p-12 text-center">
+              <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm p-12 text-center">
                 <Shield size={40} className="text-gray-300 dark:text-gray-600 mx-auto mb-4" />
                 <p className="font-black text-gray-700 dark:text-white text-lg mb-2">No Alerts Submitted</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">You haven't submitted any SOS alerts yet. Stay safe!</p>
@@ -344,7 +344,7 @@ export default function ExplorerSOSPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="bg-white dark:bg-[#1E293B] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm p-6 space-y-4"
+                      className="bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm p-6 space-y-4"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-3">
