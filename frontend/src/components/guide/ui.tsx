@@ -42,7 +42,7 @@ export function StatCard({
 }: {
   label: string;
   value: string | number;
-  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  icon?: React.ComponentType<{ size?: number; width?: number; height?: number; className?: string }>;
   accent?: "emerald" | "amber" | "blue" | "red" | "slate";
 }) {
   const accents = {
