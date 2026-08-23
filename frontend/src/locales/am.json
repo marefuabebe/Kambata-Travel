@@ -967,7 +967,7 @@
       }
     },
     "mobileWelcome": {
-      "greeting": "👋 እንኳን በደህና መጡ፣<br/><span className=\"text-[#0F766E]\">{name}</span>",
+      "greeting": "እንኳን በደህና መጡ፣<br/><span className=\"text-[#0F766E]\">{name}</span>",
       "search": "ቀጥሎ ወዴት?"
     },
     "discover": {
@@ -1413,7 +1413,7 @@
       "payments": "ክፍያዎች"
     },
     "mobileWelcome": {
-      "greeting": "ሰላም፣ {name} 👋",
+      "greeting": "ሰላም፣ {name}",
       "rating": "{rating} ደረጃ",
       "toursThisMonth": "በዚህ ወር {n} ጉብኝቶች"
     }

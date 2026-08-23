@@ -967,7 +967,7 @@
       }
     },
     "mobileWelcome": {
-      "greeting": "👋 Welcome,<br/><span className=\"text-[#0F766E]\">{name}</span>",
+      "greeting": "Welcome,<br/><span className=\"text-[#0F766E]\">{name}</span>",
       "search": "Where to next?"
     },
     "discover": {
@@ -1413,7 +1413,7 @@
       "payments": "Payments"
     },
     "mobileWelcome": {
-      "greeting": "Hi, {name} 👋",
+      "greeting": "Hi, {name}",
       "rating": "{rating} Rating",
       "toursThisMonth": "{n} Tours this month"
     }

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Calendar, Package, CheckCircle2, Compass, ArrowRight, MessageSquare, MapPin, Sparkles, Map, Star, TrendingUp, Search, QrCode, Heart, ChevronRight, Clock, User, Menu, Siren, CalendarCheck, Sun, Moon, Bell } from "lucide-react";
+import { Calendar, Package, CheckCircle2, Compass, ArrowRight, MessageSquare, MapPin, Sparkles, Map, Star, TrendingUp, Search, QrCode, Heart, ChevronRight, Clock, User, Menu, Siren, CalendarCheck, Sun, Moon, Bell, Hand } from "lucide-react";
 import apiClient from "@/utils/apiClient";
 import { useAuth } from "@/context/AuthContext";
 import { PageHeader, StatCard, LoadingCenter } from "@/components/explorer/ui";
@@ -403,7 +403,10 @@ export default function TravelerDashboard() {
         
         <div className="mb-6 relative z-10">
           <p className="text-[12px] font-black text-gray-400 tracking-widest uppercase">{currentDate}</p>
-          <h1 className="text-2xl font-black text-gray-900 dark:text-white leading-tight" dangerouslySetInnerHTML={{ __html: t("explorerDashboard.mobileWelcome.greeting").replace("{name}", user?.name?.split(" ")[0] || "Traveler") }}></h1>
+          <h1 className="text-2xl font-black text-gray-900 dark:text-white leading-tight">
+             <Hand className="inline-block mr-2 mb-1 text-amber-500 fill-amber-500/20" size={24} />
+             <span dangerouslySetInnerHTML={{ __html: t("explorerDashboard.mobileWelcome.greeting").replace("{name}", user?.name?.split(" ")[0] || "Traveler") }} />
+          </h1>
         </div>
 
         {/* Search Shortcut & Weather */}
