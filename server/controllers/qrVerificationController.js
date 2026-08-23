@@ -42,12 +42,18 @@ const getTravelPass = async (req, res, next) => {
 
     // Business Logic: Only provide QR if paid, confirmed, and not completed
     if (booking.paymentStatus !== "paid") {
-      return res.status(400).json({ success: false, message: "Pass unavailable: Payment not completed" });
+      let msg = "Pass unavailable: Payment not completed";
+      if (booking.paymentStatus === "refunded") msg = "Pass unavailable: Payment has been refunded";
+      if (booking.paymentStatus === "failed") msg = "Pass unavailable: Payment failed";
+      return res.status(400).json({ success: false, message: msg });
     }
     
     const bStatus = type === "package" ? booking.bookingStatus : booking.status;
     if (bStatus !== "confirmed" && bStatus !== "completed") {
-      return res.status(400).json({ success: false, message: "Pass unavailable: Booking is not confirmed" });
+      let msg = "Pass unavailable: Booking is not confirmed";
+      if (bStatus === "cancelled") msg = "Pass unavailable: Booking has been cancelled";
+      if (bStatus === "refunded") msg = "Pass unavailable: Booking has been refunded";
+      return res.status(400).json({ success: false, message: msg });
     }
 
     let token = null;
