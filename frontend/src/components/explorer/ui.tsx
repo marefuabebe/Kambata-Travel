@@ -19,9 +19,6 @@ export function PageHeader({
   
   return (
     <div className="mb-8 mt-6 lg:mt-8 relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/10 rounded-full blur-[80px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none" />
-      
       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           {showBackButton && (

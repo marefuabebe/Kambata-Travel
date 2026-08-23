@@ -90,7 +90,7 @@ export default function TravelerDashboard() {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-[2.5rem] bg-[#1E293B] dark:bg-[#1E293B] border border-white/10 p-8 md:p-12 shadow-2xl mt-8"
+        className="relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#1E293B] border border-white/10 p-8 md:p-12 shadow-2xl mt-8"
       >
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex items-center gap-6">
@@ -108,20 +108,20 @@ export default function TravelerDashboard() {
                   </span>
                 )}
               </div>
-              <h1 className="text-4xl md:text-5xl font-black text-[#FFFFFF] tracking-tight mb-2">
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white tracking-tight mb-2">
                 {t("explorerDashboard.header.greeting").replace("{name}", user?.name?.split(" ")[0] || "Traveler")}
               </h1>
-              <p className="text-sm md:text-base font-medium text-white/75 max-w-xl">
+              <p className="text-sm md:text-base font-medium text-gray-600 dark:text-white/75 max-w-xl">
                 {t("explorerDashboard.header.subtitle")}
               </p>
             </div>
           </div>
           
           <div className="hidden lg:flex items-center gap-4 shrink-0">
-            <Link href="/explorer-dashboard/explore-tours" className="flex items-center gap-2 px-6 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-[#FFFFFF] font-bold transition-all hover:-translate-y-1 active:scale-95 rounded-2xl">
+            <Link href="/explorer-dashboard/explore-tours" className="flex items-center gap-2 px-6 py-4 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white font-bold transition-all hover:-translate-y-1 active:scale-95 rounded-2xl">
               <Compass size={18} className="text-[#10B981]" /> Explore
             </Link>
-            <Link href="/explorer-dashboard/bookings" className="flex items-center gap-2 px-6 py-4 bg-[#F59E0B] hover:bg-[#F59E0B]/90 shadow-lg shadow-[#F59E0B]/20 text-[#FFFFFF] font-bold transition-all hover:-translate-y-1 active:scale-95 rounded-2xl">
+            <Link href="/explorer-dashboard/bookings" className="flex items-center gap-2 px-6 py-4 bg-[#F59E0B] hover:bg-[#F59E0B]/90 shadow-lg shadow-[#F59E0B]/20 text-white font-bold transition-all hover:-translate-y-1 active:scale-95 rounded-2xl">
               <CalendarCheck size={18} /> My Bookings
             </Link>
           </div>

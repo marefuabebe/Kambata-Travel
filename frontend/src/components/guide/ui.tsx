@@ -63,9 +63,6 @@ export function StatCard({
 
   return (
     <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm transition-all group relative overflow-hidden flex items-center gap-5">
-      {/* Background ambient glow */}
-      <div className={`absolute top-1/2 right-0 w-32 h-32 ${accents[accent]} opacity-5 dark:opacity-10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/4 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity`} />
-      
       {/* Icon block */}
       {Icon && (
         <div className={`w-14 h-14 ${accents[accent]} rounded-[1.25rem] flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-all relative z-10 shrink-0`}>
@@ -207,9 +204,8 @@ export function MobileWelcomeHeader({
 }) {
   const { t } = useLanguage();
   return (
-    <div className="mx-4 mt-4 mb-2 px-6 py-8 bg-gradient-to-br from-white to-[#DBEAFE] dark:from-[#0F172A] dark:to-[#1E293B] text-slate-900 dark:text-white rounded-3xl relative overflow-hidden shadow-2xl border border-white/50 dark:border-white/5">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white/50 dark:bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-      <div className="relative z-10">
+    <div className="mb-8 mt-6 lg:mt-8 rounded-[2.5rem] bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl">
+      <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <h1 className="text-3xl font-black tracking-tight mb-3">
           {t("guideDashboard.mobileWelcome.greeting").replace("{name}", guideName)}
         </h1>
