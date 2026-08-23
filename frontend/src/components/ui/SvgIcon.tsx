@@ -8,13 +8,13 @@ export function SvgIcon({ src, scale = 1.8 }: { src: string; scale?: number }) {
     
     if (src.endsWith(".png")) {
       return (
-        <div className={`flex items-center justify-center shrink-0`} style={{ width, height, overflow: "visible" }}>
+        <div className={`flex items-center justify-center shrink-0 ${className}`} style={{ width, height, overflow: "visible" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src={src} 
             alt="icon" 
             style={{ width: scaledWidth, height: scaledHeight, objectFit: "contain" }} 
-            className="shrink-0"
+            className="shrink-0 dark:invert transition-all"
           />
         </div>
       );
