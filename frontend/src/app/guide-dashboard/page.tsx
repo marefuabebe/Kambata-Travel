@@ -380,8 +380,8 @@ export default function GuideDashboardPage() {
                         <p className="text-sm font-black text-slate-800 dark:text-slate-200">John, Sarah +10 more</p>
                       </div>
                       <div className="flex -space-x-2">
-                        <div className="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm">🇺🇸</div>
-                        <div className="w-9 h-9 rounded-full bg-red-50 dark:bg-red-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm">🇬🇧</div>
+                        <div className="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm font-bold">US</div>
+                        <div className="w-9 h-9 rounded-full bg-red-50 dark:bg-red-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm font-bold">UK</div>
                         <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-900 flex justify-center items-center text-[10px] font-black text-slate-600 dark:text-slate-300 shadow-sm">+10</div>
                       </div>
                     </div>

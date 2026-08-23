@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Star } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const MESSAGE_TEMPLATES = [
@@ -215,7 +215,7 @@ export function MobileWelcomeHeader({
         </h1>
         <div className="flex gap-4 text-sm font-semibold text-slate-600 dark:text-gray-300">
           <div className="flex items-center gap-1">
-            <span className="text-[#0284C7] dark:text-[#38BDF8]">★</span> {t("guideDashboard.mobileWelcome.rating").replace("{rating}", String(rating))}
+            <span className="text-[#0284C7] dark:text-[#38BDF8] inline-flex items-center"><Star size={12} className="fill-current mr-0.5" /></span> {t("guideDashboard.mobileWelcome.rating").replace("{rating}", String(rating))}
           </div>
           <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-white/30 self-center"></div>
           <div>{t("guideDashboard.mobileWelcome.toursThisMonth").replace("{n}", String(toursThisMonth))}</div>

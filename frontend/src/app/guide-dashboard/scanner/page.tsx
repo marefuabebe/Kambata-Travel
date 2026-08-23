@@ -614,7 +614,7 @@ export default function QRScannerPage() {
                 transition={{ delay: 0.2 }}
                 className="text-2xl font-black text-white"
               >
-                ✓ Traveler Verified
+                Traveler Verified
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}

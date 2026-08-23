@@ -58,7 +58,6 @@ export function useRealtimeNotifications() {
     socket.on("new_notification", (data) => {
       setUnreadCount(prev => prev + 1);
       toast.success(data?.title || "New notification received", {
-        icon: '🔔',
         duration: 4000,
         position: 'top-right'
       });

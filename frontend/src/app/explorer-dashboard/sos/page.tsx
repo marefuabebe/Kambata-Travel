@@ -20,19 +20,25 @@ import {
   Activity,
   User,
   ChevronLeft,
+  HeartPulse,
+  ShieldAlert,
+  Ambulance,
+  CloudLightning,
+  Map,
+  LifeBuoy,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 
 const ALERT_TYPES = [
-  { value: "medical_emergency", label: "Medical Emergency", icon: "🏥", color: "text-red-600" },
-  { value: "safety_threat", label: "Safety Threat", icon: "🛡️", color: "text-red-600" },
-  { value: "accident", label: "Accident / Injury", icon: "🚑", color: "text-red-600" },
-  { value: "natural_disaster", label: "Natural Disaster", icon: "⛈️", color: "text-orange-600" },
-  { value: "lost_traveler", label: "Lost / Separated", icon: "🗺️", color: "text-orange-600" },
-  { value: "guide_no_show", label: "Guide Didn't Show Up", icon: "❓", color: "text-amber-600" },
-  { value: "harassment", label: "Harassment / Threat", icon: "⚠️", color: "text-red-600" },
-  { value: "other", label: "Other Emergency", icon: "🆘", color: "text-gray-600" },
+  { value: "medical_emergency", label: "Medical Emergency", icon: <HeartPulse size={24} />, color: "text-red-600" },
+  { value: "safety_threat", label: "Safety Threat", icon: <ShieldAlert size={24} />, color: "text-red-600" },
+  { value: "accident", label: "Accident / Injury", icon: <Ambulance size={24} />, color: "text-red-600" },
+  { value: "natural_disaster", label: "Natural Disaster", icon: <CloudLightning size={24} />, color: "text-orange-600" },
+  { value: "lost_traveler", label: "Lost / Separated", icon: <Map size={24} />, color: "text-orange-600" },
+  { value: "guide_no_show", label: "Guide Didn't Show Up", icon: <User size={24} />, color: "text-amber-600" },
+  { value: "harassment", label: "Harassment / Threat", icon: <AlertTriangle size={24} />, color: "text-red-600" },
+  { value: "other", label: "Other Emergency", icon: <LifeBuoy size={24} />, color: "text-gray-600" },
 ];
 
 const SEVERITY_OPTS = [
@@ -342,7 +348,7 @@ export default function ExplorerSOSPage() {
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{typeInfo?.icon || "🆘"}</span>
+                          <span className="text-2xl flex items-center justify-center w-8">{typeInfo?.icon || <Siren size={24} />}</span>
                           <div>
                             <p className="font-black text-gray-900 dark:text-white">{typeInfo?.label || alert.type}</p>
                             <p className="text-xs text-gray-400 font-medium">{new Date(alert.createdAt).toLocaleString()}</p>

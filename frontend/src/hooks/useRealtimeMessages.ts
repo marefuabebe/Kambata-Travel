@@ -64,7 +64,6 @@ export function useRealtimeMessages() {
 
       // Only toast if the message is new (not just loading history)
       toast.success(`New message from ${message.sender?.name || 'someone'}`, {
-        icon: '💬',
         duration: 4000,
         position: 'top-right'
       });

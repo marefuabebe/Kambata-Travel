@@ -20,18 +20,23 @@ import {
   AlertTriangle,
   ChevronDown,
   Send,
+  PlusSquare,
+  Car,
+  CloudLightning,
+  UserX,
+  Wrench,
 } from "lucide-react";
 
-const ALERT_TYPES: Record<string, { label: string; icon: string }> = {
-  medical_emergency: { label: "Medical Emergency", icon: "🏥" },
-  safety_threat: { label: "Safety Threat", icon: "🛡️" },
-  accident: { label: "Accident / Injury", icon: "🚑" },
-  natural_disaster: { label: "Natural Disaster", icon: "⛈️" },
-  lost_traveler: { label: "Lost Traveler", icon: "🗺️" },
-  guide_no_show: { label: "Guide No-Show", icon: "❓" },
-  vehicle_breakdown: { label: "Vehicle Breakdown", icon: "🚗" },
-  harassment: { label: "Harassment / Threat", icon: "⚠️" },
-  other: { label: "Other Emergency", icon: "🆘" },
+const ALERT_TYPES: Record<string, { label: string; icon: React.ReactNode }> = {
+  medical_emergency: { label: "Medical Emergency", icon: <PlusSquare size={24} /> },
+  safety_threat: { label: "Safety Threat", icon: <Shield size={24} /> },
+  accident: { label: "Accident / Injury", icon: <Car size={24} /> },
+  natural_disaster: { label: "Natural Disaster", icon: <CloudLightning size={24} /> },
+  lost_traveler: { label: "Lost Traveler", icon: <MapPin size={24} /> },
+  guide_no_show: { label: "Guide No-Show", icon: <UserX size={24} /> },
+  vehicle_breakdown: { label: "Vehicle Breakdown", icon: <Wrench size={24} /> },
+  harassment: { label: "Harassment / Threat", icon: <AlertTriangle size={24} /> },
+  other: { label: "Other Emergency", icon: <Siren size={24} /> },
 };
 
 const STATUS_META: Record<string, { label: string; colorClass: string; dot: string }> = {
@@ -68,7 +73,7 @@ function AlertCard({ alert, onUpdate }: { alert: any; onUpdate: () => void }) {
   const [updatingStatus, setUpdatingStatus] = useState("");
   const [adminNote, setAdminNote] = useState(alert.adminNote || "");
   const [saving, setSaving] = useState(false);
-  const typeInfo = ALERT_TYPES[alert.type] || { label: alert.type, icon: "🆘" };
+  const typeInfo = ALERT_TYPES[alert.type] || { label: alert.type, icon: <Siren size={24} /> };
   const statusMeta = STATUS_META[alert.status] || STATUS_META.open;
 
   const updateStatus = async (status: string) => {
@@ -213,7 +218,7 @@ function AlertCard({ alert, onUpdate }: { alert: any; onUpdate: () => void }) {
                   {[
                     { status: "acknowledged", label: "Acknowledge", color: "bg-blue-500 hover:bg-blue-600" },
                     { status: "in_progress", label: "In Progress", color: "bg-indigo-500 hover:bg-indigo-600" },
-                    { status: "resolved", label: "Resolve ✓", color: "bg-emerald-500 hover:bg-emerald-600" },
+                    { status: "resolved", label: "Resolve", color: "bg-emerald-500 hover:bg-emerald-600" },
                     { status: "false_alarm", label: "False Alarm", color: "bg-gray-500 hover:bg-gray-600" },
                   ].map((action) => (
                     <button

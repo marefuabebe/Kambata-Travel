@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { LifeBuoy, Search, Eye, CheckCircle, Clock, Calendar, X } from "lucide-react";
+import { LifeBuoy, Search, Eye, CheckCircle, Clock, Calendar, X, User } from "lucide-react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
@@ -164,7 +164,7 @@ export default function AdminSupportPage() {
                     {/* Mobile Layout (Stacked per User Spec) */}
                     <div className="flex flex-col md:hidden">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="text-base">👤</div>
+                        <div className="text-base text-slate-500"><User size={16} /></div>
                         <div className="min-w-0">
                           <p className="text-sm font-black text-slate-900 dark:text-white truncate">{ticket.user?.name || "Unknown"}</p>
                         </div>
@@ -177,7 +177,7 @@ export default function AdminSupportPage() {
                       <div className="w-full h-[1px] bg-slate-100 dark:bg-[#334155] mb-4" />
 
                       <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 mb-4">
-                        <span className="text-base">📅</span>
+                        <span className="text-slate-500"><Calendar size={16} /></span>
                         {new Date(ticket.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </div>
 
@@ -185,7 +185,7 @@ export default function AdminSupportPage() {
                         <div className="flex items-center gap-2">
                           {isOpen && <span className="flex items-center gap-1 text-sm font-bold text-[#FF8C00]"><span className="w-3 h-3 rounded-full bg-[#FF8C00] animate-pulse"/> Open</span>}
                           {isInProgress && <span className="flex items-center gap-1 text-sm font-bold text-blue-500"><span className="w-3 h-3 rounded-full bg-blue-500"/> In Progress</span>}
-                          {isResolved && <span className="flex items-center gap-1 text-sm font-bold text-emerald-500">🟢 Resolved</span>}
+                          {isResolved && <span className="flex items-center gap-1 text-sm font-bold text-emerald-500"><CheckCircle size={14} /> Resolved</span>}
                           {isClosed && <span className="flex items-center gap-1 text-sm font-bold text-slate-500"><span className="w-3 h-3 rounded-full bg-slate-500"/> Closed</span>}
                         </div>
                         
@@ -197,7 +197,7 @@ export default function AdminSupportPage() {
                           }}
                           className="flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-[#FF8C00] dark:hover:text-[#FF8C00] transition-colors"
                         >
-                          <span>👁</span>
+                          <span><Eye size={16} /></span>
                           View Ticket
                         </button>
                       </div>

@@ -30,6 +30,7 @@ import {
   ClipboardList,
   Menu,
   X,
+  FileText,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -130,7 +131,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
             <div className="flex-1 w-0">
               <div className="flex items-start">
                 <div className="ml-3 flex-1">
-                  <p className="text-sm font-black text-gray-900 dark:text-white">New Document Uploaded 📄</p>
+                  <p className="text-sm font-black text-gray-900 dark:text-white flex items-center gap-2">New Document Uploaded <FileText className="w-4 h-4 text-[#FF8C00]" /></p>
                   <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                     <span className="font-bold">{data.guideName}</span> just submitted their{" "}
                     <span className="font-bold text-[#FF8C00]">{data.documentType}</span> for verification.

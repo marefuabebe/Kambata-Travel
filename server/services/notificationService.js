@@ -105,7 +105,7 @@ const sendTourReminders = async () => {
               "Log in to your dashboard to chat with your guide or view the itinerary."
             ],
             infoCards: [
-              { title: "Tour", value: booking.tour.title?.en || booking.tour.title, iconEmoji: "📍" }
+              { title: "Tour", value: booking.tour.title?.en || booking.tour.title, iconEmoji: "[Location]" }
             ],
             cta: {
               text: "View Dashboard",
@@ -158,7 +158,7 @@ const notifyGuideOfAssignment = async (guideId, tourTitle, startDate, startTime)
       const emailHtml = buildPremiumEmail({
         type: "default",
         title: "New Tour Assignment",
-        icon: "👨‍💼",
+        icon: "guide",
         accentColor: "#E67E22",
         greeting: `Hello ${guide.name},`,
         bodyLines: [
@@ -166,8 +166,8 @@ const notifyGuideOfAssignment = async (guideId, tourTitle, startDate, startTime)
           "This assignment requires your immediate confirmation."
         ],
         infoCards: [
-          { title: "Tour/Package", value: tourTitle, iconEmoji: "📍" },
-          { title: "Date", value: new Date(startDate).toLocaleDateString(), iconEmoji: "📅" },
+          { title: "Tour/Package", value: tourTitle, iconEmoji: "[Location]" },
+          { title: "Date", value: new Date(startDate).toLocaleDateString(), iconEmoji: "[Date]" },
           { title: "Time", value: startTime || "N/A", iconEmoji: "⏰" }
         ],
         statusBadge: { text: "ACTION REQUIRED", color: "#E67E22" },
@@ -210,7 +210,7 @@ const notifyAdminOfAssignmentDecision = async (guideName, decision, tourTitle) =
        const emailHtml = buildPremiumEmail({
          type: "default",
          title: "Guide Assignment Update",
-         icon: decision === "rejected" ? "⚠️" : "✅",
+         icon: decision === "rejected" ? "warning" : "success",
          accentColor: decision === "rejected" ? "#EF4444" : "#10B981",
          greeting: `Attention Admin,`,
          bodyLines: [
@@ -251,7 +251,7 @@ const notifyTravelersOfAcceptance = async (scheduleId, guideName, tourTitle) => 
         const emailHtml = buildPremiumEmail({
           type: "default",
           title: "Your Guide is Confirmed!",
-          icon: "✅",
+          icon: "success",
           accentColor: "#10B981",
           greeting: `Hi ${b.user.name},`,
           bodyLines: [

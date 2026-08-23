@@ -88,9 +88,9 @@ async function runTests() {
     console.log(`Wallet Balance: ${walletAfterT1.balance} ETB (Expected: 1800)`);
     
     if (successCount === 1 && walletAfterT1.balance === 1800) {
-      console.log("✅ TEST 1 PASSED: Earnings released exactly once.");
+      console.log("[PASS] TEST 1: Earnings released exactly once.");
     } else {
-      console.log("❌ TEST 1 FAILED: Race condition detected.");
+      console.log("[FAIL] TEST 1: Race condition detected.");
     }
 
 
@@ -148,9 +148,9 @@ async function runTests() {
     console.log(`Pending Payout: ${walletAfterT2.pendingPayout} (Expected: 9000)`);
 
     if (successfulRequests === 3 && walletAfterT2.balance === 1000) {
-      console.log("✅ TEST 2 PASSED: Negative balance prevented.");
+      console.log("[PASS] TEST 2: Negative balance prevented.");
     } else {
-      console.log("❌ TEST 2 FAILED: Race condition detected.");
+      console.log("[FAIL] TEST 2: Race condition detected.");
     }
 
     // ----------------------------------------------------
@@ -217,9 +217,9 @@ async function runTests() {
     
     const doubleProcessed = t3Results.filter(Boolean).length > 1;
     if (!doubleProcessed) {
-      console.log("✅ TEST 3 PASSED: Duplicate processing prevented.");
+      console.log("[PASS] TEST 3: Duplicate processing prevented.");
     } else {
-      console.log("❌ TEST 3 FAILED: Double processing occurred.");
+      console.log("[FAIL] TEST 3: Double processing occurred.");
     }
 
     console.log("\nAll concurrency tests complete!");

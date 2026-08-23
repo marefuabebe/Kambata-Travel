@@ -297,7 +297,7 @@ export default function GuideSOSPage() {
                       className="bg-white dark:bg-[#1E293B] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm p-6 space-y-4">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{typeInfo?.icon || "🆘"}</span>
+                          <span className="text-2xl flex items-center justify-center w-8">{typeInfo?.icon || <Siren size={24} />}</span>
                           <div>
                             <p className="font-black text-gray-900 dark:text-white">{typeInfo?.label || alert.type}</p>
                             <p className="text-xs text-gray-400">{new Date(alert.createdAt).toLocaleString()}</p>

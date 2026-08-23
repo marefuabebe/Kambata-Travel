@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Mail, Lock, ArrowLeft, ArrowRight, Quote, LogIn, Compass, Eye, EyeOff, User, Star, Luggage, ShieldCheck } from "lucide-react";
+import { Mail, Lock, ArrowLeft, ArrowRight, Quote, LogIn, Compass, Eye, EyeOff, User, Star, Luggage, ShieldCheck, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
@@ -111,9 +111,9 @@ const LoginPage = () => {
           <p className="text-white/90 text-xs md:text-sm max-w-[280px] md:max-w-md">{t("auth.continueJourney")}</p>
           
           <div className="hidden lg:flex flex-col gap-3 text-left mt-8 w-full px-8">
-             <div className="flex items-center gap-3 text-white/90 font-medium"><span className="text-[#D4A017] text-lg">✓</span> {t("auth.discoverHidden")}</div>
-             <div className="flex items-center gap-3 text-white/90 font-medium"><span className="text-[#D4A017] text-lg">✓</span> {t("auth.bookGuides")}</div>
-             <div className="flex items-center gap-3 text-white/90 font-medium"><span className="text-[#D4A017] text-lg">✓</span> {t("auth.experienceCulture")}</div>
+             <div className="flex items-center gap-3 text-white/90 font-medium"><Check className="text-[#D4A017]" size={18} /> {t("auth.discoverHidden")}</div>
+             <div className="flex items-center gap-3 text-white/90 font-medium"><Check className="text-[#D4A017]" size={18} /> {t("auth.bookGuides")}</div>
+             <div className="flex items-center gap-3 text-white/90 font-medium"><Check className="text-[#D4A017]" size={18} /> {t("auth.experienceCulture")}</div>
           </div>
         </div>
       </div>

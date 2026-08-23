@@ -6,7 +6,7 @@ import apiClient from "@/utils/apiClient";
 import { toast } from "react-hot-toast";
 import {
   Check, X, ArrowRight, Loader2, Calendar,
-  CheckCircle, XCircle, Sparkles, AlertCircle, Users
+  CheckCircle, XCircle, Sparkles, AlertCircle, Users, Star
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -349,7 +349,9 @@ export default function RequestsPage() {
                   <div className="flex-1 min-w-0">
                     <p className="font-bold text-sm text-slate-900 dark:text-white truncate">{g.name}</p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 truncate font-medium">{g.languages?.join(", ")} · Score: {g.totalScore}</p>
-                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">★ {g.rating?.toFixed(1)} · {g.toursThisMonth} tours this month</p>
+                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 flex items-center gap-1">
+                      <Star size={10} className="fill-slate-400 dark:fill-slate-500" /> {g.rating?.toFixed(1)} · {g.toursThisMonth} tours this month
+                    </p>
                   </div>
                   {selectedGuideId === g.guideId && (
                     <div className="w-5 h-5 rounded-full bg-[#FF8C00] text-white flex items-center justify-center flex-shrink-0">

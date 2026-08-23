@@ -344,7 +344,7 @@ export default function AnalyticsDashboard() {
         },
         {
           label: "Avg Rating",
-          current: `${overview.current.avgRating.toFixed(1)} ★`,
+          current: <span className="inline-flex items-center gap-1">{overview.current.avgRating.toFixed(1)} <Star size={24} className="text-[#FF8C00] fill-[#FF8C00] shrink-0" /></span>,
           change: overview.changes.avgRating,
           mode: "points" as const,
           spark: [overview.previous.avgRating, overview.current.avgRating],
@@ -715,13 +715,19 @@ export default function AnalyticsDashboard() {
                           </td>
                           <td className="px-5 py-3 text-right text-sm font-medium tabular-nums">{g.completedTrips}</td>
                           <td className="px-5 py-3 text-right text-sm font-medium text-emerald-600 tabular-nums">{g.attendanceRate}%</td>
-                          <td className="px-5 py-3 text-right text-sm font-medium text-[#FF8C00] tabular-nums">{g.avgRating} ★</td>
+                          <td className="px-5 py-3 text-right text-sm font-medium text-[#FF8C00] tabular-nums">
+                            <span className="inline-flex items-center gap-1 justify-end">
+                              {g.avgRating} <Star size={12} className="fill-[#FF8C00]" />
+                            </span>
+                          </td>
                           <td className="px-5 py-3 text-right text-sm tabular-nums">
                             <span className={g.incidentCount > 0 ? "text-red-500 font-medium" : "text-slate-400"}>{g.incidentCount}</span>
                           </td>
                         </tr>
                       ))
                     )}
+
+                    
                   </tbody>
                 </table>
               </div>
@@ -738,7 +744,9 @@ export default function AnalyticsDashboard() {
                       <p className="text-xs text-slate-400">{g.completedTrips} trips · {g.attendanceRate}% attendance</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-sm font-medium text-[#FF8C00]">{g.avgRating} ★</p>
+                      <p className="text-sm font-medium text-[#FF8C00] inline-flex items-center gap-1 justify-end">
+                        {g.avgRating} <Star size={12} className="fill-[#FF8C00]" />
+                      </p>
                       <p className={`text-xs ${g.incidentCount > 0 ? "text-red-500" : "text-slate-400"}`}>{g.incidentCount} incidents</p>
                     </div>
                   </div>

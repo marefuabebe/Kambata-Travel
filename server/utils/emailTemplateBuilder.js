@@ -292,7 +292,7 @@ const buildBookingSummary = (bookingSummary) => {
         style="background-color: ${BRAND.surface}; border-bottom: 1px solid ${BRAND.border};" class="dark-surface dark-border-bottom">
         <tr>
           <td style="padding: 16px 24px;">
-            <span style="font-family: 'Inter', Arial, sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: ${BRAND.muted};" class="dark-muted">📋 Booking Details</span>
+            <span style="font-family: 'Inter', Arial, sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: ${BRAND.muted};" class="dark-muted">[DETAILS]</span>
           </td>
           <td style="padding: 16px 24px; text-align: right;">
             <span style="font-family: 'Inter', Arial, sans-serif; font-size: 11px; font-weight: 700; color: ${BRAND.green}; background-color: ${BRAND.green}15; padding: 4px 12px; border-radius: 12px;">Confirmed</span>
@@ -385,10 +385,10 @@ const buildTimeline = (type) => {
   if (!["welcome"].includes(type)) return "";
 
   const steps = [
-    { label: "Account Created", active: true, icon: "✓" },
-    { label: "Verify Email", active: true, icon: "✉" },
-    { label: "Complete Profile", active: false, icon: "👤" },
-    { label: "Explore Kambata", active: false, icon: "✏" },
+    { label: "Account Created", active: true, icon: "[✓]" },
+    { label: "Verify Email", active: true, icon: "[@]" },
+    { label: "Complete Profile", active: false, icon: "[User]" },
+    { label: "Explore Kambata", active: false, icon: "[...]" },
   ];
 
   const stepCells = steps.map((step, i) => {
@@ -510,7 +510,7 @@ const buildFooter = () => {
                 </td>
                 <td style="padding: 0 4px;">
                   <a href="#" style="display: inline-block; width: 32px; height: 32px; background-color: rgba(255,255,255,0.1); border-radius: 50%; text-align: center; line-height: 32px; text-decoration: none; font-size: 14px;">
-                    <span style="color: rgba(255,255,255,0.6);">📷</span>
+                    <span style="color: rgba(255,255,255,0.6);">[IMG]</span>
                   </a>
                 </td>
               </tr>

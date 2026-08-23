@@ -5,7 +5,7 @@ import {
   MessageSquare, X, Send, Loader2, Sparkles, User, Map, Briefcase, 
   Building, Calendar, CreditCard, Shield, Paperclip, Mic, Menu, 
   ChevronDown, Check, History, Moon, Sun, Plus, ChevronRight,
-  TrendingUp, Clock, Compass, Navigation
+  TrendingUp, Clock, Compass, Navigation, Star
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
@@ -528,7 +528,7 @@ export default function EnterpriseChatbot() {
                                 </div>
                                 <div className="flex items-center justify-between mt-auto">
                                   <div className="flex items-center gap-1 text-xs font-bold text-amber-500">
-                                    ★ {dest.rating}
+                                    <Star size={12} className="inline fill-current text-yellow-500 mr-0.5" /> {dest.rating}
                                   </div>
                                   <button className="bg-[#0F766E]/10 text-[#0F766E] px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-[#0F766E] hover:text-white transition-colors">
                                     View Details
@@ -580,7 +580,7 @@ export default function EnterpriseChatbot() {
                                   <p className="text-[11px] text-slate-500 dark:text-slate-400">{guide.role}</p>
                                 </div>
                                 <div className="flex items-center gap-1 text-[11px] font-bold text-amber-500">
-                                  ★ {guide.rating}
+                                  <Star size={12} className="inline fill-current text-yellow-500 mr-0.5" /> {guide.rating}
                                 </div>
                               </div>
                             ))}

@@ -6,7 +6,7 @@ const requiredEnvVars = ["PORT", "EMAIL_USER", "EMAIL_PASS", "JWT_SECRET", "DATA
 const missingVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
 
 if (missingVars.length > 0) {
-  console.error("\n❌ CRITICAL ERROR: Missing required environment variables.");
+  console.error("\n[CRITICAL ERROR]: Missing required environment variables.");
   console.error("Please ensure the following variables are set in your .env file or environment:");
   missingVars.forEach((envVar) => console.error(` - ${envVar}`));
   console.error("\nShutting down server to prevent insecure/unstable state.\n");

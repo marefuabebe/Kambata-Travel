@@ -62,7 +62,7 @@ const checkBlacklist = async (req, res, next) => {
     });
 
     if (isBlacklisted) {
-      logger.warn(`🛑 Blocked access attempt from banned IP: ${ip}`);
+      logger.warn(`[BLOCKED] Access attempt from banned IP: ${ip}`);
       return res.status(403).json({
         message: "Your IP has been permanently or temporarily banned due to suspicious activity. Contact support if this is an error.",
       });

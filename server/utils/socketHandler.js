@@ -27,7 +27,7 @@ const socketHandler = (io) => {
   });
 
   io.on("connection", (socket) => {
-    logger.info(`🛰️ Contextual Messaging Active: ${socket.user.name}`);
+    logger.info(`[WS] Contextual Messaging Active: ${socket.user.name}`);
 
     // Automatically join personal channel for direct notifications
     socket.join(socket.user._id.toString());
@@ -216,7 +216,7 @@ const socketHandler = (io) => {
     });
 
     socket.on("disconnect", () => {
-      logger.info(`🛰️ Connection closed: ${socket.id}`);
+      logger.info(`[WS] Connection closed: ${socket.id}`);
     });
   });
 };

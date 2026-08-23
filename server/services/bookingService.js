@@ -145,7 +145,7 @@ const markToursAsCompleted = async () => {
             const emailHtml = buildPremiumEmail({
               type: "default",
               title: "Missed Tour Notification",
-              icon: "⚠️",
+              icon: "warning",
               accentColor: "#EF4444",
               greeting: `Hi ${bUser.name},`,
               bodyLines: [
@@ -153,7 +153,7 @@ const markToursAsCompleted = async () => {
                 "Your travel pass has now expired. If you believe this is an error, please contact our support team immediately."
               ],
               infoCards: [
-                { title: "Status", value: "Expired (No-show)", iconEmoji: "❌" }
+                { title: "Status", value: "Expired (No-show)", iconEmoji: "[x]" }
               ],
               statusBadge: { text: "EXPIRED", color: "#EF4444" }
             });

@@ -151,7 +151,7 @@ export default function AttendancePage() {
                         <div className="min-w-0 flex-1">
                           <p className="font-bold text-slate-900 dark:text-white">{sched.tourTitle}</p>
                           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1">
-                            <span className="text-sm">📅</span>
+                            <Calendar size={14} />
                             <span className="truncate">
                               {new Date(sched.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {new Date(sched.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                             </span>

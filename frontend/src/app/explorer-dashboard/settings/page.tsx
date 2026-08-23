@@ -185,7 +185,7 @@ export default function ExplorerSettings() {
             <div className="flex items-center gap-3 flex-wrap mb-2">
               <h1 className="text-3xl font-black text-teal-950 dark:text-white tracking-tight">{formData.name || "Your Name"}</h1>
               <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-3 py-1.5 rounded-lg border border-emerald-500/30">Explorer</span>
-              {rawImageFile && <span className="text-[10px] font-black uppercase tracking-widest bg-[#FF8C00]/20 text-[#FF8C00] border border-[#FF8C00]/30 px-3 py-1.5 rounded-lg">📸 New photo</span>}
+              {rawImageFile && <span className="text-[10px] font-black uppercase tracking-widest bg-[#FF8C00]/20 text-[#FF8C00] border border-[#FF8C00]/30 px-3 py-1.5 rounded-lg flex items-center gap-1"><Camera size={12}/> New photo</span>}
             </div>
             <p className="text-teal-700/80 dark:text-gray-400 text-sm font-medium">{user?.email}</p>
             <div className="flex items-center gap-4 mt-4 flex-wrap">
@@ -337,10 +337,10 @@ export default function ExplorerSettings() {
                           <Activity className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-10" size={18} />
                           <select value={preferences.difficulty} onChange={e => { setPreferences({ ...preferences, difficulty: e.target.value }); setIsDirty(true); }}
                             className={inputCls(true) + " appearance-none"}>
-                            <option value="Easy">🟢 Easy – Light walking</option>
-                            <option value="Moderate">🟡 Moderate – Active</option>
-                            <option value="Challenging">🟠 Challenging – Hiking</option>
-                            <option value="Extreme">🔴 Extreme – Mountaineering</option>
+                            <option value="Easy">Easy – Light walking</option>
+                            <option value="Moderate">Moderate – Active</option>
+                            <option value="Challenging">Challenging – Hiking</option>
+                            <option value="Extreme">Extreme – Mountaineering</option>
                           </select>
                         </div>
                       </Field>
@@ -349,10 +349,10 @@ export default function ExplorerSettings() {
                           <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 z-10" size={18} />
                           <select value={preferences.groupType} onChange={e => { setPreferences({ ...preferences, groupType: e.target.value }); setIsDirty(true); }}
                             className={inputCls(true) + " appearance-none"}>
-                            <option value="Solo">🧍 Solo Traveler</option>
-                            <option value="Couple">💑 Couple</option>
-                            <option value="Family">👨‍👩‍👧 Family</option>
-                            <option value="Group">👥 Large Group</option>
+                            <option value="Solo">Solo Traveler</option>
+                            <option value="Couple">Couple</option>
+                            <option value="Family">Family</option>
+                            <option value="Group">Large Group</option>
                           </select>
                         </div>
                       </Field>
@@ -494,8 +494,8 @@ export default function ExplorerSettings() {
                             <select value={settings.privacy.profileVisibility}
                               onChange={e => { setSettings({ ...settings, privacy: { ...settings.privacy, profileVisibility: e.target.value } }); setIsDirty(true); }}
                               className={inputCls(true) + " appearance-none"}>
-                              <option value="public">🌐 Public</option>
-                              <option value="private">🔒 Private</option>
+                              <option value="public">Public</option>
+                              <option value="private">Private</option>
                             </select>
                           </div>
                         </Field>
@@ -505,9 +505,9 @@ export default function ExplorerSettings() {
                             <select value={settings.privacy.travelHistoryVisibility}
                               onChange={e => { setSettings({ ...settings, privacy: { ...settings.privacy, travelHistoryVisibility: e.target.value } }); setIsDirty(true); }}
                               className={inputCls(true) + " appearance-none"}>
-                              <option value="guides_only">🧭 Guides Only</option>
-                              <option value="public">🌐 Public</option>
-                              <option value="private">🔒 Private</option>
+                              <option value="guides_only">Guides Only</option>
+                              <option value="public">Public</option>
+                              <option value="private">Private</option>
                             </select>
                           </div>
                         </Field>

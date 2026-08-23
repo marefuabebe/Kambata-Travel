@@ -8,9 +8,9 @@ mongoose.connect(process.env.DATABASE_URI).then(async () => {
     { $set: { "schedules.$[elem].status": "published" } },
     { arrayFilters: [{ "elem.status": "upcoming" }] }
   );
-  console.log(`✅ Fixed ${result.modifiedCount} tour(s) with stale 'upcoming' schedule status → 'published'`);
+  console.log(`[SUCCESS] Fixed ${result.modifiedCount} tour(s) with stale 'upcoming' schedule status → 'published'`);
   mongoose.disconnect();
 }).catch(e => {
-  console.error("❌ Error:", e.message);
+  console.error("[ERROR]:", e.message);
   process.exit(1);
 });

@@ -20,6 +20,10 @@ import {
   Radio,
   Eye,
   MessageSquare,
+  PlusSquare,
+  Car,
+  CloudLightning,
+  Wrench,
 } from "lucide-react";
 
 const API_BASE =
@@ -57,15 +61,15 @@ const STATUS_CONFIG: Record<string, { color: string; icon: React.ReactNode; labe
   false_alarm: { color: "text-gray-400", icon: <XCircle size={12} />, label: "False Alarm" },
 };
 
-const TYPE_LABELS: Record<string, string> = {
-  medical_emergency: "🏥 Medical Emergency",
-  safety_threat:     "🛡️ Safety Threat",
-  accident:          "🚑 Accident / Injury",
-  natural_disaster:  "⛈️ Natural Disaster",
-  lost_traveler:     "🗺️ Lost Traveler",
-  vehicle_breakdown: "🚗 Vehicle Breakdown",
-  harassment:        "⚠️ Harassment / Threat",
-  other:             "🆘 Other Emergency",
+const TYPE_CONFIG: Record<string, { label: string; icon: React.ReactNode }> = {
+  medical_emergency: { label: "Medical Emergency", icon: <PlusSquare size={14} /> },
+  safety_threat:     { label: "Safety Threat", icon: <Shield size={14} /> },
+  accident:          { label: "Accident / Injury", icon: <Car size={14} /> },
+  natural_disaster:  { label: "Natural Disaster", icon: <CloudLightning size={14} /> },
+  lost_traveler:     { label: "Lost Traveler", icon: <MapPin size={14} /> },
+  vehicle_breakdown: { label: "Vehicle Breakdown", icon: <Wrench size={14} /> },
+  harassment:        { label: "Harassment / Threat", icon: <AlertTriangle size={14} /> },
+  other:             { label: "Other Emergency", icon: <Siren size={14} /> },
 };
 
 function StatPill({ label, value, color }: { label: string; value: number; color: string }) {
@@ -126,8 +130,15 @@ function AlertCard({
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap mb-1">
-            <span className="text-sm font-black text-gray-900 dark:text-white">
-              {TYPE_LABELS[alert.type] || alert.type}
+            <span className="text-sm font-black text-gray-900 dark:text-white flex items-center gap-1.5">
+              {TYPE_CONFIG[alert.type] ? (
+                <>
+                  {TYPE_CONFIG[alert.type].icon}
+                  {TYPE_CONFIG[alert.type].label}
+                </>
+              ) : (
+                alert.type
+              )}
             </span>
             <span className={`flex items-center gap-1 text-xs font-bold ${st.color}`}>
               {st.icon} {st.label}
