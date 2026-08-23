@@ -75,7 +75,7 @@ function getStatusBadge(app: GuideApplicant, tab: TabKey) {
   return {
     label: "Unverified",
     className:
-      "bg-slate-100 text-slate-600 border-slate-200 dark:bg-[#161B26] dark:text-slate-300 dark:border-slate-600",
+      "bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600",
   };
 }
 
@@ -260,7 +260,7 @@ export default function GuideAppsPage() {
               </p>
             </div>
 
-            <div className="flex p-1 rounded-2xl bg-white dark:bg-[#161B26] border border-[#E2E8F0] dark:border-[#334155] shadow-sm relative w-full lg:w-auto overflow-x-auto">
+            <div className="flex p-1 rounded-2xl bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] shadow-sm relative w-full lg:w-auto overflow-x-auto">
               {tabs.map((tab) => (
                 <button
                   key={tab.key}
@@ -306,7 +306,7 @@ export default function GuideAppsPage() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#161B26] shadow-sm p-10 sm:p-14 text-center"
+              className="rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] shadow-sm p-10 sm:p-14 text-center"
             >
               <div className="w-16 h-16 mx-auto mb-4 rounded-[20px] bg-[#F8FAFC] dark:bg-[#0F172A] border border-[#E2E8F0] dark:border-[#334155] flex items-center justify-center">
                 <Award className="text-slate-300 dark:text-slate-600" size={28} />
@@ -334,7 +334,7 @@ export default function GuideAppsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.04, duration: 0.25 }}
-                    className="group rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#161B26] shadow-sm hover:shadow-md hover:border-[#FF8C00]/30 dark:hover:border-[#FF8C00]/40 transition-all duration-200 overflow-hidden"
+                    className="group rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] shadow-sm hover:shadow-md hover:border-[#FF8C00]/30 dark:hover:border-[#FF8C00]/40 transition-all duration-200 overflow-hidden"
                   >
                     <div className="p-4 sm:p-5">
                       {/* Header row */}
@@ -486,9 +486,9 @@ export default function GuideAppsPage() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: "100%", scale: 0.95 }}
                   transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                  className="bg-white/95 dark:bg-[#161B26]/95 backdrop-blur-2xl w-full max-w-4xl md:rounded-[24px] rounded-t-[24px] shadow-2xl relative z-10 flex flex-col overflow-hidden border-t md:border border-[#E2E8F0] dark:border-[#334155] h-[90vh] md:h-auto md:max-h-[85vh]"
+                  className="bg-white/95 dark:bg-[#1E293B]/95 backdrop-blur-2xl w-full max-w-4xl md:rounded-[24px] rounded-t-[24px] shadow-2xl relative z-10 flex flex-col overflow-hidden border-t md:border border-[#E2E8F0] dark:border-[#334155] h-[90vh] md:h-auto md:max-h-[85vh]"
                 >
-                  <div className="sticky top-0 z-20 px-6 py-5 md:px-8 md:py-6 border-b border-[#E2E8F0] dark:border-[#334155] bg-white/80 dark:bg-[#161B26]/80 backdrop-blur-xl flex items-start justify-between gap-4">
+                  <div className="sticky top-0 z-20 px-6 py-5 md:px-8 md:py-6 border-b border-[#E2E8F0] dark:border-[#334155] bg-white/80 dark:bg-[#1E293B]/80 backdrop-blur-xl flex items-start justify-between gap-4">
                     <div className="flex items-center gap-4 md:gap-5 min-w-0 flex-1">
                       <GuideAvatar name={selectedGuide.name} src={selectedGuide.profilePicture} size="lg" />
                       <div className="min-w-0 flex-1">
@@ -522,7 +522,7 @@ export default function GuideAppsPage() {
                           <h4 className="text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4 pl-1 flex items-center gap-2">
                             <MapPin size={14} /> Contact Details
                           </h4>
-                          <div className="bg-white dark:bg-[#161B26] rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] shadow-sm overflow-hidden flex flex-col divide-y divide-[#E2E8F0] dark:divide-[#334155]">
+                          <div className="bg-white dark:bg-[#1E293B] rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] shadow-sm overflow-hidden flex flex-col divide-y divide-[#E2E8F0] dark:divide-[#334155]">
                             {[
                               ["Email Address", selectedGuide.email],
                               ["Phone Number", selectedGuide.phone || "Not provided"],
@@ -577,7 +577,7 @@ export default function GuideAppsPage() {
                           <h4 className="text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-4 pl-1 flex items-center gap-2">
                             <Users size={14} /> Professional Profile
                           </h4>
-                          <div className="bg-white dark:bg-[#161B26] rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] shadow-sm overflow-hidden flex flex-col h-full">
+                          <div className="bg-white dark:bg-[#1E293B] rounded-[24px] border border-[#E2E8F0] dark:border-[#334155] shadow-sm overflow-hidden flex flex-col h-full">
                             <div className="p-6 border-b border-[#E2E8F0] dark:border-[#334155] flex-1">
                               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 block">
                                 Biography (English)
@@ -723,7 +723,7 @@ function ModalDocRow({
       : "bg-blue-50 dark:bg-blue-500/10 text-blue-500";
 
   return (
-    <div className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 border border-[#E2E8F0] dark:border-[#334155] shadow-sm flex items-center justify-between group hover:border-[#FF8C00]/30 dark:hover:border-[#FF8C00]/40 transition-all">
+    <div className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 border border-[#E2E8F0] dark:border-[#334155] shadow-sm flex items-center justify-between group hover:border-[#FF8C00]/30 dark:hover:border-[#FF8C00]/40 transition-all">
       <div className="flex items-center gap-4 min-w-0">
         <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${iconTone}`}>
           <Icon size={18} />

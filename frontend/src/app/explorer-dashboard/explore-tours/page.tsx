@@ -172,7 +172,7 @@ function ExploreToursContent() {
         initial={{ opacity: 0, y: 10 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 dark:border-white/5 p-4 md:p-4 flex flex-col md:flex-row gap-4 md:items-center shadow-sm"
+        className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[1.5rem] md:rounded-[2rem] border border-gray-100 dark:border-white/5 p-4 md:p-4 flex flex-col md:flex-row gap-4 md:items-center shadow-sm"
       >
         <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-xs font-black uppercase tracking-widest px-2">
           <SlidersHorizontal size={16} /> {t("exploreTours.filters.title")}
@@ -254,7 +254,7 @@ function ExploreToursContent() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group hover:shadow-2xl dark:shadow-none hover:-translate-y-1 transition-all relative"
+                  className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group hover:shadow-2xl dark:shadow-none hover:-translate-y-1 transition-all relative"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500 opacity-[0.03] dark:opacity-10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                   

@@ -81,7 +81,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
     return (
       <div className="lg:hidden flex flex-col gap-6 relative min-h-screen pb-24 px-2">
         {/* Calendar Skeleton */}
-        <div className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 animate-pulse">
+        <div className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 animate-pulse">
           <div className="h-6 w-32 bg-gray-200 dark:bg-gray-700 rounded-md mb-6" />
           <div className="grid grid-cols-7 gap-y-2">
              {Array.from({length: 35}).map((_, i) => (
@@ -116,7 +116,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
       </div>
 
       {/* 1. Mini Calendar */}
-      <div className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.03)] dark:shadow-none border border-gray-100 dark:border-white/5 mx-2">
+      <div className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-[0_2px_10px_rgba(0,0,0,0.03)] dark:shadow-none border border-gray-100 dark:border-white/5 mx-2">
         <div className="flex items-center justify-between mb-4 px-2">
           <h2 className="text-lg font-black text-gray-900 dark:text-white">
             {currentMonth.format("MMMM YYYY")}
@@ -189,7 +189,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
       {/* Weather Widget */}
       <motion.div 
         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 rounded-[20px] p-4 flex items-center justify-between shadow-sm mx-2"
+        className="bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 rounded-[20px] p-4 flex items-center justify-between shadow-sm mx-2"
       >
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-sky-50 dark:bg-sky-500/10 rounded-xl flex items-center justify-center text-sky-500 border border-sky-100 dark:border-sky-500/20">
@@ -206,7 +206,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
       <div className="px-2">
         <h3 className="text-[17px] font-black text-center text-gray-900 dark:text-white mb-4">Today's Overview</h3>
         <div className="grid grid-cols-3 gap-2 sm:gap-3">
-          <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 rounded-[1.25rem] p-3 shadow-sm flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+          <div className="bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 rounded-[1.25rem] p-3 shadow-sm flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
             <div className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white mb-1">{stats.scheduled}</div>
             <div className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">Scheduled</div>
           </div>
@@ -215,7 +215,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
             <div className="text-xl sm:text-2xl font-black text-[#0F766E] dark:text-emerald-400 mb-1">{stats.active}</div>
             <div className="text-[10px] sm:text-xs font-bold text-[#0F766E]/70 dark:text-emerald-400/70 uppercase tracking-wider">Active</div>
           </div>
-          <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 rounded-[1.25rem] p-3 shadow-sm flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
+          <div className="bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 rounded-[1.25rem] p-3 shadow-sm flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-transform">
             <div className="text-xl sm:text-2xl font-black text-blue-600 dark:text-blue-400 mb-1">{stats.completed}</div>
             <div className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase tracking-wider">Completed</div>
           </div>
@@ -247,7 +247,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
                 initial={{ opacity: 0, scale: 0.95 }} 
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 rounded-[20px] p-10 text-center flex flex-col items-center gap-4 shadow-sm"
+                className="bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 rounded-[20px] p-10 text-center flex flex-col items-center gap-4 shadow-sm"
               >
                 <div className="w-16 h-16 bg-gray-50 dark:bg-white/5 rounded-[1.25rem] flex items-center justify-center text-gray-300 dark:text-gray-600">
                   <CalendarIcon size={32} />
@@ -274,7 +274,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ delay: i * 0.05, duration: 0.3 }}
                     onClick={() => ev.type !== "timeOff" && setSelectedTour(ev)}
-                    className={`bg-white dark:bg-[#161B26] rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] border border-gray-100 dark:border-white/5 overflow-hidden transition-all hover:-translate-y-1 active:scale-[0.98] ${ev.type !== "timeOff" ? "cursor-pointer" : ""}`}
+                    className={`bg-white dark:bg-[#1E293B] rounded-[20px] shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.2)] border border-gray-100 dark:border-white/5 overflow-hidden transition-all hover:-translate-y-1 active:scale-[0.98] ${ev.type !== "timeOff" ? "cursor-pointer" : ""}`}
                   >
                     {ev.type !== "timeOff" && (
                       <div className="h-40 w-full bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
@@ -419,7 +419,7 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
 
                 <div>
                   <h4 className="text-[13px] font-black uppercase tracking-widest text-gray-400 mb-4">Traveler Details</h4>
-                  <div className="bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 rounded-[20px] p-5 flex items-center justify-between shadow-sm">
+                  <div className="bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 rounded-[20px] p-5 flex items-center justify-between shadow-sm">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/30 rounded-[14px] flex items-center justify-center text-[#0F766E] dark:text-emerald-400 font-black text-xl border border-emerald-100 dark:border-emerald-500/20">
                         {selectedTour.travelerCount || 4}
@@ -485,13 +485,13 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
               initial={{ opacity: 0, scale: 0.8, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: 20 }}
               className="absolute bottom-16 right-0 flex flex-col gap-3 items-end"
             >
-              <button onClick={() => { setFabOpen(false); toast.error("SOS Triggered"); }} className="flex items-center gap-3 bg-white dark:bg-[#161B26] shadow-xl p-2 rounded-full border border-gray-100 dark:border-white/10 group">
+              <button onClick={() => { setFabOpen(false); toast.error("SOS Triggered"); }} className="flex items-center gap-3 bg-white dark:bg-[#1E293B] shadow-xl p-2 rounded-full border border-gray-100 dark:border-white/10 group">
                 <span className="font-bold text-sm text-gray-700 dark:text-gray-200 pl-3">Emergency SOS</span>
                 <div className="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-colors">
                   <AlertCircle size={18} />
                 </div>
               </button>
-              <button onClick={() => { setFabOpen(false); onBlockDatesClick(); }} className="flex items-center gap-3 bg-white dark:bg-[#161B26] shadow-xl p-2 rounded-full border border-gray-100 dark:border-white/10 group">
+              <button onClick={() => { setFabOpen(false); onBlockDatesClick(); }} className="flex items-center gap-3 bg-white dark:bg-[#1E293B] shadow-xl p-2 rounded-full border border-gray-100 dark:border-white/10 group">
                 <span className="font-bold text-sm text-gray-700 dark:text-gray-200 pl-3">Block Dates</span>
                 <div className="w-10 h-10 bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 rounded-full flex items-center justify-center group-hover:bg-gray-200 transition-colors">
                   <Plus size={18} />

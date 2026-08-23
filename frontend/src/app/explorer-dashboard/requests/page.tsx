@@ -30,7 +30,7 @@ export default function MyRequestsPage() {
       />
 
       {requests.length === 0 ? (
-        <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-16 text-center shadow-sm">
+        <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-16 text-center shadow-sm">
           <Calendar size={48} className="text-gray-300 dark:text-gray-600 mx-auto mb-4" />
           <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">No Requests Yet</h3>
           <p className="text-gray-500 font-medium">When you request custom dates for tours or packages, they will appear here.</p>
@@ -43,7 +43,7 @@ export default function MyRequestsPage() {
             const isReady = req.status === "converted_to_schedule";
 
             return (
-              <div key={req._id} className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-3xl p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
+              <div key={req._id} className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-3xl p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
                 <div className="w-full md:w-48 h-32 rounded-2xl overflow-hidden shrink-0 bg-gray-100">
                   <img loading="lazy" src={image || "https://images.unsplash.com/photo-1549488344-c10ba3ebaa61"} alt={title} className="w-full h-full object-cover" />
                 </div>

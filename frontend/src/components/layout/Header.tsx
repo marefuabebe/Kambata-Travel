@@ -172,7 +172,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
               <Link href={user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard"} className="relative group">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center border-[2px] shadow-md transition-all ${
                   isCreamHeader 
-                    ? "border-gray-200 text-gray-600 bg-gray-50 group-hover:bg-[#161B26] group-hover:border-[#1E293B] group-hover:text-white"
+                    ? "border-gray-200 text-gray-600 bg-gray-50 group-hover:bg-[#1E293B] group-hover:border-[#1E293B] group-hover:text-white"
                     : "border-white text-white bg-white/20 group-hover:bg-white group-hover:text-[#1E293B]"
                 }`}>
                   <User className="w-5 h-5 stroke-[2.5]" />
@@ -194,7 +194,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
             <Link href="/login" className="relative group">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center border-[2px] shadow-md transition-all ${
                 isCreamHeader 
-                  ? "border-gray-200 text-gray-600 bg-gray-50 group-hover:bg-[#161B26] group-hover:border-[#1E293B] group-hover:text-white"
+                  ? "border-gray-200 text-gray-600 bg-gray-50 group-hover:bg-[#1E293B] group-hover:border-[#1E293B] group-hover:text-white"
                   : "border-white text-white bg-white/20 group-hover:bg-white group-hover:text-[#1E293B]"
               }`}>
                 <User className="w-5 h-5 stroke-[2.5]" />

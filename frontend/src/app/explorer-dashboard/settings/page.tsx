@@ -155,7 +155,7 @@ export default function ExplorerSettings() {
       
       {/* ── Mobile Back Button ── */}
       <div className="lg:hidden">
-        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform">
+        <button onClick={() => router.back()} className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-xl text-gray-600 dark:text-gray-300 font-bold shadow-sm active:scale-95 transition-transform">
           <ChevronLeft size={18} />
           Back
         </button>
@@ -231,7 +231,7 @@ export default function ExplorerSettings() {
               <button
                 type="button"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full flex items-center justify-between bg-white dark:bg-[#161B26]/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-4 shadow-sm"
+                className="w-full flex items-center justify-between bg-white dark:bg-[#1E293B]/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-4 shadow-sm"
               >
                 <span className="font-bold text-gray-900 dark:text-white flex-1 text-left">{getTabs(t).find(t => t.id === activeTab)?.label}</span>
                 <ChevronDown size={18} className={`text-gray-500 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
@@ -244,7 +244,7 @@ export default function ExplorerSettings() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden z-50 p-2 space-y-1"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden z-50 p-2 space-y-1"
                   >
                     {getTabs(t).map(tab => {
                       const Icon = tab.icon;
@@ -277,7 +277,7 @@ export default function ExplorerSettings() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -10, filter: 'blur(5px)' }} 
                 transition={{ duration: 0.2 }}
-                className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm p-8 min-h-[400px]">
+                className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm p-8 min-h-[400px]">
 
                 {activeTab === "general" && (
                   <div className="space-y-8">
@@ -571,7 +571,7 @@ export default function ExplorerSettings() {
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 p-6 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm">
+            <div className="mt-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 p-6 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm">
               <button type="button" onClick={fetchProfile} disabled={loading || !isDirty}
                 className="w-full sm:w-auto flex justify-center items-center gap-2 text-sm font-bold text-gray-500 dark:text-gray-400 px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all disabled:opacity-30">
                 <RotateCcw size={16} /> Discard Changes

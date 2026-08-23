@@ -16,7 +16,7 @@ export default function GuidePrivacyPage() {
       <div className="mb-10 flex items-center gap-4">
         <Link 
           href="/guide-dashboard" 
-          className="w-12 h-12 rounded-2xl bg-white dark:bg-[#161B26]/60 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm"
+          className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1E293B]/60 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-sm"
         >
           <ArrowLeft size={20} />
         </Link>
@@ -26,7 +26,7 @@ export default function GuidePrivacyPage() {
         </div>
       </div>
       
-      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden">
+      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
         

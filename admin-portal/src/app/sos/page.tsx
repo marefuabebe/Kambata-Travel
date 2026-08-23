@@ -332,7 +332,7 @@ export default function AdminSOSPage() {
         <button
           onClick={() => fetchAlerts(true)}
           disabled={refreshing}
-          className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/5 text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white shadow-sm hover:-translate-y-0.5 transition-all"
+          className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white shadow-sm hover:-translate-y-0.5 transition-all"
         >
           <RefreshCw size={16} className={refreshing ? "animate-spin" : ""} /> Refresh
         </button>
@@ -348,7 +348,7 @@ export default function AdminSOSPage() {
       </div>
 
       {/* ── Filters ── */}
-      <div className="flex flex-wrap gap-3 p-5 bg-white dark:bg-[#161B26] rounded-[1.5rem] border border-gray-100 dark:border-white/5 shadow-sm">
+      <div className="flex flex-wrap gap-3 p-5 bg-white dark:bg-[#1E293B] rounded-[1.5rem] border border-gray-100 dark:border-white/5 shadow-sm">
         <div className="flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest">
           <Filter size={12} /> Filters
         </div>
@@ -392,7 +392,7 @@ export default function AdminSOSPage() {
           <p className="text-sm font-bold text-gray-400">Loading emergency alerts…</p>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="text-center py-20 bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5">
+        <div className="text-center py-20 bg-white dark:bg-[#1E293B] rounded-[2rem] border border-gray-100 dark:border-white/5">
           <div className="w-16 h-16 bg-green-50 dark:bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <Shield size={28} className="text-emerald-500" />
           </div>

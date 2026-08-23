@@ -100,7 +100,7 @@ export default function UsersPage() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search by name or email..."
-            className="w-full bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/5 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-[#FF8C00] dark:focus:border-[#FF8C00] transition-all shadow-sm"
+            className="w-full bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/5 rounded-2xl py-3 pl-12 pr-4 text-sm font-medium text-gray-900 dark:text-white outline-none focus:border-[#FF8C00] dark:focus:border-[#FF8C00] transition-all shadow-sm"
           />
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function UsersPage() {
       {/* Mobile Card View (< md) */}
       <div className="md:hidden flex flex-col gap-4">
         {filteredUsers.length === 0 ? (
-          <div className="p-8 text-center bg-white dark:bg-[#161B26] rounded-3xl border border-gray-100 dark:border-white/5">
+          <div className="p-8 text-center bg-white dark:bg-[#1E293B] rounded-3xl border border-gray-100 dark:border-white/5">
             <div className="w-16 h-16 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mb-4 mx-auto">
               <UsersIcon className="text-gray-300 dark:text-gray-600" size={24} />
             </div>
@@ -117,7 +117,7 @@ export default function UsersPage() {
           </div>
         ) : (
           filteredUsers.map((user) => (
-            <div key={`mobile-${user._id}`} className="p-5 flex flex-col gap-4 bg-white dark:bg-[#161B26] rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm">
+            <div key={`mobile-${user._id}`} className="p-5 flex flex-col gap-4 bg-white dark:bg-[#1E293B] rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm">
               <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FF8C00]/20 to-[#FF8C00]/5 border border-[#FF8C00]/20 flex items-center justify-center text-[#FF8C00] font-black text-sm shadow-sm flex-shrink-0">
@@ -177,7 +177,7 @@ export default function UsersPage() {
         </div>
 
       {/* Users Data View */}
-      <div className="hidden md:block bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-xl shadow-gray-200/40 dark:shadow-none overflow-hidden">
+      <div className="hidden md:block bg-white dark:bg-[#1E293B] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-xl shadow-gray-200/40 dark:shadow-none overflow-hidden">
         {/* Desktop/Tablet Table View (>= md) */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse table-responsive min-w-[800px]">
@@ -312,15 +312,15 @@ export default function UsersPage() {
               <div>
                 <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Account Information</h4>
                 <div className="grid grid-cols-1 gap-3">
-                  <div className="bg-gray-50 dark:bg-[#161B26] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
+                  <div className="bg-gray-50 dark:bg-[#1E293B] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
                     <span className="text-xs text-gray-500 font-bold">Email Address</span>
                     <span className="text-sm font-medium text-gray-900 dark:text-white">{selectedUser.email}</span>
                   </div>
-                  <div className="bg-gray-50 dark:bg-[#161B26] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
+                  <div className="bg-gray-50 dark:bg-[#1E293B] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
                     <span className="text-xs text-gray-500 font-bold">Email Verification</span>
                     <span className="text-sm font-medium text-gray-900 dark:text-white">{selectedUser.isEmailVerified ? "Verified" : "Unverified"}</span>
                   </div>
-                  <div className="bg-gray-50 dark:bg-[#161B26] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
+                  <div className="bg-gray-50 dark:bg-[#1E293B] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
                     <span className="text-xs text-gray-500 font-bold">Joined Date</span>
                     <span className="text-sm font-medium text-gray-900 dark:text-white">{new Date(selectedUser.createdAt).toLocaleDateString()}</span>
                   </div>
@@ -330,13 +330,13 @@ export default function UsersPage() {
               <div>
                 <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-3">Security & Access</h4>
                 <div className="grid grid-cols-1 gap-3">
-                  <div className="bg-gray-50 dark:bg-[#161B26] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
+                  <div className="bg-gray-50 dark:bg-[#1E293B] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
                     <span className="text-xs text-gray-500 font-bold">Account Status</span>
                     <span className={`text-sm font-bold ${selectedUser.isBlocked ? "text-red-500" : "text-emerald-500"}`}>
                       {selectedUser.isBlocked ? "Blocked" : "Active"}
                     </span>
                   </div>
-                  <div className="bg-gray-50 dark:bg-[#161B26] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
+                  <div className="bg-gray-50 dark:bg-[#1E293B] p-3 rounded-xl border border-gray-100 dark:border-white/5 flex justify-between items-center">
                     <span className="text-xs text-gray-500 font-bold">Failed Login Attempts</span>
                     <span className="text-sm font-medium text-gray-900 dark:text-white">{selectedUser.loginAttempts || 0}</span>
                   </div>

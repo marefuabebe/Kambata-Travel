@@ -153,7 +153,7 @@ export default function Sidebar({
                       ? 'text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-500/5 hover:bg-red-100 dark:hover:bg-red-500/10 border border-transparent hover:border-red-200 dark:hover:border-red-500/20'
                       : item.highlight
                       ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/5 hover:bg-emerald-100 dark:hover:bg-emerald-500/10 border border-transparent hover:border-emerald-200 dark:hover:border-emerald-500/20'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/80 dark:hover:bg-[#161B26] border border-transparent hover:border-gray-200 dark:hover:border-white/10'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100/80 dark:hover:bg-[#1E293B] border border-transparent hover:border-gray-200 dark:hover:border-white/10'
                   }`}
                 >
                   <Icon 

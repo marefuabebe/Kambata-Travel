@@ -56,7 +56,7 @@ export default function IncidentsPage() {
         <div className="flex items-center gap-3 w-full md:w-auto">
           <button
             onClick={fetchIncidents}
-            className="shrink-0 bg-white dark:bg-[#161B26] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-sm hover:border-gray-300 dark:hover:border-white/20 flex items-center gap-2 transition-colors"
+            className="shrink-0 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-sm hover:border-gray-300 dark:hover:border-white/20 flex items-center gap-2 transition-colors"
           >
             Refresh
           </button>
@@ -76,7 +76,7 @@ export default function IncidentsPage() {
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
           {incidents.map((incident, idx) => (
-            <div key={`${incident.scheduleId}-${idx}`} className="bg-white dark:bg-[#161B26] rounded-[2rem] border border-red-100 dark:border-red-500/10 shadow-sm overflow-hidden flex flex-col group hover:shadow-md hover:border-red-200 dark:hover:border-red-500/30 transition-all relative">
+            <div key={`${incident.scheduleId}-${idx}`} className="bg-white dark:bg-[#1E293B] rounded-[2rem] border border-red-100 dark:border-red-500/10 shadow-sm overflow-hidden flex flex-col group hover:shadow-md hover:border-red-200 dark:hover:border-red-500/30 transition-all relative">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-orange-500" />
               
               <div className="p-6 bg-red-50/50 dark:bg-red-500/5 border-b border-red-100/50 dark:border-red-500/10 flex justify-between items-start gap-4">

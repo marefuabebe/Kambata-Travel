@@ -99,7 +99,7 @@ export default function GuideRequestsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[2rem] p-6 shadow-sm overflow-hidden flex flex-col"
+                className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[2rem] p-6 shadow-sm overflow-hidden flex flex-col"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span className="px-3 py-1 bg-[#FF8C00]/10 text-[#FF8C00] text-[10px] font-black uppercase tracking-widest rounded-xl">

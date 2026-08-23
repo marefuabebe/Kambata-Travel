@@ -56,7 +56,7 @@ export function StatCard({
   };
 
   return (
-    <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
+    <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
       <div className={`p-4 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 border ${accents[accent]}`}>
         {Icon && <Icon size={24} className={iconColors[accent]} />}
       </div>
@@ -79,7 +79,7 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center shadow-sm">
+    <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center shadow-sm">
       <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">{title}</h3>
       <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-8 leading-relaxed">{description}</p>
       {action}

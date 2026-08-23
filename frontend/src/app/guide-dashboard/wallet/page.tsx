@@ -141,7 +141,7 @@ export default function GuideWalletPage() {
           <p className="text-[10px] md:text-xs text-blue-600/70 mt-1 md:mt-2 font-medium">{t("guidePages.wallet.awaitingApproval")}</p>
         </div>
 
-        <div className="bg-gray-50 dark:bg-[#161B26]/50 border border-gray-200 dark:border-white/5 rounded-3xl p-4 md:p-6 flex flex-col justify-between">
+        <div className="bg-gray-50 dark:bg-[#1E293B]/50 border border-gray-200 dark:border-white/5 rounded-3xl p-4 md:p-6 flex flex-col justify-between">
           <div className="flex items-center gap-2 md:gap-3 text-gray-600 dark:text-gray-400 mb-3 md:mb-4">
             <Wallet size={18} className="md:w-6 md:h-6" />
             <h3 className="font-bold text-xs md:text-lg leading-tight">{t("guidePages.wallet.lifetimeEarnings")}</h3>
@@ -153,7 +153,7 @@ export default function GuideWalletPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white dark:bg-[#161B26]/60 border border-gray-100 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm">
+        <div className="bg-white dark:bg-[#1E293B]/60 border border-gray-100 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm">
           <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
             <CreditCard className="text-emerald-500" /> {t("guidePages.wallet.requestWithdrawal")}
           </h2>
@@ -203,7 +203,7 @@ export default function GuideWalletPage() {
           </form>
         </div>
 
-        <div className="bg-white dark:bg-[#161B26]/60 border border-gray-100 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm flex flex-col">
+        <div className="bg-white dark:bg-[#1E293B]/60 border border-gray-100 dark:border-white/5 rounded-3xl p-6 md:p-8 shadow-sm flex flex-col">
           <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6">{t("guidePages.wallet.recentRequests")}</h2>
           <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-4">
             {history.length === 0 ? (

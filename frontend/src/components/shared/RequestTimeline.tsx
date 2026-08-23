@@ -73,7 +73,7 @@ export default function RequestTimeline({ requestId, apiBase = "/requests", comp
                 />
               )}
               <div
-                className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-[#161B26] relative z-10 ${
+                className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-[#1E293B] relative z-10 ${
                   step.status === "completed"
                     ? "text-emerald-500"
                     : step.status === "active"

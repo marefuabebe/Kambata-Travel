@@ -143,7 +143,7 @@ export default function GuideSOSPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Report emergencies for yourself or your travelers.</p>
           </div>
         </div>
-        <div className="bg-white dark:bg-[#161B26] border border-red-100 dark:border-red-500/20 shadow-sm rounded-2xl p-4 flex items-center gap-4">
+        <div className="bg-white dark:bg-[#1E293B] border border-red-100 dark:border-red-500/20 shadow-sm rounded-2xl p-4 flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-500/10 flex items-center justify-center shrink-0">
             <Phone size={18} className="text-red-600 dark:text-red-400" />
           </div>
@@ -158,7 +158,7 @@ export default function GuideSOSPage() {
       <div className="flex gap-2 mb-8 bg-gray-50 dark:bg-white/5 p-1.5 rounded-[20px]">
         {[{ id: "submit", label: "Submit SOS" }, { id: "history", label: "My Alerts" }].map((t) => (
           <button key={t.id} onClick={() => { setTab(t.id as any); if (t.id === "history") fetchAlerts(); }}
-            className={`flex-1 py-3 rounded-2xl text-[14px] font-bold transition-all ${tab === t.id ? "bg-white dark:bg-[#161B26] text-gray-900 dark:text-white shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"}`}>
+            className={`flex-1 py-3 rounded-2xl text-[14px] font-bold transition-all ${tab === t.id ? "bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"}`}>
             {t.label}
           </button>
         ))}
@@ -169,7 +169,7 @@ export default function GuideSOSPage() {
           <motion.div key="submit" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
             {submitted ? (
               <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl overflow-hidden">
+                className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] border border-emerald-200 dark:border-emerald-500/30 shadow-2xl overflow-hidden">
                 <div className="bg-emerald-500 p-10 text-center">
                   <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 size={44} className="text-white" />
@@ -283,7 +283,7 @@ export default function GuideSOSPage() {
             {loadingAlerts ? (
               <div className="h-40 flex items-center justify-center"><Loader2 size={28} className="animate-spin text-red-500" /></div>
             ) : alerts.length === 0 ? (
-              <div className="bg-white dark:bg-[#161B26] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-12 text-center">
+              <div className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-12 text-center">
                 <Shield size={40} className="text-gray-300 dark:text-gray-600 mx-auto mb-4" />
                 <p className="font-black text-gray-700 dark:text-white text-lg mb-2">No Alerts</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Stay safe out there, {user?.name?.split(" ")[0]}!</p>
@@ -294,7 +294,7 @@ export default function GuideSOSPage() {
                   const typeInfo = ALERT_TYPES.find(t => t.value === alert.type);
                   return (
                     <motion.div key={alert._id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.05 }}
-                      className="bg-white dark:bg-[#161B26] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm p-6 space-y-4">
+                      className="bg-white dark:bg-[#1E293B] rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm p-6 space-y-4">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl flex items-center justify-center w-8">{typeInfo?.icon || <Siren size={24} />}</span>

@@ -136,7 +136,7 @@ function ChangeBadge({ change, mode = "percent" }: { change: number; mode?: "per
 
   if (isFlat) {
     return (
-      <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-[#161B26] text-slate-500">
+      <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
         <Minus size={10} /> Flat
       </span>
     );
@@ -196,7 +196,7 @@ function KPICard({
 
 function ChartCard({ title, subtitle, stat, statLabel, children, loading }: any) {
   return (
-    <div className={`bg-white dark:bg-[#161B26] rounded-xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden ${loading ? "opacity-60 pointer-events-none" : ""}`}>
+    <div className={`bg-white dark:bg-[#1E293B] rounded-xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden ${loading ? "opacity-60 pointer-events-none" : ""}`}>
       <div className="px-5 py-4 md:px-6 md:py-5 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 border-b border-[#E2E8F0] dark:border-[#334155]">
         <div>
           <h3 className="text-[15px] font-semibold text-[#0F172A] dark:text-[#F8FAFC]">{title}</h3>
@@ -383,7 +383,7 @@ export default function AnalyticsDashboard() {
                 onClick={() => setTimeframe(tf.id)}
                 className={`shrink-0 min-h-[36px] px-3 text-xs font-semibold rounded-md transition-all ${
                   timeframe === tf.id
-                    ? "bg-white dark:bg-[#161B26] text-[#0F172A] dark:text-white shadow-sm"
+                    ? "bg-white dark:bg-[#1E293B] text-[#0F172A] dark:text-white shadow-sm"
                     : "text-slate-500 dark:text-slate-400 hover:text-[#0F172A] dark:hover:text-white"
                 }`}
               >
@@ -394,7 +394,7 @@ export default function AnalyticsDashboard() {
           <button
             onClick={exportCSV}
             disabled={!performance || refreshing}
-            className="inline-flex items-center justify-center gap-2 min-h-[36px] px-3.5 rounded-lg border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#161B26] text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-[#FF8C00]/40 hover:text-[#FF8C00] transition-colors disabled:opacity-40 shrink-0"
+            className="inline-flex items-center justify-center gap-2 min-h-[36px] px-3.5 rounded-lg border border-[#E2E8F0] dark:border-[#334155] bg-white dark:bg-[#1E293B] text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-[#FF8C00]/40 hover:text-[#FF8C00] transition-colors disabled:opacity-40 shrink-0"
           >
             <Download size={15} />
             Export
@@ -674,7 +674,7 @@ export default function AnalyticsDashboard() {
           <SectionLabel>Performance</SectionLabel>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
             {/* Guides */}
-            <div className="bg-white dark:bg-[#161B26] rounded-xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden">
+            <div className="bg-white dark:bg-[#1E293B] rounded-xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden">
               <div className="px-5 py-4 border-b border-[#E2E8F0] dark:border-[#334155] flex items-center justify-between">
                 <div>
                   <h3 className="text-[15px] font-semibold text-[#0F172A] dark:text-[#F8FAFC]">Guide Performance</h3>
@@ -736,7 +736,7 @@ export default function AnalyticsDashboard() {
               <div className="md:hidden p-4 space-y-3">
                 {performance.guides.map((g: any) => (
                   <div key={g._id} className="flex items-center gap-3 p-3 rounded-lg bg-[#F8FAFC] dark:bg-[#0F172A]">
-                    <div className="w-9 h-9 rounded-full bg-white dark:bg-[#161B26] overflow-hidden shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-white dark:bg-[#1E293B] overflow-hidden shrink-0">
                       {g.profilePicture ? <img src={g.profilePicture} alt="" className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-xs font-semibold text-slate-400">{g.name.charAt(0)}</div>}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -755,7 +755,7 @@ export default function AnalyticsDashboard() {
             </div>
 
             {/* Top tours */}
-            <div className="bg-white dark:bg-[#161B26] rounded-xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden">
+            <div className="bg-white dark:bg-[#1E293B] rounded-xl border border-[#E2E8F0] dark:border-[#334155] overflow-hidden">
               <div className="px-5 py-4 border-b border-[#E2E8F0] dark:border-[#334155] flex items-center justify-between">
                 <div>
                   <h3 className="text-[15px] font-semibold text-[#0F172A] dark:text-[#F8FAFC]">Top Tours</h3>

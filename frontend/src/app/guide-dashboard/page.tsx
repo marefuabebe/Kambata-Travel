@@ -185,7 +185,7 @@ export default function GuideDashboardPage() {
                 </Link>
               </div>
             ) : (
-              <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center h-full flex flex-col items-center justify-center">
+              <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center h-full flex flex-col items-center justify-center">
                 <div className="w-20 h-20 bg-gray-50 dark:bg-[#0F172A] rounded-3xl flex items-center justify-center text-gray-300 dark:text-gray-600 mb-6">
                   <MapPin size={32} />
                 </div>
@@ -204,7 +204,7 @@ export default function GuideDashboardPage() {
           >
             <h3 className="font-bold text-gray-900 dark:text-white text-lg mb-2">{t("guideDashboard.quickActions.title")}</h3>
             
-            <Link href="/guide-dashboard/assigned-tours" className="flex items-center gap-4 p-4 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
+            <Link href="/guide-dashboard/assigned-tours" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
                <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform shrink-0">
                   <Map size={24} />
                </div>
@@ -214,7 +214,7 @@ export default function GuideDashboardPage() {
                </div>
             </Link>
 
-            <Link href="/guide-dashboard/attendance" className="flex items-center gap-4 p-4 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
+            <Link href="/guide-dashboard/attendance" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
                <div className="w-12 h-12 bg-amber-50 dark:bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform shrink-0">
                   <ClipboardCheck size={24} />
                </div>
@@ -224,7 +224,7 @@ export default function GuideDashboardPage() {
                </div>
             </Link>
 
-            <Link href="/guide-dashboard/incidents" className="flex items-center gap-4 p-4 bg-white dark:bg-[#161B26]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
+            <Link href="/guide-dashboard/incidents" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
                <div className="w-12 h-12 bg-red-50 dark:bg-red-500/10 rounded-xl flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform shrink-0">
                   <ShieldAlert size={24} />
                </div>
@@ -247,21 +247,21 @@ export default function GuideDashboardPage() {
           
           {/* Weather & Earnings Grid */}
           <div className="grid grid-cols-2 gap-4">
-             <motion.div variants={itemVariants} className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5">
+             <motion.div variants={itemVariants} className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5">
                <div className="flex items-center gap-2 mb-2 text-gray-500">
                  <CloudSun size={18} className="text-[#F59E0B]" />
                  <span className="text-[13px] font-bold">{weather.temp} {weather.desc}</span>
                </div>
                <p className="text-[12px] text-gray-400 font-medium">{t("guideDashboard.mobile.kambataArea")}</p>
              </motion.div>
-             <motion.div variants={itemVariants} className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5">
+             <motion.div variants={itemVariants} className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5">
                <p className="text-[13px] font-bold text-gray-500 mb-1">{t("guideDashboard.stats.todaysEarnings")}</p>
                <p className="text-[20px] font-black text-[#16A34A]">450 ETB</p>
              </motion.div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <motion.div variants={itemVariants} className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
+            <motion.div variants={itemVariants} className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
                <div className="flex justify-between items-start mb-2">
                  <div className="w-8 h-8 rounded-full bg-[#0F766E]/10 flex items-center justify-center text-[#0F766E]"><Map size={16}/></div>
                  <span className="text-[12px] font-bold text-[#16A34A]">↑ 12%</span>
@@ -271,7 +271,7 @@ export default function GuideDashboardPage() {
                <div className="w-full bg-gray-100 h-1 rounded-full mt-3"><div className="bg-[#0F766E] h-1 rounded-full" style={{ width: '65%' }}></div></div>
             </motion.div>
             
-            <motion.div variants={itemVariants} className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
+            <motion.div variants={itemVariants} className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
                <div className="flex justify-between items-start mb-2">
                  <div className="w-8 h-8 rounded-full bg-[#D4A017]/10 flex items-center justify-center text-[#D4A017]"><Users size={16}/></div>
                  <span className="text-[12px] font-bold text-[#16A34A]">+2</span>
@@ -283,7 +283,7 @@ export default function GuideDashboardPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <motion.div variants={itemVariants} className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
+            <motion.div variants={itemVariants} className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
                <div className="flex justify-between items-start mb-2">
                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-600"><Clock size={16}/></div>
                </div>
@@ -291,7 +291,7 @@ export default function GuideDashboardPage() {
                <p className="text-[13px] text-gray-500 font-medium">{t("guideDashboard.stats.upcomingTours")}</p>
             </motion.div>
             
-            <motion.div variants={itemVariants} className="bg-white dark:bg-[#161B26] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
+            <motion.div variants={itemVariants} className="bg-white dark:bg-[#1E293B] rounded-[20px] p-4 shadow-sm border border-gray-100 dark:border-white/5 hover:-translate-y-1 transition-transform">
                <div className="flex justify-between items-start mb-2">
                  <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500"><MessageSquare size={16}/></div>
                </div>
@@ -347,7 +347,7 @@ export default function GuideDashboardPage() {
                  
                  <div className="p-5">
                     {/* Live Progress */}
-                    <div className="bg-slate-50 dark:bg-[#161B26]/50 rounded-2xl p-4 mb-5 border border-slate-100 dark:border-slate-800">
+                    <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 mb-5 border border-slate-100 dark:border-slate-800">
                        <div className="flex justify-between items-center mb-3">
                          <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{t("guideDashboard.mobile.tourProgress")}</span>
                          <span className="text-sm font-black text-[#D97706]">65%</span>
@@ -382,7 +382,7 @@ export default function GuideDashboardPage() {
                       <div className="flex -space-x-2">
                         <div className="w-9 h-9 rounded-full bg-blue-50 dark:bg-blue-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm font-bold">US</div>
                         <div className="w-9 h-9 rounded-full bg-red-50 dark:bg-red-900/20 border-2 border-white dark:border-slate-900 flex justify-center items-center text-xs shadow-sm font-bold">UK</div>
-                        <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-[#161B26] border-2 border-white dark:border-slate-900 flex justify-center items-center text-[10px] font-black text-slate-600 dark:text-slate-300 shadow-sm">+10</div>
+                        <div className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border-2 border-white dark:border-slate-900 flex justify-center items-center text-[10px] font-black text-slate-600 dark:text-slate-300 shadow-sm">+10</div>
                       </div>
                     </div>
 
@@ -393,14 +393,14 @@ export default function GuideDashboardPage() {
                          <p className="text-base font-black text-amber-900 dark:text-amber-400">{data.upcomingSchedule.meetingPoint}</p>
                          <p className="text-xs font-bold text-amber-600 dark:text-amber-500 mt-1 flex items-center gap-1"><Navigation size={12} /> {t("guideDashboard.mobile.minutesAway")}</p>
                        </div>
-                       <button className="w-12 h-12 bg-white dark:bg-[#161B26] rounded-full flex items-center justify-center shadow-md text-amber-600 dark:text-amber-500 hover:scale-105 active:scale-95 transition-all">
+                       <button className="w-12 h-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-md text-amber-600 dark:text-amber-500 hover:scale-105 active:scale-95 transition-all">
                           <Map size={20} className="stroke-[2.5]" />
                        </button>
                     </div>
                  </div>
                  
                  <div className="px-5 pb-5 flex gap-3">
-                    <Link href={`/guide-dashboard/assigned-tours/${data.upcomingSchedule.tourId}/${data.upcomingSchedule.scheduleId}`} className="flex-1 bg-white dark:bg-[#161B26] border-2 border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600 text-slate-700 dark:text-slate-200 py-3.5 rounded-xl text-sm font-black text-center active:scale-95 transition-all">
+                    <Link href={`/guide-dashboard/assigned-tours/${data.upcomingSchedule.tourId}/${data.upcomingSchedule.scheduleId}`} className="flex-1 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600 text-slate-700 dark:text-slate-200 py-3.5 rounded-xl text-sm font-black text-center active:scale-95 transition-all">
                       {t("guideDashboard.mobile.viewDetails")}
                     </Link>
                     <button className="flex-1 bg-gradient-to-r from-[#D97706] to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white py-3.5 rounded-xl text-sm font-black text-center active:scale-95 transition-all shadow-[0_8px_20px_rgba(217,119,6,0.3)]">
@@ -417,20 +417,20 @@ export default function GuideDashboardPage() {
           {data?.upcomingSchedule && (
             <motion.div variants={itemVariants}>
                <h2 className="text-[20px] font-black text-gray-900 dark:text-white mb-4 px-1">{t("guideDashboard.mobile.todaysSchedule")}</h2>
-               <div className="bg-white dark:bg-[#161B26] rounded-[20px] p-5 shadow-sm border border-gray-100 dark:border-white/5">
+               <div className="bg-white dark:bg-[#1E293B] rounded-[20px] p-5 shadow-sm border border-gray-100 dark:border-white/5">
                   <div className="relative pl-6 border-l-2 border-gray-100 dark:border-white/10 space-y-6">
                      <div className="relative">
-                        <div className="absolute -left-[31px] bg-white dark:bg-[#161B26] p-1"><div className="w-3 h-3 rounded-full bg-[#16A34A]"></div></div>
+                        <div className="absolute -left-[31px] bg-white dark:bg-[#1E293B] p-1"><div className="w-3 h-3 rounded-full bg-[#16A34A]"></div></div>
                         <p className="text-[12px] font-bold text-[#16A34A]">08:30</p>
                         <p className="text-[16px] font-medium text-gray-900 dark:text-white">{t("guideDashboard.mobile.meetTravelers")}</p>
                      </div>
                      <div className="relative">
-                        <div className="absolute -left-[31px] bg-white dark:bg-[#161B26] p-1"><div className="w-3 h-3 rounded-full bg-[#0EA5E9]"></div></div>
+                        <div className="absolute -left-[31px] bg-white dark:bg-[#1E293B] p-1"><div className="w-3 h-3 rounded-full bg-[#0EA5E9]"></div></div>
                         <p className="text-[12px] font-bold text-[#0EA5E9]">09:00</p>
                         <p className="text-[16px] font-medium text-gray-900 dark:text-white">{t("guideDashboard.mobile.startNavigation")}</p>
                      </div>
                      <div className="relative">
-                        <div className="absolute -left-[31px] bg-white dark:bg-[#161B26] p-1"><div className="w-3 h-3 rounded-full border-2 border-gray-300 dark:border-gray-600"></div></div>
+                        <div className="absolute -left-[31px] bg-white dark:bg-[#1E293B] p-1"><div className="w-3 h-3 rounded-full border-2 border-gray-300 dark:border-gray-600"></div></div>
                         <p className="text-[12px] font-bold text-gray-400">12:00</p>
                         <p className="text-[16px] font-medium text-gray-400">{t("guideDashboard.mobile.lunchBreak")}</p>
                      </div>

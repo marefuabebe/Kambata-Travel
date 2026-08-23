@@ -151,7 +151,7 @@ export default function MyBookingsPage() {
         initial={{ opacity: 0, y: 10 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ delay: 0.2 }}
-        className="flex bg-white dark:bg-[#161B26] rounded-xl p-1 mb-8 w-max border border-gray-200 dark:border-white/10 shadow-sm relative z-[10]"
+        className="flex bg-white dark:bg-[#1E1E1E] rounded-xl p-1 mb-8 w-max border border-gray-200 dark:border-white/10 shadow-sm relative z-[10]"
       >
         {(["tours", "packages"] as Tab[]).map((tName) => (
           <button
@@ -415,7 +415,7 @@ function BookingCard({
   actions?: React.ReactNode;
 }) {
   return (
-    <li className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-3xl border border-gray-100 dark:border-white/5 p-3 flex flex-col sm:flex-row shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50/50 dark:hover:bg-white/5 transition-all group overflow-hidden relative">
+    <li className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-3xl border border-gray-100 dark:border-white/5 p-3 flex flex-col sm:flex-row shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50/50 dark:hover:bg-white/5 transition-all group overflow-hidden relative">
       <div className="absolute top-0 right-0 w-48 h-48 bg-[#FF8C00] opacity-[0.03] dark:opacity-5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       
       <div className="w-full h-40 sm:h-auto sm:max-h-44 sm:w-48 shrink-0 rounded-2xl overflow-hidden relative">
@@ -602,7 +602,7 @@ export function DigitalPassModal({
         >
         
         {/* Main Card */}
-        <div ref={passRef} className={`rounded-[2rem] shadow-2xl overflow-hidden relative border border-white/20 ${isCompleted ? 'bg-[#0f172a]' : 'bg-white dark:bg-[#161B26]'}`}>
+        <div ref={passRef} className={`rounded-[2rem] shadow-2xl overflow-hidden relative border border-white/20 ${isCompleted ? 'bg-[#0f172a]' : 'bg-white dark:bg-[#1E293B]'}`}>
           
           {/* Header Area */}
           {isCompleted ? (
@@ -643,8 +643,8 @@ export function DigitalPassModal({
               </button>
               
               {/* Ticket Notches Top */}
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-white dark:bg-[#161B26] rounded-full shadow-inner z-10" />
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-white dark:bg-[#161B26] rounded-full shadow-inner z-10" />
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-white dark:bg-[#1E293B] rounded-full shadow-inner z-10" />
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-white dark:bg-[#1E293B] rounded-full shadow-inner z-10" />
             </div>
           )}
 
@@ -836,7 +836,7 @@ export function DigitalPassModal({
             <button 
               onClick={handleDownload}
               disabled={isDownloading}
-              className="flex-1 bg-white dark:bg-[#161B26] border border-gray-100 dark:border-white/10 text-gray-900 dark:text-white p-4 rounded-xl font-black text-sm flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-xl hover:-translate-y-1 disabled:opacity-50"
+              className="flex-1 bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/10 text-gray-900 dark:text-white p-4 rounded-xl font-black text-sm flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-white/5 transition-all shadow-xl hover:-translate-y-1 disabled:opacity-50"
             >
               {isDownloading ? <Loader2 size={18} className="animate-spin" /> : <Download size={18} />} 
               {isDownloading ? "Generating PDF..." : "Download Pass (PDF)"}

@@ -139,7 +139,7 @@ export default function TravelerDashboard() {
       </div>
 
       {/* Featured Destination Showcase (Desktop - Panoramic Hero) */}
-      <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm h-[320px] flex flex-col relative overflow-hidden group">
+      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm h-[320px] flex flex-col relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/40 to-transparent z-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/80 via-transparent to-transparent z-10" />
         <img 
@@ -262,7 +262,7 @@ export default function TravelerDashboard() {
             );
           })() : (
             <motion.div 
-              className="bg-gray-50 dark:bg-[#161B26]/60 rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200 dark:border-white/10"
+              className="bg-gray-50 dark:bg-[#1E293B]/60 rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200 dark:border-white/10"
             >
               <Compass size={40} className="mx-auto mb-4 text-gray-300 dark:text-gray-600" />
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">{t("explorerDashboard.noUpcoming.title")}</h3>
@@ -274,7 +274,7 @@ export default function TravelerDashboard() {
           )}
 
           {/* Personalized Recommendations */}
-          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-2">
                 {isPersonalized
@@ -340,7 +340,7 @@ export default function TravelerDashboard() {
         <div className="lg:col-span-4 space-y-8">
           
           {/* Choose Your Experience */}
-          <div className="bg-white dark:bg-[#161B26]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden">
+          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF8C00]/10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
             <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
@@ -435,7 +435,7 @@ export default function TravelerDashboard() {
             { label: t("explorerDashboard.stats.wishlist"), value: 12, icon: Sparkles, color: "text-[#D4A017]" }, // Mock wishlist count
             { label: t("explorerDashboard.stats.points"), value: 450, icon: Star, color: "text-amber-500" } // Mock points
           ].map((stat, i) => (
-             <div key={i} className="bg-white dark:bg-[#161B26] p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between h-28">
+             <div key={i} className="bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between h-28">
                <div className="flex justify-between items-start">
                  <div className={`w-8 h-8 rounded-full bg-gray-50 dark:bg-black/20 flex items-center justify-center ${stat.color}`}>
                    <stat.icon size={16} />
@@ -463,7 +463,7 @@ export default function TravelerDashboard() {
             const coverImage = tour.images?.[0] || 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=800';
 
             return (
-              <motion.div whileHover={{ scale: 0.98 }} className="bg-white dark:bg-[#161B26] rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-white/5 relative">
+              <motion.div whileHover={{ scale: 0.98 }} className="bg-white dark:bg-[#1E293B] rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-white/5 relative">
                 <div className="h-40 relative">
                   <img src={coverImage} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -490,7 +490,7 @@ export default function TravelerDashboard() {
               </motion.div>
             )
           })() : (
-            <div className="bg-white dark:bg-[#161B26] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5 text-center">
+            <div className="bg-white dark:bg-[#1E293B] rounded-3xl p-6 shadow-sm border border-gray-100 dark:border-white/5 text-center">
               <Compass size={32} className="mx-auto text-gray-300 mb-3" />
               <h3 className="font-bold text-gray-900 dark:text-white mb-1">{t("explorerDashboard.noUpcoming.title")}</h3>
               <p className="text-xs text-gray-500 mb-4">{t("explorerDashboard.noUpcoming.descMobile")}</p>
@@ -512,7 +512,7 @@ export default function TravelerDashboard() {
                 const price = rec.price ? `${rec.price.toLocaleString()} ETB` : t("explorerDashboard.recommendations.viewDetails");
                 const rating = rec.rating?.average || 4.8;
                 return (
-                  <div key={idx} onClick={() => router.push(`/explorer-dashboard/explore-tours?tour=${rec._id}`)} className="snap-start shrink-0 w-64 bg-white dark:bg-[#161B26] rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-white/5 relative">
+                  <div key={idx} onClick={() => router.push(`/explorer-dashboard/explore-tours?tour=${rec._id}`)} className="snap-start shrink-0 w-64 bg-white dark:bg-[#1E293B] rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-white/5 relative">
                     <div className="h-32 relative">
                       <img src={img} className="w-full h-full object-cover" />
                       <button className="absolute top-3 right-3 w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
@@ -577,7 +577,7 @@ export default function TravelerDashboard() {
           <div className="flex items-center justify-between mb-4">
              <h2 className="text-[17px] font-black text-gray-900 dark:text-white flex items-center gap-2"><Menu size={16} className="text-gray-400"/> {t("explorerDashboard.quickAccess.title")}</h2>
           </div>
-          <div className="grid grid-cols-4 gap-3 bg-white dark:bg-[#161B26] rounded-[2rem] p-6 shadow-sm border border-gray-100 dark:border-white/5">
+          <div className="grid grid-cols-4 gap-3 bg-white dark:bg-[#1E293B] rounded-[2rem] p-6 shadow-sm border border-gray-100 dark:border-white/5">
             {[
               { label: t("explorerDashboard.quickAccess.explore"), icon: Compass, color: "text-[#0F766E]", bg: "bg-[#0F766E]/10", path: "/explorer-dashboard/explore-tours" },
               { label: t("explorerDashboard.quickAccess.packages"), icon: Package, color: "text-blue-500", bg: "bg-blue-500/10", path: "/explorer-dashboard/packages" },
