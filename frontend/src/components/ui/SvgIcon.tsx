@@ -6,6 +6,20 @@ export function SvgIcon({ src, scale = 1.8 }: { src: string; scale?: number }) {
     const scaledWidth = (width || 24) * scale;
     const scaledHeight = (height || 24) * scale;
     
+    if (src.endsWith(".png")) {
+      return (
+        <div className={`flex items-center justify-center shrink-0`} style={{ width, height, overflow: "visible" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src={src} 
+            alt="icon" 
+            style={{ width: scaledWidth, height: scaledHeight, objectFit: "contain" }} 
+            className="shrink-0"
+          />
+        </div>
+      );
+    }
+    
     return (
       <div className={`flex items-center justify-center`} style={{ width, height, overflow: "visible" }}>
         <div

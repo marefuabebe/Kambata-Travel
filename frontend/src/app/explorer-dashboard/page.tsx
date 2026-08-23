@@ -9,10 +9,10 @@ import { PageHeader, StatCard, LoadingCenter } from "@/components/explorer/ui";
 import { SvgIcon } from "@/components/ui/SvgIcon";
 import { tourTitle } from "@/utils/dashboardHelpers";
 
-const IconUpcomingTours = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489016/poWJR01_gpejmc.svg" });
-const IconUpcomingPackages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489005/meNqp01_katttj.svg" });
-const IconTripsCompleted = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489016/poWJR01_gpejmc.svg" });
-const IconUnreadMessages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489051/x0YJF01_kay5t4.svg" });
+const IconUpcomingTours = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498603/image_2026-08-23_16-11-02_u6nj9m.png" });
+const IconUpcomingPackages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498555/image_2026-08-23_15-18-27_m1mzmm.png" });
+const IconTripsCompleted = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498566/image_2026-08-23_15-19-48_ho6yvd.png" });
+const IconUnreadMessages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498575/image_2026-08-23_15-21-09_adcmzx.png" });
 import { motion, AnimatePresence } from "framer-motion";
 import { useWeather } from "@/hooks/useWeather";
 import { useRouter } from "next/navigation";

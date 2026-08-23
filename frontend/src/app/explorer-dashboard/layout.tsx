@@ -32,7 +32,7 @@ import { Settings, User, LogOut } from "iconoir-react";
 import { SvgIcon } from "@/components/ui/SvgIcon";
 
 const IconNotifications = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787488984/KTMm701_xihcch.svg" });
-const IconEmergency = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787488971/3e4Gz01_tgdeb7.svg" });
+const IconEmergency = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498595/image_2026-08-23_15-23-53_ncgrag.png" });
 const getNav = (t: any) => [
   { name: t("sidebar.dashboard"), icon: LayoutDashboard, path: "/explorer-dashboard" },
   { name: t("sidebar.exploreTours"), icon: Compass, path: "/explorer-dashboard/explore-tours" },
