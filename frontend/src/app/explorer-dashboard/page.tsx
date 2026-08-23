@@ -89,11 +89,8 @@ export default function TravelerDashboard() {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-[2.5rem] bg-[#243447] dark:bg-[#1C2333] border border-white/10 p-8 md:p-12 shadow-2xl mt-8"
+        className="relative overflow-hidden rounded-[2.5rem] bg-[#1E293B] dark:bg-[#1E293B] border border-white/10 p-8 md:p-12 shadow-2xl mt-8"
       >
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#F59E0B]/10 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#10B981]/10 rounded-full blur-[80px] pointer-events-none" />
-        
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div className="flex items-center gap-6">
             <div className="w-20 h-20 rounded-3xl overflow-hidden ring-4 ring-white/10 shadow-xl shrink-0">

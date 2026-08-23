@@ -12,8 +12,8 @@
   --color-secondary: #FF8C00;
   
   /* Lighter navy background for dark mode / enterprise feel */
-  --color-dark: #0A0F1C;
-  --color-dark-lighter: #111827;
+  --color-dark: #0F172A;
+  --color-dark-lighter: #1E293B;
   --color-glass: rgba(255, 255, 255, 0.05);
   
   --font-sans: var(--font-sans);

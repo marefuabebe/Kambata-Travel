@@ -79,7 +79,7 @@ export function StatCard({
   };
 
   return (
-    <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
+    <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
       <div className={`p-4 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 border ${accents[accent]}`}>
         {Icon && <Icon size={24} className={iconColors[accent]} />}
       </div>
@@ -87,7 +87,6 @@ export function StatCard({
         <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">{label}</p>
         <p className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">{value}</p>
       </div>
-      <div className={`absolute -bottom-8 -right-8 w-24 h-24 opacity-[0.15] dark:opacity-20 blur-2xl rounded-full ${bgColors[accent]} pointer-events-none group-hover:scale-150 transition-transform`} />
     </div>
   );
 }
