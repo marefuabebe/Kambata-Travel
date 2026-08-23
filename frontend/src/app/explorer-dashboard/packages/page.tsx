@@ -245,7 +245,7 @@ export default function PackagesPage() {
                     />
                   </div>
                   
-                  <div className="bg-gray-50 dark:bg-[#1E293B]/60 border border-gray-100 dark:border-white/5 p-6 rounded-2xl flex justify-between items-center mt-6">
+                  <div className="bg-white-[#1E293B] border border-gray-100 dark:border-white/5 p-6 rounded-2xl flex justify-between items-center mt-6">
                      <span className="text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest text-xs">{t("packagesPage.modal.totalPrice")}</span>
                      <span className="text-2xl font-black text-[#1A331B] dark:text-emerald-400">
                        ETB {(bookPkg.basePrice * form.travelersCount).toLocaleString()}

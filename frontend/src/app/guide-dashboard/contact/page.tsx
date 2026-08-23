@@ -78,7 +78,7 @@ export default function ContactPage() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex-1"
+          className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm flex-1"
         >
           <h2 className="font-black text-xl text-gray-900 dark:text-white mb-8 border-b border-gray-100 dark:border-white/5 pb-6">{t("guidePages.contact.submitTicket")}</h2>
 
@@ -145,7 +145,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm mt-8 lg:mt-0"
+            className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm mt-8 lg:mt-0"
           >
             <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6">{t("guidePages.contact.myTickets")}</h3>
 

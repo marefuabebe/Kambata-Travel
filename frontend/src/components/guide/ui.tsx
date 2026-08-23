@@ -62,7 +62,7 @@ export function StatCard({
   };
 
   return (
-    <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
+    <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm transition-all group relative overflow-hidden flex items-center gap-5">
       {/* Background ambient glow */}
       <div className={`absolute top-1/2 right-0 w-32 h-32 ${accents[accent]} opacity-5 dark:opacity-10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/4 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity`} />
       
@@ -104,7 +104,7 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-6 text-center bg-gray-50 dark:bg-[#0F172A]/50 rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10">
+    <div className="flex flex-col items-center justify-center py-16 px-6 text-center bg-white dark:bg-[#1E293B] rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10">
       <div className="w-20 h-20 bg-white dark:bg-white/5 shadow-sm rounded-3xl flex items-center justify-center text-gray-300 dark:text-gray-600 mb-6">
         <Loader2 size={32} className="opacity-40" />
       </div>

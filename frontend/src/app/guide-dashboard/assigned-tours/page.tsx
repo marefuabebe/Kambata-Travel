@@ -55,7 +55,7 @@ export default function AssignedToursPage() {
           title={t("guidePages.assignedTours.title")}
           subtitle={t("guidePages.assignedTours.subtitle")}
           action={
-            <div className="flex items-center gap-2 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-2xl px-4 py-2.5 border border-gray-100 dark:border-white/5 focus-within:border-[#145A41] dark:focus-within:border-[#10B981] transition-colors shadow-sm">
+            <div className="flex items-center gap-2 bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-2xl px-4 py-2.5 border border-gray-100 dark:border-white/5 focus-within:border-[#145A41] dark:focus-within:border-[#10B981] transition-colors shadow-sm">
               <Search size={18} className="text-gray-400" />
               <input
                 type="text"
@@ -82,7 +82,7 @@ export default function AssignedToursPage() {
           initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm"
+          className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm"
         >
           <>
             {/* Desktop Table View */}

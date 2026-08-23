@@ -177,7 +177,7 @@ export default function NotificationsPage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="flex items-center gap-2 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-2 rounded-2xl border border-gray-100 dark:border-white/5 w-fit shadow-sm"
+        className="flex items-center gap-2 bg-white dark:bg-[#1E293B] backdrop-blur-xl p-2 rounded-2xl border border-gray-100 dark:border-white/5 w-fit shadow-sm"
       >
         {["all", "unread"].map(t => (
           <button
@@ -209,7 +209,7 @@ export default function NotificationsPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="py-24 text-center bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm"
+              className="py-24 text-center bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm"
             >
               <div className="w-20 h-20 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-400 dark:text-gray-500">
                 <Bell size={32} />
@@ -233,7 +233,7 @@ export default function NotificationsPage() {
                   tabIndex={0}
                   onClick={() => openNotification(n)}
                   onKeyDown={(e) => e.key === "Enter" && openNotification(n)}
-                  className={`relative bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-3xl border transition-all hover:shadow-lg group flex gap-6 cursor-pointer overflow-hidden ${
+                  className={`relative bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-3xl border transition-all hover:shadow-lg group flex gap-6 cursor-pointer overflow-hidden ${
                     n.isRead ? "border-gray-100 dark:border-white/5 opacity-80" : "border-emerald-200 dark:border-emerald-500/30 bg-emerald-50/10 dark:bg-emerald-500/5 shadow-sm"
                   }`}
                 >

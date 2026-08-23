@@ -89,7 +89,7 @@ export default function PaymentsPage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/10 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/10 shadow-sm overflow-hidden">
         {transactions.length === 0 ? (
           <div className="p-8 text-center text-gray-500 dark:text-gray-400">
             {t("payments.noTransactions")}

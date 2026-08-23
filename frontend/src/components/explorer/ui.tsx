@@ -18,7 +18,7 @@ export function PageHeader({
   const router = useRouter();
   
   return (
-    <div className="mb-8 mt-6 lg:mt-8 relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-white to-gray-50 dark:from-[#1E293B] dark:to-[#0F172A] border border-gray-100 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl">
+    <div className="mb-8 mt-6 lg:mt-8 relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl">
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none" />
       
@@ -79,7 +79,7 @@ export function StatCard({
   };
 
   return (
-    <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50 dark:hover:bg-white/5 transition-all group relative overflow-hidden flex items-center gap-5">
+    <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-[2rem] border border-gray-100 dark:border-white/5 shadow-sm transition-all group relative overflow-hidden flex items-center gap-5">
       <div className={`p-4 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3 border ${accents[accent]}`}>
         {Icon && <Icon width={24} height={24} className={iconColors[accent]} />}
       </div>
@@ -101,7 +101,7 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center shadow-sm">
+    <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center shadow-sm">
       <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">{title}</h3>
       <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-8 leading-relaxed">{description}</p>
       {action}

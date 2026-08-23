@@ -137,7 +137,7 @@ export default function TravelerDashboard() {
       </div>
 
       {/* Featured Destination Showcase (Desktop - Panoramic Hero) */}
-      <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm h-[320px] flex flex-col relative overflow-hidden group">
+      <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-sm h-[320px] flex flex-col relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/40 to-transparent z-10" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/80 via-transparent to-transparent z-10" />
         <img 
@@ -260,7 +260,7 @@ export default function TravelerDashboard() {
             );
           })() : (
             <motion.div 
-              className="bg-gray-50 dark:bg-[#1E293B]/60 rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200 dark:border-white/10"
+              className="bg-white-[#1E293B] rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200 dark:border-white/10"
             >
               <Compass size={40} className="mx-auto mb-4 text-gray-300 dark:text-gray-600" />
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">{t("explorerDashboard.noUpcoming.title")}</h3>
@@ -272,7 +272,7 @@ export default function TravelerDashboard() {
           )}
 
           {/* Personalized Recommendations */}
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
+          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-2">
                 {isPersonalized
@@ -338,7 +338,7 @@ export default function TravelerDashboard() {
         <div className="lg:col-span-4 space-y-8">
           
           {/* Choose Your Experience */}
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden">
+          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF8C00]/10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             
             <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">

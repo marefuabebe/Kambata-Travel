@@ -405,7 +405,7 @@ export default function ExplorerReviewsPage() {
                 </div>
 
                 {/* Detailed Ratings */}
-                <div className="bg-gray-50 dark:bg-[#1E293B] rounded-2xl p-5 space-y-4 border border-gray-100 dark:border-white/5">
+                <div className="bg-white-[#1E293B] rounded-2xl p-5 space-y-4 border border-gray-100 dark:border-white/5">
                   <h4 className="text-xs font-black uppercase tracking-widest text-gray-400 text-center mb-2">{t("reviews.categoryBreakdown")}</h4>
                   {Object.keys(detailedRatings).map(cat => (
                     <div key={cat} className="flex items-center justify-between">

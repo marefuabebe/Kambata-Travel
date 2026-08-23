@@ -150,7 +150,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
       />
 
       <div className="flex-1 flex flex-col h-full overflow-hidden min-w-0">
-        <header className="h-24 bg-white/80 dark:bg-[#1E293B]/80 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 flex items-center px-4 sm:px-8 gap-4 sm:gap-6 sticky top-0 z-40 shrink-0 relative">
+        <header className="h-24 bg-white/80 dark:bg-[#1E293B] backdrop-blur-xl border-b border-gray-100 dark:border-white/5 flex items-center px-4 sm:px-8 gap-4 sm:gap-6 sticky top-0 z-40 shrink-0 relative">
           <button 
             className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white dark:bg-white/5 text-gray-600 dark:text-gray-300 shadow-sm border border-gray-200 dark:border-white/5 shrink-0 active:scale-95 transition-transform relative z-10"
             onClick={() => React_setIsMobileMenuOpen(true)}

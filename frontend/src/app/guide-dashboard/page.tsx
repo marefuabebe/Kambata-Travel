@@ -185,7 +185,7 @@ export default function GuideDashboardPage() {
                 </Link>
               </div>
             ) : (
-              <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center h-full flex flex-col items-center justify-center">
+              <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[3rem] border border-dashed border-gray-200 dark:border-white/10 p-16 text-center h-full flex flex-col items-center justify-center">
                 <div className="w-20 h-20 bg-gray-50 dark:bg-[#0F172A] rounded-3xl flex items-center justify-center text-gray-300 dark:text-gray-600 mb-6">
                   <MapPin size={32} />
                 </div>
@@ -204,7 +204,7 @@ export default function GuideDashboardPage() {
           >
             <h3 className="font-bold text-gray-900 dark:text-white text-lg mb-2">{t("guideDashboard.quickActions.title")}</h3>
             
-            <Link href="/guide-dashboard/assigned-tours" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
+            <Link href="/guide-dashboard/assigned-tours" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B] backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
                <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform shrink-0">
                   <Map size={24} />
                </div>
@@ -214,7 +214,7 @@ export default function GuideDashboardPage() {
                </div>
             </Link>
 
-            <Link href="/guide-dashboard/attendance" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
+            <Link href="/guide-dashboard/attendance" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B] backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
                <div className="w-12 h-12 bg-amber-50 dark:bg-amber-500/10 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform shrink-0">
                   <ClipboardCheck size={24} />
                </div>
@@ -224,7 +224,7 @@ export default function GuideDashboardPage() {
                </div>
             </Link>
 
-            <Link href="/guide-dashboard/incidents" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
+            <Link href="/guide-dashboard/incidents" className="flex items-center gap-4 p-4 bg-white dark:bg-[#1E293B] backdrop-blur-xl border border-gray-100 dark:border-white/5 rounded-[1.5rem] hover:shadow-lg hover:-translate-y-1 transition-all group cursor-pointer">
                <div className="w-12 h-12 bg-red-50 dark:bg-red-500/10 rounded-xl flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform shrink-0">
                   <ShieldAlert size={24} />
                </div>

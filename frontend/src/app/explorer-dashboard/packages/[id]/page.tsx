@@ -244,14 +244,14 @@ export default function PackageDetailsPage() {
           <section>
              <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6">What's Included in this Package</h2>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                 <div className="flex items-start gap-4 p-6 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+                 <div className="flex items-start gap-4 p-6 bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
                    <div className="p-3 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-500 rounded-xl shrink-0"><Map size={24} /></div>
                    <div>
                      <h4 className="font-black text-gray-900 dark:text-white mb-1">Guided Tour</h4>
                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{tourTitle(pkg.tour) || "Comprehensive sightseeing with a certified local guide."}</p>
                    </div>
                  </div>
-                 <div className="flex items-start gap-4 p-6 bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+                 <div className="flex items-start gap-4 p-6 bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
                    <div className="p-3 bg-blue-50 dark:bg-blue-500/10 text-blue-500 rounded-xl shrink-0"><Bed size={24} /></div>
                    <div>
                      <h4 className="font-black text-gray-900 dark:text-white mb-1">Premium Hotel</h4>
@@ -263,7 +263,7 @@ export default function PackageDetailsPage() {
 
           <section>
             <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-6">Package Reviews</h2>
-            <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
+            <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl p-6 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center text-white font-black text-lg">M</div>
                 <div>
@@ -281,7 +281,7 @@ export default function PackageDetailsPage() {
 
         <div className="lg:col-span-4 space-y-8">
           
-          <div className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm sticky top-8">
+          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm sticky top-8">
             <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6">Package Schedules</h3>
             
             {(pkg.schedules?.length > 0) ? (

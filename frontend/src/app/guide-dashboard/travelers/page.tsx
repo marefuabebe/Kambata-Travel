@@ -99,7 +99,7 @@ export default function TravelersPage() {
         initial={{ opacity: 0, y: 10 }} 
         animate={{ opacity: 1, y: 0 }} 
         transition={{ delay: 0.2 }}
-        className="flex flex-wrap gap-4 mb-10 items-center bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl p-4 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm"
+        className="flex flex-wrap gap-4 mb-10 items-center bg-white dark:bg-[#1E293B] backdrop-blur-xl p-4 rounded-3xl border border-gray-100 dark:border-white/5 shadow-sm"
       >
         <div className="flex-1 min-w-[200px] flex items-center gap-3 px-4 py-3 bg-gray-50/50 dark:bg-[#0F172A]/50 rounded-2xl border border-gray-100 dark:border-white/5 focus-within:border-[#145A41] transition-colors">
           <Search size={18} className="text-gray-400" />
@@ -150,7 +150,7 @@ export default function TravelersPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="group bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 justify-between shadow-sm hover:shadow-2xl dark:shadow-none hover:bg-gray-50/50 dark:hover:bg-white/5 transition-all relative overflow-hidden"
+                className="group bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-6 md:p-8 flex flex-col md:flex-row gap-6 md:gap-8 justify-between shadow-sm hover:shadow-2xl dark:shadow-none hover:bg-gray-50/50 dark:hover:bg-white/5 transition-all relative overflow-hidden"
               >
                 {/* Subtle Background Glow based on Status */}
                 <div className={`absolute top-0 right-0 w-64 h-64 opacity-[0.03] dark:opacity-10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none transition-colors ${

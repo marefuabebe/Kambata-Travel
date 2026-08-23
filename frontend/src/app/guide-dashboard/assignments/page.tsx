@@ -86,7 +86,7 @@ export default function AssignmentsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ delay: idx * 0.05 }}
-                className="bg-white dark:bg-[#1E293B]/60 backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm flex flex-col"
+                className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2rem] border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm flex flex-col"
               >
                 {/* Image Header */}
                 <div className="h-40 relative bg-gray-200 dark:bg-gray-800">
