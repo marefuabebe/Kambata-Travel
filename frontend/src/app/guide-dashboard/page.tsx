@@ -128,7 +128,7 @@ export default function GuideDashboardPage() {
             className="lg:col-span-2"
           >
             {data?.upcomingSchedule ? (
-              <div className="bg-gradient-to-br from-white to-[#DBEAFE] dark:from-[#0F172A] dark:to-[#1E293B] rounded-[3rem] p-10 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden h-full flex flex-col justify-between group border border-[#BFDBFE] dark:border-white/5">
+              <div className="bg-white dark:bg-[#1E293B] rounded-[3rem] p-10 text-slate-900 dark:text-white shadow-2xl relative overflow-hidden h-full flex flex-col justify-between group border border-[#BFDBFE] dark:border-white/5">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#BFDBFE]/40 dark:bg-[#38BDF8]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700" />
                 
                 <div className="relative z-10">

@@ -116,8 +116,8 @@ export default function SupportPage() {
       </motion.div>
 
       {/* ── Horizontal Contact Us (PC/Tablet) ── */}
-      <div className="bg-gradient-to-br from-[#1E293B] to-[#0F172A] rounded-[2.5rem] border border-white/10 p-8 shadow-xl text-white relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8 mt-8">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-[#FF8C00]/10 blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+      <div className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] border border-white/10 p-8 shadow-xl text-slate-900 dark:text-white relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8 mt-8">
+        
         
         <div className="relative z-10 flex items-center gap-3 shrink-0">
           <LifeBuoy size={32} className="text-[#FF8C00]" /> 

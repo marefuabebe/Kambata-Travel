@@ -256,7 +256,7 @@ function ExploreToursContent() {
                   transition={{ delay: idx * 0.05 }}
                   className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 overflow-hidden flex flex-col group hover:shadow-2xl dark:shadow-none hover:-translate-y-1 transition-all relative"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500 opacity-[0.03] dark:opacity-10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                  
                   
                   <div className="relative h-56 m-2 rounded-[2rem] overflow-hidden">
                     <img loading="lazy"

@@ -258,7 +258,7 @@ export default function SaaSProfilePage() {
          </div>
 
          {/* AI Widget */}
-         <div className="bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-900/20 dark:to-[#1E293B] border border-emerald-100 dark:border-emerald-500/20 rounded-[2.5rem] p-6 sm:p-8 text-gray-900 dark:text-white relative overflow-hidden shadow-sm flex flex-col justify-center">
+         <div className="bg-white dark:bg-[#1E293B] border border-emerald-100 dark:border-emerald-500/20 rounded-[2.5rem] p-6 sm:p-8 text-gray-900 dark:text-white relative overflow-hidden shadow-sm flex flex-col justify-center">
             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-200/40 blur-3xl rounded-full" />
             <div className="relative z-10 flex items-center sm:items-start gap-4 sm:gap-6">
               <div className="bg-white dark:bg-[#0F172A] w-12 h-12 sm:w-14 sm:h-14 rounded-[1.25rem] shrink-0 flex items-center justify-center shadow-sm border border-emerald-100 dark:border-emerald-500/20">

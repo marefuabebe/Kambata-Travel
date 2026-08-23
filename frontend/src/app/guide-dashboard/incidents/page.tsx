@@ -83,7 +83,7 @@ export default function IncidentsPage() {
           onSubmit={submit} 
           className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[3rem] border border-gray-100 dark:border-white/5 p-8 md:p-10 shadow-sm relative overflow-hidden md:sticky md:top-8 lg:top-10"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00] opacity-5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+          
           
           <h3 className="font-black text-sm uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-8 flex items-center gap-2">
             <ShieldAlert size={16} className="text-[#FF8C00]" /> {t("guidePages.incidents.newReport")}

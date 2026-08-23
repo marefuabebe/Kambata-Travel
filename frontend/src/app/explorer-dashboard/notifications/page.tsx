@@ -140,10 +140,10 @@ export default function NotificationsPage() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-emerald-50 via-teal-50/50 to-white dark:from-[#1E293B] dark:to-[#0F172A] p-8 md:p-10 text-teal-950 dark:text-white shadow-xl shadow-teal-900/5 dark:shadow-xl border border-teal-100/50 dark:border-white/10"
+        className="relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#1E293B] p-8 md:p-10 text-teal-950 dark:text-white shadow-xl shadow-teal-900/5 dark:shadow-xl border border-teal-100/50 dark:border-white/10"
       >
-        <div className="absolute top-0 right-0 w-64 h-full bg-[#0F766E]/5 dark:bg-[#FF8C00]/10 blur-3xl rounded-full transform translate-x-1/2 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-48 h-full bg-emerald-500/10 dark:bg-emerald-500/10 blur-3xl rounded-full transform -translate-x-1/2 pointer-events-none" />
+        
+        
         
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">

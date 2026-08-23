@@ -29,7 +29,10 @@ import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/components/layout/Sidebar";
 import { Settings, User, LogOut } from "iconoir-react";
+import { SvgIcon } from "@/components/ui/SvgIcon";
 
+const IconNotifications = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787488984/KTMm701_xihcch.svg" });
+const IconEmergency = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787488971/3e4Gz01_tgdeb7.svg" });
 const getNav = (t: any) => [
   { name: t("sidebar.dashboard"), icon: LayoutDashboard, path: "/explorer-dashboard" },
   { name: t("sidebar.exploreTours"), icon: Compass, path: "/explorer-dashboard/explore-tours" },
@@ -38,11 +41,11 @@ const getNav = (t: any) => [
   { name: t("sidebar.myRequests"), icon: CalendarCheck, path: "/explorer-dashboard/my-requests" },
   { name: t("sidebar.payments"), icon: CreditCard, path: "/explorer-dashboard/payments" },
   { name: t("sidebar.messages"), icon: MessageSquare, path: "/explorer-dashboard/messages" },
-  { name: t("sidebar.notifications"), icon: Bell, path: "/explorer-dashboard/notifications" },
+  { name: t("sidebar.notifications"), icon: IconNotifications, path: "/explorer-dashboard/notifications" },
   { name: t("sidebar.wishlist"), icon: Heart, path: "/explorer-dashboard/wishlist" },
   { name: t("sidebar.reviews"), icon: Star, path: "/explorer-dashboard/reviews" },
   { name: t("sidebar.profile"), icon: User, path: "/explorer-dashboard/settings" },
-  { name: t("sidebar.sosEmergency"), icon: Siren, path: "/explorer-dashboard/sos", sos: true },
+  { name: t("sidebar.sosEmergency"), icon: IconEmergency, path: "/explorer-dashboard/sos", sos: true },
 ];
 
 

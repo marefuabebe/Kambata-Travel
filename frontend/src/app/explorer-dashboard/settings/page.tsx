@@ -162,10 +162,10 @@ export default function ExplorerSettings() {
       </div>
 
       {/* ── Hero Profile Banner ── */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-emerald-50 via-teal-50/50 to-white dark:from-[#1E293B] dark:to-[#0F172A] p-8 shadow-xl shadow-teal-900/5 dark:shadow-2xl border border-teal-100/50 dark:border-white/10 mb-4">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-[#1E293B] p-8 shadow-xl shadow-teal-900/5 dark:shadow-2xl border border-teal-100/50 dark:border-white/10 mb-4">
         {/* decorative circles */}
-        <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-[#0F766E]/5 dark:bg-[#FF8C00]/10 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-emerald-500/10 dark:bg-emerald-500/10 blur-3xl pointer-events-none" />
+        
+        
 
         <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-8">
           {/* Avatar */}

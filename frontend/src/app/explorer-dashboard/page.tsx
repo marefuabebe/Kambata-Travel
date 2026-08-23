@@ -2,12 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Calendar, Package, CheckCircle2, Compass, ArrowRight, MessageSquare, MapPin, Sparkles, Map, Star, TrendingUp, Search, QrCode, Heart, ChevronRight, Clock, User, Menu, Siren, CalendarCheck, Sun, Moon, Bell, Hand } from "lucide-react";
-import { Globe, Suitcase, CheckCircle, MessageText } from "iconoir-react";
+import { Calendar, Package, CheckCircle2, Compass, ArrowRight, MessageSquare, MapPin, Sparkles, Map, Star, TrendingUp, Search, QrCode, Heart, ChevronRight, Clock, User, Menu, Siren, CalendarCheck, Sun, Moon, Bell, Hand, Ticket } from "lucide-react";
 import apiClient from "@/utils/apiClient";
 import { useAuth } from "@/context/AuthContext";
 import { PageHeader, StatCard, LoadingCenter } from "@/components/explorer/ui";
+import { SvgIcon } from "@/components/ui/SvgIcon";
 import { tourTitle } from "@/utils/dashboardHelpers";
+
+const IconUpcomingTours = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489016/poWJR01_gpejmc.svg" });
+const IconUpcomingPackages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489005/meNqp01_katttj.svg" });
+const IconTripsCompleted = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489016/poWJR01_gpejmc.svg" });
+const IconUnreadMessages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787489051/x0YJF01_kay5t4.svg" });
 import { motion, AnimatePresence } from "framer-motion";
 import { useWeather } from "@/hooks/useWeather";
 import { useRouter } from "next/navigation";
@@ -130,10 +135,10 @@ export default function TravelerDashboard() {
 
       {/* ── Stat Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard label={t("explorerDashboard.stats.upcomingTours")} value={w.upcomingTours ?? 0} icon={Globe} accent="emerald" />
-        <StatCard label={t("explorerDashboard.stats.upcomingPackages")} value={w.upcomingPackages ?? 0} icon={Suitcase} accent="amber" />
-        <StatCard label={t("explorerDashboard.stats.completedTrips")} value={w.completedTrips ?? 0} icon={CheckCircle} accent="blue" />
-        <StatCard label={t("explorerDashboard.stats.unreadMessages")} value={unreadMessagesCount} icon={MessageText} accent="orange" />
+        <StatCard label={t("explorerDashboard.stats.upcomingTours")} value={w.upcomingTours ?? 0} icon={IconUpcomingTours} accent="emerald" />
+        <StatCard label={t("explorerDashboard.stats.upcomingPackages")} value={w.upcomingPackages ?? 0} icon={IconUpcomingPackages} accent="amber" />
+        <StatCard label={t("explorerDashboard.stats.completedTrips")} value={w.completedTrips ?? 0} icon={IconTripsCompleted} accent="blue" />
+        <StatCard label={t("explorerDashboard.stats.unreadMessages")} value={unreadMessagesCount} icon={IconUnreadMessages} accent="orange" />
       </div>
 
       {/* Featured Destination Showcase (Desktop - Panoramic Hero) */}
@@ -222,9 +227,9 @@ export default function TravelerDashboard() {
             return (
               <motion.div 
                 whileHover={{ scale: 0.995 }}
-                className="relative overflow-hidden bg-gradient-to-br from-white to-[#DBEAFE] dark:from-[#0F172A] dark:to-[#1E293B] rounded-[2.5rem] p-8 md:p-10 text-slate-900 dark:text-white shadow-xl group border border-[#BFDBFE] dark:border-white/5"
+                className="relative overflow-hidden bg-white dark:bg-[#1E293B] rounded-[2.5rem] p-8 md:p-10 text-slate-900 dark:text-white shadow-xl group border border-[#BFDBFE] dark:border-white/5"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#BFDBFE]/40 dark:bg-[#38BDF8]/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none transition-transform duration-700 group-hover:scale-150" />
+                
                 
                 <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                   <div>
@@ -339,7 +344,7 @@ export default function TravelerDashboard() {
           
           {/* Choose Your Experience */}
           <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF8C00]/10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            
             
             <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
               <Sparkles size={14} /> {t("explorerDashboard.chooseExperience.title")}
@@ -368,9 +373,9 @@ export default function TravelerDashboard() {
               {/* Travel Package */}
               <Link
                 href="/explorer-dashboard/packages"
-                className="group flex flex-col p-5 rounded-2xl bg-gradient-to-br from-black to-gray-900 dark:from-black dark:to-gray-900 border border-gray-900 dark:border-black hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
+                className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-900 dark:border-black hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF8C00]/20 blur-2xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none group-hover:scale-150 transition-transform duration-700" />
+                
                 
                 <div className="flex items-center gap-3 mb-2 relative z-10">
                   <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/20 flex items-center justify-center shrink-0">
@@ -428,8 +433,8 @@ export default function TravelerDashboard() {
         {/* Stat Cards (2x2 Grid) */}
         <div className="grid grid-cols-2 gap-3">
           {[
-            { label: t("explorerDashboard.stats.upcoming"), value: w.upcomingTours ?? 0, icon: Globe, color: "text-[#0F766E]" },
-            { label: t("explorerDashboard.stats.completed"), value: w.completedTrips ?? 0, icon: CheckCircle, color: "text-blue-500" },
+            { label: t("explorerDashboard.stats.upcoming"), value: w.upcomingTours ?? 0, icon: IconUpcomingTours, color: "text-[#0F766E]" },
+            { label: t("explorerDashboard.stats.completed"), value: w.completedTrips ?? 0, icon: IconTripsCompleted, color: "text-blue-500" },
             { label: t("explorerDashboard.stats.wishlist"), value: 12, icon: Sparkles, color: "text-[#D4A017]" }, // Mock wishlist count
             { label: t("explorerDashboard.stats.points"), value: 450, icon: Star, color: "text-amber-500" } // Mock points
           ].map((stat, i) => (

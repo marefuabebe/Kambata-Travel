@@ -416,7 +416,7 @@ function BookingCard({
 }) {
   return (
     <li className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-3xl border border-gray-100 dark:border-white/5 p-3 flex flex-col sm:flex-row shadow-sm hover:shadow-xl dark:shadow-none hover:bg-gray-50/50 dark:hover:bg-white/5 transition-all group overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-48 h-48 bg-[#FF8C00] opacity-[0.03] dark:opacity-5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      
       
       <div className="w-full h-40 sm:h-auto sm:max-h-44 sm:w-48 shrink-0 rounded-2xl overflow-hidden relative">
         <img loading="lazy"

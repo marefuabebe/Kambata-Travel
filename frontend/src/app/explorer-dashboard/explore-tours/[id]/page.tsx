@@ -414,7 +414,7 @@ export default function TourDetailsPage() {
                     >
                       {/* Decorative background shape */}
                       {isAvailable && (
-                        <div className="absolute -right-10 -top-10 w-32 h-32 bg-[#FF8C00]/5 rounded-full blur-2xl group-hover:bg-[#FF8C00]/10 transition-colors pointer-events-none" />
+                        
                       )}
                       
                       <div className="flex justify-between items-start mb-3 relative z-10">
