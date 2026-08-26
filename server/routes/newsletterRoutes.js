@@ -1,11 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const Newsletter = require("../models/Newsletter");
+const rateLimit = require("express-rate-limit");
+
+const newsletterLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5,
+  message: { success: false, message: "Too many subscription attempts. Please try again later." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // @desc    Subscribe to newsletter
 // @route   POST /api/newsletter
 // @access  Public
-router.post("/", async (req, res) => {
+router.post("/", newsletterLimiter, async (req, res) => {
   try {
     const { email } = req.body;
 

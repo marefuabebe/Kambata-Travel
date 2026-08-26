@@ -91,7 +91,7 @@ const registerUser = async (req, res, next) => {
           ],
           cta: {
             text: "Verify Your Email Now",
-            link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}&otp=${otp}`,
+            link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}`,
             color: "#10B981"
           }
         });
@@ -264,12 +264,12 @@ const loginUser = async (req, res, next) => {
 // @route   POST /api/auth/refresh
 // @access  Public
 const refreshAccessToken = async (req, res, next) => {
-  console.log(`[DEBUG AUTH BACKEND] refreshAccessToken invoked. cookies:`, req.cookies);
+  console.log(`[AUTH] refreshAccessToken invoked.`);
   try {
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
-      console.warn(`[DEBUG AUTH BACKEND] refreshAccessToken: No refreshToken cookie found!`);
+      console.warn(`[AUTH] refreshAccessToken: No refreshToken cookie found.`);
       res.status(401);
       throw new Error("Not authorized");
     }
@@ -278,16 +278,16 @@ const refreshAccessToken = async (req, res, next) => {
     const user = await User.findById(decoded.id);
 
     if (!user) {
-      console.warn(`[DEBUG AUTH BACKEND] refreshAccessToken: User not found for id ${decoded.id}`);
+      console.warn(`[AUTH] refreshAccessToken: User not found.`);
       res.status(401);
       throw new Error("Not authorized");
     }
 
     const accessToken = generateAccessToken(user._id);
-    console.log(`[DEBUG AUTH BACKEND] refreshAccessToken: Success. Generated new token for ${user.email}`);
+    console.log(`[AUTH] refreshAccessToken: Success.`);
     res.json({ accessToken });
   } catch (error) {
-    console.error(`[DEBUG AUTH BACKEND] refreshAccessToken error:`, error.message);
+    console.error(`[AUTH] refreshAccessToken error.`);
     res.status(401);
     next(new Error("Not authorized"));
   }
@@ -331,8 +331,10 @@ const forgotPassword = async (req, res, next) => {
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const bcrypt = require("bcryptjs");
+    const hashedOTP = await bcrypt.hash(otp, 10);
 
-    user.resetPasswordOTP = otp;
+    user.resetPasswordOTP = hashedOTP;
     user.resetPasswordExpires = Date.now() + 10 * 60 * 1000;
     user.lastOtpRequest = Date.now();
     user.otpAttempts = 0;
@@ -409,7 +411,10 @@ const verifyOTP = async (req, res, next) => {
       throw new Error("OTP has expired");
     }
 
-    if (user.resetPasswordOTP === otp) {
+    const bcrypt = require("bcryptjs");
+    const isMatch = await bcrypt.compare(otp, user.resetPasswordOTP);
+
+    if (isMatch) {
       logger.info(`OTP verified: ${email}`, { ip, userAgent, eventType: "OTP_VERIFIED" });
       res.status(200).json({ success: true, message: "OTP verified" });
     } else {
@@ -444,13 +449,22 @@ const resetPassword = async (req, res, next) => {
 
     const user = await User.findOne({
       email,
-      resetPasswordOTP: otp,
       resetPasswordExpires: { $gt: Date.now() },
     });
 
-    if (!user) {
+    if (!user || !user.resetPasswordOTP) {
       incrementIPFailure(ip);
       logger.warn(`Final reset failed: Invalid OTP sequence for ${email}`, { ip, userAgent, eventType: "PASSWORD_RESET_FAILURE" });
+      res.status(400);
+      throw new Error("Invalid or expired code");
+    }
+
+    const bcrypt = require("bcryptjs");
+    const isOTPMatch = await bcrypt.compare(otp, user.resetPasswordOTP);
+
+    if (!isOTPMatch) {
+      incrementIPFailure(ip);
+      logger.warn(`Final reset failed: OTP mismatch for ${email}`, { ip, userAgent, eventType: "PASSWORD_RESET_FAILURE" });
       res.status(400);
       throw new Error("Invalid or expired code");
     }
@@ -584,7 +598,7 @@ const resendVerificationOTP = async (req, res, next) => {
         ],
         cta: {
           text: "Verify Your Email Now",
-          link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}&otp=${otp}`,
+          link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}`,
           color: "#10B981"
         }
       });

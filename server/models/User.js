@@ -31,6 +31,7 @@ const userSchema = mongoose.Schema(
     role: {
       type: String,
       required: true,
+      enum: ["user", "guide", "admin"],
       default: "user",
     },
     rating: {
