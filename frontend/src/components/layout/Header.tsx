@@ -111,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
             <div className={`ml-2 flex flex-col items-start justify-center ${
                 isCreamHeader ? "text-[#1E293B]" : "text-white"
             }`}>
-              <span className="font-allura text-lg leading-none -mb-0.5 ml-0.5 font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+              <span className="font-allura text-lg leading-none -mb-0.5 ml-0.5 font-bold text-[#12634d]" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
               <span className="font-great-vibes text-2xl leading-none font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>Kambata</span>
             </div>
           </motion.div>
