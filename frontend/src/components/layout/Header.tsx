@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
       }}
       className={`fixed top-0 left-0 w-full transition-all duration-500 ${
         isCreamHeader 
-          ? "bg-white/95 backdrop-blur-xl h-16 md:h-20 shadow-[0_10px_40px_rgba(15,23,42,0.05)] border-b border-gray-100" 
+          ? "bg-white h-16 md:h-20 shadow-[0_10px_40px_rgba(15,23,42,0.05)] border-b border-gray-100" 
           : "bg-transparent h-16 md:h-20"
       }`}
     >
