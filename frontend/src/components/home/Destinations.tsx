@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Heart, MapPin } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import Image from "next/image";
 import apiClient from "@/utils/apiClient";
 import { useLanguage } from "@/context/LanguageContext";
@@ -143,9 +143,7 @@ const Destinations = () => {
         className="object-cover group-hover:scale-105 transition-transform duration-700"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-1.5 text-gray-900 text-xs font-bold border border-white/20 shadow-sm">
-        <Heart size={14} className="fill-red-500 text-red-500" /> {dest.likes || Math.floor(Math.random() * 300) + 50}
-      </div>
+
       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col justify-end z-10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
         <h4 className={`text-white font-bold leading-tight mb-2 ${isLarge ? 'text-3xl md:text-4xl' : 'text-xl line-clamp-1'}`}>
           {getTranslatedTitle(dest)}
