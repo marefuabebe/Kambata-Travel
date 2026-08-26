@@ -429,7 +429,7 @@ export default function Home() {
                     <h3 className={styles.tourTitle}>{tour.title?.[language] || tour.title?.en || tour.title}</h3>
                     <div className={styles.tourMeta}>
                       <div className={styles.tourMetaItem}><Clock size={14} /> {tour.duration}</div>
-                      <div className={styles.tourMetaItem}>â€¢</div>
+                      <div className={styles.tourMetaItem}>&bull;</div>
                       <div className={styles.tourMetaItem}>{tour.difficulty}</div>
                     </div>
                     <div className={styles.tourFooter}>
