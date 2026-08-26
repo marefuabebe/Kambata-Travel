@@ -32,6 +32,12 @@ const socketHandler = (io) => {
     // Automatically join personal channel for direct notifications
     socket.join(socket.user._id.toString());
     
+    // Automatically join admin room if the user is an admin
+    if (socket.user.role === "admin") {
+      socket.join("admin_room");
+      logger.info(`Admin user ${socket.user.name} joined admin_room`);
+    }
+    
     // Join specialized room (with authorization check)
     socket.on("join_room", async (roomId) => {
       try {

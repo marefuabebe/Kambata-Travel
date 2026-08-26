@@ -31,6 +31,10 @@ export default function BookingMonitor() {
 
   useEffect(() => {
     fetchBookings();
+
+    const handleSync = () => fetchBookings();
+    window.addEventListener("sync_booking", handleSync);
+    return () => window.removeEventListener("sync_booking", handleSync);
   }, []);
 
   const fetchBookings = async () => {

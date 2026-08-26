@@ -96,6 +96,7 @@ const io = socketIO.init(server);
 socketHandler(io);
 
 // Database connection
+mongoose.plugin(require("./utils/realtimePlugin"));
 mongoose
   .connect(process.env.DATABASE_URI)
   .then(() => {

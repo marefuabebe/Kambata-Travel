@@ -35,6 +35,10 @@ export default function UsersPage() {
 
   useEffect(() => {
     fetchUsers();
+
+    const handleSync = () => fetchUsers();
+    window.addEventListener("sync_user", handleSync);
+    return () => window.removeEventListener("sync_user", handleSync);
   }, []);
 
   const toggleBlockStatus = async (id: string, currentStatus: boolean) => {

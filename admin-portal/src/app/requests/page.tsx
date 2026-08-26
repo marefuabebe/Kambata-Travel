@@ -60,6 +60,10 @@ export default function RequestsPage() {
 
   useEffect(() => {
     fetchRequests();
+
+    const handleSync = () => fetchRequests();
+    window.addEventListener("sync_tourrequest", handleSync);
+    return () => window.removeEventListener("sync_tourrequest", handleSync);
   }, []);
 
   const handleAssignGuide = async (requestId: string) => {

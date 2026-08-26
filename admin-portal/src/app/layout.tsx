@@ -156,6 +156,13 @@ function AdminShell({ children }: { children: React.ReactNode }) {
       );
     });
 
+    socket.on("db_change", (data: { model: string; action: string; id: string }) => {
+      if (typeof window !== "undefined") {
+        console.log(`[Real-Time] Database change detected for ${data.model} (${data.action})`);
+        window.dispatchEvent(new CustomEvent(`sync_${data.model.toLowerCase()}`));
+      }
+    });
+
     return () => {
       socket.disconnect();
     };

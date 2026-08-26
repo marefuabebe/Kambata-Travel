@@ -67,6 +67,10 @@ export default function ToursPage() {
 
   useEffect(() => {
     fetchTours();
+
+    const handleSync = () => fetchTours();
+    window.addEventListener("sync_tour", handleSync);
+    return () => window.removeEventListener("sync_tour", handleSync);
   }, []);
 
   const openAddModal = () => {
