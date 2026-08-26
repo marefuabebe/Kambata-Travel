@@ -35,8 +35,22 @@ const app = express();
 const server = http.createServer(app);
 
 // 1. CORS Configuration (Must be before other middleware)
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.ADMIN_PORTAL_URL,
+  "http://localhost:3000",
+  "http://localhost:3001",
+].filter(Boolean);
+
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, etc.)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "x-device-id"]
@@ -48,8 +62,26 @@ const { globalLimiter, checkBlacklist } = require("./middleware/securityMiddlewa
 
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
-})); 
-// express-mongo-sanitize removed due to Node/Express compatibility issues
+}));
+
+// NoSQL Injection Protection (manual sanitizer)
+// Strips MongoDB query operators ($gt, $ne, etc.) from user input
+const sanitizeInput = (obj) => {
+  if (obj === null || typeof obj !== "object") return;
+  for (const key of Object.keys(obj)) {
+    if (key.startsWith("$") || key.includes(".")) {
+      delete obj[key];
+    } else if (typeof obj[key] === "object") {
+      sanitizeInput(obj[key]);
+    }
+  }
+};
+app.use((req, res, next) => {
+  if (req.body) sanitizeInput(req.body);
+  if (req.query) sanitizeInput(req.query);
+  if (req.params) sanitizeInput(req.params);
+  next();
+});
 
 // Initialize Sockets using the singleton utility
 
@@ -81,7 +113,7 @@ mongoose
 
 // Middleware
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({ limit: "1mb" }));
 
 // 3. SECURITY GUARD (Blacklist & Rate Limit)
 app.use(checkBlacklist);
@@ -124,19 +156,8 @@ app.use("/api/qr", require("./routes/qrVerificationRoutes"));
 app.use(notFound);
 app.use(errorHandler);
 
-// Start Cron Jobs
-if (process.env.NODE_ENV !== "test") {
-  try {
-    startExpirationJobs();
-    startReminderJobs();
-    startAttendanceLockCron();
-    startDualBookingCron();
-    startPostTourJobs();
-    console.log("Cron jobs started successfully.");
-  } catch (error) {
-    console.error("Failed to start cron jobs:", error);
-  }
-}
+// NOTE: Cron jobs are started once in the mongoose.connect().then() block above.
+// The duplicate startup block that was previously here has been removed.
 
 // Server
 const PORT = process.env.PORT || 5000;

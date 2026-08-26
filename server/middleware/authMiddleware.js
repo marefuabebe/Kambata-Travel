@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const logger = require("../utils/logger");
 
 const protect = async (req, res, next) => {
   let token;
@@ -11,19 +12,19 @@ const protect = async (req, res, next) => {
     try {
       // Get token from header
       token = req.headers.authorization.split(" ")[1];
-      console.log(`[DEBUG AUTH BACKEND] ${req.method} ${req.originalUrl} - Bearer token found. Verifying...`);
+      logger.debug(`Auth: ${req.method} ${req.originalUrl} - Bearer token found.`);
 
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(`[DEBUG AUTH BACKEND] ${req.method} ${req.originalUrl} - Token verified. User ID: ${decoded.id}`);
+      logger.debug(`Auth: ${req.method} ${req.originalUrl} - Token verified.`);
 
       // Get user from the token (attach to req, exclude password)
       req.user = await User.findById(decoded.id).select("-password");
-      console.log(`[DEBUG AUTH BACKEND] ${req.method} ${req.originalUrl} - User attached. Role: ${req.user ? req.user.role : "null"}`);
+      logger.debug(`Auth: ${req.method} ${req.originalUrl} - User attached.`);
 
       next();
     } catch (error) {
-      console.error(`[DEBUG AUTH BACKEND] ${req.method} ${req.originalUrl} - Token verification failed:`, error.message);
+      logger.warn(`Auth: ${req.method} ${req.originalUrl} - Token verification failed.`);
       res.status(401);
       const err = new Error("Not authorized, token failed");
       next(err);
@@ -31,7 +32,7 @@ const protect = async (req, res, next) => {
   }
 
   if (!token) {
-    console.warn(`[DEBUG AUTH BACKEND] ${req.method} ${req.originalUrl} - No token found in Authorization header`);
+    logger.debug(`Auth: ${req.method} ${req.originalUrl} - No token in header.`);
     res.status(401);
     const err = new Error("Not authorized, no token");
     next(err);

@@ -32,10 +32,20 @@ const socketHandler = (io) => {
     // Automatically join personal channel for direct notifications
     socket.join(socket.user._id.toString());
     
-    // Join specialized room
-    socket.on("join_room", (roomId) => {
-      socket.join(roomId);
-      logger.info(`User ${socket.user._id} joined room ${roomId}`);
+    // Join specialized room (with authorization check)
+    socket.on("join_room", async (roomId) => {
+      try {
+        const room = await ChatRoom.findById(roomId);
+        if (!room || !room.participants.some(p => p.toString() === socket.user._id.toString())) {
+          socket.emit("message_error", { message: "Not authorized to join this room" });
+          return;
+        }
+        socket.join(roomId);
+        logger.info(`User ${socket.user._id} joined room ${roomId}`);
+      } catch (err) {
+        logger.error(`join_room failed: ${err.message}`);
+        socket.emit("message_error", { message: "Failed to join room" });
+      }
     });
 
     // Handle instant messaging
@@ -207,12 +217,17 @@ const socketHandler = (io) => {
 
     // Handle real-time document upload notifications from Guides
     socket.on("guide_uploaded_document", (data) => {
-      // Broadcast to ALL connected admins (in a real app, we'd use a specific 'admin' room)
-      io.emit("document_uploaded", {
-        guideName: socket.user.name,
-        documentType: data.documentType || "Verification Document"
-      });
-      logger.info(`Broadcasted document upload from ${socket.user.name}`);
+      // Emit only to admin users (not all connected clients)
+      const User = require("../models/User");
+      User.find({ role: "admin" }).select("_id").lean().then(admins => {
+        for (const admin of admins) {
+          io.to(admin._id.toString()).emit("document_uploaded", {
+            guideName: socket.user.name,
+            documentType: data.documentType || "Verification Document"
+          });
+        }
+      }).catch(err => logger.error(`Admin broadcast failed: ${err.message}`));
+      logger.info(`Document upload notification from ${socket.user.name}`);
     });
 
     socket.on("disconnect", () => {

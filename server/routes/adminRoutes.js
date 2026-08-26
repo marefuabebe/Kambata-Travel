@@ -50,13 +50,15 @@ const { issueRefund } = require("../controllers/paymentController");
 
 const { requireAdmin } = require("../middleware/authMiddleware");
 const { adminLogin } = require("../controllers/authController");
+const { authLimiter } = require("../middleware/securityMiddleware");
+const { checkIPBlock } = require("../middleware/blockMiddleware");
 
-router.post("/auth/login", adminLogin);
-
-// Webhook endpoint for external scheduler
-router.post("/payouts/auto-clear-earnings", autoClearEarnings);
+router.post("/auth/login", authLimiter, checkIPBlock, adminLogin);
 
 router.use(requireAdmin);
+
+// Webhook endpoint for external scheduler (protected by admin auth)
+router.post("/payouts/auto-clear-earnings", autoClearEarnings);
 
 // Content studio — admin-owned supply
 const { getTours, getAllGuidesWithConflictStatus, createSchedule, deleteScheduleAdmin, reassignGuideAdmin } = require("../controllers/tourController");
