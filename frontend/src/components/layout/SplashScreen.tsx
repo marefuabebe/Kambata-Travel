@@ -21,8 +21,8 @@ export default function SplashScreen() {
       return;
     }
 
-    // Mobile: longer cinematic splash (2.5s), Desktop: fast (600ms)
-    const duration = window.innerWidth <= 430 ? 2500 : 600;
+    // Cinematic splash for both mobile and desktop (2.5s)
+    const duration = 2500;
     const interval = 30;
     const steps = duration / interval;
     let currentStep = 0;
@@ -245,47 +245,153 @@ export default function SplashScreen() {
             </div>
           ) : (
             /* ═══════════════════════════════════════════
-               DESKTOP SPLASH (original fast loader)
+               DESKTOP CINEMATIC SPLASH (1366px+)
             ═══════════════════════════════════════════ */
-            <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#071120] text-white">
-              {/* Logo */}
+            <div className="fixed inset-0 w-[100vw] h-[100dvh] overflow-hidden">
+              {/* ── Full-screen Background ── */}
               <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="flex flex-col items-center"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="absolute inset-0"
               >
                 <img
-                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg"
-                  alt="Kambata Travel"
-                  className="h-20 md:h-24 w-auto brightness-0 invert mb-12 drop-shadow-2xl"
+                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/f_auto,q_auto,w_1920/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg"
+                  alt="Kambata Landscape"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: "50% 30%" }}
                 />
+                {/* Cinematic overlays */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/70" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
               </motion.div>
 
-              {/* Progress Bar Container */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.2 }}
-                className="w-64 max-w-[70vw] flex flex-col items-center"
-              >
-                {/* Progress Bar Track */}
-                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mb-4">
-                  {/* Progress Bar Fill */}
+              {/* ── Top Bar: brand mark + version ── */}
+              <div className="relative z-10 flex justify-between items-start px-10 pt-8">
+                {/* Brand mark - top left */}
+                <motion.div
+                  initial={{ opacity: 0, y: -15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="flex flex-col items-start"
+                >
+                  <span className="font-allura text-sm text-[#3CB371] leading-none" style={{ WebkitTextStroke: '0.3px currentColor' }}>visit</span>
+                  <span className="font-great-vibes text-xl text-white leading-none -mt-0.5" style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
+                </motion.div>
+
+                {/* Version - top right */}
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.5 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="text-white/40 text-xs font-mono tracking-widest mt-2"
+                >
+                  v1.0.0
+                </motion.span>
+              </div>
+
+              {/* ── Center Content ── */}
+              <div className="relative z-10 flex flex-col items-center justify-center" style={{ height: "calc(100dvh - 140px)", marginTop: "-40px" }}>
+                {/* "visit" */}
+                <motion.span
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.7, ease: "easeOut" }}
+                  className="font-allura text-5xl xl:text-6xl leading-none text-[#3CB371] drop-shadow-lg"
+                  style={{ WebkitTextStroke: "0.4px currentColor" }}
+                >
+                  visit
+                </motion.span>
+
+                {/* "Kambata" */}
+                <motion.span
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.7, ease: "easeOut" }}
+                  className="font-great-vibes text-8xl xl:text-9xl leading-none text-white drop-shadow-2xl -mt-2"
+                  style={{ WebkitTextStroke: "0.6px currentColor", textShadow: "0 4px 30px rgba(0,0,0,0.4)" }}
+                >
+                  Kambata
+                </motion.span>
+
+                {/* Green swoosh/underline */}
+                <motion.div
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={{ scaleX: 1, opacity: 1 }}
+                  transition={{ delay: 1.1, duration: 0.5, ease: "easeOut" }}
+                  className="mt-1 origin-left"
+                >
+                  <svg width="160" height="12" viewBox="0 0 160 12" fill="none">
+                    <path
+                      d="M2 8 C40 2, 80 2, 120 6 S155 8, 158 5"
+                      stroke="#3CB371"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                  </svg>
+                </motion.div>
+
+                {/* Tagline */}
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.3, duration: 0.5 }}
+                  className="text-white/60 text-sm xl:text-base tracking-[0.4em] uppercase mt-8 font-medium"
+                >
+                  Explore &nbsp;·&nbsp; Discover &nbsp;·&nbsp; Experience
+                </motion.p>
+
+                {/* Location icon */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.5, duration: 0.5 }}
+                  className="mt-10"
+                >
+                  <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="opacity-50"
+                      >
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* ── Bottom: gradient fade + green progress bar ── */}
+              <div className="absolute bottom-0 left-0 right-0 z-10">
+                {/* Subtle dark-to-transparent gradient */}
+                <div className="h-32 bg-gradient-to-t from-black/60 to-transparent" />
+
+                {/* Green progress bar */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-[#FF8C00] to-[#E65100]"
-                    style={{ width: `${progress}%` }}
-                  />
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.7, duration: 0.4 }}
+                    className="flex flex-col items-center"
+                  >
+                    <div className="w-32 h-[3px] bg-white/10 rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-[#3CB371] rounded-full"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  </motion.div>
                 </div>
-
-                {/* Percentage Text */}
-                <div className="flex items-center justify-between w-full text-[10px] font-black tracking-[0.3em] uppercase text-gray-500">
-                  <span>Loading</span>
-                  <span className="text-[#FF8C00]">
-                    {Math.round(progress)}%
-                  </span>
-                </div>
-              </motion.div>
+              </div>
             </div>
           )}
         </motion.div>
