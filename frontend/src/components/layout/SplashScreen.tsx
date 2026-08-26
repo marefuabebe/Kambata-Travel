@@ -75,7 +75,7 @@ export default function SplashScreen() {
               {/* ── Background Image ── */}
               <div className="absolute inset-0">
                 <img
-                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/f_auto,q_auto,w_800/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg"
+                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/f_auto,q_auto,w_800/v1787784033/ChatGPT_Image_Aug_27_2026_01_36_23_AM_ebnr7a.png"
                   alt="Kambata Landscape"
                   className="w-full h-full object-cover object-center"
                   style={{ objectPosition: "50% 35%" }}
@@ -256,7 +256,7 @@ export default function SplashScreen() {
                 className="absolute inset-0"
               >
                 <img
-                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/f_auto,q_auto,w_1920/v1782037994/kambata/xbsw2ajsabbtz4tuwjvl.jpg"
+                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/f_auto,q_auto,w_1920/v1787784033/ChatGPT_Image_Aug_27_2026_01_36_23_AM_ebnr7a.png"
                   alt="Kambata Landscape"
                   className="w-full h-full object-cover"
                   style={{ objectPosition: "50% 30%" }}
