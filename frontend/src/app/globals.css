@@ -19,6 +19,8 @@
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
   --font-display: var(--font-display);
+  --font-allura: var(--font-allura);
+  --font-great-vibes: var(--font-great-vibes);
   
   /* Standardize Border Radii */
   --radius-xl: 1rem;       /* 16px */

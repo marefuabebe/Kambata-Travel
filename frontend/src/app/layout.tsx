@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Plus_Jakarta_Sans, DM_Serif_Display } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans, DM_Serif_Display, Allura, Great_Vibes } from "next/font/google";
 import dynamic from "next/dynamic";
 
 const outfit = Outfit({
@@ -18,6 +18,20 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const dmSerif = DM_Serif_Display({
   variable: "--font-display",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const allura = Allura({
+  variable: "--font-allura",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const greatVibes = Great_Vibes({
+  variable: "--font-great-vibes",
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -63,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${plusJakartaSans.variable} ${dmSerif.variable} h-full antialiased`}
+      className={`${outfit.variable} ${plusJakartaSans.variable} ${dmSerif.variable} ${allura.variable} ${greatVibes.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
