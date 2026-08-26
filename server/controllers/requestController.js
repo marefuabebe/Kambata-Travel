@@ -79,13 +79,31 @@ const createRequest = async (req, res, next) => {
 
     try {
       const { sendNotification } = require("../services/notificationService");
+      
+      // Notify the user
       await sendNotification(req.user._id, {
         type: "system",
         priority: "NORMAL",
         message: "Your custom date request has been submitted. Our team will review it shortly.",
         referenceId: request._id,
       });
-    } catch (_) { /* non-blocking */ }
+
+      // Notify all admins
+      const User = require("../models/User");
+      const admins = await User.find({ role: "admin" }).select("_id").lean();
+      const adminMessage = `New custom request from ${req.user.name} for ${itemTitle}.`;
+      
+      for (const admin of admins) {
+        await sendNotification(admin._id, {
+          type: "system",
+          priority: "HIGH",
+          message: adminMessage,
+          referenceId: request._id,
+        });
+      }
+    } catch (err) {
+      console.error("Failed to send custom request notifications:", err);
+    }
 
     res.status(201).json({
       success: true,
