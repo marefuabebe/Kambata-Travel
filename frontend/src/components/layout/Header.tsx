@@ -108,11 +108,12 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
                 isCreamHeader ? "brightness-75 contrast-125" : "brightness-0 invert"
               }`}
             />
-            <span className={`ml-3 font-black text-xl tracking-tighter font-display ${
+            <div className={`ml-3 flex flex-col items-center justify-center font-display ${
                 isCreamHeader ? "text-[#1E293B]" : "text-white"
             }`}>
-              KAMBATA
-            </span>
+              <span className="text-sm font-bold italic tracking-wide leading-none -mb-1 self-start ml-1">visit</span>
+              <span className="font-black text-xl tracking-tighter leading-none">Kambata</span>
+            </div>
           </motion.div>
         </Link>
 
