@@ -190,36 +190,46 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
       </div>
 
       {/* Mobile Header */}
-      <div className="lg:hidden w-full h-full px-4 flex items-center justify-end relative z-[10001] pointer-events-auto">
+      <div className="lg:hidden w-full h-full px-4 flex items-center justify-between relative z-[10001] pointer-events-auto">
         
         {/* Logo */}
-        <Link href="/" className="hidden items-center group" onClick={() => setIsMobileMenuOpen(false)}>
-          <img loading="lazy" 
-            src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
-            alt="Visit Kambaata Icon" 
-            className="h-8 w-auto object-contain transition-all duration-300"
-            style={isCreamHeader ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(30%) saturate(1512%) hue-rotate(113deg) brightness(97%) contrast(98%)" } : { filter: "brightness(0) invert(1)" }} 
-          />
-          <div className="ml-1.5 flex flex-col items-start justify-center transition-colors duration-300">
-            <span className={`font-allura text-[13px] leading-none -mb-1 font-bold ${isCreamHeader ? 'text-[#059669]' : 'text-white'}`} style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
-            <span className={`font-great-vibes text-[20px] leading-none font-bold ${isCreamHeader ? 'text-[#1E293B]' : 'text-white'}`} style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
+        <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="flex flex-col items-start justify-center transition-colors duration-300 relative">
+            <span className={`font-allura text-[16px] leading-none -mb-1.5 ml-2 font-bold ${isCreamHeader ? 'text-[#059669]' : 'text-[#3CB371]'}`} style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+            <span className={`font-great-vibes text-[26px] leading-none font-bold ${isCreamHeader ? 'text-[#0F172A]' : 'text-white'} relative z-10`} style={{ WebkitTextStroke: '0.3px currentColor' }}>
+              Kambata
+            </span>
+            {/* Green Swoop */}
+            <svg className="absolute -bottom-1.5 left-0 w-[110%] h-2.5 -ml-[5%]" viewBox="0 0 100 12" preserveAspectRatio="none">
+              <path d="M5,10 Q50,0 95,10" stroke={isCreamHeader ? "#059669" : "#3CB371"} strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            </svg>
           </div>
         </Link>
 
         {/* Actions */}
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           {/* Language Dropdown */}
-          <LanguageDropdown isCreamHeader={isCreamHeader} />
+          <LanguageDropdown isMobilePill={true} isCreamHeader={isCreamHeader} />
 
-          {/* Theme Toggle (Removed random Sun icon to match desktop flat layout cleaner action hub) */}
+          {/* Theme Toggle */}
+          <button 
+            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-sm border ${
+              isCreamHeader 
+                ? "bg-white text-gray-700 border-gray-100 hover:bg-gray-50" 
+                : "bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-md"
+            }`}
+            onClick={() => window.dispatchEvent(new Event('toggle-theme'))}
+          >
+            <Sun size={18} strokeWidth={2} />
+          </button>
 
           {/* Profile */}
           <Link 
             href={user ? (user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard") : "/login"} 
-            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all shadow-sm ${
+            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-sm border ${
               isCreamHeader 
-                ? "border border-gray-200 text-gray-600 bg-white hover:bg-gray-50" 
-                : "border border-white/20 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md"
+                ? "bg-white text-gray-700 border-gray-100 hover:bg-gray-50" 
+                : "bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-md"
             }`}
           >
             <User size={18} strokeWidth={2} />
@@ -227,10 +237,10 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
 
           {/* Menu Toggle */}
           <button 
-            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all shadow-md ml-0.5 ${
+            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-sm border ${
               isCreamHeader 
-                ? "bg-[#059669] text-white hover:bg-[#047857]" 
-                : "bg-white text-[#059669] hover:bg-gray-100"
+                ? "bg-white text-gray-700 border-gray-100 hover:bg-gray-50" 
+                : "bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-md"
             }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
