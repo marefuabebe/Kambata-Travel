@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme: propTheme = "d
   }, [isMobileMenuOpen]);
 
   // Determine current theme state
-  const isCreamHeader = (!isMobileMenuOpen && isScrolled) || (!isMobileMenuOpen && !isScrolled && theme === "light");
+  const isCreamHeader = (!isMobileMenuOpen && isScrolled) || (!isMobileMenuOpen && !isScrolled && propTheme === "light");
 
   return (
     <header 
