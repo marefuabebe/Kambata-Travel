@@ -109,32 +109,36 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
                 <img loading="lazy" 
                   src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
                   alt="Visit Kambaata Icon" 
-                  className="h-full w-auto object-contain brightness-75 contrast-125"
+                  className="h-10 w-auto object-contain"
+                  style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(30%) saturate(1512%) hue-rotate(113deg) brightness(97%) contrast(98%)" }} // Approximate #059669
                 />
-                <div className="ml-2 flex flex-col items-start justify-center text-[#1E293B]">
-                  <span className="font-allura text-lg leading-none -mb-0.5 ml-0.5 font-bold text-[#059669]" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
-                  <span className="font-great-vibes text-2xl leading-none font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>Kambata</span>
+                <div className="ml-2 flex flex-col items-start justify-center text-[#059669]">
+                  <span className="font-allura text-[15px] leading-none -mb-1 font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+                  <span className="font-great-vibes text-[22px] leading-none font-bold" style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
                 </div>
               </motion.div>
             </Link>
             
-            <div className="h-8 w-[1px] bg-gray-200 mx-6 xl:mx-8"></div>
+            <div className="h-8 w-[1px] bg-gray-200 mx-8"></div>
 
             {/* Desktop Navigation */}
-            <nav className="flex items-center gap-6 xl:gap-8">
+            <nav className="flex items-center gap-7 xl:gap-9">
               {navItems.map((item) => {
                 const isActive = item.key === "home";
                 return (
                   <Link 
                     key={item.name}
                     href={item.href} 
-                    className={`flex items-center gap-2 text-[13px] font-black uppercase tracking-[0.1em] transition-all relative group font-display py-2 ${
-                      isActive ? "text-[#059669]" : "text-[#1E293B] hover:text-[#059669]"
+                    className={`flex flex-col relative group cursor-pointer transition-all ${
+                      isActive ? "text-[#059669]" : "text-[#475569] hover:text-[#059669]"
                     }`}
                   >
-                    <item.icon className={`w-4 h-4 transition-transform group-hover:-translate-y-0.5 ${isActive ? "" : "opacity-70"}`} />
-                    <span className="relative z-10 pt-0.5">{t(`nav.${item.key}`)}</span>
-                    <span className={`absolute bottom-0 left-0 w-full h-[2.5px] transform transition-transform duration-300 origin-left ${
+                    <div className="flex items-center gap-1.5 pb-[6px]">
+                      <item.icon className={`w-[18px] h-[18px] transition-transform group-hover:-translate-y-[1px] ${isActive ? "stroke-[2.5]" : "stroke-[2]"}`} />
+                      <span className="text-[13px] font-bold uppercase tracking-wide pt-[2px] font-sans">{t(`nav.${item.key}`)}</span>
+                    </div>
+                    {/* Active Underline */}
+                    <span className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full transform transition-transform duration-300 origin-center ${
                       isActive ? "scale-x-100 bg-[#059669]" : "scale-x-0 group-hover:scale-x-100 bg-[#059669]"
                     }`} />
                   </Link>

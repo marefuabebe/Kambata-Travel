@@ -29,8 +29,8 @@ export function LanguageDropdown({
   }, []);
 
   const languages = [
-    { code: "en", label: "English", flag: "🇬🇧" },
-    { code: "am", label: "አማርኛ", flag: "🇪🇹" },
+    { code: "en", label: "English", flagUrl: "https://flagcdn.com/w40/gb.png" },
+    { code: "am", label: "አማርኛ", flagUrl: "https://flagcdn.com/w40/et.png" },
   ];
 
   const currentLang = languages.find((l) => l.code === language) || languages[0];
@@ -51,7 +51,7 @@ export function LanguageDropdown({
         onClick={() => setIsOpen(!isOpen)}
         className={btnClass}
       >
-        <span className="text-base leading-none">{currentLang.flag}</span>
+        <img src={currentLang.flagUrl} alt={currentLang.code} className="w-[18px] h-[18px] rounded-full object-cover" />
         <span className="uppercase">{currentLang.code}</span>
         <ChevronDown size={14} className={`transition-transform ml-0.5 ${isOpen ? "rotate-180" : ""}`} />
       </button>
@@ -82,7 +82,7 @@ export function LanguageDropdown({
                     : (isCreamHeader || isDashboard ? "hover:bg-gray-50 dark:hover:bg-white/5 text-gray-700 dark:text-gray-300" : "hover:bg-white/10 text-white")
                 } font-bold`}
               >
-                <span className="text-xl leading-none">{lang.flag}</span>
+                <img src={lang.flagUrl} alt={lang.code} className="w-4 h-4 rounded-full object-cover" />
                 <span className="text-sm">{lang.label}</span>
               </button>
             ))}
