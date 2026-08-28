@@ -88,11 +88,12 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
       }}
       className={`fixed top-0 left-0 w-full transition-all duration-500 ${
         isCreamHeader 
-          ? "bg-white h-16 md:h-20 shadow-[0_10px_40px_rgba(15,23,42,0.05)] border-b border-gray-100" 
-          : "bg-transparent h-16 md:h-20"
+          ? "lg:bg-white lg:h-20 lg:shadow-[0_10px_40px_rgba(15,23,42,0.05)] lg:border-b lg:border-gray-100" 
+          : "bg-transparent lg:h-20"
       }`}
     >
-      <div className="container mx-auto px-6 h-full flex items-center justify-between relative z-[10001]">
+      {/* Desktop Header */}
+      <div className="hidden lg:flex container mx-auto px-6 h-full items-center justify-between relative z-[10001] pointer-events-auto">
         
         {/* Logo Section */}
         <Link href="/" className="relative flex items-center h-full group" onClick={() => setIsMobileMenuOpen(false)}>
@@ -182,14 +183,47 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
             </Link>
           )}
 
-          {/* Mobile Toggle */}
-          <button 
-             className={`lg:hidden w-10 h-10 flex items-center justify-center transition-all relative z-[120] rounded-xl hover:bg-black/5 ${
-               isCreamHeader ? "text-[#1E293B]" : "text-white drop-shadow-md"
-             }`}
-             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        </div>
+      </div>
+
+      {/* Mobile Header (Design 3) */}
+      <div className="lg:hidden absolute top-4 left-4 right-4 bg-white rounded-full overflow-visible shadow-lg border-t-4 border-[#059669] z-[10001] px-2 py-2 flex items-center justify-between pointer-events-auto h-16">
+        
+        {/* Logo */}
+        <Link href="/" className="flex items-center pl-2 pb-1" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="flex flex-col items-start justify-center text-[#1E293B]">
+            <span className="font-allura text-[15px] leading-none -mb-1 font-bold text-[#059669]" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+            <span className="font-great-vibes text-[22px] leading-none font-bold" style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
+            <svg width="60" height="6" viewBox="0 0 160 12" fill="none" className="mt-0.5 origin-left">
+              <path d="M2 8 C40 2, 80 2, 120 6 S155 8, 158 5" stroke="#059669" strokeWidth="3" strokeLinecap="round" fill="none" />
+            </svg>
+          </div>
+        </Link>
+
+        {/* Actions */}
+        <div className="flex items-center gap-1.5 pr-1">
+          {/* Language Dropdown */}
+          <LanguageDropdown isMobilePill={true} />
+
+          {/* Theme Toggle / Random Sun Icon from Design */}
+          <button className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-50 active:scale-95 transition-all shadow-sm">
+            <Sun size={18} strokeWidth={2} />
+          </button>
+
+          {/* Profile */}
+          <Link 
+            href={user ? (user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard") : "/login"} 
+            className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center text-[#059669] hover:bg-gray-50 active:scale-95 transition-all shadow-sm"
           >
-            {isMobileMenuOpen ? <X size={28} className="stroke-[2.5]" /> : <Menu size={28} className="stroke-[2.5]" />}
+            <User size={18} strokeWidth={2} />
+          </Link>
+
+          {/* Menu Toggle */}
+          <button 
+            className="w-10 h-10 rounded-full bg-[#059669] text-white flex items-center justify-center shadow-md active:scale-95 transition-all ml-0.5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={22} strokeWidth={2.5} /> : <Menu size={22} strokeWidth={2.5} />}
           </button>
         </div>
       </div>

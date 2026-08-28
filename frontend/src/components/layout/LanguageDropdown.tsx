@@ -7,10 +7,12 @@ import { ChevronDown } from "lucide-react";
 
 export function LanguageDropdown({ 
   isCreamHeader = false, 
-  isDashboard = false 
+  isDashboard = false,
+  isMobilePill = false
 }: { 
   isCreamHeader?: boolean;
   isDashboard?: boolean;
+  isMobilePill?: boolean;
 }) {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +35,9 @@ export function LanguageDropdown({
 
   const currentLang = languages.find((l) => l.code === language) || languages[0];
 
-  const btnClass = isDashboard
+  const btnClass = isMobilePill 
+    ? "px-3 h-10 rounded-full flex items-center justify-center gap-1.5 font-bold text-[11px] bg-white border border-gray-100 shadow-sm text-gray-700"
+    : isDashboard
     ? "px-3 h-10 lg:h-12 rounded-xl lg:rounded-[1.25rem] flex items-center justify-center gap-1.5 font-bold text-[11px] lg:text-sm bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 shadow-sm text-gray-700 dark:text-gray-300 hover:text-[#1A331B] dark:hover:text-emerald-500 transition-all hover:shadow-md"
     : `px-3 py-2 rounded-xl flex items-center gap-1.5 font-bold transition-all border ${
         isCreamHeader
