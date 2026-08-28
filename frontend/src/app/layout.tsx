@@ -43,6 +43,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import SplashScreen from "@/components/layout/SplashScreen";
 import { Toaster } from "react-hot-toast";
 import Analytics from "@/components/Analytics";
+import JsonLd from "@/components/seo/JsonLd";
 import "./globals.css";
 
 // Lazy-load heavy components that aren't needed on initial render
@@ -54,14 +55,74 @@ export const viewport: Viewport = {
   themeColor: "#0F766E",
 };
 
+const defaultTitle = "Kambaata Travel | Discover Ethiopia's Hidden Gem";
+const defaultDescription = "Experience the rich culture, breathtaking landscapes, and warm hospitality of Kambaata Zone. Book authentic tours with verified local guides.";
+
 export const metadata: Metadata = {
-  title: "Kambaata Travel | Discover Ethiopia",
-  description: "Explore the natural and cultural beauty of Kambaata Zone.",
-  manifest: "/manifest.json",
-  icons: {
-    icon: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg",
-    apple: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg",
+  metadataBase: new URL('https://kambata-travel.vercel.app'),
+  title: {
+    template: "%s | Kambaata Travel",
+    default: defaultTitle,
   },
+  description: defaultDescription,
+  keywords: ["Kambaata travel", "Ethiopia tours", "Local guides Ethiopia", "Kambaata Zone", "Ethiopia heritage", "cultural tours Ethiopia"],
+  authors: [{ name: "Kambaata Travel" }],
+  creator: "Kambaata Travel",
+  publisher: "Kambaata Travel",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      'en-US': '/en',
+      'am-ET': '/am',
+    },
+  },
+  openGraph: {
+    title: defaultTitle,
+    description: defaultDescription,
+    url: "https://kambata-travel.vercel.app",
+    siteName: "Kambaata Travel",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.png", // using an assumed valid PNG or SVG version
+        width: 1200,
+        height: 630,
+        alt: "Kambaata Travel - Discover Ethiopia",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ["https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg", type: "image/svg+xml" }
+    ],
+    apple: [
+      { url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" }
+    ],
+  },
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -74,6 +135,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kambaata Travel",
+    "url": "https://kambata-travel.vercel.app",
+    "logo": "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg",
+    "description": "Experience the rich culture, breathtaking landscapes, and warm hospitality of Kambaata Zone. Book authentic tours with verified local guides."
+  };
+
+  const webSiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Kambaata Travel",
+    "url": "https://kambata-travel.vercel.app"
+  };
+
   return (
     <html
       lang="en"
@@ -82,6 +159,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <JsonLd data={orgSchema} />
+        <JsonLd data={webSiteSchema} />
         <script
           dangerouslySetInnerHTML={{
             __html: `
