@@ -206,7 +206,7 @@ export function MobileWelcomeHeader({
   return (
     <div className="mb-8 mt-6 lg:mt-8 rounded-[2.5rem] bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl">
       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <h1 className="text-3xl font-black tracking-tight mb-3">
+        <h1 className="text-3xl font-black tracking-tight mb-3 text-slate-900 dark:text-white">
           {t("guideDashboard.mobileWelcome.greeting").replace("{name}", guideName)}
         </h1>
         <div className="flex gap-4 text-sm font-semibold text-slate-600 dark:text-gray-300">
