@@ -138,13 +138,13 @@ const Hotels = () => {
             className="flex flex-col items-center"
           >
             <span className="text-[#0F766E] font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs mb-3 block">
-              {t('home.hotelsTag') || (language === 'am' ? "በምቾት ያርፉ" : "STAY IN COMFORT")}
+              {t('home.hotelsTag') || (language === 'am' ? "የደጋው ምቹ ማረፊያዎች" : "HIGHLAND RETREATS & STAYS")}
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
-              {t('home.hotelsTitle') || (language === 'am' ? "ምርጥ ሆቴሎችና ሪዞርቶች" : "Top Hotels & Resorts")}
+              {t('home.hotelsTitle') || (language === 'am' ? "የተመረጡ ሆቴሎችና የተፈጥሮ ሪዞርቶች" : "Curated Lodges & Accommodations")}
             </h2>
             <p className="text-gray-500 font-medium text-sm sm:text-base leading-relaxed">
-              {t('home.hotelsDesc') || (language === 'am' ? "በከምባታ ከሚገኙ ምርጥ የዕረፍት ቦታዎች በመምረጥ ማራኪ ጊዜን ያሳልፉ።" : "Discover the finest accommodations in Kambata, carefully selected to ensure a relaxing and memorable stay.")}
+              {t('home.hotelsDesc') || (language === 'am' ? "በከምባታ ግርማ ሞገስ ባላቸው ተራሮችና ውብ ተፈጥሮ መካከል እውነተኛ የኢትዮጵያ አቀባበልና ምቾትን ይለማመዱ። ለዕረፍትዎ የተመረጡ ውብና ምቹ ማረፊያዎች።" : "Unwind in comfort surrounded by Kambata's majestic highland peaks. From eco-resorts overlooking mist-shrouded valleys to boutique city stays, discover handpicked accommodations for a restful journey.")}
             </p>
           </motion.div>
         </div>
