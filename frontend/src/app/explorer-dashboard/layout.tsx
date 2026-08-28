@@ -28,6 +28,7 @@ import { applyExplorerTheme, readExplorerTheme } from "@/utils/explorerTheme";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "@/components/layout/Sidebar";
+import { LanguageDropdown } from "@/components/layout/LanguageDropdown";
 import { Settings, User, LogOut } from "iconoir-react";
 import { SvgIcon } from "@/components/ui/SvgIcon";
 
@@ -197,12 +198,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setLanguage(language === "en" ? "am" : "en")}
-              className="px-3 h-11 rounded-2xl flex items-center justify-center font-bold text-sm bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
-            >
-              {language === "en" ? "አማ" : "EN"}
-            </button>
+            <LanguageDropdown isDashboard={true} />
             <button 
               onClick={() => window.dispatchEvent(new Event('toggle-theme'))}
               className="w-11 h-11 rounded-2xl flex items-center justify-center text-amber-500 dark:text-sky-400 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
@@ -267,12 +263,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
                     </span>
                   )}
                 </Link>
-                <button
-                  onClick={() => setLanguage(language === "en" ? "am" : "en")}
-                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 font-bold text-[11px] active:scale-95 transition-transform"
-                >
-                  {language === "en" ? "አማ" : "EN"}
-                </button>
+                <LanguageDropdown isDashboard={true} />
                 <button onClick={toggleTheme} className="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-300 active:scale-95 transition-transform">
                   {isDark ? <Sun size={18} /> : <Moon size={18} />}
                 </button>

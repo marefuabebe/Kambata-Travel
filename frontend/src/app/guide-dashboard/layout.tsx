@@ -35,6 +35,7 @@ import { useRealtimeMessages } from "@/hooks/useRealtimeMessages";
 import { useRealtimeNotifications } from "@/hooks/useRealtimeNotifications";
 import GuideGate from "@/components/guide/GuideGate";
 import Sidebar from "@/components/layout/Sidebar";
+import { LanguageDropdown } from "@/components/layout/LanguageDropdown";
 import { useLanguage } from "@/context/LanguageContext";
 import { Settings, User, LogOut } from "iconoir-react";
 
@@ -202,18 +203,7 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
           </div>
 
           <div className="flex items-center gap-4 border-l border-gray-100 dark:border-white/5 pl-6 ml-auto relative z-10">
-            <button
-              onClick={() => setLanguage(language === "en" ? "am" : "en")}
-              className="lg:hidden px-3 h-10 rounded-xl flex items-center justify-center font-bold text-[11px] bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 shadow-sm text-gray-700 dark:text-gray-300"
-            >
-              {language === "en" ? "አማ" : "EN"}
-            </button>
-            <button
-              onClick={() => setLanguage(language === "en" ? "am" : "en")}
-              className="hidden lg:flex px-3 h-12 rounded-[1.25rem] items-center justify-center font-bold text-sm bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md text-gray-700 dark:text-gray-300 hover:text-[#1A331B] dark:hover:text-emerald-500 transition-all"
-            >
-              {language === "en" ? "አማ" : "EN"}
-            </button>
+            <LanguageDropdown isDashboard={true} />
             <button 
               onClick={toggleTheme} 
               className="relative w-12 h-12 flex items-center justify-center rounded-[1.25rem] bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 transition-all text-gray-500 hover:text-[#1A331B] dark:hover:text-emerald-500"

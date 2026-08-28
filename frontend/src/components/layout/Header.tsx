@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { LanguageDropdown } from "./LanguageDropdown";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -140,29 +141,7 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
           <div className="flex items-center gap-4 md:gap-6">
           
           {/* Language Switcher */}
-          <div className="flex items-center rounded-xl bg-black/10 p-1 border border-white/10">
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase transition-all font-display ${
-                language === 'en' 
-                  ? 'bg-white text-gray-900 shadow-sm' 
-                  : 'text-gray-500 hover:text-white'
-              }`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLanguage('am')}
-              className={`px-2 py-1 rounded-lg text-sm font-black uppercase transition-all font-display ${
-                language === 'am' 
-                  ? 'bg-[#D97706] text-white shadow-sm' 
-                  : 'text-gray-500 hover:text-white'
-              }`}
-            >
-              አማ
-            </button>
-          </div>
-
+          <LanguageDropdown isCreamHeader={isCreamHeader} />
           <div className={`h-6 w-[1px] hidden md:block ${
             isCreamHeader ? "bg-gray-200" : "bg-white/10"
           }`} />
