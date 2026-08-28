@@ -16,7 +16,8 @@ import {
   ScrollText, 
   MessageSquare,
   Music,
-  Activity
+  Activity,
+  Sun
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
