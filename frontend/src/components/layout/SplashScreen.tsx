@@ -37,9 +37,10 @@ export default function SplashScreen() {
       {visible && (
         <motion.div
           key="splash"
+          id="global-splash"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-          className="fixed inset-0 z-[99999] w-[100vw] h-[100dvh] overflow-hidden"
+          className="fixed inset-0 z-[99999] w-[100vw] h-[100dvh] overflow-hidden bg-[#0A1110]"
           style={{ touchAction: "none" }}
         >
           {/* ── Full-screen Background ── */}

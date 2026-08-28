@@ -90,6 +90,11 @@ export default function RootLayout({
                   console.error('ServiceWorker registration failed: ', err);
                 });
               }
+              
+              // Prevent splash screen flash on subsequent visits
+              if (sessionStorage.getItem("hasSeenSplash")) {
+                document.documentElement.classList.add("hide-splash");
+              }
             `,
           }}
         />
