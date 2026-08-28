@@ -281,8 +281,8 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
                    <div className="w-12 h-1 bg-white/20 rounded-full mb-4" />
                    <span className="text-[#C89B3C] font-semibold tracking-[0.2em] uppercase text-xs">Kambaata Highland</span>
                    <div className="flex gap-6 text-white/50 text-[10px] uppercase tracking-widest mt-2">
-                      <Link href="/privacy" onClick={() => setIsMobileMenuOpen(false)}>Privacy</Link>
-                      <Link href="/terms" onClick={() => setIsMobileMenuOpen(false)}>Terms</Link>
+                      <Link href="/privacy" onClick={() => setIsMobileMenuOpen(false)}>{t('footer.privacy')}</Link>
+                      <Link href="/terms" onClick={() => setIsMobileMenuOpen(false)}>{t('footer.terms')}</Link>
                    </div>
                 </div>
              </motion.div>
