@@ -76,7 +76,7 @@ export default function SplashScreen() {
           </div>
 
           {/* ── Center Content ── */}
-          <div className="relative z-10 flex flex-col items-center justify-center h-[calc(100dvh-100px)] -mt-6 sm:-mt-10 px-4">
+          <div className="relative z-10 flex flex-col items-center justify-center h-[calc(100dvh-220px)] sm:h-[calc(100dvh-100px)] -mt-2 sm:-mt-10 px-4">
             {/* "visit" */}
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -122,7 +122,7 @@ export default function SplashScreen() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.5 }}
-              className="text-white/60 text-[11px] sm:text-sm xl:text-base tracking-[0.3em] sm:tracking-[0.4em] uppercase mt-6 sm:mt-8 font-medium"
+              className="text-white/60 text-[10px] sm:text-sm xl:text-base tracking-[0.3em] sm:tracking-[0.4em] uppercase mt-6 sm:mt-8 font-medium text-center"
             >
               Explore &nbsp;·&nbsp; Discover &nbsp;·&nbsp; Experience
             </motion.p>
@@ -134,18 +134,18 @@ export default function SplashScreen() {
               transition={{ delay: 1.4, duration: 0.5 }}
               className="mt-8 sm:mt-10"
             >
-              <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-full border border-white/20 flex items-center justify-center">
-                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full border border-white/10 flex items-center justify-center">
+              <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-full border border-[#3CB371]/40 flex items-center justify-center border-dashed">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full border border-[#3CB371]/60 flex items-center justify-center">
                   <svg
                     width="20"
                     height="20"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="white"
+                    stroke="#3CB371"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="opacity-50 sm:w-[22px] sm:h-[22px]"
+                    className="sm:w-[22px] sm:h-[22px]"
                   >
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
@@ -155,9 +155,38 @@ export default function SplashScreen() {
             </motion.div>
           </div>
 
-          {/* ── Bottom: subtle gradient fade ── */}
+          {/* ── Bottom Area ── */}
           <div className="absolute bottom-0 left-0 right-0 z-10">
-            <div className="h-24 sm:h-32 bg-gradient-to-t from-black/50 to-transparent" />
+            {/* Desktop: subtle gradient fade */}
+            <div className="hidden sm:block h-32 bg-gradient-to-t from-black/50 to-transparent" />
+            
+            {/* Mobile: White Curve Design */}
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+              className="sm:hidden flex flex-col w-full"
+            >
+              {/* SVG Curve - Smiling Downward */}
+              <svg viewBox="0 0 1440 120" className="w-full h-[60px] block" preserveAspectRatio="none">
+                <path fill="#F8FAFC" d="M0,0 Q720,120 1440,0 L1440,120 L0,120 Z" />
+                <path fill="none" stroke="#059669" strokeWidth="6" d="M0,0 Q720,120 1440,0" className="opacity-90" />
+              </svg>
+              {/* Solid white block */}
+              <div className="bg-[#F8FAFC] w-full pb-10 pt-4 flex flex-col items-center justify-center">
+                <div className="text-center text-[13px] text-slate-800 font-medium mb-6 leading-relaxed px-6">
+                  The heart of <span className="text-[#059669]">Ethiopia</span>.<br/>
+                  The soul of nature and culture.
+                </div>
+                
+                {/* Pagination Dots */}
+                <div className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#059669]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       )}
