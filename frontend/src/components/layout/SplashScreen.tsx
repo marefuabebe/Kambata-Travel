@@ -167,8 +167,23 @@ export default function SplashScreen() {
 
           {/* ── Bottom Area ── */}
           <div className="absolute bottom-0 left-0 right-0 z-10">
-            {/* Desktop: subtle gradient fade */}
-            <div className="hidden sm:block h-32 bg-gradient-to-t from-black/50 to-transparent" />
+            {/* Desktop: subtle gradient fade with progressive dots */}
+            <div className="hidden sm:flex flex-col items-center justify-end pb-12 h-32 bg-gradient-to-t from-black/50 to-transparent w-full">
+              {/* Pagination Dots used as Progress Bar */}
+              <div className="flex items-center gap-2.5">
+                {[0, 1, 2].map((i) => (
+                  <motion.div
+                    key={i}
+                    animate={{ 
+                      backgroundColor: activeDot >= i ? "#3CB371" : "rgba(255,255,255,0.3)",
+                      scale: activeDot === i ? 1.2 : 1
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="w-1.5 h-1.5 rounded-full"
+                  />
+                ))}
+              </div>
+            </div>
             
             {/* Mobile: White Curve Design */}
             <motion.div 

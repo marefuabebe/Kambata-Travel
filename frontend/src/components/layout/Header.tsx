@@ -190,10 +190,10 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
       </div>
 
       {/* Mobile Header */}
-      <div className="lg:hidden w-full h-full px-4 flex items-center justify-between relative z-[10001] pointer-events-auto">
+      <div className="lg:hidden w-full h-full px-4 flex items-center justify-end relative z-[10001] pointer-events-auto">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
+        <Link href="/" className="hidden items-center group" onClick={() => setIsMobileMenuOpen(false)}>
           <img loading="lazy" 
             src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
             alt="Visit Kambaata Icon" 
