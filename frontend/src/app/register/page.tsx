@@ -32,7 +32,7 @@ const RegisterPage = () => {
       setGoogleError("Google login failed: No token received.");
       return;
     }
-    loginWithGoogle(token, formData.role);
+    loginWithGoogle(token);
   };
 
   const handleGoogleError = () => {

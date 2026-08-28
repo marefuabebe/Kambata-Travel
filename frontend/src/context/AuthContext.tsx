@@ -21,6 +21,7 @@ interface AuthContextType {
   error: string | null;
   login: (credentials: any) => Promise<void>;
   loginWithGoogle: (token: string, role?: string) => Promise<void>;
+  completeGoogleRegistration: (role: string) => Promise<void>;
   register: (data: any) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -97,6 +98,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       console.log(`[DEBUG GOOGLE OAUTH] Received response data:`, data);
       
+      if (data.requireRoleSelection) {
+        console.log(`[DEBUG GOOGLE OAUTH] New user detected. Saving token and redirecting to role selection...`);
+        sessionStorage.setItem("pendingGoogleToken", token);
+        router.push("/register/role-selection");
+        return;
+      }
+
       setUser(data);
       localStorage.setItem("token", data.accessToken);
       localStorage.setItem("user", JSON.stringify(data));
@@ -123,6 +131,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       throw err;
     } finally {
       console.log(`[DEBUG GOOGLE OAUTH] loginWithGoogle finally block reached.`);
+      setLoading(false);
+    }
+  };
+
+  const completeGoogleRegistration = async (role: string) => {
+    console.log(`[DEBUG GOOGLE OAUTH] completeGoogleRegistration called with role: ${role}`);
+    setLoading(true);
+    setError(null);
+    try {
+      const pendingToken = sessionStorage.getItem("pendingGoogleToken");
+      if (!pendingToken) {
+        throw new Error("Google registration session expired. Please sign in with Google again.");
+      }
+
+      const { data } = await apiClient.post("/auth/google/complete", { token: pendingToken, role });
+      sessionStorage.removeItem("pendingGoogleToken");
+
+      setUser(data);
+      localStorage.setItem("token", data.accessToken);
+      localStorage.setItem("user", JSON.stringify(data));
+
+      if (data.role === "guide") {
+        window.location.href = "/guide-dashboard";
+      } else {
+        window.location.href = "/explorer-dashboard";
+      }
+    } catch (err: any) {
+      console.error(`[DEBUG GOOGLE OAUTH] Error in completeGoogleRegistration:`, err);
+      const errorMessage = err.response?.data?.message || "Google Registration completion failed.";
+      setError(errorMessage);
+      throw err;
+    } finally {
       setLoading(false);
     }
   };
@@ -195,7 +235,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, error, login, loginWithGoogle, register, logout, refreshUser, syncGuideStatus }}>
+    <AuthContext.Provider value={{ user, setUser, loading, error, login, loginWithGoogle, completeGoogleRegistration, register, logout, refreshUser, syncGuideStatus }}>
       {children}
     </AuthContext.Provider>
   );

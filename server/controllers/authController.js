@@ -740,29 +740,109 @@ const googleAuth = async (req, res, next) => {
       });
     }
 
-    // New user
-    const finalRole = ["user", "guide"].includes(role) ? role : "user";
+    // If user does not exist, require explicit role selection
+    return res.status(200).json({
+      requireRoleSelection: true,
+      email,
+      name,
+      picture,
+    });
+
+  } catch (error) {
+    logger.error(`Google auth failed: ${error.message}`);
+    next(error);
+  }
+};
+
+// @desc    Complete Google Registration with selected role
+// @route   POST /api/auth/google/complete
+// @access  Public
+const googleCompleteRegistration = async (req, res, next) => {
+  try {
+    const { token, role } = req.body;
+
+    if (!token) {
+      res.status(400);
+      throw new Error("No Google token provided");
+    }
+
+    if (!role || !["user", "guide"].includes(role)) {
+      res.status(400);
+      throw new Error("Valid role selection ('user' or 'guide') is required");
+    }
+
+    const { OAuth2Client } = require('google-auth-library');
+    const client = new OAuth2Client();
+
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: '167884286246-pae6qdcf9u587i1i961asqkjodd4els7.apps.googleusercontent.com'
+    });
+
+    const payload = ticket.getPayload();
+    const { sub, email, name, picture, email_verified } = payload;
+
+    if (!email_verified) {
+      res.status(400);
+      throw new Error("Google email not verified");
+    }
+
+    let user = await User.findOne({ email });
+
+    if (user) {
+      // User already exists, log them in
+      if (checkUserBlock(user)) {
+        res.status(403);
+        throw new Error("Account suspended or blocked");
+      }
+      
+      if (!user.googleId) {
+        user.googleId = sub;
+        await user.save();
+      }
+
+      const refreshToken = generateRefreshToken(user._id);
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV !== "development",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+
+      return res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        guideStatus: user.guideStatus,
+        profilePicture: user.profilePicture,
+        isEmailVerified: user.isEmailVerified,
+        accessToken: generateAccessToken(user._id),
+      });
+    }
+
+    // Create new user with verified Google data and selected role
     const userPayload = {
       name,
       email,
       googleId: sub,
       authProvider: 'google',
-      role: finalRole,
-      isEmailVerified: true, // Google verifies emails
+      role,
+      isEmailVerified: true,
       profilePicture: picture,
     };
 
-    if (finalRole === "guide") {
+    if (role === "guide") {
       userPayload.guideStatus = "none";
     }
 
     user = await User.create(userPayload);
-    
-    if (finalRole === "guide") {
+
+    if (role === "guide") {
       await Guide.create({ user: user._id });
     }
 
-    logger.info(`User registered via Google: ${email} as ${finalRole}`, {
+    logger.info(`User registered via Google: ${email} as ${role}`, {
       ip: req.ip,
       userAgent: req.headers["user-agent"],
       eventType: "REGISTRATION_SUCCESS",
@@ -788,7 +868,7 @@ const googleAuth = async (req, res, next) => {
     });
 
   } catch (error) {
-    logger.error(`Google auth failed: ${error.message}`);
+    logger.error(`Google registration completion failed: ${error.message}`);
     next(error);
   }
 };
@@ -804,4 +884,5 @@ module.exports = {
   resendVerificationOTP,
   adminLogin,
   googleAuth,
+  googleCompleteRegistration,
 };
