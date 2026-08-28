@@ -14,11 +14,11 @@ export default function SplashScreen() {
       return;
     }
 
-    // Show splash for 2.5 seconds then fade out
+    // Show splash for 10 seconds then fade out
     const timer = setTimeout(() => {
       setVisible(false);
       sessionStorage.setItem("hasSeenSplash", "true");
-    }, 2500);
+    }, 10000);
 
     return () => clearTimeout(timer);
   }, []);
