@@ -96,8 +96,8 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
       {/* Desktop Header */}
       <div className="hidden lg:flex container mx-auto px-6 h-full items-center justify-between relative z-[10001] pointer-events-auto">
           
-        {/* Logo Section */}
-        <div className="flex items-center h-full">
+        {/* Logo (Left) */}
+        <div className="flex items-center">
           <Link href="/" className="relative flex items-center group">
             <motion.div 
               initial={{ opacity: 0, x: -10 }}
@@ -117,36 +117,34 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
               </div>
             </motion.div>
           </Link>
-          
-          <div className={`h-8 w-[1px] mx-8 transition-colors duration-300 ${isCreamHeader ? 'bg-gray-200' : 'bg-white/20'}`}></div>
-
-          {/* Desktop Navigation */}
-          <nav className="flex items-center gap-7 xl:gap-9">
-            {navItems.map((item) => {
-              const isActive = item.key === "home";
-              return (
-                <Link 
-                  key={item.name}
-                  href={item.href} 
-                  className={`flex flex-col relative group cursor-pointer transition-all ${
-                    isActive 
-                      ? (isCreamHeader ? "text-[#059669]" : "text-white") 
-                      : (isCreamHeader ? "text-[#475569] hover:text-[#059669]" : "text-white/80 hover:text-white")
-                  }`}
-                >
-                  <div className="flex items-center gap-1.5 pb-[6px]">
-                    <item.icon className={`w-[18px] h-[18px] transition-transform group-hover:-translate-y-[1px] ${isActive ? "stroke-[2.5]" : "stroke-[2]"}`} />
-                    <span className="text-[13px] font-bold uppercase tracking-wide pt-[2px] font-sans">{t(`nav.${item.key}`)}</span>
-                  </div>
-                  {/* Active Underline */}
-                  <span className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full transform transition-transform duration-300 origin-center ${
-                    isActive ? (isCreamHeader ? "scale-x-100 bg-[#059669]" : "scale-x-100 bg-white") : (isCreamHeader ? "scale-x-0 group-hover:scale-x-100 bg-[#059669]" : "scale-x-0 group-hover:scale-x-100 bg-white")
-                  }`} />
-                </Link>
-              );
-            })}
-          </nav>
         </div>
+
+        {/* Navigation (Centered) */}
+        <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-7 xl:gap-9">
+          {navItems.map((item) => {
+            const isActive = item.key === "home";
+            return (
+              <Link 
+                key={item.name}
+                href={item.href} 
+                className={`flex flex-col relative group cursor-pointer transition-all ${
+                  isActive 
+                    ? (isCreamHeader ? "text-[#059669]" : "text-white") 
+                    : (isCreamHeader ? "text-[#475569] hover:text-[#059669]" : "text-white/80 hover:text-white")
+                }`}
+              >
+                <div className="flex items-center gap-1.5 pb-[6px]">
+                  <item.icon className={`w-[18px] h-[18px] transition-transform group-hover:-translate-y-[1px] ${isActive ? "stroke-[2.5]" : "stroke-[2]"}`} />
+                  <span className="text-[13px] font-bold uppercase tracking-wide pt-[2px] font-sans">{t(`nav.${item.key}`)}</span>
+                </div>
+                {/* Active Underline */}
+                <span className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full transform transition-transform duration-300 origin-center ${
+                  isActive ? (isCreamHeader ? "scale-x-100 bg-[#059669]" : "scale-x-100 bg-white") : (isCreamHeader ? "scale-x-0 group-hover:scale-x-100 bg-[#059669]" : "scale-x-0 group-hover:scale-x-100 bg-white")
+                }`} />
+              </Link>
+            );
+          })}
+        </nav>
 
         {/* Action Hub */}
         <div className="flex items-center gap-4">
