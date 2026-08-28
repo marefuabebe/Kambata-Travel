@@ -161,7 +161,7 @@ const Destinations = () => {
   );
 
   return (
-    <section className="pt-8 md:pt-10 pb-4 md:pb-6 bg-[#FDFCF0]">
+    <section className="pt-8 md:pt-10 pb-4 md:pb-6 bg-[#FDFCF0] dark:bg-slate-900 transition-colors duration-300">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-10 gap-4 text-center md:text-left">
           <motion.div 
@@ -173,7 +173,7 @@ const Destinations = () => {
             <span className="text-primary font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block font-display">
               {language === 'am' ? 'ዋና ዋና መዳረሻዎች' : 'TOP DESTINATIONS'}
             </span>
-            <h2 className="text-4xl md:text-6xl text-gray-900 leading-tight font-display font-bold">
+            <h2 className="text-4xl md:text-6xl text-gray-900 dark:text-white leading-tight font-display font-bold">
               {language === 'am' ? 'ታዋቂ መዳረሻዎች' : 'Popular Destinations'} <br className="hidden md:block" /> {language === 'am' ? 'በከምባታ' : 'in Kambata'}
             </h2>
           </motion.div>
