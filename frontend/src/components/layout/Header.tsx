@@ -93,89 +93,101 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
           : "bg-transparent lg:h-20"
       }`}
     >
-      {/* Desktop Header (Design 1) */}
-      <div className="hidden lg:block w-full px-8 pt-6 relative z-[10001] pointer-events-auto">
-        <div className="w-full h-20 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center justify-between px-8">
+      {/* Desktop Header */}
+      <div className="hidden lg:flex container mx-auto px-6 h-full items-center justify-between relative z-[10001] pointer-events-auto">
           
-          {/* Logo Section */}
-          <div className="flex items-center h-full">
-            <Link href="/" className="relative flex items-center group">
-              <motion.div 
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="h-12 flex items-center transition-transform duration-300 group-hover:scale-105"
-              >
-                <img loading="lazy" 
-                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
-                  alt="Visit Kambaata Icon" 
-                  className="h-10 w-auto object-contain"
-                  style={{ filter: "brightness(0) saturate(100%) invert(39%) sepia(30%) saturate(1512%) hue-rotate(113deg) brightness(97%) contrast(98%)" }} // Approximate #059669
-                />
-                <div className="ml-2 flex flex-col items-start justify-center text-[#059669]">
-                  <span className="font-allura text-[15px] leading-none -mb-1 font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
-                  <span className="font-great-vibes text-[22px] leading-none font-bold" style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
-                </div>
-              </motion.div>
-            </Link>
-            
-            <div className="h-8 w-[1px] bg-gray-200 mx-8"></div>
-
-            {/* Desktop Navigation */}
-            <nav className="flex items-center gap-7 xl:gap-9">
-              {navItems.map((item) => {
-                const isActive = item.key === "home";
-                return (
-                  <Link 
-                    key={item.name}
-                    href={item.href} 
-                    className={`flex flex-col relative group cursor-pointer transition-all ${
-                      isActive ? "text-[#059669]" : "text-[#475569] hover:text-[#059669]"
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 pb-[6px]">
-                      <item.icon className={`w-[18px] h-[18px] transition-transform group-hover:-translate-y-[1px] ${isActive ? "stroke-[2.5]" : "stroke-[2]"}`} />
-                      <span className="text-[13px] font-bold uppercase tracking-wide pt-[2px] font-sans">{t(`nav.${item.key}`)}</span>
-                    </div>
-                    {/* Active Underline */}
-                    <span className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full transform transition-transform duration-300 origin-center ${
-                      isActive ? "scale-x-100 bg-[#059669]" : "scale-x-0 group-hover:scale-x-100 bg-[#059669]"
-                    }`} />
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          {/* Action Hub */}
-          <div className="flex items-center gap-4">
-            
-            {/* Language Switcher */}
-            <LanguageDropdown isMobilePill={true} />
-
-            {user ? (
-              <div className="flex items-center gap-3">
-                <Link href={user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard"} className="relative group">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 bg-white hover:bg-gray-50 transition-all shadow-sm">
-                    <User className="w-5 h-5 stroke-[2]" />
-                  </div>
-                </Link>
-                <button 
-                  onClick={logout}
-                  className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-red-50 transition-all shadow-sm"
-                  title="Secure Logout"
-                >
-                  <LogOut className="w-4 h-4 stroke-[2]" />
-                </button>
+        {/* Logo Section */}
+        <div className="flex items-center h-full">
+          <Link href="/" className="relative flex items-center group">
+            <motion.div 
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="h-12 flex items-center transition-transform duration-300 group-hover:scale-105"
+            >
+              <img loading="lazy" 
+                src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
+                alt="Visit Kambaata Icon" 
+                className="h-10 w-auto object-contain transition-all duration-300"
+                style={isCreamHeader ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(30%) saturate(1512%) hue-rotate(113deg) brightness(97%) contrast(98%)" } : { filter: "brightness(0) invert(1)" }} 
+              />
+              <div className="ml-2 flex flex-col items-start justify-center transition-colors duration-300">
+                <span className={`font-allura text-[15px] leading-none -mb-1 font-bold ${isCreamHeader ? 'text-[#059669]' : 'text-white'}`} style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+                <span className={`font-great-vibes text-[22px] leading-none font-bold ${isCreamHeader ? 'text-[#1E293B]' : 'text-white'}`} style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
               </div>
-            ) : (
-              <Link href="/login" className="relative group ml-1">
-                <div className="w-11 h-11 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 bg-white hover:bg-gray-50 transition-all shadow-sm">
+            </motion.div>
+          </Link>
+          
+          <div className={`h-8 w-[1px] mx-8 transition-colors duration-300 ${isCreamHeader ? 'bg-gray-200' : 'bg-white/20'}`}></div>
+
+          {/* Desktop Navigation */}
+          <nav className="flex items-center gap-7 xl:gap-9">
+            {navItems.map((item) => {
+              const isActive = item.key === "home";
+              return (
+                <Link 
+                  key={item.name}
+                  href={item.href} 
+                  className={`flex flex-col relative group cursor-pointer transition-all ${
+                    isActive 
+                      ? (isCreamHeader ? "text-[#059669]" : "text-white") 
+                      : (isCreamHeader ? "text-[#475569] hover:text-[#059669]" : "text-white/80 hover:text-white")
+                  }`}
+                >
+                  <div className="flex items-center gap-1.5 pb-[6px]">
+                    <item.icon className={`w-[18px] h-[18px] transition-transform group-hover:-translate-y-[1px] ${isActive ? "stroke-[2.5]" : "stroke-[2]"}`} />
+                    <span className="text-[13px] font-bold uppercase tracking-wide pt-[2px] font-sans">{t(`nav.${item.key}`)}</span>
+                  </div>
+                  {/* Active Underline */}
+                  <span className={`absolute bottom-0 left-0 w-full h-[2px] rounded-full transform transition-transform duration-300 origin-center ${
+                    isActive ? (isCreamHeader ? "scale-x-100 bg-[#059669]" : "scale-x-100 bg-white") : (isCreamHeader ? "scale-x-0 group-hover:scale-x-100 bg-[#059669]" : "scale-x-0 group-hover:scale-x-100 bg-white")
+                  }`} />
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Action Hub */}
+        <div className="flex items-center gap-4">
+          
+          {/* Language Switcher */}
+          <LanguageDropdown isCreamHeader={isCreamHeader} />
+
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Link href={user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard"} className="relative group">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all shadow-sm ${
+                  isCreamHeader
+                    ? "border-gray-200 text-gray-600 bg-white hover:bg-gray-50"
+                    : "border-white/20 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md"
+                }`}>
                   <User className="w-5 h-5 stroke-[2]" />
                 </div>
               </Link>
-            )}
-          </div>
+              <button 
+                onClick={logout}
+                className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all shadow-sm ${
+                  isCreamHeader
+                    ? "border-gray-200 text-gray-500 hover:text-red-500 hover:bg-red-50"
+                    : "border-white/20 text-white/80 hover:text-red-400 bg-white/10 hover:bg-white/20 backdrop-blur-md"
+                }`}
+                title="Secure Logout"
+              >
+                <LogOut className="w-4 h-4 stroke-[2]" />
+              </button>
+            </div>
+          ) : (
+            <Link href="/login" className="relative group ml-1">
+              <div className={`w-11 h-11 rounded-full flex items-center justify-center border transition-all shadow-sm ${
+                isCreamHeader
+                  ? "border-gray-200 text-gray-600 bg-white hover:bg-gray-50"
+                  : "border-white/20 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md"
+              }`}>
+                <User className="w-5 h-5 stroke-[2]" />
+              </div>
+            </Link>
+          )}
         </div>
       </div>
 
