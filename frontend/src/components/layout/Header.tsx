@@ -87,10 +87,10 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? "auto" : "none"
       }}
-      className={`fixed top-0 left-0 w-full transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full transition-all duration-500 z-[10000] ${
         isCreamHeader 
-          ? "lg:bg-white lg:h-20 lg:shadow-[0_10px_40px_rgba(15,23,42,0.05)] lg:border-b lg:border-gray-100" 
-          : "bg-transparent lg:h-20"
+          ? "bg-white h-16 lg:h-20 shadow-[0_10px_40px_rgba(15,23,42,0.05)] border-b border-gray-100" 
+          : "bg-transparent h-16 lg:h-20"
       }`}
     >
       {/* Desktop Header */}
@@ -189,44 +189,52 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
         </div>
       </div>
 
-      {/* Mobile Header (Design 3) */}
-      <div className="lg:hidden absolute top-4 left-4 right-4 bg-white rounded-full overflow-visible shadow-lg border-t-4 border-[#059669] z-[10001] px-2 py-2 flex items-center justify-between pointer-events-auto h-16">
+      {/* Mobile Header */}
+      <div className="lg:hidden w-full h-full px-4 flex items-center justify-between relative z-[10001] pointer-events-auto">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center pl-2 pb-1" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="flex flex-col items-start justify-center text-[#1E293B]">
-            <span className="font-allura text-[15px] leading-none -mb-1 font-bold text-[#059669]" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
-            <span className="font-great-vibes text-[22px] leading-none font-bold" style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
-            <svg width="60" height="6" viewBox="0 0 160 12" fill="none" className="mt-0.5 origin-left">
-              <path d="M2 8 C40 2, 80 2, 120 6 S155 8, 158 5" stroke="#059669" strokeWidth="3" strokeLinecap="round" fill="none" />
-            </svg>
+        <Link href="/" className="flex items-center group" onClick={() => setIsMobileMenuOpen(false)}>
+          <img loading="lazy" 
+            src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
+            alt="Visit Kambaata Icon" 
+            className="h-8 w-auto object-contain transition-all duration-300"
+            style={isCreamHeader ? { filter: "brightness(0) saturate(100%) invert(39%) sepia(30%) saturate(1512%) hue-rotate(113deg) brightness(97%) contrast(98%)" } : { filter: "brightness(0) invert(1)" }} 
+          />
+          <div className="ml-1.5 flex flex-col items-start justify-center transition-colors duration-300">
+            <span className={`font-allura text-[13px] leading-none -mb-1 font-bold ${isCreamHeader ? 'text-[#059669]' : 'text-white'}`} style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+            <span className={`font-great-vibes text-[20px] leading-none font-bold ${isCreamHeader ? 'text-[#1E293B]' : 'text-white'}`} style={{ WebkitTextStroke: '0.3px currentColor' }}>Kambata</span>
           </div>
         </Link>
 
         {/* Actions */}
-        <div className="flex items-center gap-1.5 pr-1">
+        <div className="flex items-center gap-1.5">
           {/* Language Dropdown */}
-          <LanguageDropdown isMobilePill={true} />
+          <LanguageDropdown isCreamHeader={isCreamHeader} />
 
-          {/* Theme Toggle / Random Sun Icon from Design */}
-          <button className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-50 active:scale-95 transition-all shadow-sm">
-            <Sun size={18} strokeWidth={2} />
-          </button>
+          {/* Theme Toggle (Removed random Sun icon to match desktop flat layout cleaner action hub) */}
 
           {/* Profile */}
           <Link 
             href={user ? (user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard") : "/login"} 
-            className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center text-[#059669] hover:bg-gray-50 active:scale-95 transition-all shadow-sm"
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all shadow-sm ${
+              isCreamHeader 
+                ? "border border-gray-200 text-gray-600 bg-white hover:bg-gray-50" 
+                : "border border-white/20 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md"
+            }`}
           >
             <User size={18} strokeWidth={2} />
           </Link>
 
           {/* Menu Toggle */}
           <button 
-            className="w-10 h-10 rounded-full bg-[#059669] text-white flex items-center justify-center shadow-md active:scale-95 transition-all ml-0.5"
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all shadow-md ml-0.5 ${
+              isCreamHeader 
+                ? "bg-[#059669] text-white hover:bg-[#047857]" 
+                : "bg-white text-[#059669] hover:bg-gray-100"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={22} strokeWidth={2.5} /> : <Menu size={22} strokeWidth={2.5} />}
+            {isMobileMenuOpen ? <X size={20} strokeWidth={2.5} /> : <Menu size={20} strokeWidth={2.5} />}
           </button>
         </div>
       </div>
