@@ -75,7 +75,7 @@ const Footer = () => {
               <li><Link href="/contact" className="hover:text-primary transition-colors">{t("footer.contact")}</Link></li>
               <li><Link href="/explore" className="hover:text-primary transition-colors">{t("footer.explorer")}</Link></li>
               <li><Link href="/tours" className="hover:text-primary transition-colors">{t("footer.tours")}</Link></li>
-              <li><Link href="/heritage" className="hover:text-primary transition-colors">{t("footer.heritage") !== "footer.heritage" ? t("footer.heritage") : "Heritage"}</Link></li>
+              <li><Link href="/heritage" className="hover:text-primary transition-colors">{t("footer.heritage")}</Link></li>
               <li><Link href="/gallery" className="hover:text-primary transition-colors">{t("footer.gallery")}</Link></li>
             </ul>
           </div>
