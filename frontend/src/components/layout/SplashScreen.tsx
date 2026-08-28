@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function SplashScreen() {
   const [visible, setVisible] = useState(true);
+  const [activeDot, setActiveDot] = useState(0);
 
   useEffect(() => {
     // Skip if already shown this session
@@ -14,13 +15,21 @@ export default function SplashScreen() {
       return;
     }
 
+    // Progress bar effect over 10 seconds
+    const interval = setInterval(() => {
+      setActiveDot((prev) => (prev < 2 ? prev + 1 : prev));
+    }, 3333);
+
     // Show splash for 10 seconds then fade out
     const timer = setTimeout(() => {
       setVisible(false);
       sessionStorage.setItem("hasSeenSplash", "true");
     }, 10000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -179,11 +188,19 @@ export default function SplashScreen() {
                   The soul of nature and culture.
                 </div>
                 
-                {/* Pagination Dots */}
+                {/* Pagination Dots used as Progress Bar */}
                 <div className="flex items-center gap-2.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#059669]" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                  {[0, 1, 2].map((i) => (
+                    <motion.div
+                      key={i}
+                      animate={{ 
+                        backgroundColor: activeDot >= i ? "#059669" : "#CBD5E1",
+                        scale: activeDot === i ? 1.2 : 1
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="w-1.5 h-1.5 rounded-full"
+                    />
+                  ))}
                 </div>
               </div>
             </motion.div>
