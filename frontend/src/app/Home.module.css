@@ -1206,36 +1206,3 @@
   }
 }
 
-/* -- DARK MODE OVERRIDES -- */
-:global(.dark) .pageWrapper { background: #0F172A; color: #F8FAFC; }
-:global(.dark) .sectionTitle { color: #F8FAFC; }
-:global(.dark) .categorySection { background: transparent; }
-:global(.dark) .categoryIcon { background: #1E293B; color: #34D399; border-color: rgba(52, 211, 153, 0.2); }
-:global(.dark) .categoryName { color: #F8FAFC; }
-:global(.dark) .statCard { background: #1E293B; border-color: #334155; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-:global(.dark) .statValue { color: #F8FAFC; }
-:global(.dark) .statLabel { color: #94A3B8; }
-:global(.dark) .searchBar { background: #1E293B; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
-:global(.dark) .searchLabel { color: #F8FAFC; }
-:global(.dark) .searchValue { color: #94A3B8; }
-:global(.dark) .searchGroup { border-color: #334155; }
-:global(.dark) .tourCard { background: #1E293B; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-:global(.dark) .tourTitle { color: #F8FAFC; }
-:global(.dark) .tourRating { color: #F8FAFC; }
-:global(.dark) .destCard { background: #1E293B; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-:global(.dark) .destTitle { color: #F8FAFC; }
-:global(.dark) .destLocation { color: #94A3B8; }
-:global(.dark) .destRating { color: #F8FAFC; }
-:global(.dark) .expTitle { color: #F8FAFC; }
-:global(.dark) .expFeatureItem h4 { color: #F8FAFC; }
-:global(.dark) .experienceBanner { background: #1E293B; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-:global(.dark) .heroTravelers { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
-:global(.dark) .heroTravelersText h4 { color: #F8FAFC; }
-:global(.dark) .heroTrustList { background: rgba(15, 23, 42, 0.8); }
-:global(.dark) .articleCard { background: #1E293B; border-color: #334155; }
-:global(.dark) .articleTitle { color: #F8FAFC; }
-:global(.dark) .articleDesc { color: #94A3B8; }
-:global(.dark) .ctaBanner { background: #1E293B; border: 1px solid #334155; }
-:global(.dark) .ctaTitle { color: #F8FAFC; }
-:global(.dark) .ctaDesc { color: #94A3B8; }
-:global(.dark) .newsletterForm input { background: #0F172A; border-color: #334155; color: white; }

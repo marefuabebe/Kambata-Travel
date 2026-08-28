@@ -22,7 +22,6 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { useTheme } from "@/context/ThemeContext";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -44,7 +43,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isVisible = true, theme: propTheme = "dark" }) => {
   const { user, logout } = useAuth();
   const { language, setLanguage, t } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
@@ -155,18 +153,6 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme: propTheme = "d
           {/* Language Switcher */}
           <LanguageDropdown isCreamHeader={isCreamHeader} />
 
-          {/* Theme Toggle */}
-          <button 
-            className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all shadow-sm ${
-              isCreamHeader 
-                ? "border-gray-200 text-gray-600 bg-white hover:bg-gray-50" 
-                : "border-white/20 text-white bg-white/10 hover:bg-white/20 backdrop-blur-md"
-            }`}
-            onClick={() => window.dispatchEvent(new Event('toggle-theme'))}
-          >
-            {theme === "dark" ? <Sun className="w-5 h-5 stroke-[2]" /> : <Moon className="w-5 h-5 stroke-[2]" />}
-          </button>
-
           {user ? (
             <div className="flex items-center gap-3">
               <Link href={user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard"} className="relative group">
@@ -225,18 +211,6 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme: propTheme = "d
         <div className="flex items-center gap-2">
           {/* Language Dropdown */}
           <LanguageDropdown isMobilePill={true} isCreamHeader={isCreamHeader} />
-
-          {/* Theme Toggle */}
-          <button 
-            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-sm border ${
-              isCreamHeader 
-                ? "bg-white text-gray-700 border-gray-100 hover:bg-gray-50" 
-                : "bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-md"
-            }`}
-            onClick={() => window.dispatchEvent(new Event('toggle-theme'))}
-          >
-            {theme === "dark" ? <Sun size={18} strokeWidth={2} /> : <Moon size={18} strokeWidth={2} />}
-          </button>
 
           {/* Profile */}
           <Link 

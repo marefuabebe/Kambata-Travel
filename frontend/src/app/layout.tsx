@@ -39,7 +39,6 @@ const greatVibes = Great_Vibes({
 
 import { AuthProvider } from "@/context/AuthContext";
 import { LanguageProvider } from "@/context/LanguageContext";
-import { ThemeProvider } from "@/context/ThemeContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import SplashScreen from "@/components/layout/SplashScreen";
 import { Toaster } from "react-hot-toast";
@@ -170,57 +169,46 @@ export default function RootLayout({
                   console.error('ServiceWorker registration failed: ', err);
                 });
               }
-              
               // Prevent splash screen flash on subsequent visits
               if (sessionStorage.getItem("hasSeenSplash")) {
                 document.documentElement.classList.add("hide-splash");
               }
-              
-              // Prevent Dark Mode FOUC
-              try {
-                var saved = localStorage.getItem("explorer-dark-mode");
-                if (saved === "1" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                  document.documentElement.classList.add("dark");
-                }
-              } catch (e) {}
             `,
           }}
         />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
-          <ThemeProvider>
-            <AuthProvider>
-              <LanguageProvider>
-                <SplashScreen />
-                {children}
-                <Analytics />
-                <EnterpriseChatbot />
-                <Toaster
-                  position="top-right"
-                  toastOptions={{
-                    duration: 4000,
-                    style: {
-                      background: "#1F2937",
-                      color: "#F9FAFB",
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "14px",
-                      fontWeight: "500",
-                      borderRadius: "12px",
-                      padding: "14px 18px",
-                      boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-                    },
-                    success: {
-                      iconTheme: { primary: "#22c55e", secondary: "#fff" },
-                    },
-                    error: {
-                      iconTheme: { primary: "#ef4444", secondary: "#fff" },
-                    },
-                  }}
-                />
-              </LanguageProvider>
-            </AuthProvider>
-          </ThemeProvider>
+          <AuthProvider>
+            <LanguageProvider>
+              <SplashScreen />
+              {children}
+              <Analytics />
+              <EnterpriseChatbot />
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 4000,
+                  style: {
+                    background: "#1F2937",
+                    color: "#F9FAFB",
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    borderRadius: "12px",
+                    padding: "14px 18px",
+                    boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
+                  },
+                  success: {
+                    iconTheme: { primary: "#22c55e", secondary: "#fff" },
+                  },
+                  error: {
+                    iconTheme: { primary: "#ef4444", secondary: "#fff" },
+                  },
+                }}
+              />
+            </LanguageProvider>
+          </AuthProvider>
         </GoogleOAuthProvider>
       </body>
     </html>
