@@ -92,97 +92,85 @@ const Header: React.FC<HeaderProps> = ({ isVisible = true, theme = "dark" }) => 
           : "bg-transparent lg:h-20"
       }`}
     >
-      {/* Desktop Header */}
-      <div className="hidden lg:flex container mx-auto px-6 h-full items-center justify-between relative z-[10001] pointer-events-auto">
-        
-        {/* Logo Section */}
-        <Link href="/" className="relative flex items-center h-full group" onClick={() => setIsMobileMenuOpen(false)}>
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="h-10 md:h-12 overflow-hidden py-1 transition-transform duration-300 group-hover:scale-105 flex items-center"
-          >
-            <img loading="lazy" 
-              src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
-              alt="Visit Kambaata Icon" 
-              className={`h-full w-auto object-contain transition-all duration-300 ${
-                isCreamHeader ? "brightness-75 contrast-125" : "brightness-0 invert"
-              }`}
-            />
-            <div className={`ml-2 flex flex-col items-start justify-center ${
-                isCreamHeader ? "text-[#1E293B]" : "text-white"
-            }`}>
-              <span className="font-allura text-lg leading-none -mb-0.5 ml-0.5 font-bold text-[#12634d]" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
-              <span className="font-great-vibes text-2xl leading-none font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>Kambata</span>
-            </div>
-          </motion.div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link 
-              key={item.name}
-              href={item.href} 
-              className={`flex items-center gap-2 ${language === 'am' ? 'font-black text-[14px]' : 'font-black text-[13px]'} uppercase tracking-[0.15em] transition-all relative overflow-hidden group font-display ${
-                isCreamHeader ? "text-gray-600 hover:text-[#D97706]" : "text-white/80 hover:text-[#D97706]"
-              }`}
-            >
-              <item.icon className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
-              <span className="relative z-10">{t(`nav.${item.key}`)}</span>
-              <span className={`absolute bottom-0 left-0 w-full h-[2px] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
-                isCreamHeader ? "bg-[#D97706]" : "bg-[#D97706]"
-              }`} />
+      {/* Desktop Header (Design 1) */}
+      <div className="hidden lg:block w-full px-8 pt-6 relative z-[10001] pointer-events-auto">
+        <div className="w-full h-20 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center justify-between px-8">
+          
+          {/* Logo Section */}
+          <div className="flex items-center h-full">
+            <Link href="/" className="relative flex items-center group">
+              <motion.div 
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="h-12 flex items-center transition-transform duration-300 group-hover:scale-105"
+              >
+                <img loading="lazy" 
+                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" 
+                  alt="Visit Kambaata Icon" 
+                  className="h-full w-auto object-contain brightness-75 contrast-125"
+                />
+                <div className="ml-2 flex flex-col items-start justify-center text-[#1E293B]">
+                  <span className="font-allura text-lg leading-none -mb-0.5 ml-0.5 font-bold text-[#059669]" style={{ WebkitTextStroke: '0.5px currentColor' }}>visit</span>
+                  <span className="font-great-vibes text-2xl leading-none font-bold" style={{ WebkitTextStroke: '0.5px currentColor' }}>Kambata</span>
+                </div>
+              </motion.div>
             </Link>
-          ))}
-        </nav>
+            
+            <div className="h-8 w-[1px] bg-gray-200 mx-6 xl:mx-8"></div>
+
+            {/* Desktop Navigation */}
+            <nav className="flex items-center gap-6 xl:gap-8">
+              {navItems.map((item) => {
+                const isActive = item.key === "home";
+                return (
+                  <Link 
+                    key={item.name}
+                    href={item.href} 
+                    className={`flex items-center gap-2 text-[13px] font-black uppercase tracking-[0.1em] transition-all relative group font-display py-2 ${
+                      isActive ? "text-[#059669]" : "text-[#1E293B] hover:text-[#059669]"
+                    }`}
+                  >
+                    <item.icon className={`w-4 h-4 transition-transform group-hover:-translate-y-0.5 ${isActive ? "" : "opacity-70"}`} />
+                    <span className="relative z-10 pt-0.5">{t(`nav.${item.key}`)}</span>
+                    <span className={`absolute bottom-0 left-0 w-full h-[2.5px] transform transition-transform duration-300 origin-left ${
+                      isActive ? "scale-x-100 bg-[#059669]" : "scale-x-0 group-hover:scale-x-100 bg-[#059669]"
+                    }`} />
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
 
           {/* Action Hub */}
-          <div className="flex items-center gap-4 md:gap-6">
-          
-          {/* Language Switcher */}
-          <LanguageDropdown isCreamHeader={isCreamHeader} />
-          <div className={`h-6 w-[1px] hidden md:block ${
-            isCreamHeader ? "bg-gray-200" : "bg-white/10"
-          }`} />
+          <div className="flex items-center gap-4">
+            
+            {/* Language Switcher */}
+            <LanguageDropdown isMobilePill={true} />
 
-
-          {user ? (
-            <div className="flex items-center gap-4">
-              <Link href={user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard"} className="relative group">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center border-[2px] shadow-md transition-all ${
-                  isCreamHeader 
-                    ? "border-gray-200 text-gray-600 bg-gray-50 group-hover:bg-[#1E293B] group-hover:border-[#1E293B] group-hover:text-white"
-                    : "border-white text-white bg-white/20 group-hover:bg-white group-hover:text-[#1E293B]"
-                }`}>
-                  <User className="w-5 h-5 stroke-[2.5]" />
+            {user ? (
+              <div className="flex items-center gap-3">
+                <Link href={user.role === 'guide' ? "/guide-dashboard" : "/explorer-dashboard"} className="relative group">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 bg-white hover:bg-gray-50 transition-all shadow-sm">
+                    <User className="w-5 h-5 stroke-[2]" />
+                  </div>
+                </Link>
+                <button 
+                  onClick={logout}
+                  className="w-10 h-10 rounded-full flex items-center justify-center border border-gray-200 text-gray-500 hover:text-red-500 hover:bg-red-50 transition-all shadow-sm"
+                  title="Secure Logout"
+                >
+                  <LogOut className="w-4 h-4 stroke-[2]" />
+                </button>
+              </div>
+            ) : (
+              <Link href="/login" className="relative group ml-1">
+                <div className="w-11 h-11 rounded-full flex items-center justify-center border border-gray-200 text-gray-600 bg-white hover:bg-gray-50 transition-all shadow-sm">
+                  <User className="w-5 h-5 stroke-[2]" />
                 </div>
               </Link>
-              <button 
-                onClick={logout}
-                className={`p-2.5 rounded-xl border transition-all ${
-                  isCreamHeader 
-                    ? "bg-gray-50 border-gray-100 text-gray-500 hover:text-red-500 hover:bg-red-500/5 hover:border-red-500/20"
-                    : "bg-white/5 border-white/10 text-white/60 hover:text-red-500"
-                }`}
-                title="Secure Logout"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <Link href="/login" className="relative group">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center border-[2px] shadow-md transition-all ${
-                isCreamHeader 
-                  ? "border-gray-200 text-gray-600 bg-gray-50 group-hover:bg-[#1E293B] group-hover:border-[#1E293B] group-hover:text-white"
-                  : "border-white text-white bg-white/20 group-hover:bg-white group-hover:text-[#1E293B]"
-              }`}>
-                <User className="w-5 h-5 stroke-[2.5]" />
-              </div>
-            </Link>
-          )}
-
+            )}
+          </div>
         </div>
       </div>
 
