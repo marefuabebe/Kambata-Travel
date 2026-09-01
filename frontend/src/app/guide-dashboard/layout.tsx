@@ -120,7 +120,13 @@ export default function GuideDashboardLayout({ children }: { children: React.Rea
     };
   }, []);
 
-  if (!user || user.role !== "guide") return null;
+  if (!user || user.role !== "guide") {
+    return (
+      <div className="bg-[#F8FAFC] dark:bg-[#0A0F1C] h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-[#0284C7] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && headerSearch.trim()) {
