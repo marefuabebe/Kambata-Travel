@@ -97,65 +97,31 @@ const sendEmail = async (options) => {
       </html>
     `;
 
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6uIUKlFL1dA1X5PHdffgk0e7bZCAHtPgxPV3Hc_d3X5zxd-T4dNrMImu0q5bIwK0v/exec";
-
-    const payload = JSON.stringify({
-      token: "kambata-secret-12345",
-      to: options.email || options.to,
-      subject: options.subject,
-      html: finalHtml
+    // Send via standard Nodemailer if configured
+    const nodemailer = require("nodemailer");
+    
+    // Default to the provided .env credentials or fallback
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST || "smtp.gmail.com",
+      port: process.env.EMAIL_PORT || 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
     });
 
-    const https = require('https');
-    const url = require('url');
-    
-    // We need to handle HTTP 302 redirects because Google Apps Script always redirects POST requests
-    const makeRequest = (requestUrl, postData) => {
-      return new Promise((resolve, reject) => {
-        const parsedUrl = url.parse(requestUrl);
-        const requestOptions = {
-          hostname: parsedUrl.hostname,
-          path: parsedUrl.path,
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': Buffer.byteLength(postData)
-          }
-        };
-
-        const req = https.request(requestOptions, (res) => {
-          if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-            // Handle redirect
-            makeRequest(res.headers.location, postData).then(resolve).catch(reject);
-            return;
-          }
-
-          let data = '';
-          res.on('data', (chunk) => { data += chunk; });
-          res.on('end', () => {
-            try {
-              resolve(JSON.parse(data));
-            } catch (e) {
-              resolve({ raw: data });
-            }
-          });
-        });
-
-        req.on('error', (e) => reject(e));
-        req.write(postData);
-        req.end();
-      });
+    const mailOptions = {
+      from: `"Kambata Travel" <${process.env.EMAIL_USER}>`,
+      to: options.email || options.to,
+      subject: options.subject,
+      html: finalHtml,
     };
 
-    const result = await makeRequest(GOOGLE_SCRIPT_URL, payload);
-
-    if (result.error) {
-      throw new Error(result.error);
-    }
-
-    console.log("Google Apps Script Email sent successfully!");
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully: %s", info.messageId);
   } catch (error) {
-    console.error("Error sending email via Google Apps Script:", error.message);
+    console.error("Error sending email via Nodemailer:", error.message);
     throw error;
   }
 };
