@@ -19,26 +19,26 @@ const BRAND = {
   footerBg: "#F9FAFB",   // Footer and OTP container background
 };
 
-// Stable image URLs for social icons
+// Stable image URLs for social icons (using email-safe Icons8 PNGs)
 const SOCIAL_ICONS = {
-  facebook: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/240px-Facebook_logo_%28square%29.png",
-  instagram: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/240px-Instagram_logo_2016.svg.png",
-  youtube: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/240px-YouTube_full-color_icon_%282017%29.svg.png",
-  x: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/240px-X_logo_2023.svg.png"
+  facebook: "https://img.icons8.com/ios-filled/50/4B5563/facebook-new.png",
+  instagram: "https://img.icons8.com/ios-filled/50/4B5563/instagram-new.png",
+  youtube: "https://img.icons8.com/ios-filled/50/4B5563/youtube-play.png",
+  x: "https://img.icons8.com/ios-filled/50/4B5563/twitter-x.png"
 };
 
-// Fallback high-quality emojis for the header icons since SVGs don't render in Gmail
+// High-quality white PNG icons for the header (email-safe)
 const ICONS = {
-  welcome: "✉️",
-  forgot_password: "🔒",
-  booking_confirmed: "💼",
-  ticket: "🎫",
-  payment_receipt: "🧾",
-  tour_update: "💬",
-  tour_reminder: "🔔",
-  feedback: "⭐",
-  guide_assignment: "👤",
-  default: "✉️",
+  welcome: "https://img.icons8.com/ios-filled/50/FFFFFF/secured-letter--v1.png",
+  forgot_password: "https://img.icons8.com/ios-filled/50/FFFFFF/lock.png",
+  booking_confirmed: "https://img.icons8.com/ios-filled/50/FFFFFF/suitcase.png",
+  ticket: "https://img.icons8.com/ios-filled/50/FFFFFF/two-tickets.png",
+  payment_receipt: "https://img.icons8.com/ios-filled/50/FFFFFF/receipt.png",
+  tour_update: "https://img.icons8.com/ios-filled/50/FFFFFF/chat.png",
+  tour_reminder: "https://img.icons8.com/ios-filled/50/FFFFFF/bell.png",
+  feedback: "https://img.icons8.com/ios-filled/50/FFFFFF/star--v1.png",
+  guide_assignment: "https://img.icons8.com/ios-filled/50/FFFFFF/user.png",
+  default: "https://img.icons8.com/ios-filled/50/FFFFFF/bell.png",
 };
 
 const getIcon = (type) => ICONS[type] || ICONS.default;
@@ -177,8 +177,8 @@ const buildPremiumEmail = (options) => {
               <!-- Top Light Green Section with Icon and Title -->
               <tr>
                 <td align="center" bgcolor="${BRAND.greenLight}" style="background-color: ${BRAND.greenLight}; padding: 45px 20px 35px 20px;">
-                  <div style="background-color: ${BRAND.green}; width: 72px; height: 72px; border-radius: 50%; display: inline-block; text-align: center; line-height: 72px; margin-bottom: 25px; font-size: 32px;">
-                    ${getIcon(type)}
+                  <div style="background-color: ${BRAND.green}; width: 72px; height: 72px; border-radius: 50%; display: inline-block; text-align: center; line-height: 72px; margin-bottom: 25px;">
+                    <img src="${getIcon(type)}" alt="icon" width="36" height="36" style="display: inline-block; vertical-align: middle; margin-top: 18px;" />
                   </div>
                   <h1 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 22px; font-weight: bold; color: ${BRAND.dark}; margin: 0; text-align: center;">
                     ${title}
