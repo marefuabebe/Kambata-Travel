@@ -112,8 +112,9 @@ const sendEmail = async (options) => {
       const https = require("https");
 
       const payload = JSON.stringify({
-        from: process.env.EMAIL_FROM || "Kambata Travel <onboarding@resend.dev>",
+        from: "Kambata Travel <onboarding@resend.dev>",
         to: [recipient],
+        reply_to: process.env.EMAIL_USER || "kambatatravel@gmail.com",
         subject: subject,
         html: finalHtml,
       });
