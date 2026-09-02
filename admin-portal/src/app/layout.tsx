@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -40,6 +40,7 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { io } from "socket.io-client";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
+import apiClient from "@/utils/apiClient";
 
 const NAV_FLAT = [
   { name: "Dashboard", icon: LayoutDashboard, path: "/" },
@@ -79,6 +80,19 @@ function AdminShell({ children }: { children: React.ReactNode }) {
   const { theme, setTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isLgScreen, setIsLgScreen] = React.useState(true);
+  const [unreadCount, setUnreadCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (user) {
+      apiClient.get("/notifications")
+        .then(({ data }) => {
+          if (Array.isArray(data)) {
+            setUnreadCount(data.filter((n: any) => !n.isRead).length);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [user, pathname]);
 
   React.useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -210,6 +224,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
         portalName="Admin Portal"
         portalLink="/"
         helpLink="/support"
+        unreadNotificationsCount={unreadCount}
       />
 
       {/* Main content */}
@@ -265,7 +280,11 @@ function AdminShell({ children }: { children: React.ReactNode }) {
               aria-label="Notifications"
             >
               <Bell size={18} />
-              <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1E293B]" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 border-2 border-white dark:border-[#1E293B] text-[10px] font-bold text-white">
+                  {unreadCount > 99 ? '99+' : unreadCount}
+                </span>
+              )}
             </Link>
             <div className="hidden md:flex items-center gap-2.5 pl-1">
               <div className="text-right">
