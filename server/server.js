@@ -160,6 +160,24 @@ app.use("/api/recommendations", require("./routes/recommendationRoutes"));
 app.use("/api/support", require("./routes/supportRoutes"));
 app.use("/api/qr", require("./routes/qrVerificationRoutes"));
 
+// TEMPORARY: Email diagnostic endpoint (remove after debugging)
+app.get("/api/test-email/:email", async (req, res) => {
+  try {
+    const sendEmail = require("./utils/sendEmail");
+    const target = req.params.email;
+    console.log(`[TEST-EMAIL] Testing email delivery to: ${target}`);
+    await sendEmail({
+      to: target,
+      subject: "Kambata Travel - Email System Test",
+      html: `<div style="padding:20px;font-family:sans-serif;"><h2>✅ Email System Working!</h2><p>This test email was sent from the Render production server at ${new Date().toISOString()}.</p><p>If you received this, your email system is fully operational.</p></div>`,
+    });
+    res.json({ success: true, message: `Test email sent to ${target}` });
+  } catch (error) {
+    console.error(`[TEST-EMAIL] FAILED:`, error);
+    res.status(500).json({ success: false, error: error.message, code: error.code });
+  }
+});
+
 // Error Handling Middleware
 app.use(notFound);
 app.use(errorHandler);

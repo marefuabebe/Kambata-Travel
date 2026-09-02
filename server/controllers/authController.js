@@ -603,11 +603,11 @@ const resendVerificationOTP = async (req, res, next) => {
         }
       });
 
-      sendEmail({
-      to: user.email,
-      subject: "Your New Verification Code - Kambata Travel",
-      html: emailHtml,
-    }).catch(err => logger.error(`Resend email failed: ${err.message}`));
+      await sendEmail({
+        to: user.email,
+        subject: "Your New Verification Code - Kambata Travel",
+        html: emailHtml,
+      });
 
       logger.info(`Verification OTP resent: ${email}`, { ip, userAgent, eventType: "EMAIL_OTP_RESENT" });
       res.status(200).json({ success: true, message: "New verification code sent." });

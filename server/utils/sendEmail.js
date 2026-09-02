@@ -100,29 +100,47 @@ const sendEmail = async (options) => {
     // Send via standard Nodemailer if configured
     const nodemailer = require("nodemailer");
     
-    // Default to the provided .env credentials or fallback
+    // Diagnostic logging for production debugging
     const port = Number(process.env.EMAIL_PORT) || 587;
+    const host = process.env.EMAIL_HOST || "smtp.gmail.com";
+    const user = process.env.EMAIL_USER;
+    const pass = process.env.EMAIL_PASS;
+    const recipient = options.email || options.to;
+    
+    console.log(`[EMAIL] Attempting to send email...`);
+    console.log(`[EMAIL] Host: ${host}, Port: ${port}, Secure: ${port === 465}`);
+    console.log(`[EMAIL] From: ${user ? user : 'MISSING!'}`);
+    console.log(`[EMAIL] Pass: ${pass ? '***SET(' + pass.length + ' chars)***' : 'MISSING!'}`);
+    console.log(`[EMAIL] To: ${recipient}`);
+    console.log(`[EMAIL] Subject: ${options.subject}`);
+    
+    if (!user || !pass) {
+      throw new Error(`EMAIL CREDENTIALS MISSING! EMAIL_USER=${user ? 'set' : 'EMPTY'}, EMAIL_PASS=${pass ? 'set' : 'EMPTY'}`);
+    }
+
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST || "smtp.gmail.com",
+      host: host,
       port: port,
       secure: port === 465, // true for 465, false for other ports
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: user,
+        pass: pass,
       },
     });
 
     const mailOptions = {
-      from: `"Kambata Travel" <${process.env.EMAIL_USER}>`,
-      to: options.email || options.to,
+      from: process.env.EMAIL_FROM || `"Kambata Travel" <${user}>`,
+      to: recipient,
       subject: options.subject,
       html: finalHtml,
     };
 
+    console.log(`[EMAIL] Calling transporter.sendMail()...`);
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully: %s", info.messageId);
+    console.log(`[EMAIL] SUCCESS! MessageId: ${info.messageId}`);
   } catch (error) {
-    console.error("Error sending email via Nodemailer:", error.message);
+    console.error(`[EMAIL] FAILED! Error: ${error.message}`);
+    console.error(`[EMAIL] Full error:`, error);
     throw error;
   }
 };
