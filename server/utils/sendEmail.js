@@ -68,7 +68,7 @@ const sendEmail = async (options) => {
             <td style="padding: 40px 40px 30px;">
               <h2 style="margin: 0 0 20px; color: #111827; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">${options.subject}</h2>
               <div style="margin: 0; color: #374151; font-size: 16px; font-weight: 400; line-height: 1.7;">
-                ${options.message ? options.message.replace(/\n/g, '<br>') : ''}
+                ${options.message ? options.message.replace(/\\n/g, '<br>') : ''}
               </div>
             </td>
           </tr>
@@ -97,85 +97,80 @@ const sendEmail = async (options) => {
       </html>
     `;
 
+    // ═══════════════════════════════════════════════════════════════
+    // Google Apps Script HTTP Proxy
+    // Since Render blocks outbound SMTP and Resend requires a verified
+    // custom domain, the only free way to send emails using a standard
+    // @gmail.com address from Render is via an HTTP proxy like GAS.
+    // ═══════════════════════════════════════════════════════════════
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6uIUKlFL1dA1X5PHdffgk0e7bZCAHtPgxPV3Hc_d3X5zxd-T4dNrMImu0q5bIwK0v/exec";
     const recipient = options.email || options.to;
-    const subject = options.subject;
 
-    // ═══════════════════════════════════════════════════════════════
-    // PRIMARY: Resend API (HTTPS - works on Render, Vercel, etc.)
-    // Render Free Tier blocks SMTP ports (465/587), so we MUST use
-    // an HTTP-based email API for production.
-    // ═══════════════════════════════════════════════════════════════
-    if (process.env.RESEND_API_KEY) {
-      console.log(`[EMAIL] Using Resend API (HTTPS)...`);
-      console.log(`[EMAIL] To: ${recipient} | Subject: ${subject}`);
+    console.log(`[EMAIL] Attempting to send via Google Apps Script...`);
+    console.log(`[EMAIL] To: ${recipient}`);
 
-      const https = require("https");
+    const payload = JSON.stringify({
+      token: "kambata-secret-12345",
+      to: recipient,
+      subject: options.subject,
+      html: finalHtml
+    });
 
-      const payload = JSON.stringify({
-        from: "Kambata Travel <onboarding@resend.dev>",
-        to: [recipient],
-        reply_to: process.env.EMAIL_USER || "kambatatravel@gmail.com",
-        subject: subject,
-        html: finalHtml,
-      });
-
-      const result = await new Promise((resolve, reject) => {
-        const req = https.request(
-          {
-            hostname: "api.resend.com",
-            port: 443,
-            path: "/emails",
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-              "Content-Length": Buffer.byteLength(payload),
-            },
-          },
-          (res) => {
-            let data = "";
-            res.on("data", (chunk) => (data += chunk));
-            res.on("end", () => {
-              try {
-                const parsed = JSON.parse(data);
-                if (res.statusCode >= 200 && res.statusCode < 300) {
-                  resolve(parsed);
-                } else {
-                  reject(new Error(`Resend API error (${res.statusCode}): ${JSON.stringify(parsed)}`));
-                }
-              } catch (e) {
-                reject(new Error(`Resend API parse error: ${data}`));
-              }
-            });
+    const https = require('https');
+    const url = require('url');
+    
+    // We need to handle HTTP 302 redirects because Google Apps Script always redirects POST requests
+    const makeRequest = (requestUrl, postData) => {
+      return new Promise((resolve, reject) => {
+        const parsedUrl = url.parse(requestUrl);
+        const requestOptions = {
+          hostname: parsedUrl.hostname,
+          path: parsedUrl.path,
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(postData)
           }
-        );
-        req.on("error", (e) => reject(new Error(`Resend API network error: ${e.message}`)));
-        req.write(payload);
+        };
+
+        const req = https.request(requestOptions, (res) => {
+          if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+            // Handle redirect
+            makeRequest(res.headers.location, postData).then(resolve).catch(reject);
+            return;
+          }
+
+          let data = '';
+          res.on('data', (chunk) => { data += chunk; });
+          res.on('end', () => {
+            try {
+              resolve(JSON.parse(data));
+            } catch (e) {
+              resolve({ raw: data });
+            }
+          });
+        });
+
+        req.on('error', (e) => reject(e));
+        req.write(postData);
         req.end();
       });
+    };
 
-      console.log(`[EMAIL] SUCCESS via Resend! ID: ${result.id}`);
-      return;
+    const result = await makeRequest(GOOGLE_SCRIPT_URL, payload);
+
+    if (result.error) {
+      throw new Error(result.error);
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // FALLBACK: Nodemailer SMTP (for local development only)
-    // This will NOT work on Render Free Tier due to blocked ports.
-    // ═══════════════════════════════════════════════════════════════
-    console.log(`[EMAIL] Using Nodemailer SMTP (local fallback)...`);
-    const nodemailer = require("nodemailer");
+    console.log(`[EMAIL] SUCCESS! Google Apps Script confirmed delivery.`);
+  } catch (error) {
+    console.error(`[EMAIL] FAILED via Google Apps Script:`, error.message);
+    throw error;
+  }
+};
 
-    const port = Number(process.env.EMAIL_PORT) || 587;
-    const host = process.env.EMAIL_HOST || "smtp.gmail.com";
-    const user = process.env.EMAIL_USER;
-    const pass = process.env.EMAIL_PASS;
-
-    if (!user || !pass) {
-      throw new Error("No RESEND_API_KEY and no EMAIL_USER/EMAIL_PASS configured!");
-    }
-
-    const transporter = nodemailer.createTransport({
-      host: host,
+module.exports = sendEmail;   host: host,
       port: port,
       secure: port === 465,
       auth: { user, pass },
