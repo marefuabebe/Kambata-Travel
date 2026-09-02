@@ -170,24 +170,4 @@ const sendEmail = async (options) => {
   }
 };
 
-module.exports = sendEmail;   host: host,
-      port: port,
-      secure: port === 465,
-      auth: { user, pass },
-    });
-
-    const info = await transporter.sendMail({
-      from: process.env.EMAIL_FROM || `"Kambata Travel" <${user}>`,
-      to: recipient,
-      subject: subject,
-      html: finalHtml,
-    });
-
-    console.log(`[EMAIL] SUCCESS via Nodemailer! MessageId: ${info.messageId}`);
-  } catch (error) {
-    console.error(`[EMAIL] FAILED! Error: ${error.message}`);
-    throw error;
-  }
-};
-
 module.exports = sendEmail;
