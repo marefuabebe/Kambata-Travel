@@ -235,6 +235,7 @@ export default function BookingMonitor() {
                           </div>
                           <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate" title={tourLabel(booking.tour)}>{tourLabel(booking.tour)}</h3>
                           <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                            <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.status}</span>
                             <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${paymentColor}`}>{booking.paymentStatus}</span>
                             {booking.attendanceStatus && (
                               <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${attendanceColor}`}>{booking.attendanceStatus}</span>
@@ -368,6 +369,7 @@ export default function BookingMonitor() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-2">
+                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.status}</span>
                         <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${paymentColor}`}>{booking.paymentStatus}</span>
                         {booking.attendanceStatus && (
                           <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${attendanceColor}`}>{booking.attendanceStatus}</span>
