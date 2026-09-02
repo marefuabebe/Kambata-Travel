@@ -91,7 +91,7 @@ const registerUser = async (req, res, next) => {
           ],
           cta: {
             text: "Verify Your Email Now",
-            link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}`,
+            link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}&otp=${otp}`,
             color: "#10B981"
           }
         });
@@ -598,7 +598,7 @@ const resendVerificationOTP = async (req, res, next) => {
         ],
         cta: {
           text: "Verify Your Email Now",
-          link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}`,
+          link: `${frontendUrl}/verify-email?email=${encodeURIComponent(user.email)}&otp=${otp}`,
           color: "#10B981"
         }
       });
