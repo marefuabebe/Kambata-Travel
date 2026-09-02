@@ -97,50 +97,99 @@ const sendEmail = async (options) => {
       </html>
     `;
 
-    // Send via standard Nodemailer if configured
+    const recipient = options.email || options.to;
+    const subject = options.subject;
+
+    // ═══════════════════════════════════════════════════════════════
+    // PRIMARY: Resend API (HTTPS - works on Render, Vercel, etc.)
+    // Render Free Tier blocks SMTP ports (465/587), so we MUST use
+    // an HTTP-based email API for production.
+    // ═══════════════════════════════════════════════════════════════
+    if (process.env.RESEND_API_KEY) {
+      console.log(`[EMAIL] Using Resend API (HTTPS)...`);
+      console.log(`[EMAIL] To: ${recipient} | Subject: ${subject}`);
+
+      const https = require("https");
+
+      const payload = JSON.stringify({
+        from: process.env.EMAIL_FROM || "Kambata Travel <onboarding@resend.dev>",
+        to: [recipient],
+        subject: subject,
+        html: finalHtml,
+      });
+
+      const result = await new Promise((resolve, reject) => {
+        const req = https.request(
+          {
+            hostname: "api.resend.com",
+            port: 443,
+            path: "/emails",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+              "Content-Length": Buffer.byteLength(payload),
+            },
+          },
+          (res) => {
+            let data = "";
+            res.on("data", (chunk) => (data += chunk));
+            res.on("end", () => {
+              try {
+                const parsed = JSON.parse(data);
+                if (res.statusCode >= 200 && res.statusCode < 300) {
+                  resolve(parsed);
+                } else {
+                  reject(new Error(`Resend API error (${res.statusCode}): ${JSON.stringify(parsed)}`));
+                }
+              } catch (e) {
+                reject(new Error(`Resend API parse error: ${data}`));
+              }
+            });
+          }
+        );
+        req.on("error", (e) => reject(new Error(`Resend API network error: ${e.message}`)));
+        req.write(payload);
+        req.end();
+      });
+
+      console.log(`[EMAIL] SUCCESS via Resend! ID: ${result.id}`);
+      return;
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // FALLBACK: Nodemailer SMTP (for local development only)
+    // This will NOT work on Render Free Tier due to blocked ports.
+    // ═══════════════════════════════════════════════════════════════
+    console.log(`[EMAIL] Using Nodemailer SMTP (local fallback)...`);
     const nodemailer = require("nodemailer");
-    
-    // Diagnostic logging for production debugging
+
     const port = Number(process.env.EMAIL_PORT) || 587;
     const host = process.env.EMAIL_HOST || "smtp.gmail.com";
     const user = process.env.EMAIL_USER;
     const pass = process.env.EMAIL_PASS;
-    const recipient = options.email || options.to;
-    
-    console.log(`[EMAIL] Attempting to send email...`);
-    console.log(`[EMAIL] Host: ${host}, Port: ${port}, Secure: ${port === 465}`);
-    console.log(`[EMAIL] From: ${user ? user : 'MISSING!'}`);
-    console.log(`[EMAIL] Pass: ${pass ? '***SET(' + pass.length + ' chars)***' : 'MISSING!'}`);
-    console.log(`[EMAIL] To: ${recipient}`);
-    console.log(`[EMAIL] Subject: ${options.subject}`);
-    
+
     if (!user || !pass) {
-      throw new Error(`EMAIL CREDENTIALS MISSING! EMAIL_USER=${user ? 'set' : 'EMPTY'}, EMAIL_PASS=${pass ? 'set' : 'EMPTY'}`);
+      throw new Error("No RESEND_API_KEY and no EMAIL_USER/EMAIL_PASS configured!");
     }
 
     const transporter = nodemailer.createTransport({
       host: host,
       port: port,
-      secure: port === 465, // true for 465, false for other ports
-      auth: {
-        user: user,
-        pass: pass,
-      },
+      secure: port === 465,
+      auth: { user, pass },
     });
 
-    const mailOptions = {
+    const info = await transporter.sendMail({
       from: process.env.EMAIL_FROM || `"Kambata Travel" <${user}>`,
       to: recipient,
-      subject: options.subject,
+      subject: subject,
       html: finalHtml,
-    };
+    });
 
-    console.log(`[EMAIL] Calling transporter.sendMail()...`);
-    const info = await transporter.sendMail(mailOptions);
-    console.log(`[EMAIL] SUCCESS! MessageId: ${info.messageId}`);
+    console.log(`[EMAIL] SUCCESS via Nodemailer! MessageId: ${info.messageId}`);
   } catch (error) {
     console.error(`[EMAIL] FAILED! Error: ${error.message}`);
-    console.error(`[EMAIL] Full error:`, error);
     throw error;
   }
 };
