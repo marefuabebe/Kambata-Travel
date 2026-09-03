@@ -356,8 +356,8 @@ export default function EnterpriseChatbot() {
             {/* Slimmer Sidebar */}
             <div className={`w-1/5 min-w-[240px] max-w-[280px] bg-[#0F172A] text-slate-300 flex-col border-r border-slate-800 shrink-0 hidden md:flex`}>
               <div className="p-6 flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#0F766E] to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-[#0F766E]/20">
-                  <Map size={22} className="text-white" />
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" alt="Kambata Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h2 className="text-white font-bold tracking-wide text-[15px]">KAMBATA</h2>
