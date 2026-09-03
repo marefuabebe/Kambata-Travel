@@ -26,7 +26,7 @@ RULES:
 
 // Initialize the model with tools
 const model = genAI.getGenerativeModel({
-  model: "gemini-flash-latest",
+  model: "gemini-1.5-flash-latest",
   systemInstruction,
   tools: [{ functionDeclarations: aiToolDeclarations }]
 });
