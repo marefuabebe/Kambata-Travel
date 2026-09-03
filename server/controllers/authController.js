@@ -359,7 +359,7 @@ const forgotPassword = async (req, res, next) => {
         ],
         cta: {
           text: "Reset Password",
-          link: `${frontendUrl}/forgot-password?email=${encodeURIComponent(user.email)}`,
+          link: `${frontendUrl}/forgot-password?email=${encodeURIComponent(user.email)}&otp=${otp}`,
           color: "#3B82F6"
         }
       });

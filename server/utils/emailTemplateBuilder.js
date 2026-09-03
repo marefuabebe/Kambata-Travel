@@ -208,25 +208,6 @@ const buildPremiumEmail = (options) => {
               <!-- Footer Section (Gray Background) -->
               <tr>
                 <td align="center" bgcolor="${BRAND.footerBg}" style="background-color: ${BRAND.footerBg}; padding: 30px 20px; border-top: 1px solid ${BRAND.border};">
-                  <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; color: ${BRAND.dark}; margin: 0 0 16px 0;">
-                    Follow Us
-                  </p>
-                  <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 20px;">
-                    <tr>
-                      <td style="padding: 0 10px;">
-                        <a href="#"><img src="${SOCIAL_ICONS.facebook}" alt="Facebook" width="24" height="24" style="display: block; width: 24px; height: 24px; opacity: 0.7;" /></a>
-                      </td>
-                      <td style="padding: 0 10px;">
-                        <a href="#"><img src="${SOCIAL_ICONS.instagram}" alt="Instagram" width="24" height="24" style="display: block; width: 24px; height: 24px; opacity: 0.7;" /></a>
-                      </td>
-                      <td style="padding: 0 10px;">
-                        <a href="#"><img src="${SOCIAL_ICONS.youtube}" alt="YouTube" width="24" height="24" style="display: block; width: 24px; height: 24px; opacity: 0.7;" /></a>
-                      </td>
-                      <td style="padding: 0 10px;">
-                        <a href="#"><img src="${SOCIAL_ICONS.x}" alt="X" width="24" height="24" style="display: block; width: 24px; height: 24px; opacity: 0.7;" /></a>
-                      </td>
-                    </tr>
-                  </table>
                   <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12px; color: ${BRAND.grayLight}; margin: 0;">
                     &copy; ${year} Kambata Travel. All rights reserved.
                   </p>
