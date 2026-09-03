@@ -251,6 +251,7 @@ const ExplorePage = () => {
               const titleMap: Record<string, string> = {
                 "Ajora Falls": "አጆራ ፏፏቴ", "Mount Hambaricho": "ሀምበርቾ ተራራ", "Damboya Highlands": "ዳምቦያ ደጋማ ቦታዎች", "Sarobira Valley": "ሳሮቢራ ሸለቆ", "Kambata Village": "ከምባታ መንደር", "Wanchi Crater Lake": "ዋንጪ ሀይቅ",
                 "Gamosha Hot Spring Retreat": "የጋሞሻ ፍል ውሃ መዝናኛ",
+                "The Gamasha Hot Springs": "የጋሞሻ ሙቅ ውሃ መዝናኛ",
                 "The Majestic Doje'e Waterfall": "የዶጄ ፏፏቴ",
                 "Durame Town": "ዱራሜ ከተማ",
                 "Mount Hambarcho": "ሀምበርቾ ተራራ",
@@ -272,7 +273,7 @@ const ExplorePage = () => {
               
               const getLoc = () => {
                 let loc = tour.location?.region?.en || tour.location?.region || "Kambata Zone";
-                if (language === 'am') return tour.location?.region?.am || locMap[loc] || locMap[loc.trim()] || "áŠ¨áˆá‰£á‰³ á‹žáŠ•";
+                if (language === 'am') return tour.location?.region?.am || locMap[loc] || locMap[loc.trim()] || "ከምባታ ዞን";
                 return loc;
               };
 
