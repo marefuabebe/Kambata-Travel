@@ -145,10 +145,11 @@ export default function EnterpriseChatbot() {
   ]);
 
   const [popularDestinations, setPopularDestinations] = useState([
-    { title: "Woshwosha Waterfall", location: "Durame", desc: "The highest waterfall in Kambata Zone.", rating: "4.8 (128)", img: "https://images.unsplash.com/photo-1546853020-caa2b09a4a47?auto=format&fit=crop&q=80&w=400" },
-    { title: "Alemgono Cultural Village", location: "Alemgono", desc: "Experience the rich culture, traditions and lifestyle.", rating: "4.7 (96)", img: "https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&q=80&w=400" },
-    { title: "Mudula Highlands", location: "Dembi Dollo", desc: "Breathtaking highlands with amazing landscapes.", rating: "4.6 (74)", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&q=80&w=400" },
-    { title: "Kambata Coffee Experience", location: "Agaro", desc: "Taste and learn the art of traditional coffee.", rating: "4.9 (53)", img: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=400" },
+    { title: "Mount Hambarcho", location: "Durame", desc: "The highest peak in Kambata with 777 stairs.", rating: "4.9", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037952/kambata/eadxdia83stxqodxf3vd.png" },
+    { title: "Ajora Falls", location: "Damboya", desc: "Majestic twin waterfalls in a lush canyon.", rating: "4.8", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037881/kambata/gxxovihnkuiueo63dosk.png" },
+    { title: "The Gamasha Hot Springs", location: "Durame", desc: "Renowned natural therapeutic hot springs.", rating: "4.7", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038014/kambata/ibdkyyuqop0vx0zjvukw.jpg" },
+    { title: "Durame Town", location: "Durame", desc: "The vibrant heart of Kambata culture.", rating: "4.6", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782038012/kambata/wiv5jowt9wkkt82rukal.png" },
+    { title: "Sarobira Highlands", location: "Hadaro", desc: "Verdant hills and traditional homesteads.", rating: "4.8", img: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1776362718/Gemini_Generated_Image_bmo32hbmo32hbmo3_axyzig.png" },
   ]);
 
   const [upcomingToursList, setUpcomingToursList] = useState([
@@ -170,14 +171,15 @@ export default function EnterpriseChatbot() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const [toursRes, destsRes, guidesRes] = await Promise.all([
-          apiClient.get('/tours?limit=3&sort=-ratingsAverage'),
-          apiClient.get('/destinations?limit=4'),
+        const [toursRes, guidesRes] = await Promise.all([
+          apiClient.get('/tours?limit=5&sort=-ratingsAverage'),
           apiClient.get('/guides/public?limit=3')
         ]);
 
-        if (toursRes.data?.data) setRawTours(toursRes.data.data);
-        if (destsRes.data?.data) setRawDests(destsRes.data.data);
+        if (toursRes.data?.data) {
+          setRawTours(toursRes.data.data);
+          setRawDests(toursRes.data.data); // Use tours as popular destinations
+        }
         if (guidesRes.data?.data) setRawGuides(guidesRes.data.data);
       } catch (err) {
         console.error("Failed to fetch dashboard data", err);
