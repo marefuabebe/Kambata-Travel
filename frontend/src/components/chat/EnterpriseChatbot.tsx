@@ -18,6 +18,14 @@ interface Message {
   parts: { text: string }[];
 }
 
+interface ChatThread {
+  id: string;
+  title: string;
+  history: Message[];
+  apiHistory: Message[];
+  timestamp: number;
+}
+
 export default function EnterpriseChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -29,6 +37,8 @@ export default function EnterpriseChatbot() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const { language, setLanguage, t: globalT } = useLanguage();
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const [threads, setThreads] = useState<ChatThread[]>([]);
+  const [currentThreadId, setCurrentThreadId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const t = {
@@ -84,7 +94,30 @@ export default function EnterpriseChatbot() {
       setTheme("dark");
       document.documentElement.classList.add("dark");
     }
+
+    const savedThreads = localStorage.getItem("kambata_chat_threads");
+    if (savedThreads) {
+      try {
+        setThreads(JSON.parse(savedThreads));
+      } catch(e) {}
+    }
   }, []);
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      const id = currentThreadId || Date.now().toString();
+      if (!currentThreadId) setCurrentThreadId(id);
+      
+      const title = messages.find(m => m.role === "user")?.parts[0].text.substring(0, 30) || "New Conversation";
+      
+      setThreads(prev => {
+        const existing = prev.filter(t => t.id !== id);
+        const updated = [{ id, title, history: messages, apiHistory: history, timestamp: Date.now() }, ...existing];
+        localStorage.setItem("kambata_chat_threads", JSON.stringify(updated));
+        return updated;
+      });
+    }
+  }, [messages, history]);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -334,28 +367,36 @@ export default function EnterpriseChatbot() {
               
               <div className="px-5 mb-8">
                 <button 
-                  onClick={() => { setMessages([]); setHistory([]); }}
+                  onClick={() => { setMessages([]); setHistory([]); setCurrentThreadId(null); }}
                   className="w-full bg-[#1E293B] hover:bg-[#1E293B]/80 text-white border border-slate-700/50 rounded-xl py-2.5 flex items-center justify-center gap-2 font-semibold text-sm transition-all hover:shadow-md active:scale-95 shadow-sm"
                 >
                   <Plus size={16} /> {t.newConversation}
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-4 space-y-8 custom-scrollbar">
-                <div>
-                  <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-2">{t.today}</h3>
-                  <div className="space-y-0.5">
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl bg-[#1E293B] text-slate-200 text-sm truncate font-medium shadow-sm">{t.hist1}</button>
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#1E293B]/50 text-slate-400 text-sm truncate transition-colors">{t.hist2}</button>
+              <div className="flex-1 overflow-y-auto px-4 space-y-4 custom-scrollbar">
+                {threads.length === 0 ? (
+                  <p className="text-xs text-slate-500 text-center px-2 mt-4">No recent history.</p>
+                ) : (
+                  <div>
+                    <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-2">Recent Chats</h3>
+                    <div className="space-y-1">
+                      {threads.map((thread) => (
+                        <button 
+                          key={thread.id}
+                          onClick={() => {
+                            setMessages(thread.history);
+                            setHistory(thread.apiHistory);
+                            setCurrentThreadId(thread.id);
+                          }}
+                          className={`w-full text-left px-3 py-2.5 rounded-xl text-sm truncate transition-colors ${currentThreadId === thread.id ? 'bg-[#1E293B] text-slate-200 shadow-sm font-medium' : 'hover:bg-[#1E293B]/50 text-slate-400'}`}
+                        >
+                          {thread.title}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h3 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-2">{t.yesterday}</h3>
-                  <div className="space-y-0.5">
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#1E293B]/50 text-slate-400 text-sm truncate transition-colors">{t.hist3}</button>
-                    <button className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-[#1E293B]/50 text-slate-400 text-sm truncate transition-colors">{t.hist4}</button>
-                  </div>
-                </div>
+                )}
               </div>
 
               <div className="p-5 border-t border-slate-800/50 bg-[#0F172A]">
