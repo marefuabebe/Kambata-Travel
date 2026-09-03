@@ -114,6 +114,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: "_c-Pc7MXpVDzIuxhPQX_l7fWNhPeBORMAdxrrdyiteg",
+  },
   icons: {
     icon: [
       { url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg", type: "image/svg+xml" }
