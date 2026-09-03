@@ -725,7 +725,7 @@ const deleteScheduleAdmin = async (req, res, next) => {
               statusBadge: { text: "CANCELLED", color: "#EF4444" },
               cta: {
                 text: "View My Bookings",
-                link: `${frontendUrl}/my-bookings`,
+                link: `${frontendUrl}/explorer/dashboard/bookings`,
                 color: "#EF4444"
               }
             });

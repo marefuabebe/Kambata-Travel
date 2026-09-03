@@ -292,7 +292,7 @@ const updateRequestStatus = async (req, res, next) => {
             statusBadge: { text: "IN PROGRESS", color: "#10B981" },
             cta: {
               text: "View My Requests",
-              link: `${FRONTEND_URL}/requests`,
+              link: `${FRONTEND_URL}/explorer/dashboard/requests`,
               color: "#10B981"
             }
           });
