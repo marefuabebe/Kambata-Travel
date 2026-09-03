@@ -65,6 +65,13 @@ const Footer = () => {
               <a href="#" className="group w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#FF0000] hover:text-white transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:shadow-lg hover:shadow-[#FF0000]/50"><YoutubeIcon size={18} /></a>
               <a href="#" className="group w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-[#000000] hover:text-white transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:shadow-lg hover:shadow-[#000000]/50 border border-transparent hover:border-white/20"><TiktokIcon size={18} /></a>
             </div>
+
+            {/* Visit Kambata branding */}
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <p className="text-[10px] font-bold tracking-[0.3em] text-[#0F766E] uppercase mb-1">Official Portal</p>
+              <p className="text-white font-heading text-lg font-bold tracking-widest uppercase">Visit Kambata</p>
+              <p className="text-white/40 text-xs mt-1 italic">Where Culture Meets Nature</p>
+            </div>
           </div>
 
           {/* Useful Links */}
