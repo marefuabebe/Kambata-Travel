@@ -190,7 +190,7 @@ export default function EnterpriseChatbot() {
     const langCode = language;
 
     if (rawTours.length > 0) {
-      setUpcomingToursList(rawTours.map((tour: any) => {
+      setUpcomingToursList(rawTours.slice(0, 5).map((tour: any) => {
         let fallbackTitle = tour.title?.en || tour.title;
         if (fallbackTitle === "The Majestic Doje'e Waterfall") fallbackTitle = t.waterfall || fallbackTitle;
         return {
@@ -203,7 +203,7 @@ export default function EnterpriseChatbot() {
     }
 
     if (rawDests.length > 0) {
-      setPopularDestinations(rawDests.map((d: any) => ({
+      setPopularDestinations(rawDests.slice(0, 5).map((d: any) => ({
         title: d.name?.[langCode] || d.name?.en || d.name,
         location: d.location?.woreda || "Kambata",
         desc: d.description?.[langCode] || d.description?.en || d.description || "",
@@ -213,7 +213,7 @@ export default function EnterpriseChatbot() {
     }
 
     if (rawGuides.length > 0) {
-      setAvailableGuides(rawGuides.map((g: any) => {
+      setAvailableGuides(rawGuides.slice(0, 5).map((g: any) => {
         let rawName = g.user?.name || "Expert Guide";
         if (rawName === "Expert Guide") rawName = t.expertGuide || rawName;
 
