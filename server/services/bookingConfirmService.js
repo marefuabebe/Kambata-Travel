@@ -70,7 +70,21 @@ const confirmPaidBookingCore = async (booking, session) => {
       logger.warn(`confirmPaidBookingCore: Package ${booking.packageId} not found for booking ${booking._id}.`);
       return { committed: false, tourDoc: null, scheduleDoc: null };
     }
-    schedule = await PackageSchedule.findById(booking.packageScheduleId).session(session || null);
+    if (booking.packageScheduleId) {
+      schedule = await PackageSchedule.findById(booking.packageScheduleId).session(session || null);
+    }
+
+    if (!schedule && booking.linkedRequestId && booking.bookingSource === "request") {
+      const TourRequest = require("../models/TourRequest");
+      const { createPrivateScheduleForRequest } = require("./requestPaymentService");
+      const tourRequest = await TourRequest.findById(booking.linkedRequestId).session(session || null);
+      if (tourRequest && tourRequest.status === "awaiting_payment") {
+        schedule = await createPrivateScheduleForRequest(tourRequest, session);
+        booking.packageScheduleId = schedule._id;
+        booking.guide = schedule.assignedGuide;
+      }
+    }
+
     if (!schedule) {
       logger.warn(`confirmPaidBookingCore: PackageSchedule ${booking.packageScheduleId} not found.`);
       return { committed: false, tourDoc: tour, scheduleDoc: null };

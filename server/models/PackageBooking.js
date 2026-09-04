@@ -21,7 +21,9 @@ const packageBookingSchema = mongoose.Schema(
     packageScheduleId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "PackageSchedule",
-      required: true,
+      required: function() {
+        return this.bookingStatus !== "pending";
+      },
     },
     travelersCount: {
       type: Number,
@@ -47,6 +49,18 @@ const packageBookingSchema = mongoose.Schema(
       type: String,
     },
     checkedInAt: {
+      type: Date,
+    },
+    bookingSource: {
+      type: String,
+      enum: ["instant", "request"],
+      default: "instant",
+    },
+    linkedRequestId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "TourRequest",
+    },
+    paymentExpiresAt: {
       type: Date,
     },
     paymentStatus: {
