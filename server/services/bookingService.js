@@ -222,14 +222,48 @@ const cleanupAbandonedPayments = async () => {
       await sendNotification(booking.user, {
         type: "booking",
         priority: "NORMAL",
-        message: `Your booking session has expired and the slots have been released.`,
+        message: `Your booking payment session has expired and the slots have been released.`,
         referenceId: booking._id,
-      });
+      }).catch(() => {});
 
       // 3. Immediate waitlist promotion
       await promoteNextInWaitlist(booking.tour, booking.scheduleId);
       
       logger.info(`Abandoned payment cleaned up for booking: ${booking._id}`);
+    }
+
+    // Clean up abandoned PackageBookings
+    const PackageBooking = require("../models/PackageBooking");
+    const PackageSchedule = require("../models/PackageSchedule");
+
+    const expiredPackageBookings = await PackageBooking.find({
+      paymentStatus: "pending",
+      paymentExpiresAt: { $lt: new Date() },
+      bookingStatus: { $nin: ["cancelled", "rejected", "completed", "expired"] },
+    });
+
+    for (const pkgBooking of expiredPackageBookings) {
+      if (pkgBooking.packageScheduleId) {
+        await PackageSchedule.findByIdAndUpdate(pkgBooking.packageScheduleId, {
+          $inc: {
+            availableSeats: pkgBooking.travelersCount || 1,
+            availableRooms: pkgBooking.roomsBooked || 1,
+          }
+        }).catch(() => {});
+      }
+
+      pkgBooking.bookingStatus = "expired";
+      pkgBooking.paymentStatus = "failed";
+      await pkgBooking.save();
+
+      await sendNotification(pkgBooking.user, {
+        type: "booking",
+        priority: "NORMAL",
+        message: `Your package booking payment session has expired and the reservation has been released.`,
+        referenceId: pkgBooking._id,
+      }).catch(() => {});
+
+      logger.info(`Abandoned package payment cleaned up for booking: ${pkgBooking._id}`);
     }
   } catch (error) {
     logger.error("Error in cleanupAbandonedPayments:", error);

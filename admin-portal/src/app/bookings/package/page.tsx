@@ -11,6 +11,8 @@ import {
   Package, 
   Loader2,
   XCircle,
+  Clock,
+  AlertTriangle,
 } from "lucide-react";
 import apiClient from "@/utils/apiClient";
 import toast from "react-hot-toast";
@@ -25,10 +27,6 @@ export default function PackageBookingMonitor() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setUrlSearch(params.get("search") || "");
-  }, []);
-
-  useEffect(() => {
-    fetchBookings();
   }, []);
 
   const fetchBookings = async () => {
@@ -46,6 +44,23 @@ export default function PackageBookingMonitor() {
     } finally {
       setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    fetchBookings();
+  }, [filters.status]);
+
+  const isPaymentExpired = (booking: any) => {
+    if (booking.bookingStatus === "expired") return true;
+    if (booking.paymentStatus === "failed") return true;
+    if (
+      booking.paymentStatus === "pending" &&
+      booking.paymentExpiresAt &&
+      new Date(booking.paymentExpiresAt).getTime() < Date.now()
+    ) {
+      return true;
+    }
+    return false;
   };
 
   const handleForceCancel = async (id: string, paid: boolean) => {
@@ -114,6 +129,7 @@ export default function PackageBookingMonitor() {
               <option value="pending" className="dark:bg-[#1E293B]">Pending</option>
               <option value="completed" className="dark:bg-[#1E293B]">Completed</option>
               <option value="cancelled" className="dark:bg-[#1E293B]">Cancelled</option>
+              <option value="expired" className="dark:bg-[#1E293B]">Payment Expired</option>
             </select>
             
             <div className="w-full sm:w-[1px] h-[1px] sm:h-6 bg-slate-200 dark:bg-[#334155]" />
@@ -163,10 +179,11 @@ export default function PackageBookingMonitor() {
               className="flex flex-col gap-4"
             >
               {visibleBookings.map((booking) => {
+                const expired = isPaymentExpired(booking);
                 const statusColor = 
                   booking.bookingStatus === "confirmed" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400" :
                   booking.bookingStatus === "completed" ? "bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400" :
-                  booking.bookingStatus === "cancelled" ? "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400" :
+                  booking.bookingStatus === "cancelled" || booking.bookingStatus === "expired" ? "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400" :
                   "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400";
                 
                 const paymentColor = 
@@ -188,12 +205,18 @@ export default function PackageBookingMonitor() {
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">#{booking._id.slice(-8).toUpperCase()}</span>
-                            <div className={`w-2 h-2 rounded-full ${booking.bookingStatus === 'confirmed' ? 'bg-emerald-500' : booking.bookingStatus === 'completed' ? 'bg-blue-500' : booking.bookingStatus === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
+                            <div className={`w-2 h-2 rounded-full ${booking.bookingStatus === 'confirmed' ? 'bg-emerald-500' : booking.bookingStatus === 'completed' ? 'bg-blue-500' : expired ? 'bg-rose-500' : booking.bookingStatus === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
                           </div>
                           <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate" title={packageLabel(booking.packageId)}>{packageLabel(booking.packageId)}</h3>
                           <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                            <span className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.bookingStatus}</span>
-                            <span className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${paymentColor}`}>{booking.paymentStatus}</span>
+                            {expired ? (
+                              <span className="px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30 flex items-center gap-1">
+                                <AlertTriangle size={10} /> PAYMENT EXPIRED
+                              </span>
+                            ) : (
+                              <span className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.bookingStatus}</span>
+                            )}
+                            <span className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${expired && booking.paymentStatus !== "paid" ? "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400" : paymentColor}`}>{booking.paymentStatus}</span>
                           </div>
                         </div>
                       </div>
@@ -207,6 +230,12 @@ export default function PackageBookingMonitor() {
                           <Calendar size={14} className="text-slate-400" />
                           {new Date(booking.createdAt).toLocaleDateString()}
                         </span>
+                        {booking.paymentExpiresAt && (
+                          <span className={`text-xs font-semibold flex items-center gap-1.5 mt-1.5 ${expired ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                            <Clock size={13} className={expired ? 'text-rose-500 shrink-0' : 'text-slate-400 shrink-0'} />
+                            <span>{new Date(booking.paymentExpiresAt).getTime() < Date.now() ? "Expired: " : "Window: "} {new Date(booking.paymentExpiresAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' })}</span>
+                          </span>
+                        )}
                       </div>
 
                       <div className="col-span-2 text-right">
@@ -217,7 +246,7 @@ export default function PackageBookingMonitor() {
                       </div>
 
                       <div className="col-span-3 flex justify-end gap-2">
-                        {booking.bookingStatus !== "cancelled" && booking.paymentStatus !== "paid" && (
+                        {booking.bookingStatus !== "cancelled" && booking.bookingStatus !== "expired" && booking.paymentStatus !== "paid" && (
                           <button
                             onClick={() => handleForceCancel(booking._id, booking.paymentStatus === "paid")}
                             className="w-10 h-10 bg-slate-50 dark:bg-[#0F172A] text-red-500 hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white rounded-xl transition-colors flex items-center justify-center border border-slate-100 dark:border-[#334155] shadow-sm"
@@ -235,13 +264,13 @@ export default function PackageBookingMonitor() {
                         <div>
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">#{booking._id.slice(-8).toUpperCase()}</span>
-                            <div className={`w-2 h-2 rounded-full ${booking.bookingStatus === 'confirmed' ? 'bg-emerald-500' : booking.bookingStatus === 'completed' ? 'bg-blue-500' : booking.bookingStatus === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
+                            <div className={`w-2 h-2 rounded-full ${booking.bookingStatus === 'confirmed' ? 'bg-emerald-500' : booking.bookingStatus === 'completed' ? 'bg-blue-500' : expired ? 'bg-rose-500' : booking.bookingStatus === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
                           </div>
                           <h3 className="text-base font-black text-slate-900 dark:text-white line-clamp-2">{packageLabel(booking.packageId)}</h3>
                         </div>
                         
                         <div className="flex gap-2 shrink-0">
-                          {booking.bookingStatus !== "cancelled" && booking.paymentStatus !== "paid" && (
+                          {booking.bookingStatus !== "cancelled" && booking.bookingStatus !== "expired" && booking.paymentStatus !== "paid" && (
                             <button onClick={() => handleForceCancel(booking._id, booking.paymentStatus === "paid")} className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-[#0F172A] text-red-500 flex items-center justify-center border border-slate-100 dark:border-[#334155]">
                               <XCircle size={14} />
                             </button>
@@ -250,8 +279,14 @@ export default function PackageBookingMonitor() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.bookingStatus}</span>
-                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${paymentColor}`}>{booking.paymentStatus}</span>
+                        {expired ? (
+                          <span className="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30 flex items-center gap-1">
+                            <AlertTriangle size={12} /> PAYMENT EXPIRED
+                          </span>
+                        ) : (
+                          <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.bookingStatus}</span>
+                        )}
+                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${expired && booking.paymentStatus !== "paid" ? "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400" : paymentColor}`}>{booking.paymentStatus}</span>
                       </div>
 
                       <div className="bg-slate-50 dark:bg-[#0F172A] rounded-xl p-3 border border-slate-100 dark:border-[#334155] flex flex-col gap-2">
@@ -270,6 +305,12 @@ export default function PackageBookingMonitor() {
                             </span>
                           </div>
                         </div>
+                        {booking.paymentExpiresAt && (
+                          <div className={`flex items-center gap-1.5 text-xs font-semibold pt-1 border-t border-slate-200 dark:border-slate-800 ${expired ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                            <Clock size={12} className={expired ? 'text-rose-500 shrink-0' : 'text-slate-400 shrink-0'} />
+                            <span>{new Date(booking.paymentExpiresAt).getTime() < Date.now() ? "Expired: " : "Window: "} {new Date(booking.paymentExpiresAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' })}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>

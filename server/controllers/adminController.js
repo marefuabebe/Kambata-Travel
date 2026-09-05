@@ -323,7 +323,15 @@ const getAllBookings = async (req, res, next) => {
     const { status, startDate, endDate } = req.query;
     const query = {};
 
-    if (status) query.status = status;
+    if (status === "expired") {
+      query.$or = [
+        { status: "expired" },
+        { paymentStatus: "failed" },
+        { paymentStatus: "pending", paymentExpiresAt: { $lt: new Date() } },
+      ];
+    } else if (status) {
+      query.status = status;
+    }
     
     if (startDate || endDate) {
       query.createdAt = {};
@@ -364,14 +372,22 @@ const getAllPackageBookings = async (req, res, next) => {
     const { status } = req.query;
     const query = {};
 
-    if (status) query.status = status;
+    if (status === "expired") {
+      query.$or = [
+        { bookingStatus: "expired" },
+        { paymentStatus: "failed" },
+        { paymentStatus: "pending", paymentExpiresAt: { $lt: new Date() } },
+      ];
+    } else if (status) {
+      query.bookingStatus = status;
+    }
 
     const PackageBooking = require("../models/PackageBooking");
     const bookings = await PackageBooking.find(query)
       .populate("user", "name email")
       .populate({
         path: "packageId",
-        select: "name basePrice"
+        select: "name title basePrice"
       })
       .populate({
         path: "packageScheduleId",

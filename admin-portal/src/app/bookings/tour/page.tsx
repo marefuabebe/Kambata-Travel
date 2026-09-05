@@ -13,6 +13,7 @@ import {
   AlertTriangle,
   RotateCcw,
   XCircle,
+  Clock,
 } from "lucide-react";
 import apiClient from "@/utils/apiClient";
 import toast from "react-hot-toast";
@@ -29,26 +30,39 @@ export default function BookingMonitor() {
     setUrlSearch(params.get("search") || "");
   }, []);
 
-  useEffect(() => {
-    fetchBookings();
-
-    const handleSync = () => fetchBookings();
-    window.addEventListener("sync_booking", handleSync);
-    return () => window.removeEventListener("sync_booking", handleSync);
-  }, []);
+  const isPaymentExpired = (booking: any) => {
+    if (booking.status === "expired") return true;
+    if (booking.paymentStatus === "failed") return true;
+    if (
+      booking.paymentStatus === "pending" &&
+      booking.paymentExpiresAt &&
+      new Date(booking.paymentExpiresAt).getTime() < Date.now()
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   const fetchBookings = async () => {
     setLoading(true);
     try {
       const { status, startDate, endDate } = filters;
       const { data } = await apiClient.get(`/bookings?status=${status}&startDate=${startDate}&endDate=${endDate}`);
-      setBookings(data.bookings);
+      setBookings(data.bookings || []);
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchBookings();
+
+    const handleSync = () => fetchBookings();
+    window.addEventListener("sync_booking", handleSync);
+    return () => window.removeEventListener("sync_booking", handleSync);
+  }, [filters.status]);
 
   const handleRefundOverride = async (id: string) => {
     const reason = await promptAction("Reason for manual refund (processed via Chapa):", "Write reason here...");
@@ -142,6 +156,7 @@ export default function BookingMonitor() {
               <option value="pending" className="dark:bg-[#1E293B]">Pending</option>
               <option value="completed" className="dark:bg-[#1E293B]">Completed</option>
               <option value="cancelled" className="dark:bg-[#1E293B]">Cancelled</option>
+              <option value="expired" className="dark:bg-[#1E293B]">Payment Expired</option>
             </select>
             
             <div className="w-full sm:w-[1px] h-[1px] sm:h-6 bg-slate-200 dark:bg-[#334155]" />
@@ -200,11 +215,12 @@ export default function BookingMonitor() {
               className="flex flex-col gap-4"
             >
               {visibleBookings.map((booking) => {
+                const paymentExpired = isPaymentExpired(booking);
                 // Determine pill colors
                 const statusColor = 
                   booking.status === "confirmed" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400" :
                   booking.status === "completed" ? "bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400" :
-                  booking.status === "cancelled" ? "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400" :
+                  booking.status === "cancelled" || booking.status === "expired" ? "bg-red-100 text-red-700 dark:bg-red-500/10 dark:text-red-400" :
                   "bg-amber-100 text-amber-700 dark:bg-amber-500/10 dark:text-amber-400";
                 
                 const paymentColor = 
@@ -231,12 +247,18 @@ export default function BookingMonitor() {
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">#{booking._id.slice(-8).toUpperCase()}</span>
-                            <div className={`w-2 h-2 rounded-full ${booking.status === 'confirmed' ? 'bg-emerald-500' : booking.status === 'completed' ? 'bg-blue-500' : booking.status === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
+                            <div className={`w-2 h-2 rounded-full ${booking.status === 'confirmed' ? 'bg-emerald-500' : booking.status === 'completed' ? 'bg-blue-500' : paymentExpired ? 'bg-rose-500' : booking.status === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
                           </div>
                           <h3 className="text-sm font-bold text-slate-900 dark:text-white truncate" title={tourLabel(booking.tour)}>{tourLabel(booking.tour)}</h3>
                           <div className="flex items-center gap-1.5 mt-1 flex-wrap">
-                            <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.status}</span>
-                            <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${paymentColor}`}>{booking.paymentStatus}</span>
+                            {paymentExpired ? (
+                              <span className="px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30 flex items-center gap-1">
+                                <AlertTriangle size={10} /> PAYMENT EXPIRED
+                              </span>
+                            ) : (
+                              <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.status}</span>
+                            )}
+                            <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${paymentExpired && booking.paymentStatus !== "paid" ? "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400" : paymentColor}`}>{booking.paymentStatus}</span>
                             {booking.attendanceStatus && (
                               <span className={`px-1.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider ${attendanceColor}`}>{booking.attendanceStatus}</span>
                             )}
@@ -260,6 +282,12 @@ export default function BookingMonitor() {
                             return new Date(booking.createdAt).toLocaleDateString();
                           })()}
                         </span>
+                        {booking.paymentExpiresAt && (
+                          <span className={`text-xs font-semibold flex items-center gap-1.5 mt-1 ${paymentExpired ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                            <Clock size={13} className={paymentExpired ? 'text-rose-500 shrink-0' : 'text-slate-400 shrink-0'} />
+                            <span>{new Date(booking.paymentExpiresAt).getTime() < Date.now() ? "Expired: " : "Window: "} {new Date(booking.paymentExpiresAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' })}</span>
+                          </span>
+                        )}
                         
                         {/* Lock/Expired Badge logic */}
                         {(() => {
@@ -285,9 +313,9 @@ export default function BookingMonitor() {
 
                       {/* Revenue */}
                       <div className="col-span-2 text-right">
-                        <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-0.5">ETB</span>
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-0.5">Total</span>
                         <span className="text-base font-black text-slate-900 dark:text-white">
-                          {booking.totalPrice?.toLocaleString() || 0}
+                          ETB {booking.totalPrice?.toLocaleString() || 0}
                         </span>
                       </div>
 
@@ -339,7 +367,7 @@ export default function BookingMonitor() {
                         <div>
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">#{booking._id.slice(-8).toUpperCase()}</span>
-                            <div className={`w-2 h-2 rounded-full ${booking.status === 'confirmed' ? 'bg-emerald-500' : booking.status === 'completed' ? 'bg-blue-500' : booking.status === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
+                            <div className={`w-2 h-2 rounded-full ${booking.status === 'confirmed' ? 'bg-emerald-500' : booking.status === 'completed' ? 'bg-blue-500' : paymentExpired ? 'bg-rose-500' : booking.status === 'cancelled' ? 'bg-red-500' : 'bg-amber-500'}`} />
                           </div>
                           <h3 className="text-base font-black text-slate-900 dark:text-white line-clamp-2">{tourLabel(booking.tour)}</h3>
                         </div>
@@ -369,8 +397,14 @@ export default function BookingMonitor() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.status}</span>
-                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${paymentColor}`}>{booking.paymentStatus}</span>
+                        {paymentExpired ? (
+                          <span className="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30 flex items-center gap-1">
+                            <AlertTriangle size={12} /> PAYMENT EXPIRED
+                          </span>
+                        ) : (
+                          <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${statusColor}`}>{booking.status}</span>
+                        )}
+                        <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${paymentExpired && booking.paymentStatus !== "paid" ? "bg-rose-100 text-rose-700 dark:bg-rose-500/20 dark:text-rose-400" : paymentColor}`}>{booking.paymentStatus}</span>
                         {booking.attendanceStatus && (
                           <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider ${attendanceColor}`}>{booking.attendanceStatus}</span>
                         )}
@@ -392,6 +426,12 @@ export default function BookingMonitor() {
                             </span>
                           </div>
                         </div>
+                        {booking.paymentExpiresAt && (
+                          <div className={`flex items-center gap-1.5 text-xs font-semibold pt-1 border-t border-slate-200 dark:border-slate-800 ${paymentExpired ? 'text-rose-600 dark:text-rose-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                            <Clock size={12} className={paymentExpired ? 'text-rose-500 shrink-0' : 'text-slate-400 shrink-0'} />
+                            <span>{new Date(booking.paymentExpiresAt).getTime() < Date.now() ? "Expired: " : "Window: "} {new Date(booking.paymentExpiresAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' })}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
 

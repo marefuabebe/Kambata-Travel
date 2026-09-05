@@ -135,13 +135,21 @@ router.get("/", protect, requireAdmin, async (req, res, next) => {
     const { status, page = 1, limit = 20 } = req.query;
 
     const filter = {};
-    if (status) filter.bookingStatus = status;
+    if (status === "expired") {
+      filter.$or = [
+        { bookingStatus: "expired" },
+        { paymentStatus: "failed" },
+        { paymentStatus: "pending", paymentExpiresAt: { $lt: new Date() } },
+      ];
+    } else if (status) {
+      filter.bookingStatus = status;
+    }
 
     const bookings = await PackageBooking.find(filter)
       .populate("user", "name email phone")
       .populate({
         path: "packageId",
-        select: "title",
+        select: "name title basePrice",
       })
       .sort({ createdAt: -1 })
       .skip((Number(page) - 1) * Number(limit))
