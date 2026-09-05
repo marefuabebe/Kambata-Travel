@@ -15,14 +15,14 @@ const getDashboard = async (req, res, next) => {
 
     const upcomingTours = await Booking.countDocuments({
       user: userId,
-      status: { $in: ["confirmed", "pending"] },
-      paymentStatus: { $in: ["paid", "pending"] },
+      status: "confirmed",
+      paymentStatus: "paid",
     });
 
     const activePackages = await PackageBooking.countDocuments({
       user: userId,
-      bookingStatus: { $in: ["confirmed", "pending"] },
-      paymentStatus: { $in: ["paid", "pending"] },
+      bookingStatus: "confirmed",
+      paymentStatus: "paid",
     });
 
     const [completedTours, completedPackages] = await Promise.all([
@@ -54,12 +54,27 @@ const getDashboard = async (req, res, next) => {
 
     let nextTour = await Booking.findOne({
       user: userId,
-      status: { $in: ["confirmed", "pending"] },
+      status: "confirmed",
+      paymentStatus: "paid",
     })
       .populate("tour", "title images destination schedules")
       .populate("guide", "name")
-      .sort("createdAt")
+      .sort("-createdAt")
       .lean();
+
+    if (!nextTour) {
+      nextTour = await Booking.findOne({
+        user: userId,
+        status: "pending",
+        paymentStatus: "pending",
+        bookingSource: { $ne: "request" },
+        paymentExpiresAt: { $gt: new Date() },
+      })
+        .populate("tour", "title images destination schedules")
+        .populate("guide", "name")
+        .sort("-createdAt")
+        .lean();
+    }
 
     if (nextTour && nextTour.tour) {
       const sch = nextTour.tour.schedules?.find(s => s?._id && nextTour.scheduleId && s._id.toString() === nextTour.scheduleId.toString());
@@ -78,9 +93,10 @@ const getDashboard = async (req, res, next) => {
       })();
     }
 
-    const nextPackageBooking = await PackageBooking.findOne({
+    let nextPackageBooking = await PackageBooking.findOne({
       user: userId,
-      bookingStatus: { $in: ["confirmed", "pending"] },
+      bookingStatus: "confirmed",
+      paymentStatus: "paid",
     })
       .populate({
         path: "packageId",
@@ -90,39 +106,65 @@ const getDashboard = async (req, res, next) => {
         path: "packageScheduleId",
         populate: { path: "assignedGuide", select: "name" }
       })
-      .sort("createdAt")
+      .sort("-createdAt")
       .lean();
 
-    if (nextPackageBooking && (!nextTour || new Date(nextPackageBooking.createdAt) < new Date(nextTour.createdAt))) {
-      const pkgSchedule = nextPackageBooking.packageScheduleId;
-      nextTour = {
-        _id: nextPackageBooking._id,
-        status: nextPackageBooking.bookingStatus,
-        scheduleId: pkgSchedule?._id,
-        isLocked: (() => {
-          if (!pkgSchedule) return false;
-          if (pkgSchedule.status === "completed" || pkgSchedule.status === "cancelled") return false;
-          if (pkgSchedule.attendanceLocked) return true;
-          const endDateObj = new Date(pkgSchedule.endDate || pkgSchedule.startDate || pkgSchedule.date || new Date());
-          if (pkgSchedule.endTime && pkgSchedule.endTime !== "—") {
-            const [h, m] = pkgSchedule.endTime.split(":");
-            endDateObj.setHours(parseInt(h), parseInt(m), 0, 0);
-          } else {
-            endDateObj.setHours(23, 59, 59, 999);
-          }
-          return endDateObj < new Date();
-        })(),
-        tour: {
-          title: nextPackageBooking.packageId?.name || "Travel Package",
-          images: nextPackageBooking.packageId?.tour?.images || [],
-          schedules: pkgSchedule ? [{
-            _id: pkgSchedule._id,
-            startDate: pkgSchedule.startDate || pkgSchedule.date,
-            endDate: pkgSchedule.endDate || pkgSchedule.date,
-          }] : []
-        },
-        guide: pkgSchedule?.assignedGuide
-      };
+    if (!nextPackageBooking) {
+      nextPackageBooking = await PackageBooking.findOne({
+        user: userId,
+        bookingStatus: "pending",
+        paymentStatus: "pending",
+        bookingSource: { $ne: "request" },
+        paymentExpiresAt: { $gt: new Date() },
+      })
+        .populate({
+          path: "packageId",
+          populate: [{ path: "tour", select: "images" }]
+        })
+        .populate({
+          path: "packageScheduleId",
+          populate: { path: "assignedGuide", select: "name" }
+        })
+        .sort("-createdAt")
+        .lean();
+    }
+
+    if (nextPackageBooking) {
+      const isTourConfirmed = nextTour?.status === "confirmed";
+      const isPkgConfirmed = nextPackageBooking.bookingStatus === "confirmed";
+      const shouldUsePackage = !nextTour || (!isTourConfirmed && isPkgConfirmed) || (isPkgConfirmed && new Date(nextPackageBooking.createdAt) > new Date(nextTour.createdAt));
+
+      if (shouldUsePackage) {
+        const pkgSchedule = nextPackageBooking.packageScheduleId;
+        nextTour = {
+          _id: nextPackageBooking._id,
+          status: nextPackageBooking.bookingStatus,
+          scheduleId: pkgSchedule?._id,
+          isLocked: (() => {
+            if (!pkgSchedule) return false;
+            if (pkgSchedule.status === "completed" || pkgSchedule.status === "cancelled") return false;
+            if (pkgSchedule.attendanceLocked) return true;
+            const endDateObj = new Date(pkgSchedule.endDate || pkgSchedule.startDate || pkgSchedule.date || new Date());
+            if (pkgSchedule.endTime && pkgSchedule.endTime !== "—") {
+              const [h, m] = pkgSchedule.endTime.split(":");
+              endDateObj.setHours(parseInt(h), parseInt(m), 0, 0);
+            } else {
+              endDateObj.setHours(23, 59, 59, 999);
+            }
+            return endDateObj < new Date();
+          })(),
+          tour: {
+            title: nextPackageBooking.packageId?.name || "Travel Package",
+            images: nextPackageBooking.packageId?.tour?.images || [],
+            schedules: pkgSchedule ? [{
+              _id: pkgSchedule._id,
+              startDate: pkgSchedule.startDate || pkgSchedule.date,
+              endDate: pkgSchedule.endDate || pkgSchedule.date,
+            }] : []
+          },
+          guide: pkgSchedule?.assignedGuide
+        };
+      }
     }
 
     res.json({
@@ -160,14 +202,20 @@ const getAllBookings = async (req, res, next) => {
         user: userId,
         $or: [
           { bookingSource: { $ne: "request" } },
-          { status: { $ne: "pending" } }
+          { status: { $in: ["confirmed", "completed"] } }
         ]
       })
         .populate("tour", "title images destination duration schedules")
         .populate("guide", "name email phone profilePicture")
         .sort("-createdAt")
         .lean(),
-        PackageBooking.find({ user: userId })
+      PackageBooking.find({ 
+        user: userId,
+        $or: [
+          { bookingSource: { $ne: "request" } },
+          { bookingStatus: { $in: ["confirmed", "completed"] } }
+        ]
+      })
         .populate({
           path: "packageId",
           select: "name basePrice duration roomTypeId",

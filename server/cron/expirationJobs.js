@@ -86,6 +86,16 @@ const startExpirationJobs = () => {
           }
           await request.save();
 
+          // Also expire/cancel any linked unpaid bookings
+          await Booking.updateMany(
+            { linkedRequestId: request._id, status: { $nin: ["confirmed", "completed"] } },
+            { status: "cancelled", paymentStatus: "failed" }
+          );
+          await PackageBooking.updateMany(
+            { linkedRequestId: request._id, bookingStatus: { $nin: ["confirmed", "completed"] } },
+            { bookingStatus: "expired", paymentStatus: "failed" }
+          );
+
           const { logRequestEvent } = require("../services/requestAuditService");
           await logRequestEvent({
             requestId: request._id,

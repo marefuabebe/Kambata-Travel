@@ -259,7 +259,7 @@ export default function MyBookingsPage() {
                     price={b.totalPrice}
                     actions={
                       <>
-                        {b.status === "pending_payment" && (
+                        {((b.bookingStatus === "pending" || b.paymentStatus === "pending" || b.status === "pending_payment") && b.bookingStatus !== "expired" && b.bookingStatus !== "cancelled" && b.paymentStatus !== "failed") && (
                           <button
                             type="button"
                             onClick={async () => {

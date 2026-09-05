@@ -22,7 +22,7 @@ const packageBookingSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "PackageSchedule",
       required: function() {
-        return this.bookingStatus !== "pending";
+        return this.bookingStatus === "confirmed" || this.bookingStatus === "completed";
       },
     },
     travelersCount: {
