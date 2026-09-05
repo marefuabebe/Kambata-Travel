@@ -53,9 +53,21 @@ const buildPremiumEmail = (options) => {
     cta,
   } = options;
 
+  let effectiveInfoCards = Array.isArray(options.infoCards) ? [...options.infoCards] : [];
+
+  if (effectiveInfoCards.length === 0 && options.bookingSummary) {
+    const s = options.bookingSummary;
+    if (s.tourName) effectiveInfoCards.push({ title: "Experience", value: s.tourName });
+    if (s.referenceNumber || s.reference) effectiveInfoCards.push({ title: "Reference No", value: s.referenceNumber || s.reference });
+    if (s.date) effectiveInfoCards.push({ title: "Date", value: s.date });
+    if (s.guideName) effectiveInfoCards.push({ title: "Assigned Guide", value: s.guideName });
+    if (s.travelers) effectiveInfoCards.push({ title: "Travelers", value: s.travelers });
+    if (s.totalPrice) effectiveInfoCards.push({ title: "Total Amount", value: s.totalPrice });
+  }
+
   // Determine if there is an OTP card (6 digits)
-  const otpCard = infoCards.find(c => c.title && c.title.toLowerCase().includes("code") && String(c.value).length === 6);
-  const regularCards = otpCard ? infoCards.filter(c => c !== otpCard) : infoCards;
+  const otpCard = effectiveInfoCards.find(c => c.title && c.title.toLowerCase().includes("code") && String(c.value).length === 6);
+  const regularCards = otpCard ? effectiveInfoCards.filter(c => c !== otpCard) : effectiveInfoCards;
 
   let dynamicContentHtml = "";
 

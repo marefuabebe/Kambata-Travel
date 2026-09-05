@@ -345,10 +345,16 @@ const runBookingPostProcessing = async (booking, options = {}) => {
       populatedBooking = await Booking.findById(booking._id)
         .populate("tour user guide");
     } else {
-      populatedBooking = await PackageBooking.findById(booking._id).populate({
-        path: "packageId",
-        populate: { path: "tour hotel" },
-      });
+      populatedBooking = await PackageBooking.findById(booking._id)
+        .populate({
+          path: "packageId",
+          populate: { path: "tour hotel" },
+        })
+        .populate({
+          path: "packageScheduleId",
+          populate: { path: "assignedGuide", select: "name email phone" },
+        })
+        .populate("user");
     }
 
     const pdfBuffer = await generateInvoicePdf({
@@ -360,8 +366,22 @@ const runBookingPostProcessing = async (booking, options = {}) => {
     });
 
     const frontendUrl = process.env.FRONTEND_URL || "https://kambata.travel";
-    const tourTitle = populatedBooking.tour?.title?.en || populatedBooking.tour?.title || "your tour";
-    
+    const experienceTitle = isPackage 
+      ? (populatedBooking?.packageId?.name?.en || populatedBooking?.packageId?.name || "Travel Package")
+      : (populatedBooking?.tour?.title?.en || populatedBooking?.tour?.title || "Tour Expedition");
+
+    const bookingDate = isPackage
+      ? (populatedBooking?.packageScheduleId?.startDate || populatedBooking?.createdAt)
+      : (populatedBooking?.date || populatedBooking?.createdAt);
+
+    const guideName = isPackage
+      ? (populatedBooking?.packageScheduleId?.assignedGuide?.name || "To be assigned")
+      : (populatedBooking?.guide?.name || "To be assigned");
+
+    const travelersCount = isPackage
+      ? (populatedBooking?.travelersCount || 1)
+      : (populatedBooking?.numPeople || 1);
+
     const emailHtml = buildPremiumEmail({
       type: "booking_confirmed",
       title: "Your Booking is Confirmed!",
@@ -369,18 +389,27 @@ const runBookingPostProcessing = async (booking, options = {}) => {
       greeting: `Hello ${bUser.name},`,
       bodyLines: [
         "We are thrilled to confirm your reservation! Your adventure to the heart of Kambata is officially booked.",
-        "Your payment was successful, and your receipt is attached as a PDF to this email. Please review your booking details below and keep this email for your records."
+        "Your payment was successful. Your official receipt is attached as a PDF to this email and can also be downloaded anytime from your traveler dashboard."
       ],
       statusBadge: { text: "CONFIRMED", color: "#10B981" },
+      infoCards: [
+        { title: isPackage ? "Package Experience" : "Tour Experience", value: experienceTitle },
+        { title: "Booking Reference", value: tx_ref },
+        { title: "Date", value: new Date(bookingDate).toLocaleDateString() },
+        { title: "Assigned Guide", value: guideName },
+        { title: "Travelers", value: travelersCount },
+        { title: "Total Amount Paid", value: `ETB ${populatedBooking?.totalPrice?.toLocaleString()}` },
+      ],
       bookingSummary: {
-        tourName: tourTitle,
-        date: new Date(populatedBooking.date).toLocaleDateString(),
-        guideName: populatedBooking.guide ? populatedBooking.guide.name : "To be assigned",
-        travelers: populatedBooking.numPeople || 1,
-        totalPrice: `ETB ${populatedBooking.totalPrice}`
+        tourName: experienceTitle,
+        referenceNumber: tx_ref,
+        date: new Date(bookingDate).toLocaleDateString(),
+        guideName: guideName,
+        travelers: travelersCount,
+        totalPrice: `ETB ${populatedBooking?.totalPrice?.toLocaleString()}`
       },
       cta: {
-        text: "View Your Itinerary",
+        text: "View Itinerary & Download Invoice",
         link: `${frontendUrl}/explorer-dashboard/bookings`,
         color: "#10B981"
       }

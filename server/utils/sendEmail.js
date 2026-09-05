@@ -1,51 +1,81 @@
+const nodemailer = require('nodemailer');
 const { buildPremiumEmail } = require('./emailTemplateBuilder');
 
+let transporter = null;
+if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.EMAIL_PORT, 10) || 587,
+    secure: parseInt(process.env.EMAIL_PORT, 10) === 465,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    connectionTimeout: 10000,
+  });
+}
+
 const sendEmail = async (options) => {
-  try {
-    let finalHtml = "";
+  let finalHtml = "";
 
-    if (options.html) {
-      // If a full HTML string was already provided (e.g. from authController using buildPremiumEmail), use it directly.
-      finalHtml = options.html;
-    } else {
-      // Automatically convert legacy email calls to the new premium template
-      let infoCards = [];
-      if (options.otp) {
-        infoCards.push({ title: "Verification Code", value: options.otp });
-      }
-
-      // Try to intelligently guess the email type based on the subject
-      const subjectLower = (options.subject || "").toLowerCase();
-      let type = "default";
-      if (subjectLower.includes("welcome") || subjectLower.includes("verify")) type = "welcome";
-      else if (subjectLower.includes("reset") || subjectLower.includes("password")) type = "forgot_password";
-      else if (subjectLower.includes("booking") || subjectLower.includes("confirm")) type = "booking_confirmed";
-      else if (subjectLower.includes("payment") || subjectLower.includes("receipt")) type = "payment_receipt";
-      else if (subjectLower.includes("update") || subjectLower.includes("request")) type = "tour_update";
-      else if (subjectLower.includes("remind") || subjectLower.includes("upcoming")) type = "tour_reminder";
-      else if (subjectLower.includes("feedback") || subjectLower.includes("review")) type = "feedback";
-      else if (subjectLower.includes("assign") || subjectLower.includes("guide")) type = "guide_assignment";
-
-      finalHtml = buildPremiumEmail({
-        type: type,
-        title: options.subject || "Notification",
-        greeting: options.name ? `Hello ${options.name},` : undefined,
-        bodyLines: options.message ? options.message.split('\\n') : [],
-        infoCards: infoCards,
-      });
+  if (options.html) {
+    finalHtml = options.html;
+  } else {
+    let infoCards = [];
+    if (options.otp) {
+      infoCards.push({ title: "Verification Code", value: options.otp });
     }
 
-    // ═══════════════════════════════════════════════════════════════
-    // Google Apps Script HTTP Proxy
-    // Since Render blocks outbound SMTP and Resend requires a verified
-    // custom domain, the only free way to send emails using a standard
-    // @gmail.com address from Render is via an HTTP proxy like GAS.
-    // ═══════════════════════════════════════════════════════════════
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6uIUKlFL1dA1X5PHdffgk0e7bZCAHtPgxPV3Hc_d3X5zxd-T4dNrMImu0q5bIwK0v/exec";
-    const recipient = options.email || options.to;
+    const subjectLower = (options.subject || "").toLowerCase();
+    let type = "default";
+    if (subjectLower.includes("welcome") || subjectLower.includes("verify")) type = "welcome";
+    else if (subjectLower.includes("reset") || subjectLower.includes("password")) type = "forgot_password";
+    else if (subjectLower.includes("booking") || subjectLower.includes("confirm")) type = "booking_confirmed";
+    else if (subjectLower.includes("payment") || subjectLower.includes("receipt")) type = "payment_receipt";
+    else if (subjectLower.includes("update") || subjectLower.includes("request")) type = "tour_update";
+    else if (subjectLower.includes("remind") || subjectLower.includes("upcoming")) type = "tour_reminder";
+    else if (subjectLower.includes("feedback") || subjectLower.includes("review")) type = "feedback";
+    else if (subjectLower.includes("assign") || subjectLower.includes("guide")) type = "guide_assignment";
 
-    console.log(`[EMAIL] Attempting to send via Google Apps Script...`);
-    console.log(`[EMAIL] To: ${recipient}`);
+    finalHtml = buildPremiumEmail({
+      type: type,
+      title: options.subject || "Notification",
+      greeting: options.name ? `Hello ${options.name},` : undefined,
+      bodyLines: options.message ? options.message.split('\n') : [],
+      infoCards: infoCards,
+      bookingSummary: options.bookingSummary,
+    });
+  }
+
+  const recipient = options.email || options.to;
+
+  // 1. Primary path: Nodemailer SMTP (supports attachments like PDF receipts)
+  if (transporter) {
+    try {
+      console.log(`[EMAIL] Attempting delivery via Gmail SMTP to: ${recipient}`);
+      const mailOptions = {
+        from: process.env.EMAIL_FROM || `"Kambata Travel" <${process.env.EMAIL_USER}>`,
+        to: recipient,
+        subject: options.subject,
+        html: finalHtml,
+      };
+
+      if (options.attachments && Array.isArray(options.attachments) && options.attachments.length > 0) {
+        mailOptions.attachments = options.attachments;
+      }
+
+      await transporter.sendMail(mailOptions);
+      console.log(`[EMAIL] SUCCESS! Email (with attachments: ${options.attachments?.length || 0}) sent via SMTP.`);
+      return;
+    } catch (smtpErr) {
+      console.warn(`[EMAIL] SMTP delivery failed (${smtpErr.message}). Falling back to Google Apps Script proxy...`);
+    }
+  }
+
+  // 2. Fallback path: Google Apps Script HTTP proxy
+  try {
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6uIUKlFL1dA1X5PHdffgk0e7bZCAHtPgxPV3Hc_d3X5zxd-T4dNrMImu0q5bIwK0v/exec";
+    console.log(`[EMAIL] Attempting to send via Google Apps Script to: ${recipient}`);
 
     const payload = JSON.stringify({
       token: "kambata-secret-12345",
@@ -56,14 +86,13 @@ const sendEmail = async (options) => {
 
     const https = require('https');
     const url = require('url');
-    
-    // We need to handle HTTP 302 redirects because Google Apps Script always redirects POST requests
+
     const makeRequest = (requestUrl, postData) => {
       return new Promise((resolve, reject) => {
-        const parsedUrl = url.parse(requestUrl);
+        const parsedUrl = new URL(requestUrl);
         const requestOptions = {
           hostname: parsedUrl.hostname,
-          path: parsedUrl.path,
+          path: parsedUrl.pathname + parsedUrl.search,
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,7 +102,6 @@ const sendEmail = async (options) => {
 
         const req = https.request(requestOptions, (res) => {
           if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-            // Handle redirect
             makeRequest(res.headers.location, postData).then(resolve).catch(reject);
             return;
           }
@@ -96,15 +124,14 @@ const sendEmail = async (options) => {
     };
 
     const result = await makeRequest(GOOGLE_SCRIPT_URL, payload);
-
     if (result.error) {
       throw new Error(result.error);
     }
 
     console.log(`[EMAIL] SUCCESS! Google Apps Script confirmed delivery.`);
-  } catch (error) {
-    console.error(`[EMAIL] FAILED via Google Apps Script:`, error.message);
-    throw error;
+  } catch (gasErr) {
+    console.error(`[EMAIL] FAILED via Google Apps Script:`, gasErr.message);
+    throw gasErr;
   }
 };
 
