@@ -22,6 +22,7 @@ import Link from "next/link";
 export default function AdminAnalytics() {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<"all" | "tours" | "packages">("all");
 
   useEffect(() => {
     fetchStats();
@@ -118,62 +119,114 @@ export default function AdminAnalytics() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-white dark:bg-[#1E293B] rounded-2xl border border-gray-200 dark:border-white/10 p-6 shadow-sm relative overflow-hidden flex flex-col">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Trending Expeditions</h3>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Trending Expeditions</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Ranked by confirmed and completed explorer bookings.</p>
+            </div>
+            
+            <div className="flex items-center bg-gray-100 dark:bg-white/5 p-1 rounded-xl border border-gray-200 dark:border-white/10 text-xs font-semibold">
+              <button
+                type="button"
+                onClick={() => setActiveTab("all")}
+                className={`px-3 py-1.5 rounded-lg transition-colors ${activeTab === "all" ? "bg-white dark:bg-[#0F172A] text-gray-900 dark:text-white shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}`}
+              >
+                All
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("tours")}
+                className={`px-3 py-1.5 rounded-lg transition-colors ${activeTab === "tours" ? "bg-white dark:bg-[#0F172A] text-gray-900 dark:text-white shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}`}
+              >
+                Tours
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("packages")}
+                className={`px-3 py-1.5 rounded-lg transition-colors ${activeTab === "packages" ? "bg-white dark:bg-[#0F172A] text-gray-900 dark:text-white shadow-sm" : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}`}
+              >
+                Packages
+              </button>
+            </div>
           </div>
           
           <div className="flex-1">
-            {stats?.top_5_popular_tours?.length > 0 ? (
-              <div className="divide-y divide-gray-100 dark:divide-white/5">
-                {stats.top_5_popular_tours.map((tour: any, idx: number) => (
-                  <Link key={tour._id} href="/tours" className="group flex flex-col sm:flex-row sm:items-center gap-4 py-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors -mx-6 px-6">
-                    <div className="relative w-16 h-12 rounded-lg overflow-hidden shrink-0 bg-gray-100 dark:bg-[#0F172A] border border-gray-200 dark:border-white/10">
-                      {tour.image ? (
-                        <img src={tour.image} alt={tour.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
-                          <Map size={16} />
+            {(() => {
+              const items = activeTab === "all"
+                ? (stats?.trending_expeditions?.length > 0 ? stats.trending_expeditions : [...(stats?.top_5_popular_tours || []), ...(stats?.top_5_popular_packages || [])])
+                : activeTab === "tours"
+                ? (stats?.top_5_popular_tours || [])
+                : (stats?.top_5_popular_packages || []);
+
+              if (!items || items.length === 0) {
+                return (
+                  <div className="flex flex-col items-center justify-center h-full min-h-[250px] text-center border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-[#0F172A]/50 p-6">
+                    <div className="w-12 h-12 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
+                      <Map size={24} />
+                    </div>
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Awaiting Confirmed Expeditions</h3>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 max-w-[280px]">
+                      When travelers make confirmed and paid reservations, trending tours and packages will dynamically surface here.
+                    </p>
+                  </div>
+                );
+              }
+
+              return (
+                <div className="divide-y divide-gray-100 dark:divide-white/5">
+                  {items.map((item: any, idx: number) => {
+                    const isPkg = item.type === "package";
+                    const targetHref = isPkg ? "/packages" : "/tours";
+
+                    return (
+                      <Link key={item._id} href={targetHref} className="group flex flex-col sm:flex-row sm:items-center gap-4 py-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors -mx-6 px-6">
+                        <div className="relative w-16 h-12 rounded-lg overflow-hidden shrink-0 bg-gray-100 dark:bg-[#0F172A] border border-gray-200 dark:border-white/10">
+                          {item.image ? (
+                            <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gray-400">
+                              <Map size={16} />
+                            </div>
+                          )}
+                          <div className="absolute top-1 left-1 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-1.5 py-0.5 rounded text-[9px] font-bold text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-white/10">
+                            #{idx + 1}
+                          </div>
                         </div>
-                      )}
-                      <div className="absolute top-1 left-1 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-1.5 py-0.5 rounded text-[9px] font-bold text-gray-900 dark:text-white shadow-sm border border-gray-200 dark:border-white/10">
-                        #{idx + 1}
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" title={tour.title}>{tour.title}</h4>
-                      <div className="flex items-center gap-3 text-xs font-medium text-gray-500 dark:text-gray-400 mt-1">
-                        {tour.duration && (
-                          <span className="flex items-center gap-1">
-                            <Clock size={12} /> {tour.duration}h
-                          </span>
-                        )}
-                        {tour.price && (
-                          <span className="flex items-center gap-1">
-                            <Banknote size={12} /> {tour.price.toLocaleString()} ETB
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="shrink-0 text-right">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Bookings</p>
-                      <p className="text-base font-bold text-gray-900 dark:text-white">{tour.bookingCount}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center h-full min-h-[250px] text-center border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl bg-gray-50 dark:bg-[#0F172A]/50">
-                <div className="w-12 h-12 bg-white dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 shadow-sm rounded-lg flex items-center justify-center mb-4 text-gray-400 dark:text-gray-500">
-                  <Map size={24} />
+                        
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md ${isPkg ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20" : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"}`}>
+                              {isPkg ? "Package" : "Tour"}
+                            </span>
+                            <h4 className="font-semibold text-gray-900 dark:text-white text-sm truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" title={item.title}>
+                              {item.title}
+                            </h4>
+                          </div>
+
+                          <div className="flex items-center gap-3 text-xs font-medium text-gray-500 dark:text-gray-400">
+                            {item.duration && (
+                              <span className="flex items-center gap-1">
+                                <Clock size={12} /> {item.duration}{item.durationUnit === "days" ? "d" : "h"}
+                              </span>
+                            )}
+                            {item.price && (
+                              <span className="flex items-center gap-1">
+                                <Banknote size={12} /> {item.price.toLocaleString()} ETB
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div className="shrink-0 text-right">
+                          <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Bookings</p>
+                          <p className="text-base font-bold text-gray-900 dark:text-white">{item.bookingCount}</p>
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Awaiting Explorers</h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 max-w-[250px]">
-                  When travelers book adventures, popular expeditions will dynamically surface here.
-                </p>
-              </div>
-            )}
+              );
+            })()}
           </div>
         </div>
 

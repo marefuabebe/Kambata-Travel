@@ -41,9 +41,14 @@ const getAnalytics = async (req, res, next) => {
     const totalPackageBookings = await PackageBooking.countDocuments();
     const totalBookings = totalTourBookings + totalPackageBookings;
 
-    // 3. Top 5 Popular Packages (Aggregation)
+    // 3. Top 5 Popular Packages (Aggregation - only confirmed/completed and paid)
     const popularPackages = await PackageBooking.aggregate([
-      { $match: { bookingStatus: "confirmed" } },
+      { 
+        $match: { 
+          bookingStatus: { $in: ["confirmed", "completed"] }, 
+          paymentStatus: "paid" 
+        } 
+      },
       { $group: { _id: "$packageId", bookingCount: { $sum: 1 } } },
       { $sort: { bookingCount: -1 } },
       { $limit: 5 },
@@ -62,14 +67,22 @@ const getAnalytics = async (req, res, next) => {
           bookingCount: 1,
           title: "$packageData.name.en",
           image: { $arrayElemAt: ["$packageData.images", 0] },
-          price: "$packageData.basePrice"
+          price: "$packageData.basePrice",
+          duration: "$packageData.duration.value",
+          durationUnit: "$packageData.duration.unit",
+          type: { $literal: "package" },
         },
       },
     ]);
 
-    // Top 5 Popular Tours
+    // Top 5 Popular Tours (Aggregation - only confirmed/completed and paid)
     const popularTours = await Booking.aggregate([
-      { $match: { status: "confirmed" } },
+      { 
+        $match: { 
+          status: { $in: ["confirmed", "completed"] }, 
+          paymentStatus: "paid" 
+        } 
+      },
       { $group: { _id: "$tour", bookingCount: { $sum: 1 } } },
       { $sort: { bookingCount: -1 } },
       { $limit: 5 },
@@ -89,10 +102,17 @@ const getAnalytics = async (req, res, next) => {
           title: "$tourData.title.en",
           image: { $arrayElemAt: ["$tourData.images", 0] },
           price: "$tourData.price",
-          duration: "$tourData.durationInHours"
+          duration: "$tourData.durationInHours",
+          durationUnit: { $literal: "h" },
+          type: { $literal: "tour" },
         },
       },
     ]);
+
+    // Unified Trending Expeditions (combined and ranked by bookingCount)
+    const trendingExpeditions = [...popularTours, ...popularPackages]
+      .sort((a, b) => b.bookingCount - a.bookingCount)
+      .slice(0, 10);
 
     res.json({
       total_users: totalUsers,
@@ -103,6 +123,7 @@ const getAnalytics = async (req, res, next) => {
       total_revenue: totalRevenue,
       tour_revenue: tourRevenue,
       package_revenue: pkgRevenue,
+      trending_expeditions: trendingExpeditions,
       top_5_popular_tours: popularTours,
       top_5_popular_packages: popularPackages,
       currency: "ETB",
