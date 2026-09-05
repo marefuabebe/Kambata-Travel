@@ -19,8 +19,22 @@ export function downloadCsv(filename: string, rows: Record<string, string | numb
   URL.revokeObjectURL(url);
 }
 
-export function tourTitle(tour: any): string {
-  if (!tour || !tour.title) return "Tour";
-  if (typeof tour.title === "string") return tour.title;
-  return tour.title.en || tour.title.am || "Tour";
+export function getLocalizedText(obj: any, lang: string = "en"): string {
+  if (!obj) return "";
+  if (typeof obj === "string") return obj;
+  if (typeof obj === "object") {
+    if (lang === "am") {
+      return obj.am || obj.en || "";
+    }
+    return obj.en || obj.am || "";
+  }
+  return String(obj);
 }
+
+export function tourTitle(tour: any, lang: string = "en"): string {
+  if (!tour) return "Tour";
+  const titleObj = tour.title || tour.name;
+  if (!titleObj) return "Tour";
+  return getLocalizedText(titleObj, lang) || "Tour";
+}
+

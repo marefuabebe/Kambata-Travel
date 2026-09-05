@@ -7,7 +7,7 @@ import apiClient from "@/utils/apiClient";
 import { useAuth } from "@/context/AuthContext";
 import { PageHeader, StatCard, LoadingCenter } from "@/components/explorer/ui";
 import { SvgIcon } from "@/components/ui/SvgIcon";
-import { tourTitle } from "@/utils/dashboardHelpers";
+import { tourTitle, getLocalizedText } from "@/utils/dashboardHelpers";
 
 const IconUpcomingTours = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498603/image_2026-08-23_16-11-02_u6nj9m.png" });
 const IconUpcomingPackages = SvgIcon({ src: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1787498555/image_2026-08-23_15-18-27_m1mzmm.png" });
@@ -21,7 +21,7 @@ import { useRealtimeMessages } from "@/hooks/useRealtimeMessages";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function TravelerDashboard() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { user } = useAuth();
   const unreadNotificationsCount = useRealtimeNotifications();
   const unreadMessagesCount = useRealtimeMessages();
@@ -64,12 +64,13 @@ export default function TravelerDashboard() {
 
   if (loading) return <LoadingCenter />;
 
-  // Safely fallback to 0 or mock data to ensure the 10/10 layout looks populated
+  // Safely fallback to 0 to ensure the layout looks populated
   const w = data?.widgets || {
-    upcomingTours: 1,
-    upcomingPackages: 1,
-    completedTrips: 4,
-    unreadMessages: 2
+    upcomingTours: 0,
+    upcomingPackages: 0,
+    activePackages: 0,
+    completedTrips: 0,
+    unreadMessages: 0
   };
   
   const recentActivity = data?.recentActivity || [
@@ -136,9 +137,9 @@ export default function TravelerDashboard() {
       {/* ── Stat Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard label={t("explorerDashboard.stats.upcomingTours")} value={w.upcomingTours ?? 0} icon={IconUpcomingTours} accent="emerald" />
-        <StatCard label={t("explorerDashboard.stats.upcomingPackages")} value={w.upcomingPackages ?? 0} icon={IconUpcomingPackages} accent="amber" />
+        <StatCard label={t("explorerDashboard.stats.upcomingPackages")} value={w.upcomingPackages ?? w.activePackages ?? 0} icon={IconUpcomingPackages} accent="amber" />
         <StatCard label={t("explorerDashboard.stats.completedTrips")} value={w.completedTrips ?? 0} icon={IconTripsCompleted} accent="blue" />
-        <StatCard label={t("explorerDashboard.stats.unreadMessages")} value={unreadMessagesCount} icon={IconUnreadMessages} accent="orange" />
+        <StatCard label={t("explorerDashboard.stats.unreadMessages")} value={unreadMessagesCount || w.unreadMessages || 0} icon={IconUnreadMessages} accent="orange" />
       </div>
 
       {/* Featured Destination Showcase (Desktop - Panoramic Hero) */}
@@ -185,10 +186,8 @@ export default function TravelerDashboard() {
 
           {/* Payment Pending Alerts for Custom Requests */}
           {requests.filter(req => req.status === "converted_to_schedule" || req.status === "awaiting_payment").map(req => {
-            const itemTitle = req.tourId
-              ? (typeof req.tourId.title === "object" ? (req.tourId.title?.am || req.tourId.title?.en) : req.tourId.title)
-              : (typeof req.packageId?.name === "object" ? (req.packageId?.name?.am || req.packageId?.name?.en) : (req.packageId?.name || req.packageId?.title));
-            const displayTitle = itemTitle || "Tour / Package";
+            const rawItem = req.tourId ? req.tourId.title : (req.packageId?.name || req.packageId?.title);
+            const displayTitle = getLocalizedText(rawItem, language) || "Tour / Package";
             const dateStr = req.preferredDate ? new Date(req.preferredDate).toLocaleDateString() : "";
             const desc = (t("explorerDashboard.customTourReady.desc") || "")
               .replace("{title}", displayTitle)
@@ -225,7 +224,7 @@ export default function TravelerDashboard() {
           {/* Upcoming Trip Widget */}
           {data?.nextTour ? (() => {
             const tour = data.nextTour.tour || {};
-            const title = typeof tour.title === 'object' ? (tour.title?.am || tour.title?.en || "Upcoming Trip") : (tour.title || "Upcoming Trip");
+            const title = tourTitle(tour, language) || t("explorerDashboard.upcomingTrip.title");
             const schedule = Array.isArray(tour.schedules)
               ? tour.schedules.find((s: any) => s?._id && data.nextTour.scheduleId && s._id.toString() === data.nextTour.scheduleId.toString())
               : null;
@@ -309,7 +308,7 @@ export default function TravelerDashboard() {
               <div className="grid md:grid-cols-2 gap-4">
                 {recommendations.slice(0, 4).map((rec: any) => {
                   const img = rec.images?.[0] || `https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=400&h=300`;
-                  const title = typeof rec.title === "object" ? (rec.title?.am || rec.title?.en || t("explorerDashboard.recommendations.tourFallback")) : rec.title;
+                  const title = getLocalizedText(rec.title, language) || t("explorerDashboard.recommendations.tourFallback");
                   const price = rec.price ? `${rec.price.toLocaleString()} ETB` : t("explorerDashboard.recommendations.viewDetails");
                   const reason = rec.recommendedBecause || rec.category || t("explorerDashboard.recommendations.trending");
                   const rating = rec.rating?.average || 0;
@@ -443,10 +442,10 @@ export default function TravelerDashboard() {
         {/* Stat Cards (2x2 Grid) */}
         <div className="grid grid-cols-2 gap-3">
           {[
-            { label: t("explorerDashboard.stats.upcoming"), value: w.upcomingTours ?? 0, icon: IconUpcomingTours, color: "text-[#0F766E]" },
-            { label: t("explorerDashboard.stats.completed"), value: w.completedTrips ?? 0, icon: IconTripsCompleted, color: "text-blue-500" },
-            { label: t("explorerDashboard.stats.wishlist"), value: 12, icon: Sparkles, color: "text-[#D4A017]" }, // Mock wishlist count
-            { label: t("explorerDashboard.stats.points"), value: 450, icon: Star, color: "text-amber-500" } // Mock points
+            { label: t("explorerDashboard.stats.upcomingTours"), value: w.upcomingTours ?? 0, icon: IconUpcomingTours, color: "text-[#0F766E]" },
+            { label: t("explorerDashboard.stats.upcomingPackages"), value: w.upcomingPackages ?? w.activePackages ?? 0, icon: IconUpcomingPackages, color: "text-[#D4A017]" },
+            { label: t("explorerDashboard.stats.completedTrips"), value: w.completedTrips ?? 0, icon: IconTripsCompleted, color: "text-blue-500" },
+            { label: t("explorerDashboard.stats.unreadMessages"), value: unreadMessagesCount || w.unreadMessages || 0, icon: IconUnreadMessages, color: "text-amber-500" }
           ].map((stat, i) => (
              <div key={i} className="bg-white dark:bg-[#1E293B] p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 flex flex-col justify-between h-28">
                <div className="flex justify-between items-start">
@@ -469,7 +468,7 @@ export default function TravelerDashboard() {
           </div>
           {data?.nextTour ? (() => {
             const tour = data.nextTour.tour || {};
-            const title = typeof tour.title === 'object' ? (tour.title?.am || tour.title?.en || "Upcoming Trip") : (tour.title || "Upcoming Trip");
+            const title = tourTitle(tour, language) || t("explorerDashboard.upcomingTrip.title");
             const schedule = Array.isArray(tour.schedules)
               ? tour.schedules.find((s: any) => s?._id && data.nextTour.scheduleId && s._id.toString() === data.nextTour.scheduleId.toString())
               : null;
@@ -524,7 +523,7 @@ export default function TravelerDashboard() {
           <div className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 custom-scrollbar hide-scrollbar snap-x">
              {recommendations.slice(0, 4).map((rec: any, idx) => {
                 const img = rec.images?.[0] || `https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=400&h=300`;
-                const title = typeof rec.title === "object" ? (rec.title?.am || rec.title?.en || t("explorerDashboard.recommendations.tourFallback")) : rec.title;
+                const title = getLocalizedText(rec.title, language) || t("explorerDashboard.recommendations.tourFallback");
                 const price = rec.price ? `${rec.price.toLocaleString()} ETB` : t("explorerDashboard.recommendations.viewDetails");
                 const rating = rec.rating?.average || 4.8;
                 return (

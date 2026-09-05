@@ -22,11 +22,29 @@ const getDashboard = async (req, res, next) => {
     const activePackages = await PackageBooking.countDocuments({
       user: userId,
       bookingStatus: { $in: ["confirmed", "pending"] },
+      paymentStatus: { $in: ["paid", "pending"] },
     });
 
-    const completedTrips = await Booking.countDocuments({
-      user: userId,
-      status: "completed",
+    const [completedTours, completedPackages] = await Promise.all([
+      Booking.countDocuments({
+        user: userId,
+        status: "completed",
+      }),
+      PackageBooking.countDocuments({
+        user: userId,
+        bookingStatus: "completed",
+      }),
+    ]);
+    const completedTrips = completedTours + completedPackages;
+
+    const ChatRoom = require("../models/ChatRoom");
+    const Message = require("../models/Message");
+    const rooms = await ChatRoom.find({ participants: userId }).select("_id");
+    const roomIds = rooms.map((r) => r._id);
+    const unreadMessages = await Message.countDocuments({
+      room: { $in: roomIds },
+      seenBy: { $ne: userId },
+      sender: { $ne: userId },
     });
 
     const recentNotifications = await Notification.find({ user: userId })
@@ -112,9 +130,11 @@ const getDashboard = async (req, res, next) => {
       data: {
         widgets: {
           upcomingTours,
-          hotelReservations: 0,
+          upcomingPackages: activePackages,
           activePackages,
+          hotelReservations: 0,
           completedTrips,
+          unreadMessages,
         },
         nextTour,
         recentActivity: recentNotifications.map((n) => ({
