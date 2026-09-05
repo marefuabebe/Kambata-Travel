@@ -121,7 +121,7 @@ const getMyRequests = async (req, res, next) => {
   try {
     const requests = await TourRequest.find({ user: req.user._id })
       .populate("tourId", "title images destination duration durationInHours")
-      .populate("packageId", "title tour hotel price duration")
+      .populate("packageId", "name title tour hotel price basePrice duration")
       .sort("-createdAt");
 
     const now = new Date();

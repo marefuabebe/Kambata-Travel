@@ -43,8 +43,8 @@ const getDashboard = async (req, res, next) => {
       .sort("createdAt")
       .lean();
 
-    if (nextTour) {
-      const sch = nextTour.tour?.schedules?.find(s => s._id.toString() === nextTour.scheduleId?.toString());
+    if (nextTour && nextTour.tour) {
+      const sch = nextTour.tour.schedules?.find(s => s?._id && nextTour.scheduleId && s._id.toString() === nextTour.scheduleId.toString());
       nextTour.isLocked = (() => {
         if (!sch) return false;
         if (sch.status === "completed" || sch.status === "cancelled") return false;
@@ -76,18 +76,18 @@ const getDashboard = async (req, res, next) => {
       .lean();
 
     if (nextPackageBooking && (!nextTour || new Date(nextPackageBooking.createdAt) < new Date(nextTour.createdAt))) {
+      const pkgSchedule = nextPackageBooking.packageScheduleId;
       nextTour = {
         _id: nextPackageBooking._id,
         status: nextPackageBooking.bookingStatus,
-        scheduleId: nextPackageBooking.packageScheduleId?._id,
+        scheduleId: pkgSchedule?._id,
         isLocked: (() => {
-          const sch = nextPackageBooking.packageScheduleId;
-          if (!sch) return false;
-          if (sch.status === "completed" || sch.status === "cancelled") return false;
-          if (sch.attendanceLocked) return true;
-          const endDateObj = new Date(sch.endDate || sch.startDate || sch.date || new Date());
-          if (sch.endTime && sch.endTime !== "—") {
-            const [h, m] = sch.endTime.split(":");
+          if (!pkgSchedule) return false;
+          if (pkgSchedule.status === "completed" || pkgSchedule.status === "cancelled") return false;
+          if (pkgSchedule.attendanceLocked) return true;
+          const endDateObj = new Date(pkgSchedule.endDate || pkgSchedule.startDate || pkgSchedule.date || new Date());
+          if (pkgSchedule.endTime && pkgSchedule.endTime !== "—") {
+            const [h, m] = pkgSchedule.endTime.split(":");
             endDateObj.setHours(parseInt(h), parseInt(m), 0, 0);
           } else {
             endDateObj.setHours(23, 59, 59, 999);
@@ -97,13 +97,13 @@ const getDashboard = async (req, res, next) => {
         tour: {
           title: nextPackageBooking.packageId?.name || "Travel Package",
           images: nextPackageBooking.packageId?.tour?.images || [],
-          schedules: [{
-            _id: nextPackageBooking.packageScheduleId?._id,
-            startDate: nextPackageBooking.packageScheduleId?.startDate || nextPackageBooking.packageScheduleId?.date,
-            endDate: nextPackageBooking.packageScheduleId?.endDate || nextPackageBooking.packageScheduleId?.date,
-          }]
+          schedules: pkgSchedule ? [{
+            _id: pkgSchedule._id,
+            startDate: pkgSchedule.startDate || pkgSchedule.date,
+            endDate: pkgSchedule.endDate || pkgSchedule.date,
+          }] : []
         },
-        guide: nextPackageBooking.packageScheduleId?.assignedGuide
+        guide: pkgSchedule?.assignedGuide
       };
     }
 

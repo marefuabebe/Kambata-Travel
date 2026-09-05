@@ -184,45 +184,55 @@ export default function TravelerDashboard() {
         <div className="lg:col-span-8 space-y-8">
 
           {/* Payment Pending Alerts for Custom Requests */}
-          {requests.filter(req => req.status === "converted_to_schedule").map(req => (
-            <motion.div 
-              key={req._id}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-gradient-to-r from-[#FF8C00] to-orange-600 rounded-[2.5rem] p-8 md:p-10 text-white shadow-xl flex flex-col md:flex-row justify-between items-center gap-6"
-            >
-              <div>
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl mb-4 border border-white/20">
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                  <p className="text-[10px] font-black uppercase tracking-widest text-white">
-                    {t("explorerDashboard.customTourReady.tag")}
-                  </p>
-                </div>
-                <h3 className="text-3xl font-black mb-2 tracking-tight">{t("explorerDashboard.customTourReady.title")}</h3>
-                <p className="text-orange-100 font-medium">
-                  {t("explorerDashboard.customTourReady.desc")
-                    .replace("{title}", req.tourId ? (req.tourId.title?.am || req.tourId.title?.en) : (req.packageId?.name?.am || req.packageId?.name?.en))
-                    .replace("{date}", new Date(req.preferredDate).toLocaleDateString())}
-                </p>
-              </div>
-              
-              <Link
-                href={`/${req.tourId ? 'checkout' : 'checkout-package'}/${req.tourId?._id || req.packageId?._id}?scheduleId=${req.assignedSchedule}`}
-                className="group/btn inline-flex items-center gap-2 bg-white text-[#FF8C00] px-8 py-4 rounded-2xl font-black text-sm hover:bg-gray-50 transition-all shadow-lg shrink-0 whitespace-nowrap"
+          {requests.filter(req => req.status === "converted_to_schedule" || req.status === "awaiting_payment").map(req => {
+            const itemTitle = req.tourId
+              ? (typeof req.tourId.title === "object" ? (req.tourId.title?.am || req.tourId.title?.en) : req.tourId.title)
+              : (typeof req.packageId?.name === "object" ? (req.packageId?.name?.am || req.packageId?.name?.en) : (req.packageId?.name || req.packageId?.title));
+            const displayTitle = itemTitle || "Tour / Package";
+            const dateStr = req.preferredDate ? new Date(req.preferredDate).toLocaleDateString() : "";
+            const desc = (t("explorerDashboard.customTourReady.desc") || "")
+              .replace("{title}", displayTitle)
+              .replace("{date}", dateStr);
+
+            return (
+              <motion.div 
+                key={req._id}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-gradient-to-r from-[#FF8C00] to-orange-600 rounded-[2.5rem] p-8 md:p-10 text-white shadow-xl flex flex-col md:flex-row justify-between items-center gap-6"
               >
-                {t("explorerDashboard.customTourReady.btnPay")} <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          ))}
+                <div>
+                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl mb-4 border border-white/20">
+                    <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                    <p className="text-[10px] font-black uppercase tracking-widest text-white">
+                      {t("explorerDashboard.customTourReady.tag")}
+                    </p>
+                  </div>
+                  <h3 className="text-3xl font-black mb-2 tracking-tight">{t("explorerDashboard.customTourReady.title")}</h3>
+                  <p className="text-orange-100 font-medium">{desc}</p>
+                </div>
+                
+                <Link
+                  href={req.status === "awaiting_payment" ? "/explorer-dashboard/my-requests" : `/${req.tourId ? 'checkout' : 'checkout-package'}/${req.tourId?._id || req.packageId?._id}?scheduleId=${req.assignedSchedule}`}
+                  className="group/btn inline-flex items-center gap-2 bg-white text-[#FF8C00] px-8 py-4 rounded-2xl font-black text-sm hover:bg-gray-50 transition-all shadow-lg shrink-0 whitespace-nowrap"
+                >
+                  {t("explorerDashboard.customTourReady.btnPay")} <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            );
+          })}
           
           {/* Upcoming Trip Widget */}
           {data?.nextTour ? (() => {
-            const tour = data.nextTour.tour;
-            const title = typeof tour.title === 'object' ? (tour.title.am || tour.title.en) : tour.title;
-            const schedule = tour.schedules?.find((s: any) => s._id.toString() === data.nextTour.scheduleId?.toString());
-            const startDateStr = schedule?.startDate ? new Date(schedule.startDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : t("explorerDashboard.upcomingTrip.tba");
+            const tour = data.nextTour.tour || {};
+            const title = typeof tour.title === 'object' ? (tour.title?.am || tour.title?.en || "Upcoming Trip") : (tour.title || "Upcoming Trip");
+            const schedule = Array.isArray(tour.schedules)
+              ? tour.schedules.find((s: any) => s?._id && data.nextTour.scheduleId && s._id.toString() === data.nextTour.scheduleId.toString())
+              : null;
+            const startDate = schedule?.startDate || schedule?.date || tour.schedules?.[0]?.startDate;
+            const startDateStr = startDate ? new Date(startDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : t("explorerDashboard.upcomingTrip.tba");
             const endDateStr = schedule?.endDate ? new Date(schedule.endDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : "";
-            const date = endDateStr ? `${startDateStr} - ${endDateStr}` : startDateStr;
+            const date = endDateStr && endDateStr !== startDateStr ? `${startDateStr} - ${endDateStr}` : startDateStr;
             const guideName = data.nextTour.guide?.name || t("explorerDashboard.upcomingTrip.pendingGuide");
             return (
               <motion.div 
@@ -408,7 +418,7 @@ export default function TravelerDashboard() {
           <p className="text-[12px] font-black text-gray-400 tracking-widest uppercase">{currentDate}</p>
           <h1 className="text-2xl font-black text-gray-900 dark:text-white leading-tight">
              <Hand className="inline-block mr-2 mb-1 text-amber-500 fill-amber-500/20" size={24} />
-             <span dangerouslySetInnerHTML={{ __html: t("explorerDashboard.mobileWelcome.greeting").replace("{name}", user?.name?.split(" ")[0] || "Traveler") }} />
+             <span dangerouslySetInnerHTML={{ __html: (t("explorerDashboard.mobileWelcome.greeting") || "Welcome, {name}").replace("{name}", user?.name?.split(" ")[0] || "Traveler") }} />
           </h1>
         </div>
 
@@ -419,8 +429,8 @@ export default function TravelerDashboard() {
             <span className="text-sm font-bold">{t("explorerDashboard.mobileWelcome.search")}</span>
           </div>
           <div className="bg-sky-50 dark:bg-sky-500/10 border border-sky-100 dark:border-sky-500/20 rounded-2xl h-12 px-4 flex flex-col justify-center items-center shadow-sm min-w-[70px]">
-             <span className="text-[13px] font-black text-sky-600 dark:text-sky-400 leading-tight">{weather.temp}</span>
-             <span className="text-[9px] font-bold text-sky-500/80 uppercase">{weather.desc}</span>
+             <span className="text-[13px] font-black text-sky-600 dark:text-sky-400 leading-tight">{weather?.temp || "24°"}</span>
+             <span className="text-[9px] font-bold text-sky-500/80 uppercase">{weather?.desc || "Clear"}</span>
           </div>
         </div>
       </div>
@@ -458,10 +468,13 @@ export default function TravelerDashboard() {
              <h2 className="text-[17px] font-black text-gray-900 dark:text-white">{t("explorerDashboard.upcomingTrip.title")}</h2>
           </div>
           {data?.nextTour ? (() => {
-            const tour = data.nextTour.tour;
-            const title = typeof tour.title === 'object' ? (tour.title.am || tour.title.en) : tour.title;
-            const schedule = tour.schedules?.find((s: any) => s._id.toString() === data.nextTour.scheduleId?.toString());
-            const startDateStr = schedule?.startDate ? new Date(schedule.startDate).toLocaleDateString([], { month: 'short', day: 'numeric' }) : t("explorerDashboard.upcomingTrip.tba");
+            const tour = data.nextTour.tour || {};
+            const title = typeof tour.title === 'object' ? (tour.title?.am || tour.title?.en || "Upcoming Trip") : (tour.title || "Upcoming Trip");
+            const schedule = Array.isArray(tour.schedules)
+              ? tour.schedules.find((s: any) => s?._id && data.nextTour.scheduleId && s._id.toString() === data.nextTour.scheduleId.toString())
+              : null;
+            const startDate = schedule?.startDate || schedule?.date || tour.schedules?.[0]?.startDate;
+            const startDateStr = startDate ? new Date(startDate).toLocaleDateString([], { month: 'short', day: 'numeric' }) : t("explorerDashboard.upcomingTrip.tba");
             const guideName = data.nextTour.guide?.name || t("explorerDashboard.upcomingTrip.pendingGuide");
             const coverImage = tour.images?.[0] || 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=800';
 

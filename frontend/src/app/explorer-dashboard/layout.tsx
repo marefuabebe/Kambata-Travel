@@ -54,7 +54,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
   const { t } = useLanguage();
   const pathname = usePathname();
   const router = useRouter();
-  const { user, logout, refreshUser } = useAuth();
+  const { user, loading: authLoading, logout, refreshUser } = useAuth();
   const [headerSearch, setHeaderSearch] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
@@ -66,13 +66,14 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
   const hasRefreshed = React.useRef(false);
 
   useEffect(() => {
-    if (!user || user.role !== "user") {
+    if (authLoading) return;
+    if (!user || (user.role !== "user" && user.role !== "traveler")) {
       router.push("/login");
     } else if (!hasRefreshed.current) {
       hasRefreshed.current = true;
       refreshUser();
     }
-  }, [user, router, refreshUser]);
+  }, [user, authLoading, router, refreshUser]);
 
   useEffect(() => {
     const handleOpenMenu = () => setIsMobileMenuOpen(true);
@@ -112,7 +113,7 @@ export default function ExplorerDashboardLayout({ children }: { children: React.
 
 
 
-  if (!user || user.role !== "user") {
+  if (authLoading || !user || (user.role !== "user" && user.role !== "traveler")) {
     return (
       <div className="bg-[#F8FAFC] dark:bg-[#0A0F1C] min-h-screen flex items-center justify-center">
         <div className="w-10 h-10 border-4 border-[#FF8C00] border-t-transparent rounded-full animate-spin" />
