@@ -285,9 +285,66 @@ export default function TravelerDashboard() {
             </motion.div>
           )}
 
-          {/* Personalized Recommendations */}
-          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
+        </div>
+
+        {/* ── Right Column ── */}
+        <div className="lg:col-span-4 space-y-8">
+          
+          {/* Choose Your Experience */}
+          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
+            <div>
+              <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
+                <Sparkles size={14} /> {t("explorerDashboard.chooseExperience.title")}
+              </h2>
+              
+              <div className="grid gap-4">
+                {/* Tour Only */}
+                <Link
+                  href="/explorer-dashboard/explore-tours"
+                  className="group flex flex-col p-5 rounded-2xl bg-gray-50 dark:bg-[#0F172A] border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all shadow-sm hover:-translate-y-1"
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                      <Compass size={20} className="text-emerald-500" />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-gray-900 dark:text-white group-hover:text-emerald-500 transition-colors text-lg tracking-tight">{t("explorerDashboard.chooseExperience.tour.title")}</h3>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">{t("explorerDashboard.chooseExperience.tour.tag")}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm font-bold text-gray-500 dark:text-gray-400 pl-[3.25rem]">
+                    {t("explorerDashboard.chooseExperience.tour.desc")}
+                  </p>
+                </Link>
+
+                {/* Travel Package */}
+                <Link
+                  href="/explorer-dashboard/packages"
+                  className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
+                >
+                  <div className="flex items-center gap-3 mb-2 relative z-10">
+                    <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/10 dark:bg-[#FF8C00]/20 flex items-center justify-center shrink-0">
+                      <Package size={20} className="text-[#FF8C00]" />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-gray-900 dark:text-white group-hover:text-[#FF8C00] transition-colors text-lg tracking-tight">{t("explorerDashboard.chooseExperience.package.title")}</h3>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{t("explorerDashboard.chooseExperience.package.tag")}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm font-bold text-gray-500 dark:text-emerald-100/80 pl-[3.25rem] relative z-10 leading-snug">
+                    {t("explorerDashboard.chooseExperience.package.desc")}
+                  </p>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ── Full Width (Row 2): Trending Tours covers the rest of the space ── */}
+        <div className="lg:col-span-12">
+          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 md:p-10 shadow-sm">
+            <div className="flex items-center justify-between mb-8">
               <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-2">
                 {isPersonalized
                   ? <><Sparkles size={14} className="text-[#FF8C00]" /> {t("explorerDashboard.recommendations.forYou")}</>  
@@ -305,7 +362,7 @@ export default function TravelerDashboard() {
                 <p className="text-sm font-bold text-gray-400">{t("explorerDashboard.recommendations.discovering")}</p>
               </div>
             ) : (
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {recommendations.slice(0, 4).map((rec: any) => {
                   const img = rec.images?.[0] || `https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=400&h=300`;
                   const title = getLocalizedText(rec.title, language) || t("explorerDashboard.recommendations.tourFallback");
@@ -317,25 +374,33 @@ export default function TravelerDashboard() {
                     <Link
                       key={rec._id}
                       href={`/explorer-dashboard/explore-tours?tour=${rec._id}`}
-                      className="group flex gap-4 p-3 rounded-2xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-gray-100 dark:hover:border-white/10"
+                      className="group flex gap-4 p-4 rounded-2xl bg-gray-50/50 dark:bg-white/[0.03] hover:bg-gray-50 dark:hover:bg-white/5 transition-all border border-gray-100/80 dark:border-white/5 hover:border-[#FF8C00]/30 hover:-translate-y-0.5 shadow-sm"
                     >
-                      <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0 relative">
-                        <img loading="lazy" src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                      <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 relative">
+                        <img loading="lazy" src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                       </div>
-                      <div className="flex flex-col justify-center min-w-0">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#FF8C00] mb-1 truncate">{rec.category || t("explorerDashboard.recommendations.tourFallback")}</span>
-                        <h4 className="font-bold text-gray-900 dark:text-white line-clamp-2 leading-tight mb-1 group-hover:text-[#FF8C00] transition-colors">{title}</h4>
-                        {rating > 0 && (
-                          <div className="flex items-center gap-1 mb-1">
-                            <Star size={10} className="text-amber-400 fill-amber-400" />
-                            <span className="text-[10px] font-bold text-gray-500">{rating.toFixed(1)}</span>
-                          </div>
-                        )}
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-bold text-gray-500 dark:text-gray-400">{price}</span>
+                      <div className="flex flex-col justify-center min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-[#FF8C00] truncate">
+                            {rec.category || t("explorerDashboard.recommendations.tourFallback")}
+                          </span>
+                          {rating > 0 && (
+                            <div className="flex items-center gap-1 shrink-0">
+                              <Star size={12} className="text-amber-400 fill-amber-400" />
+                              <span className="text-xs font-bold text-gray-500 dark:text-gray-400">{rating.toFixed(1)}</span>
+                            </div>
+                          )}
+                        </div>
+                        <h4 className="font-bold text-gray-900 dark:text-white line-clamp-1 leading-snug mb-2 group-hover:text-[#FF8C00] transition-colors text-base">
+                          {title}
+                        </h4>
+                        <div className="flex items-center justify-between gap-2 mt-auto">
+                          <span className="text-sm font-black text-gray-900 dark:text-white">{price}</span>
                           {reason && (
-                            <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-1.5 py-0.5 rounded-md truncate max-w-[100px]">{reason}</span>
+                            <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-1 rounded-lg truncate max-w-[160px]">
+                              {reason}
+                            </span>
                           )}
                         </div>
                       </div>
@@ -345,64 +410,8 @@ export default function TravelerDashboard() {
               </div>
             )}
           </div>
-
         </div>
 
-        {/* ── Right Column ── */}
-        <div className="lg:col-span-4 space-y-8">
-          
-          {/* Choose Your Experience */}
-          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden">
-            
-            
-            <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
-              <Sparkles size={14} /> {t("explorerDashboard.chooseExperience.title")}
-            </h2>
-            
-            <div className="grid gap-4">
-              {/* Tour Only */}
-              <Link
-                href="/explorer-dashboard/explore-tours"
-                className="group flex flex-col p-5 rounded-2xl bg-gray-50 dark:bg-[#0F172A] border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all shadow-sm hover:-translate-y-1"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
-                    <Compass size={20} className="text-emerald-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-black text-gray-900 dark:text-white group-hover:text-emerald-500 transition-colors text-lg tracking-tight">{t("explorerDashboard.chooseExperience.tour.title")}</h3>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">{t("explorerDashboard.chooseExperience.tour.tag")}</p>
-                  </div>
-                </div>
-                <p className="text-sm font-bold text-gray-500 dark:text-gray-400 pl-[3.25rem]">
-                  {t("explorerDashboard.chooseExperience.tour.desc")}
-                </p>
-              </Link>
-
-              {/* Travel Package */}
-              <Link
-                href="/explorer-dashboard/packages"
-                className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
-              >
-                
-                
-                <div className="flex items-center gap-3 mb-2 relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/10 dark:bg-[#FF8C00]/20 flex items-center justify-center shrink-0">
-                    <Package size={20} className="text-[#FF8C00]" />
-                  </div>
-                  <div>
-                    <h3 className="font-black text-gray-900 dark:text-white group-hover:text-[#FF8C00] transition-colors text-lg tracking-tight">{t("explorerDashboard.chooseExperience.package.title")}</h3>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{t("explorerDashboard.chooseExperience.package.tag")}</p>
-                  </div>
-                </div>
-                <p className="text-sm font-bold text-gray-500 dark:text-emerald-100/80 pl-[3.25rem] relative z-10 leading-snug">
-                  {t("explorerDashboard.chooseExperience.package.desc")}
-                </p>
-              </Link>
-            </div>
-          </div>
-
-        </div>
       </div>
     </motion.div>
 
