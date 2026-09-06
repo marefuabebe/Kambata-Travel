@@ -216,7 +216,11 @@ export default function TourDetailPage() {
               key={t.id}
               type="button"
               onClick={() => setAnnouncement(t.text)}
-              className="text-xs font-bold px-4 py-2 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors shadow-sm"
+              className={`text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-sm ${
+                announcement === t.text
+                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
+                  : "bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 border border-transparent"
+              }`}
             >
               {t.label}
             </button>
@@ -225,14 +229,14 @@ export default function TourDetailPage() {
         <textarea
           value={announcement}
           onChange={(e) => setAnnouncement(e.target.value)}
-          className="w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-5 text-sm min-h-[100px] outline-none focus:border-[#145A41] dark:focus:border-[#10B981] transition-colors resize-none placeholder-gray-400"
+          className="w-full bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-white/10 rounded-2xl p-5 text-sm min-h-[100px] outline-none focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors resize-none text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 font-medium"
           placeholder="Message all travelers on this tour…"
         />
         <div className="flex justify-end mt-4">
           <button
             type="button"
             onClick={sendAnnouncement}
-            className="flex items-center gap-2 bg-[#1A331B] text-white px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-[#1A331B]/20 hover:-translate-y-0.5 transition-all"
+            className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5 transition-all"
           >
             <Send size={16} /> Send to all travelers
           </button>
