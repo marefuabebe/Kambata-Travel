@@ -681,34 +681,158 @@ const getTourHistory = async (req, res, next) => {
 const sendScheduleAnnouncement = async (req, res, next) => {
   try {
     const { tourId, scheduleId, message, title } = req.body;
-    const { schedule } = await assertGuideOwnsSchedule(
+    if (!message || !message.trim()) {
+      res.status(400);
+      throw new Error("Announcement message cannot be empty");
+    }
+
+    const { tour, schedule, type } = await assertGuideOwnsSchedule(
       req.user._id,
       tourId,
       scheduleId
     );
 
-    const bookings = await Booking.find({
-      scheduleId: schedule._id,
-      status: { $in: ["confirmed", "pending"] },
-      paymentStatus: { $in: ["paid", "pending"] },
-    });
+    const tourTitle = type === "tour" 
+      ? (tour.title?.en || tour.title || "Tour") 
+      : (tour.name?.en || tour.name || tour.title?.en || tour.title || "Package");
 
-    const text = title ? `${title}: ${message}` : message;
+    // Query active bookings for both single Tours and Packages
+    let bookings = [];
+    if (type === "tour") {
+      bookings = await Booking.find({
+        scheduleId: schedule._id,
+        status: { $nin: ["cancelled", "refunded"] },
+      }).populate("user", "name email phone");
+    } else {
+      const PackageBooking = require("../models/PackageBooking");
+      bookings = await PackageBooking.find({
+        packageScheduleId: schedule._id,
+        bookingStatus: { $nin: ["cancelled", "refunded"] },
+      }).populate("user", "name email phone");
+    }
 
-    await Promise.all(
-      bookings.map((b) =>
-        sendNotification(b.user, {
-          type: "system",
-          priority: "HIGH",
-          message: text,
-          referenceId: b._id,
-        })
-      )
-    );
+    if (!bookings || bookings.length === 0) {
+      return res.json({
+        success: true,
+        count: 0,
+        message: "No registered travelers found on this schedule to notify.",
+      });
+    }
+
+    const announcementTitle = title || `Tour Update: ${tourTitle}`;
+    const text = `${announcementTitle}: ${message}`;
+
+    const ChatRoom = require("../models/ChatRoom");
+    const Message = require("../models/Message");
+    const { getIO } = require("../utils/socketIO");
+    const { sendEmail } = require("../utils/sendEmail");
+
+    let notifiedCount = 0;
+    const notifiedUserIds = new Set();
+
+    for (const b of bookings) {
+      const traveler = b.user;
+      const travelerId = traveler?._id || traveler;
+      if (!travelerId) continue;
+
+      const travelerIdStr = travelerId.toString();
+
+      // 1. In-App & Realtime Socket Notification
+      await sendNotification(travelerId, {
+        type: "system",
+        priority: "HIGH",
+        title: announcementTitle,
+        message: text,
+        referenceId: b._id,
+      });
+
+      // 2. Chat / Messages Room Delivery
+      try {
+        let chatRoom = null;
+        if (type === "tour") {
+          chatRoom = await ChatRoom.findOne({ booking: b._id, contextType: "booking" });
+          if (!chatRoom) {
+            chatRoom = await ChatRoom.create({
+              participants: [travelerId, req.user._id],
+              title: tourTitle,
+              contextType: "booking",
+              booking: b._id,
+            });
+          }
+        } else {
+          chatRoom = await ChatRoom.findOne({ packageBooking: b._id, contextType: "booking" });
+          if (!chatRoom) {
+            chatRoom = await ChatRoom.create({
+              participants: [travelerId, req.user._id],
+              title: tourTitle,
+              contextType: "booking",
+              packageBooking: b._id,
+            });
+          }
+        }
+
+        if (chatRoom) {
+          // Ensure both guide and traveler are participants
+          const participantsStr = chatRoom.participants.map(p => p.toString());
+          if (!participantsStr.includes(req.user._id.toString())) {
+            chatRoom.participants.push(req.user._id);
+            await chatRoom.save();
+          }
+          if (!participantsStr.includes(travelerIdStr)) {
+            chatRoom.participants.push(travelerId);
+            await chatRoom.save();
+          }
+
+          const msgContent = `📢 **Group Announcement**\n${message}`;
+          const chatMsg = await Message.create({
+            room: chatRoom._id,
+            sender: req.user._id,
+            text: msgContent,
+            seenBy: [req.user._id],
+          });
+
+          await ChatRoom.findByIdAndUpdate(chatRoom._id, {
+            lastMessage: {
+              text: msgContent,
+              sender: req.user._id,
+              timestamp: new Date(),
+            },
+          });
+
+          try {
+            const io = getIO();
+            io.to(chatRoom._id.toString()).emit("new_message", chatMsg);
+            io.to(travelerIdStr).emit("new_message", chatMsg);
+          } catch (socketErr) {
+            // socket error ignored
+          }
+        }
+      } catch (chatErr) {
+        console.warn(`Could not deliver announcement to chat room for booking ${b._id}:`, chatErr.message);
+      }
+
+      // 3. Email Notification (Best-effort for offline travelers)
+      if (traveler?.email && !notifiedUserIds.has(travelerIdStr)) {
+        try {
+          await sendEmail({
+            email: traveler.email,
+            subject: `📢 ${announcementTitle}`,
+            name: traveler.name || "Traveler",
+            message: `Hello ${traveler.name || "Traveler"},\n\nYour guide (${req.user.name}) has posted an important announcement for your upcoming trip "${tourTitle}":\n\n"${message}"\n\nPlease check your Kambata Travel app or dashboard for real-time details.\n\nBest regards,\nKambata Travel Team`,
+          });
+        } catch (emailErr) {
+          console.warn(`Email delivery failed for ${traveler.email}:`, emailErr.message);
+        }
+      }
+
+      notifiedUserIds.add(travelerIdStr);
+      notifiedCount++;
+    }
 
     res.json({
       success: true,
-      message: `Announcement sent to ${bookings.length} travelers`,
+      message: `Announcement successfully delivered to ${notifiedCount} traveler(s) via notifications, messages, and email.`,
+      travelersCount: notifiedCount,
     });
   } catch (error) {
     if (error.statusCode) res.status(error.statusCode);

@@ -11,11 +11,14 @@ const User = require("../models/User");
  */
 const sendNotification = async (userId, data) => {
   try {
-    const { type, priority = "NORMAL", message, referenceId } = data;
+    const targetUserId = userId?._id || userId;
+    if (!targetUserId) return null;
+
+    const { type, priority = "NORMAL", message, referenceId, title } = data;
 
     // 1. Persist to Database
     const notification = await Notification.create({
-      user: userId,
+      user: targetUserId,
       type,
       priority,
       message,
@@ -25,15 +28,16 @@ const sendNotification = async (userId, data) => {
     // 2. Real-time Delivery via Socket.IO
     try {
       const io = getIO();
-      io.to(userId.toString()).emit("new_notification", {
+      io.to(targetUserId.toString()).emit("new_notification", {
         id: notification._id,
+        title: title || "New Notification",
         type,
         priority,
         message,
         referenceId,
         createdAt: notification.createdAt,
       });
-      logger.info(`Real-time notification sent to user: ${userId}`);
+      logger.info(`Real-time notification sent to user: ${targetUserId}`);
     } catch (socketErr) {
       logger.warn(`Could not send real-time notification: ${socketErr.message}`);
     }

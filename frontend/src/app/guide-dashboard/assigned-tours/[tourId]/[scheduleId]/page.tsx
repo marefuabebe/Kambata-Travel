@@ -12,7 +12,7 @@ import {
   MESSAGE_TEMPLATES,
 } from "@/components/guide/ui";
 import toast from "react-hot-toast";
-import { ArrowLeft, Megaphone, Send, Clock, Calendar, MapPin, Users, ShieldAlert, Camera, X } from "lucide-react";
+import { ArrowLeft, Megaphone, Send, Clock, Calendar, MapPin, Users, ShieldAlert, Camera, X, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
@@ -21,6 +21,7 @@ export default function TourDetailPage() {
   const [detail, setDetail] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [announcement, setAnnouncement] = useState("");
+  const [sendingAnnouncement, setSendingAnnouncement] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
 
   const load = () => {
@@ -78,16 +79,23 @@ export default function TourDetailPage() {
   const sendAnnouncement = async () => {
     if (!announcement.trim()) return;
     try {
-      await apiClient.post("/guide-ops/announcements", {
+      setSendingAnnouncement(true);
+      const { data } = await apiClient.post("/guide-ops/announcements", {
         tourId,
         scheduleId,
         message: announcement,
         title: "Tour Update",
       });
-      toast.success("Announcement sent to all travelers on this tour");
-      setAnnouncement("");
+      if (data?.travelersCount === 0 || data?.count === 0) {
+        toast(data.message || "No active travelers found on this schedule to notify", { icon: "ℹ️" });
+      } else {
+        toast.success(data?.message || "Announcement successfully delivered to all travelers!");
+        setAnnouncement("");
+      }
     } catch (e: any) {
-      toast.error(e.response?.data?.message || "Failed to send");
+      toast.error(e.response?.data?.message || "Failed to send announcement");
+    } finally {
+      setSendingAnnouncement(false);
     }
   };
 
@@ -236,9 +244,18 @@ export default function TourDetailPage() {
           <button
             type="button"
             onClick={sendAnnouncement}
-            className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5 transition-all"
+            disabled={sendingAnnouncement || !announcement.trim()}
+            className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-3.5 rounded-2xl font-bold text-sm shadow-lg shadow-emerald-600/20 hover:-translate-y-0.5 transition-all"
           >
-            <Send size={16} /> Send to all travelers
+            {sendingAnnouncement ? (
+              <>
+                <Loader2 size={16} className="animate-spin" /> Delivering Announcement...
+              </>
+            ) : (
+              <>
+                <Send size={16} /> Send to all travelers
+              </>
+            )}
           </button>
         </div>
       </motion.div>
