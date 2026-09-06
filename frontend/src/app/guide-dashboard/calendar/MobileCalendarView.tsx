@@ -376,9 +376,10 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
                     <div className="flex items-center gap-2 mb-2">
                       {(() => {
                         const getBadgeProps = (e: any) => {
-                          if (e.isLocked) return { label: 'Locked', bg: 'bg-slate-100 dark:bg-slate-500/20', text: 'text-slate-800 dark:text-slate-400' };
-                          if (e.status === 'completed') return { label: 'Completed', bg: 'bg-blue-100 dark:bg-blue-500/20', text: 'text-blue-800 dark:text-blue-400' };
+                          if (e.type === 'timeOff') return { label: 'Time Off', bg: 'bg-gray-100 dark:bg-gray-700', text: 'text-gray-700 dark:text-gray-300' };
                           if (e.status === 'cancelled') return { label: 'Cancelled', bg: 'bg-red-100 dark:bg-red-500/20', text: 'text-red-800 dark:text-red-400' };
+                          if (e.status === 'completed' || e.assignmentStatus === 'completed') return { label: 'Completed', bg: 'bg-blue-100 dark:bg-blue-500/20', text: 'text-blue-800 dark:text-blue-400' };
+                          if (e.isLocked) return { label: 'Locked', bg: 'bg-slate-100 dark:bg-slate-500/20', text: 'text-slate-800 dark:text-slate-400' };
                           if (e.assignmentStatus === 'pending') return { label: 'Pending', bg: 'bg-amber-100 dark:bg-amber-500/20', text: 'text-amber-800 dark:text-amber-400' };
                           return { label: 'Assigned', bg: 'bg-emerald-100 dark:bg-emerald-500/20', text: 'text-emerald-800 dark:text-emerald-400' };
                         };
@@ -408,7 +409,11 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
                   <div className="bg-gray-50 dark:bg-white/5 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
                     <Clock size={24} className="text-[#0F766E] dark:text-emerald-400 mb-3" />
                     <p className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">Meeting Time</p>
-                    <p className="text-[15px] font-black text-gray-900 dark:text-white">{moment(selectedTour.start).format("h:mm A")}</p>
+                    <p className="text-[15px] font-black text-gray-900 dark:text-white">
+                      {moment(selectedTour.start).isValid() && moment(selectedTour.start).year() >= 2000
+                        ? moment(selectedTour.start).format("h:mm A")
+                        : (selectedTour.startTime || "Scheduled")}
+                    </p>
                   </div>
                   <div className="bg-gray-50 dark:bg-white/5 p-5 rounded-2xl border border-gray-100 dark:border-white/5">
                     <MapPin size={24} className="text-[#0F766E] dark:text-emerald-400 mb-3" />

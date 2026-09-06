@@ -13,11 +13,29 @@ const mapScheduleStatus = (s) => {
   return "Scheduled";
 };
 
+const parseTimeSafe = (timeStr, defaultHour = 9, defaultMinute = 0) => {
+  if (!timeStr || typeof timeStr !== "string" || timeStr === "—") {
+    return { hours: defaultHour, minutes: defaultMinute };
+  }
+  const match = timeStr.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+  if (match) {
+    let h = parseInt(match[1], 10);
+    const m = parseInt(match[2], 10);
+    const meridian = match[3]?.toUpperCase();
+    if (meridian === "PM" && h < 12) h += 12;
+    if (meridian === "AM" && h === 12) h = 0;
+    if (!isNaN(h) && !isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) {
+      return { hours: h, minutes: m };
+    }
+  }
+  return { hours: defaultHour, minutes: defaultMinute };
+};
+
 const flattenGuideAssignments = async (guideId) => {
   const tours = await Tour.find({ "schedules.guide": guideId })
     .populate("destination", "name location")
     .lean();
-5
+
   const assignments = [];
   
   // 1. Process Tour Schedules
@@ -63,13 +81,12 @@ const flattenGuideAssignments = async (guideId) => {
         isLocked: (() => {
           if (schedule.attendanceLocked) return true;
           if (schedule.status === "completed" || schedule.status === "cancelled") return false;
-          const endDateObj = new Date(schedule.endDate || schedule.date);
-          if (schedule.endTime && schedule.endTime !== "—") {
-            const [h, m] = schedule.endTime.split(":");
-            endDateObj.setHours(parseInt(h), parseInt(m), 0, 0);
-          } else {
-            endDateObj.setHours(23, 59, 59, 999);
-          }
+          const endVal = schedule.endDate || schedule.date;
+          if (!endVal) return false;
+          const endDateObj = new Date(endVal);
+          if (isNaN(endDateObj.getTime()) || endDateObj.getFullYear() < 2000) return false;
+          const { hours, minutes } = parseTimeSafe(schedule.endTime, 23, 59);
+          endDateObj.setHours(hours, minutes, 0, 0);
           return endDateObj < new Date();
         })(),
         image: tour.images?.[0],
@@ -122,13 +139,12 @@ const flattenGuideAssignments = async (guideId) => {
       isLocked: (() => {
         if (sch.attendanceLocked) return true;
         if (sch.status === "completed" || sch.status === "cancelled") return false;
-        const endDateObj = new Date(sch.endDate || sch.date);
-        if (sch.endTime && sch.endTime !== "—") {
-          const [h, m] = sch.endTime.split(":");
-          endDateObj.setHours(parseInt(h), parseInt(m), 0, 0);
-        } else {
-          endDateObj.setHours(23, 59, 59, 999);
-        }
+        const endVal = sch.endDate || sch.date;
+        if (!endVal) return false;
+        const endDateObj = new Date(endVal);
+        if (isNaN(endDateObj.getTime()) || endDateObj.getFullYear() < 2000) return false;
+        const { hours, minutes } = parseTimeSafe(sch.endTime, 23, 59);
+        endDateObj.setHours(hours, minutes, 0, 0);
         return endDateObj < new Date();
       })(),
       image: sch.packageId?.tour?.images?.[0],
@@ -925,20 +941,22 @@ const getCalendar = async (req, res, next) => {
     for (const a of assignments) {
       // Exclude rejected assignments, but include cancelled and others
       if (a.assignmentStatus === "rejected") continue;
-      const start = new Date(a.date);
-      // parse startTime
-      if (a.startTime && a.startTime !== "—") {
-        const [h, m] = a.startTime.split(":");
-        start.setHours(parseInt(h), parseInt(m), 0, 0);
-      }
       
-      const end = new Date(a.endDate || a.date);
-      if (a.endTime && a.endTime !== "—") {
-        const [h, m] = a.endTime.split(":");
-        end.setHours(parseInt(h), parseInt(m), 0, 0);
-      } else {
-        // give it default duration of 2 hours if not specified
-        end.setHours(start.getHours() + 2);
+      let start = new Date(a.date);
+      if (isNaN(start.getTime()) || start.getFullYear() < 2000) {
+        start = new Date();
+      }
+      const { hours: sh, minutes: sm } = parseTimeSafe(a.startTime, 9, 0);
+      start.setHours(sh, sm, 0, 0);
+      
+      let end = new Date(a.endDate || a.date);
+      if (isNaN(end.getTime()) || end.getFullYear() < 2000) {
+        end = new Date(start);
+      }
+      const { hours: eh, minutes: em } = parseTimeSafe(a.endTime, Math.min(23, sh + 4), sm);
+      end.setHours(eh, em, 0, 0);
+      if (end <= start) {
+        end = new Date(start.getTime() + 3 * 3600 * 1000);
       }
       
       events.push({
@@ -946,15 +964,17 @@ const getCalendar = async (req, res, next) => {
         title: a.tourName,
         start,
         end,
-        type: "assignment",
-        status: a.rawStatus,
+        type: a.type || "tour",
+        status: a.rawStatus || a.status,
         assignmentStatus: a.assignmentStatus,
         isLocked: a.isLocked || false,
         image: a.image,
         travelers: a.travelerCount,
         meetingPoint: a.meetingPoint,
         destination: a.destination,
-        coordinates: a.coordinates
+        coordinates: a.coordinates,
+        startTime: a.startTime,
+        endTime: a.endTime,
       });
     }
     
@@ -965,7 +985,7 @@ const getCalendar = async (req, res, next) => {
         start: new Date(t.startDate),
         end: new Date(t.endDate),
         type: "timeOff",
-        status: t.status,
+        status: t.status || "approved",
         reason: t.reason
       });
     }

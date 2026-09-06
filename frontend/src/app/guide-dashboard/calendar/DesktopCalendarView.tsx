@@ -253,24 +253,126 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
     };
   };
 
-  const getTourProgress = (event: any) => {
-    if (!event) return 0;
-    if (event.status === 'completed' || event.assignmentStatus === 'completed') return 100;
-    
+  const getTourProgressInfo = (event: any) => {
+    if (!event) {
+      return { percentage: 0, label: "Tour Progress", textColor: "text-gray-400", barColor: "bg-gray-300 dark:bg-gray-700", subText: "" };
+    }
+
+    // 1. Time Off
+    if (event.type === "timeOff") {
+      return {
+        percentage: 0,
+        label: "Time Off",
+        textColor: "text-gray-400 dark:text-gray-500",
+        barColor: "bg-gray-400 dark:bg-gray-600",
+        subText: "Guide time off blocked • No active tour"
+      };
+    }
+
+    // 2. Cancelled
+    if (event.status === "cancelled") {
+      return {
+        percentage: 0,
+        label: "Tour Progress",
+        textColor: "text-red-500",
+        barColor: "bg-red-500",
+        subText: "Tour was cancelled • 0% progress"
+      };
+    }
+
+    // 3. Pending
+    if (event.assignmentStatus === "pending") {
+      return {
+        percentage: 0,
+        label: "Tour Progress",
+        textColor: "text-amber-500",
+        barColor: "bg-amber-500",
+        subText: "Pending confirmation • Not started"
+      };
+    }
+
+    // 4. Completed
+    if (event.status === "completed" || event.assignmentStatus === "completed") {
+      return {
+        percentage: 100,
+        label: "Tour Progress",
+        textColor: "text-emerald-500",
+        barColor: "bg-gradient-to-r from-emerald-500 to-[#14532D]",
+        subText: "Tour completed successfully"
+      };
+    }
+
+    // 5. Locked
+    if (event.isLocked) {
+      return {
+        percentage: 0,
+        label: "Tour Progress",
+        textColor: "text-slate-400",
+        barColor: "bg-slate-500",
+        subText: "Schedule & attendance locked"
+      };
+    }
+
+    // 6. Assigned / In Progress / Scheduled - Real-time calculation!
     const now = moment();
     const start = moment(event.start);
     const end = moment(event.end);
-    
-    if (now.isBefore(start, 'day')) return 0;
-    if (now.isAfter(end, 'day')) return 100;
-    
-    const totalDuration = end.diff(start);
-    if (totalDuration === 0) return 50;
-    
-    const elapsed = now.diff(start);
-    const progress = Math.round((elapsed / totalDuration) * 100);
-    return Math.max(0, Math.min(100, progress));
+
+    if (!start.isValid() || !end.isValid() || start.year() < 2000) {
+      return {
+        percentage: 0,
+        label: "Tour Progress",
+        textColor: "text-emerald-500",
+        barColor: "bg-emerald-500",
+        subText: "Date to be scheduled"
+      };
+    }
+
+    if (now.isBefore(start)) {
+      return {
+        percentage: 0,
+        label: "Tour Progress",
+        textColor: "text-emerald-600 dark:text-emerald-400",
+        barColor: "bg-emerald-500",
+        subText: `Upcoming • Starts ${start.fromNow()}`
+      };
+    }
+
+    if (now.isAfter(end)) {
+      return {
+        percentage: 100,
+        label: "Tour Progress",
+        textColor: "text-emerald-500",
+        barColor: "bg-gradient-to-r from-[#0F766E] to-[#14532D]",
+        subText: "Tour schedule completed"
+      };
+    }
+
+    // Live In Progress
+    const totalDuration = end.diff(start, "seconds");
+    if (totalDuration <= 0) {
+      return {
+        percentage: 50,
+        label: "Tour Progress (Live)",
+        textColor: "text-emerald-500 animate-pulse",
+        barColor: "bg-gradient-to-r from-emerald-500 to-[#0F766E]",
+        subText: "Tour in progress"
+      };
+    }
+
+    const elapsed = now.diff(start, "seconds");
+    const pct = Math.max(1, Math.min(99, Math.round((elapsed / totalDuration) * 100)));
+
+    return {
+      percentage: pct,
+      label: "Tour Progress (Live)",
+      textColor: "text-emerald-500 font-extrabold",
+      barColor: "bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-600 animate-pulse",
+      subText: `In progress • ${pct}% completed`
+    };
   };
+
+  const getTourProgress = (event: any) => getTourProgressInfo(event).percentage;
 
   return (
     <div className="hidden lg:flex flex-col w-full gap-6 max-w-[1400px] mx-auto min-h-[calc(100vh-140px)]">
@@ -412,10 +514,18 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                       <div className="flex gap-2 mb-3">
                         {(() => {
                           const getBadgeProps = (e: any) => {
-                            if (e.isLocked) return { label: 'Locked', bg: 'bg-[#1E293B]', border: 'border-slate-500/30', text: 'text-slate-300' };
-                            if (e.status === 'completed') return { label: 'Completed', bg: 'bg-blue-900/90', border: 'border-blue-500/30', text: 'text-blue-300' };
+                            if (e.type === 'timeOff') return { label: 'Time Off', bg: 'bg-gray-800/90', border: 'border-gray-500/30', text: 'text-gray-300' };
                             if (e.status === 'cancelled') return { label: 'Cancelled', bg: 'bg-red-900/90', border: 'border-red-500/30', text: 'text-red-300' };
+                            if (e.status === 'completed' || e.assignmentStatus === 'completed') return { label: 'Completed', bg: 'bg-blue-900/90', border: 'border-blue-500/30', text: 'text-blue-300' };
+                            if (e.isLocked) return { label: 'Locked', bg: 'bg-[#1E293B]', border: 'border-slate-500/30', text: 'text-slate-300' };
                             if (e.assignmentStatus === 'pending') return { label: 'Pending', bg: 'bg-amber-900/90', border: 'border-amber-500/30', text: 'text-amber-300' };
+                            
+                            const now = moment();
+                            const start = moment(e.start);
+                            const end = moment(e.end);
+                            if (start.isValid() && end.isValid() && start.year() >= 2000 && now.isBetween(start, end)) {
+                              return { label: 'In Progress', bg: 'bg-emerald-600', border: 'border-emerald-400', text: 'text-white' };
+                            }
                             return { label: 'Assigned', bg: 'bg-[#14532D]/90', border: 'border-emerald-500/30', text: 'text-emerald-300' };
                           };
                           const badge = getBadgeProps(selectedEvent);
@@ -432,23 +542,39 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                   
                   <div className="flex-1 overflow-y-auto">
                     <div className="p-8 space-y-8">
-                      {/* Tour Progress */}
-                      <div>
-                         <div className="flex justify-between items-center mb-2">
-                            <span className="text-[11px] font-black uppercase text-gray-500">Tour Progress</span>
-                            <span className="text-[11px] font-black text-[#0F766E]">{getTourProgress(selectedEvent)}%</span>
-                         </div>
-                         <div className="w-full h-2 bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
-                            <div className="h-full bg-gradient-to-r from-[#0F766E] to-[#14532D] rounded-full" style={{ width: `${getTourProgress(selectedEvent)}%` }}></div>
-                         </div>
-                      </div>
+                      {/* Status-Based Real-Time Tour Progress */}
+                      {(() => {
+                        const progressInfo = getTourProgressInfo(selectedEvent);
+                        return (
+                          <div>
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-[11px] font-black uppercase text-gray-500 tracking-wider">{progressInfo.label}</span>
+                              <span className={`text-xs font-black ${progressInfo.textColor}`}>{progressInfo.percentage}%</span>
+                            </div>
+                            <div className="w-full h-2.5 bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden p-0.5">
+                              <div className={`h-full ${progressInfo.barColor} rounded-full transition-all duration-500`} style={{ width: `${progressInfo.percentage}%` }}></div>
+                            </div>
+                            {progressInfo.subText && (
+                              <p className="text-[11px] font-bold text-gray-400 dark:text-gray-500 mt-2">{progressInfo.subText}</p>
+                            )}
+                          </div>
+                        );
+                      })()}
 
                       <div className="grid grid-cols-2 gap-4">
                         <div className="bg-[#F8F9F5] dark:bg-white/5 p-5 rounded-[20px] border border-gray-100 dark:border-white/5">
                           <Clock size={20} className="text-[#0F766E] mb-3" />
                           <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">Schedule</p>
-                          <p className="text-base font-black text-gray-900 dark:text-white">{moment(selectedEvent.start).format("h:mm A")}</p>
-                          <p className="text-xs font-medium text-gray-500 mt-1">{moment(selectedEvent.start).format("MMM D, YYYY")}</p>
+                          <p className="text-base font-black text-gray-900 dark:text-white">
+                            {moment(selectedEvent.start).isValid() && moment(selectedEvent.start).year() >= 2000
+                              ? moment(selectedEvent.start).format("h:mm A")
+                              : (selectedEvent.startTime || "Scheduled")}
+                          </p>
+                          <p className="text-xs font-medium text-gray-500 mt-1">
+                            {moment(selectedEvent.start).isValid() && moment(selectedEvent.start).year() >= 2000
+                              ? moment(selectedEvent.start).format("MMM D, YYYY")
+                              : "Date Scheduled"}
+                          </p>
                         </div>
                         <div className="bg-[#F8F9F5] dark:bg-white/5 p-5 rounded-[20px] border border-gray-100 dark:border-white/5 relative overflow-hidden">
                           <Users size={20} className="text-[#D4A017] mb-3" />
@@ -508,23 +634,55 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                     <button className="w-14 h-14 bg-[#F8F9F5] dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-[16px] flex items-center justify-center text-[#D4A017] hover:scale-105 transition-transform shadow-sm">
                       <MessageSquare size={20} />
                     </button>
-                    {selectedEvent.isLocked ? (
-                      <button disabled className="flex-1 h-14 bg-slate-200 dark:bg-[#1E293B] rounded-[16px] text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 cursor-not-allowed">
-                        <AlertTriangle size={20} /> Locked
-                      </button>
-                    ) : moment().isAfter(moment(selectedEvent.end), 'day') ? (
-                      <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
-                        <CheckCircle size={20} /> Tour Completed
-                      </button>
-                    ) : moment().isBefore(moment(selectedEvent.start), 'day') ? (
-                      <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
-                        <Clock size={20} /> Upcoming Tour
-                      </button>
-                    ) : (
-                      <button className="flex-1 h-14 bg-[#14532D] rounded-[16px] text-sm font-black uppercase tracking-widest text-white flex items-center justify-center gap-2 shadow-lg shadow-[#14532D]/20 hover:-translate-y-0.5 transition-transform">
-                        <PlayCircle size={20} /> Start Tour
-                      </button>
-                    )}
+                    {(() => {
+                      if (selectedEvent.type === "timeOff") {
+                        return (
+                          <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
+                            <Clock size={20} /> Time Off Blocked
+                          </button>
+                        );
+                      }
+                      if (selectedEvent.status === "cancelled") {
+                        return (
+                          <button disabled className="flex-1 h-14 bg-red-100 dark:bg-red-900/20 rounded-[16px] text-sm font-black uppercase tracking-widest text-red-500 flex items-center justify-center gap-2 cursor-not-allowed">
+                            <AlertTriangle size={20} /> Tour Cancelled
+                          </button>
+                        );
+                      }
+                      if (selectedEvent.assignmentStatus === "pending") {
+                        return (
+                          <button disabled className="flex-1 h-14 bg-amber-100 dark:bg-amber-900/20 rounded-[16px] text-sm font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 flex items-center justify-center gap-2 cursor-not-allowed">
+                            <Clock size={20} /> Pending Acceptance
+                          </button>
+                        );
+                      }
+                      if (selectedEvent.isLocked) {
+                        return (
+                          <button disabled className="flex-1 h-14 bg-slate-200 dark:bg-[#1E293B] rounded-[16px] text-sm font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-center gap-2 cursor-not-allowed">
+                            <AlertTriangle size={20} /> Locked
+                          </button>
+                        );
+                      }
+                      if (selectedEvent.status === "completed" || (moment(selectedEvent.end).isValid() && moment(selectedEvent.end).year() >= 2000 && moment().isAfter(moment(selectedEvent.end)))) {
+                        return (
+                          <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
+                            <CheckCircle size={20} /> Tour Completed
+                          </button>
+                        );
+                      }
+                      if (moment(selectedEvent.start).isValid() && moment(selectedEvent.start).year() >= 2000 && moment().isBefore(moment(selectedEvent.start))) {
+                        return (
+                          <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
+                            <Clock size={20} /> Upcoming Tour
+                          </button>
+                        );
+                      }
+                      return (
+                        <button className="flex-1 h-14 bg-[#14532D] rounded-[16px] text-sm font-black uppercase tracking-widest text-white flex items-center justify-center gap-2 shadow-lg shadow-[#14532D]/20 hover:-translate-y-0.5 transition-transform">
+                          <PlayCircle size={20} /> Start Tour
+                        </button>
+                      );
+                    })()}
                   </div>
                 </>
               )}
