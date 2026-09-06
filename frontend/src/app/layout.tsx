@@ -55,20 +55,20 @@ export const viewport: Viewport = {
   themeColor: "#0F766E",
 };
 
-const defaultTitle = "Kambaata Travel | Discover Ethiopia's Hidden Gem";
-const defaultDescription = "Experience the rich culture, breathtaking landscapes, and warm hospitality of Kambaata Zone. Book authentic tours with verified local guides.";
+const defaultTitle = "Kambata Travel | Discover Ethiopia's Hidden Gem";
+const defaultDescription = "Experience the rich culture, breathtaking landscapes, and warm hospitality of Kambata Zone. Book authentic tours with verified local guides.";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://kambata-travel.vercel.app'),
   title: {
-    template: "%s | Kambaata Travel",
+    template: "%s | Kambata Travel",
     default: defaultTitle,
   },
   description: defaultDescription,
-  keywords: ["Kambaata travel", "Ethiopia tours", "Local guides Ethiopia", "Kambaata Zone", "Ethiopia heritage", "cultural tours Ethiopia"],
-  authors: [{ name: "Kambaata Travel" }],
-  creator: "Kambaata Travel",
-  publisher: "Kambaata Travel",
+  keywords: ["Kambata travel", "Ethiopia tours", "Local guides Ethiopia", "Kambata Zone", "Ethiopia heritage", "cultural tours Ethiopia", "Visit Kambata"],
+  authors: [{ name: "Kambata Travel" }],
+  creator: "Kambata Travel",
+  publisher: "Kambata Travel",
   formatDetection: {
     email: false,
     address: false,
@@ -85,13 +85,13 @@ export const metadata: Metadata = {
     title: defaultTitle,
     description: defaultDescription,
     url: "https://kambata-travel.vercel.app",
-    siteName: "Kambaata Travel",
+    siteName: "Kambata Travel",
     images: [
       {
-        url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.png", // using an assumed valid PNG or SVG version
+        url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.png",
         width: 1200,
         height: 630,
-        alt: "Kambaata Travel - Discover Ethiopia",
+        alt: "Kambata Travel - Discover Ethiopia",
       },
     ],
     locale: "en_US",
@@ -119,17 +119,21 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg", type: "image/svg+xml" }
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg" }
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
+    shortcut: "/favicon.ico",
   },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Kambaata Travel",
+    title: "Kambata Travel",
   },
 };
 
@@ -141,16 +145,16 @@ export default function RootLayout({
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Kambaata Travel",
+    "name": "Kambata Travel",
     "url": "https://kambata-travel.vercel.app",
-    "logo": "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.svg",
-    "description": "Experience the rich culture, breathtaking landscapes, and warm hospitality of Kambaata Zone. Book authentic tours with verified local guides."
+    "logo": "https://res.cloudinary.com/dzf4st3t2/image/upload/v1782037998/kambata/dkpheumdufifku4djspm.png",
+    "description": "Experience the rich culture, breathtaking landscapes, and warm hospitality of Kambata Zone. Book authentic tours with verified local guides."
   };
 
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Kambaata Travel",
+    "name": "Kambata Travel",
     "url": "https://kambata-travel.vercel.app"
   };
 

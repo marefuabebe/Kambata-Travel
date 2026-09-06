@@ -15,7 +15,7 @@ export async function generateMetadata(
   
   return {
     title: `Guide Profile`,
-    description: `View the profile, tours, and ratings of this local guide in Kambaata Zone. Book your next authentic experience today.`,
+    description: `View the profile, tours, and ratings of this local guide in Kambata Zone. Book your next authentic experience today.`,
   };
 }
 
