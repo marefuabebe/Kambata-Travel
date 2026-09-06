@@ -182,7 +182,7 @@ export default function TravelerDashboard() {
       <div className="grid lg:grid-cols-12 gap-8">
         
         {/* ── Left Column ── */}
-        <div className="lg:col-span-8 space-y-8">
+        <div className="lg:col-span-8 flex flex-col justify-stretch gap-6">
 
           {/* Payment Pending Alerts for Custom Requests */}
           {requests.filter(req => req.status === "converted_to_schedule" || req.status === "awaiting_payment").map(req => {
@@ -236,13 +236,11 @@ export default function TravelerDashboard() {
             return (
               <motion.div 
                 whileHover={{ scale: 0.995 }}
-                className="relative overflow-hidden bg-white dark:bg-[#1E293B] rounded-[2.5rem] p-8 md:p-10 text-slate-900 dark:text-white shadow-xl group border border-[#BFDBFE] dark:border-white/5"
+                className="relative overflow-hidden bg-white dark:bg-[#1E293B] rounded-[2.5rem] p-8 md:p-10 text-slate-900 dark:text-white shadow-xl group border border-[#BFDBFE] dark:border-white/5 flex-1 h-full flex flex-col justify-center"
               >
-                
-                
-                <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 my-auto">
                   <div>
-                    <div className="inline-flex items-center gap-2 bg-white/60 dark:bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl mb-6 border border-white dark:border-white/10 shadow-sm">
+                    <div className="inline-flex items-center gap-2 bg-white/60 dark:bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl mb-4 border border-white dark:border-white/10 shadow-sm">
                       <Compass size={14} className="text-[#0284C7] dark:text-[#38BDF8]" />
                       <p className="text-[10px] font-black uppercase tracking-widest text-[#0284C7] dark:text-[#38BDF8]">
                         {t("explorerDashboard.upcomingTrip.tag")}
@@ -274,7 +272,7 @@ export default function TravelerDashboard() {
             );
           })() : (
             <motion.div 
-              className="bg-white-[#1E293B] rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200 dark:border-white/10"
+              className="bg-white dark:bg-[#1E293B] rounded-[2.5rem] p-12 text-center border border-dashed border-gray-200 dark:border-white/10 flex-1 h-full flex flex-col items-center justify-center"
             >
               <Compass size={40} className="mx-auto mb-4 text-gray-300 dark:text-gray-600" />
               <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">{t("explorerDashboard.noUpcoming.title")}</h3>
@@ -288,12 +286,12 @@ export default function TravelerDashboard() {
         </div>
 
         {/* ── Right Column ── */}
-        <div className="lg:col-span-4 space-y-8">
+        <div className="lg:col-span-4 flex flex-col justify-stretch">
           
           {/* Choose Your Experience */}
-          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden h-full flex flex-col justify-between">
+          <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm relative overflow-hidden flex-1 h-full flex flex-col justify-between">
             <div>
-              <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
+              <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-5 flex items-center gap-2">
                 <Sparkles size={14} /> {t("explorerDashboard.chooseExperience.title")}
               </h2>
               
@@ -301,7 +299,7 @@ export default function TravelerDashboard() {
                 {/* Tour Only */}
                 <Link
                   href="/explorer-dashboard/explore-tours"
-                  className="group flex flex-col p-5 rounded-2xl bg-gray-50 dark:bg-[#0F172A] border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all shadow-sm hover:-translate-y-1"
+                  className="group flex flex-col p-5 rounded-2xl bg-gray-50 dark:bg-[#0F172A] border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 dark:hover:border-emerald-500/30 transition-all shadow-sm hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
@@ -320,7 +318,7 @@ export default function TravelerDashboard() {
                 {/* Travel Package */}
                 <Link
                   href="/explorer-dashboard/packages"
-                  className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
+                  className="group flex flex-col p-5 rounded-2xl bg-white dark:bg-[#1E293B] border border-gray-100 dark:border-white/5 hover:border-[#FF8C00]/50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 relative overflow-hidden"
                 >
                   <div className="flex items-center gap-3 mb-2 relative z-10">
                     <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/10 dark:bg-[#FF8C00]/20 flex items-center justify-center shrink-0">
