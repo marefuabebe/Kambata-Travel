@@ -10,6 +10,9 @@ import {
   PlayCircle, Download, FileText, FileSpreadsheet, Filter, CheckCircle
 } from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
+import apiClient from "@/utils/apiClient";
+import toast from "react-hot-toast";
+import Link from "next/link";
 
 const localizer = momentLocalizer(moment);
 
@@ -65,25 +68,111 @@ const SkeletonLoader = () => (
   </div>
 );
 
-export default function DesktopCalendarView({ events, loading, onBlockDates }: { events: any[], loading: boolean, onBlockDates: () => void }) {
+interface DesktopCalendarViewProps {
+  events: any[];
+  loading: boolean;
+  onBlockDates: () => void;
+  onRefresh?: () => void;
+}
+
+export default function DesktopCalendarView({ events, loading, onBlockDates, onRefresh }: DesktopCalendarViewProps) {
   const [view, setView] = useState<"month" | "week" | "day" | "agenda">("month");
   const [date, setDate] = useState(new Date());
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [districtFilter, setDistrictFilter] = useState("all");
   const [showExportMenu, setShowExportMenu] = useState(false);
+  const [actionLoading, setActionLoading] = useState(false);
   const weather = useWeather();
   
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
+
+  const handleStartTour = async (event: any) => {
+    if (!event) return;
+    setActionLoading(true);
+    try {
+      const tourId = event.tourId || event.id;
+      const scheduleId = event.scheduleId || event.id;
+      await apiClient.patch(`/guide-ops/assignments/${tourId}/${scheduleId}/status`, {
+        status: "start"
+      });
+      toast.success("Tour / Package started successfully!");
+      setSelectedEvent((prev: any) => prev ? {
+        ...prev,
+        status: "In Progress",
+        rawStatus: "in_progress",
+        assignmentStatus: "accepted",
+      } : null);
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to start tour");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleAcceptAssignment = async (event: any) => {
+    if (!event) return;
+    setActionLoading(true);
+    try {
+      await apiClient.post("/guide-ops/assignments/respond", {
+        scheduleId: event.scheduleId || event.id,
+        type: event.type || "tour",
+        decision: "accepted"
+      });
+      toast.success("Assignment accepted successfully!");
+      setSelectedEvent((prev: any) => prev ? {
+        ...prev,
+        assignmentStatus: "accepted"
+      } : null);
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to accept assignment");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleCompleteTour = async (event: any) => {
+    if (!event) return;
+    setActionLoading(true);
+    try {
+      const tourId = event.tourId || event.id;
+      const scheduleId = event.scheduleId || event.id;
+      await apiClient.patch(`/guide-ops/assignments/${tourId}/${scheduleId}/status`, {
+        status: "complete"
+      });
+      toast.success("Tour marked as completed!");
+      setSelectedEvent((prev: any) => prev ? {
+        ...prev,
+        status: "completed",
+        rawStatus: "completed",
+        assignmentStatus: "accepted"
+      } : null);
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to complete tour");
+    } finally {
+      setActionLoading(false);
+    }
+  };
 
   const filteredEvents = events.filter(e => {
     if (search && !e.title?.toLowerCase().includes(search.toLowerCase())) return false;
     
     if (statusFilter !== "all") {
-      if (statusFilter === "assigned") {
-        if (e.status !== "confirmed" && e.assignmentStatus !== "confirmed") return false;
-      } else {
-        if (e.status !== statusFilter && e.assignmentStatus !== statusFilter) return false;
+      if (statusFilter === "timeOff") {
+        if (e.type !== "timeOff") return false;
+      } else if (statusFilter === "locked") {
+        if (!e.isLocked) return false;
+      } else if (statusFilter === "pending") {
+        if (e.assignmentStatus !== "pending") return false;
+      } else if (statusFilter === "completed") {
+        if (e.status !== "completed" && e.rawStatus !== "completed" && e.assignmentStatus !== "completed") return false;
+      } else if (statusFilter === "cancelled") {
+        if (e.status !== "cancelled" && e.rawStatus !== "cancelled") return false;
+      } else if (statusFilter === "assigned") {
+        if (e.type === "timeOff" || e.isLocked || e.status === "cancelled" || e.status === "completed" || e.rawStatus === "completed" || e.assignmentStatus === "pending") return false;
       }
     }
     
@@ -162,6 +251,8 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
             <option value="pending" className="bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white">Pending</option>
             <option value="completed" className="bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white">Completed</option>
             <option value="cancelled" className="bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white">Cancelled</option>
+            <option value="timeOff" className="bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white">Time Off</option>
+            <option value="locked" className="bg-white dark:bg-[#1E293B] text-gray-900 dark:text-white">Locked</option>
           </select>
           <div className="w-px bg-gray-200 dark:bg-white/10 mx-1"></div>
           <select value={districtFilter} onChange={(e) => setDistrictFilter(e.target.value)} className="px-3 py-1.5 bg-transparent text-sm font-bold text-gray-700 dark:text-gray-300 outline-none cursor-pointer">
@@ -200,6 +291,13 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
   );
 
   const CustomEvent = ({ event }: any) => {
+    const isStartedOrInProgress = 
+      event.rawStatus === "in_progress" ||
+      event.status === "in_progress" ||
+      event.status === "In Progress" ||
+      event.tourStatus === "started" ||
+      (event.attendance && event.attendance.present > 0);
+
     let bgColor = "bg-emerald-500/90";
     let textColor = "text-emerald-100";
     let borderColor = "border-emerald-500/30";
@@ -212,14 +310,18 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
       bgColor = "bg-slate-700/90";
       textColor = "text-slate-100";
       borderColor = "border-slate-700/30";
-    } else if (event.status === "cancelled") {
+    } else if (event.status === "cancelled" || event.rawStatus === "cancelled") {
       bgColor = "bg-red-500/90";
       textColor = "text-red-100";
       borderColor = "border-red-500/30";
-    } else if (event.status === "completed") {
+    } else if (event.status === "completed" || event.rawStatus === "completed" || event.assignmentStatus === "completed") {
       bgColor = "bg-blue-500/90";
       textColor = "text-blue-100";
       borderColor = "border-blue-500/30";
+    } else if (isStartedOrInProgress) {
+      bgColor = "bg-emerald-600";
+      textColor = "text-white";
+      borderColor = "border-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.3)]";
     } else if (event.assignmentStatus === "pending") {
       bgColor = "bg-amber-500/90";
       textColor = "text-amber-100";
@@ -270,7 +372,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
     }
 
     // 2. Cancelled
-    if (event.status === "cancelled") {
+    if (event.status === "cancelled" || event.rawStatus === "cancelled") {
       return {
         percentage: 0,
         label: "Tour Progress",
@@ -280,19 +382,8 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
       };
     }
 
-    // 3. Pending
-    if (event.assignmentStatus === "pending") {
-      return {
-        percentage: 0,
-        label: "Tour Progress",
-        textColor: "text-amber-500",
-        barColor: "bg-amber-500",
-        subText: "Pending confirmation • Not started"
-      };
-    }
-
-    // 4. Completed
-    if (event.status === "completed" || event.assignmentStatus === "completed") {
+    // 3. Completed
+    if (event.status === "completed" || event.rawStatus === "completed" || event.assignmentStatus === "completed") {
       return {
         percentage: 100,
         label: "Tour Progress",
@@ -302,7 +393,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
       };
     }
 
-    // 5. Locked
+    // 4. Locked
     if (event.isLocked) {
       return {
         percentage: 0,
@@ -313,7 +404,48 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
       };
     }
 
-    // 6. Assigned / In Progress / Scheduled - Real-time calculation!
+    // 5. Started or In Progress (QR check-in / manual check-in / start action)
+    const isStartedOrInProgress = 
+      event.rawStatus === "in_progress" ||
+      event.status === "in_progress" ||
+      event.status === "In Progress" ||
+      event.tourStatus === "started" ||
+      (event.attendance && event.attendance.present > 0);
+
+    if (isStartedOrInProgress) {
+      const now = moment();
+      const start = moment(event.start);
+      const end = moment(event.end);
+      let pct = 50; // User required: at least 50% when tour/package is started
+      if (start.isValid() && end.isValid() && end.isAfter(start)) {
+        const totalDuration = end.diff(start, "seconds");
+        const elapsed = now.diff(start, "seconds");
+        if (totalDuration > 0 && elapsed > 0) {
+          const ratio = Math.min(1, Math.max(0, elapsed / totalDuration));
+          pct = Math.round(50 + ratio * 45); // smoothly scales from 50% to 95%
+        }
+      }
+      return {
+        percentage: pct,
+        label: "Tour Progress (Started)",
+        textColor: "text-emerald-500 font-extrabold",
+        barColor: "bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-600 animate-pulse",
+        subText: `Tour / Package started • ${pct}% completed`
+      };
+    }
+
+    // 6. Pending confirmation
+    if (event.assignmentStatus === "pending") {
+      return {
+        percentage: 0,
+        label: "Tour Progress",
+        textColor: "text-amber-500",
+        barColor: "bg-amber-500",
+        subText: "Pending confirmation • Not started"
+      };
+    }
+
+    // 7. Assigned / Scheduled - Real-time calculation!
     const now = moment();
     const start = moment(event.start);
     const end = moment(event.end);
@@ -334,7 +466,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
         label: "Tour Progress",
         textColor: "text-emerald-600 dark:text-emerald-400",
         barColor: "bg-emerald-500",
-        subText: `Upcoming • Starts ${start.fromNow()}`
+        subText: `Assigned • Starts ${start.fromNow()}`
       };
     }
 
@@ -361,7 +493,7 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
     }
 
     const elapsed = now.diff(start, "seconds");
-    const pct = Math.max(1, Math.min(99, Math.round((elapsed / totalDuration) * 100)));
+    const pct = Math.max(50, Math.min(95, Math.round((elapsed / totalDuration) * 100)));
 
     return {
       percentage: pct,
@@ -515,17 +647,22 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                         {(() => {
                           const getBadgeProps = (e: any) => {
                             if (e.type === 'timeOff') return { label: 'Time Off', bg: 'bg-gray-800/90', border: 'border-gray-500/30', text: 'text-gray-300' };
-                            if (e.status === 'cancelled') return { label: 'Cancelled', bg: 'bg-red-900/90', border: 'border-red-500/30', text: 'text-red-300' };
-                            if (e.status === 'completed' || e.assignmentStatus === 'completed') return { label: 'Completed', bg: 'bg-blue-900/90', border: 'border-blue-500/30', text: 'text-blue-300' };
                             if (e.isLocked) return { label: 'Locked', bg: 'bg-[#1E293B]', border: 'border-slate-500/30', text: 'text-slate-300' };
-                            if (e.assignmentStatus === 'pending') return { label: 'Pending', bg: 'bg-amber-900/90', border: 'border-amber-500/30', text: 'text-amber-300' };
+                            if (e.status === 'cancelled' || e.rawStatus === 'cancelled') return { label: 'Cancelled', bg: 'bg-red-900/90', border: 'border-red-500/30', text: 'text-red-300' };
+                            if (e.status === 'completed' || e.rawStatus === 'completed' || e.assignmentStatus === 'completed') return { label: 'Completed', bg: 'bg-blue-900/90', border: 'border-blue-500/30', text: 'text-blue-300' };
                             
-                            const now = moment();
-                            const start = moment(e.start);
-                            const end = moment(e.end);
-                            if (start.isValid() && end.isValid() && start.year() >= 2000 && now.isBetween(start, end)) {
+                            const isStarted = 
+                              e.rawStatus === "in_progress" ||
+                              e.status === "in_progress" ||
+                              e.status === "In Progress" ||
+                              e.tourStatus === "started" ||
+                              (e.attendance && e.attendance.present > 0);
+
+                            if (isStarted) {
                               return { label: 'In Progress', bg: 'bg-emerald-600', border: 'border-emerald-400', text: 'text-white' };
                             }
+
+                            if (e.assignmentStatus === 'pending') return { label: 'Pending', bg: 'bg-amber-900/90', border: 'border-amber-500/30', text: 'text-amber-300' };
                             return { label: 'Assigned', bg: 'bg-[#14532D]/90', border: 'border-emerald-500/30', text: 'text-emerald-300' };
                           };
                           const badge = getBadgeProps(selectedEvent);
@@ -642,17 +779,10 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                           </button>
                         );
                       }
-                      if (selectedEvent.status === "cancelled") {
+                      if (selectedEvent.status === "cancelled" || selectedEvent.rawStatus === "cancelled") {
                         return (
                           <button disabled className="flex-1 h-14 bg-red-100 dark:bg-red-900/20 rounded-[16px] text-sm font-black uppercase tracking-widest text-red-500 flex items-center justify-center gap-2 cursor-not-allowed">
                             <AlertTriangle size={20} /> Tour Cancelled
-                          </button>
-                        );
-                      }
-                      if (selectedEvent.assignmentStatus === "pending") {
-                        return (
-                          <button disabled className="flex-1 h-14 bg-amber-100 dark:bg-amber-900/20 rounded-[16px] text-sm font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 flex items-center justify-center gap-2 cursor-not-allowed">
-                            <Clock size={20} /> Pending Acceptance
                           </button>
                         );
                       }
@@ -663,23 +793,69 @@ export default function DesktopCalendarView({ events, loading, onBlockDates }: {
                           </button>
                         );
                       }
-                      if (selectedEvent.status === "completed" || (moment(selectedEvent.end).isValid() && moment(selectedEvent.end).year() >= 2000 && moment().isAfter(moment(selectedEvent.end)))) {
+                      if (selectedEvent.status === "completed" || selectedEvent.rawStatus === "completed" || selectedEvent.assignmentStatus === "completed") {
                         return (
                           <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
                             <CheckCircle size={20} /> Tour Completed
                           </button>
                         );
                       }
-                      if (moment(selectedEvent.start).isValid() && moment(selectedEvent.start).year() >= 2000 && moment().isBefore(moment(selectedEvent.start))) {
+
+                      const isStarted = 
+                        selectedEvent.rawStatus === "in_progress" ||
+                        selectedEvent.status === "in_progress" ||
+                        selectedEvent.status === "In Progress" ||
+                        selectedEvent.tourStatus === "started" ||
+                        (selectedEvent.attendance && selectedEvent.attendance.present > 0);
+
+                      if (isStarted) {
                         return (
-                          <button disabled className="flex-1 h-14 bg-gray-200 dark:bg-white/5 rounded-[16px] text-sm font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center justify-center gap-2 cursor-not-allowed">
-                            <Clock size={20} /> Upcoming Tour
-                          </button>
+                          <div className="flex-1 flex gap-2">
+                            <button 
+                              onClick={() => handleCompleteTour(selectedEvent)}
+                              disabled={actionLoading}
+                              className="flex-1 h-14 bg-blue-600 hover:bg-blue-700 rounded-[16px] text-sm font-black uppercase tracking-widest text-white flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 hover:-translate-y-0.5 transition-all disabled:opacity-50"
+                            >
+                              <CheckCircle size={20} /> Complete Tour
+                            </button>
+                            <Link
+                              href={selectedEvent.type === "package" ? "/guide-dashboard/assigned-tours" : `/guide-dashboard/assigned-tours/${selectedEvent.tourId || selectedEvent.id}/${selectedEvent.scheduleId || selectedEvent.id}`}
+                              className="h-14 px-5 bg-[#F8F9F5] dark:bg-[#1E293B] border border-gray-200 dark:border-white/10 rounded-[16px] text-xs font-black uppercase tracking-wider text-gray-700 dark:text-gray-200 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                            >
+                              Manage
+                            </Link>
+                          </div>
                         );
                       }
+
+                      if (selectedEvent.assignmentStatus === "pending") {
+                        return (
+                          <div className="flex-1 flex gap-2">
+                            <button 
+                              onClick={() => handleAcceptAssignment(selectedEvent)}
+                              disabled={actionLoading}
+                              className="flex-1 h-14 bg-amber-500 hover:bg-amber-600 rounded-[16px] text-xs font-black uppercase tracking-wider text-white flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/20 hover:-translate-y-0.5 transition-all disabled:opacity-50"
+                            >
+                              <CheckCircle size={18} /> Accept
+                            </button>
+                            <button 
+                              onClick={() => handleStartTour(selectedEvent)}
+                              disabled={actionLoading}
+                              className="flex-1 h-14 bg-[#14532D] hover:bg-[#0f3d21] rounded-[16px] text-xs font-black uppercase tracking-wider text-white flex items-center justify-center gap-1.5 shadow-lg shadow-[#14532D]/20 hover:-translate-y-0.5 transition-all disabled:opacity-50"
+                            >
+                              <PlayCircle size={18} /> Start Now
+                            </button>
+                          </div>
+                        );
+                      }
+
                       return (
-                        <button className="flex-1 h-14 bg-[#14532D] rounded-[16px] text-sm font-black uppercase tracking-widest text-white flex items-center justify-center gap-2 shadow-lg shadow-[#14532D]/20 hover:-translate-y-0.5 transition-transform">
-                          <PlayCircle size={20} /> Start Tour
+                        <button 
+                          onClick={() => handleStartTour(selectedEvent)}
+                          disabled={actionLoading}
+                          className="flex-1 h-14 bg-[#14532D] hover:bg-[#0f3d21] rounded-[16px] text-sm font-black uppercase tracking-widest text-white flex items-center justify-center gap-2 shadow-lg shadow-[#14532D]/20 hover:-translate-y-0.5 transition-all disabled:opacity-50"
+                        >
+                          <PlayCircle size={20} /> {actionLoading ? "Starting..." : "Start Tour / Package"}
                         </button>
                       );
                     })()}

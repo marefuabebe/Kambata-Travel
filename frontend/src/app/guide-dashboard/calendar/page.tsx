@@ -164,7 +164,12 @@ export default function GuideCalendarPage() {
       </motion.div>
 
       <div className="hidden lg:block w-full">
-         <DesktopCalendarView events={events} loading={loading} onBlockDates={() => setShowModal(true)} />
+         <DesktopCalendarView 
+           events={events} 
+           loading={loading} 
+           onBlockDates={() => setShowModal(true)} 
+           onRefresh={fetchCalendar}
+         />
       </div>
 
       {/* Mobile View */}
@@ -172,6 +177,7 @@ export default function GuideCalendarPage() {
         events={events} 
         loading={loading} 
         onBlockDatesClick={() => setShowModal(true)} 
+        onRefresh={fetchCalendar}
       />
 
       {/* Block Dates Modal */}

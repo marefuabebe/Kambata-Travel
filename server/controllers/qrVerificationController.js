@@ -301,13 +301,13 @@ const verifyQrBooking = async (req, res, next) => {
         const PackageSchedule = require("../models/PackageSchedule");
         await PackageSchedule.updateOne(
           { _id: schedule._id },
-          { $set: { status: "in_progress" } }
+          { $set: { status: "in_progress", assignmentStatus: "accepted" } }
         );
       } else {
         const Tour = require("../models/Tour");
         await Tour.updateOne(
           { _id: booking.tour._id, "schedules._id": schedule._id },
-          { $set: { "schedules.$.status": "in_progress" } }
+          { $set: { "schedules.$.status": "in_progress", "schedules.$.assignmentStatus": "accepted" } }
         );
       }
     }
@@ -508,13 +508,13 @@ const manualVerifyQrBooking = async (req, res, next) => {
         const PackageSchedule = require("../models/PackageSchedule");
         await PackageSchedule.updateOne(
           { _id: schedule._id },
-          { $set: { status: "in_progress" } }
+          { $set: { status: "in_progress", assignmentStatus: "accepted" } }
         );
       } else {
         const Tour = require("../models/Tour");
         await Tour.updateOne(
           { _id: booking.tour._id, "schedules._id": schedule._id },
-          { $set: { "schedules.$.status": "in_progress" } }
+          { $set: { "schedules.$.status": "in_progress", "schedules.$.assignmentStatus": "accepted" } }
         );
       }
     }

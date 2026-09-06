@@ -6,25 +6,76 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   ChevronLeft, ChevronRight, MapPin, Users, Clock, CloudSun, 
   MessageCircle, Navigation, Play, MoreVertical, Phone, QrCode, 
-  AlertCircle, Shield, Plus, Calendar as CalendarIcon, X 
+  AlertCircle, Shield, Plus, Calendar as CalendarIcon, X, CheckCircle 
 } from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
 import { useLanguage } from "@/context/LanguageContext";
+import apiClient from "@/utils/apiClient";
 import toast from "react-hot-toast";
 
 interface MobileCalendarViewProps {
   events: any[];
   loading: boolean;
   onBlockDatesClick: () => void;
+  onRefresh?: () => void;
 }
 
-export default function MobileCalendarView({ events, loading, onBlockDatesClick }: MobileCalendarViewProps) {
+export default function MobileCalendarView({ events, loading, onBlockDatesClick, onRefresh }: MobileCalendarViewProps) {
   const { t } = useLanguage();
   const [selectedDate, setSelectedDate] = useState(moment().startOf('day'));
   const [currentMonth, setCurrentMonth] = useState(moment().startOf('month'));
   const [selectedTour, setSelectedTour] = useState<any | null>(null);
+  const [actionLoading, setActionLoading] = useState(false);
   const weather = useWeather();
   const [fabOpen, setFabOpen] = useState(false);
+
+  const handleStartTour = async (event: any) => {
+    if (!event) return;
+    setActionLoading(true);
+    try {
+      const tourId = event.tourId || event.id;
+      const scheduleId = event.scheduleId || event.id;
+      await apiClient.patch(`/guide-ops/assignments/${tourId}/${scheduleId}/status`, {
+        status: "start"
+      });
+      toast.success("Tour / Package started successfully!");
+      setSelectedTour((prev: any) => prev ? {
+        ...prev,
+        status: "In Progress",
+        rawStatus: "in_progress",
+        assignmentStatus: "accepted",
+      } : null);
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to start tour");
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
+  const handleCompleteTour = async (event: any) => {
+    if (!event) return;
+    setActionLoading(true);
+    try {
+      const tourId = event.tourId || event.id;
+      const scheduleId = event.scheduleId || event.id;
+      await apiClient.patch(`/guide-ops/assignments/${tourId}/${scheduleId}/status`, {
+        status: "complete"
+      });
+      toast.success("Tour marked as completed!");
+      setSelectedTour((prev: any) => prev ? {
+        ...prev,
+        status: "completed",
+        rawStatus: "completed",
+        assignmentStatus: "accepted",
+      } : null);
+      if (onRefresh) onRefresh();
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Failed to complete tour");
+    } finally {
+      setActionLoading(false);
+    }
+  };
 
   // Filter events for the selected date
   const todaysEvents = useMemo(() => {
@@ -54,17 +105,35 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
   const getEventColor = (event: any) => {
     if (event.type === "timeOff") return "bg-gray-400";
     if (event.isLocked) return "bg-slate-700";
-    if (event.status === "cancelled") return "bg-red-500";
-    if (event.status === "completed") return "bg-blue-500";
+    if (event.status === "cancelled" || event.rawStatus === "cancelled") return "bg-red-500";
+    if (event.status === "completed" || event.rawStatus === "completed" || event.assignmentStatus === "completed") return "bg-blue-500";
+    
+    const isStarted = 
+      event.rawStatus === "in_progress" ||
+      event.status === "in_progress" ||
+      event.status === "In Progress" ||
+      event.tourStatus === "started" ||
+      (event.attendance && event.attendance.present > 0);
+
+    if (isStarted) return "bg-emerald-600";
     if (event.assignmentStatus === "pending") return "bg-amber-500";
     return "bg-emerald-500"; // Assigned / Active
   };
 
   const getEventBadge = (event: any) => {
-    if (event.type === "timeOff") return { label: "Unavailable", color: "text-gray-600 bg-gray-100 dark:text-gray-300 dark:bg-gray-800" };
+    if (event.type === "timeOff") return { label: "Time Off", color: "text-gray-600 bg-gray-100 dark:text-gray-300 dark:bg-gray-800" };
     if (event.isLocked) return { label: "Locked", color: "text-slate-600 bg-slate-50 dark:text-slate-400 dark:bg-slate-700/10" };
-    if (event.status === "cancelled") return { label: "Cancelled", color: "text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-500/10" };
-    if (event.status === "completed") return { label: "Completed", color: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-500/10" };
+    if (event.status === "cancelled" || event.rawStatus === "cancelled") return { label: "Cancelled", color: "text-red-600 bg-red-50 dark:text-red-400 dark:bg-red-500/10" };
+    if (event.status === "completed" || event.rawStatus === "completed" || event.assignmentStatus === "completed") return { label: "Completed", color: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-500/10" };
+    
+    const isStarted = 
+      event.rawStatus === "in_progress" ||
+      event.status === "in_progress" ||
+      event.status === "In Progress" ||
+      event.tourStatus === "started" ||
+      (event.attendance && event.attendance.present > 0);
+
+    if (isStarted) return { label: "In Progress", color: "text-emerald-700 bg-emerald-100 dark:text-emerald-300 dark:bg-emerald-900/30" };
     if (event.assignmentStatus === "pending") return { label: "Pending", color: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-500/10" };
     return { label: "Assigned", color: "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-500/10" };
   };
@@ -317,23 +386,46 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
 
                           <div className="flex gap-3">
                             {ev.isLocked ? (
-                              <button className="flex-1 bg-slate-700 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-slate-700/20 hover:bg-[#1E293B] transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Viewing details..."); }}>
+                              <button className="flex-1 bg-slate-700 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-slate-700/20 hover:bg-[#1E293B] transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Tour is locked"); }}>
                                 View Details (Locked)
                               </button>
-                            ) : ev.status === "completed" ? (
-                              <button className="flex-1 bg-blue-600 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Viewing details..."); }}>
-                                View Details
+                            ) : (ev.status === "completed" || ev.rawStatus === "completed" || ev.assignmentStatus === "completed") ? (
+                              <button className="flex-1 bg-blue-600 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Tour is completed"); }}>
+                                <CheckCircle size={16} /> Completed
                               </button>
-                            ) : ev.status === "cancelled" ? (
-                              <button className="flex-1 bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Viewing details..."); }}>
-                                View Details
+                            ) : (ev.status === "cancelled" || ev.rawStatus === "cancelled") ? (
+                              <button className="flex-1 bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 transition-colors" onClick={(e) => { e.stopPropagation(); toast.error("Tour is cancelled"); }}>
+                                Cancelled
                               </button>
+                            ) : (ev.rawStatus === "in_progress" || ev.status === "in_progress" || ev.status === "In Progress" || ev.tourStatus === "started" || (ev.attendance && ev.attendance.present > 0)) ? (
+                              <>
+                                <button 
+                                  className="flex-[1.5] bg-blue-600 text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-colors" 
+                                  onClick={(e) => { e.stopPropagation(); handleCompleteTour(ev); }}
+                                  disabled={actionLoading}
+                                >
+                                  <CheckCircle size={16} /> Complete Tour
+                                </button>
+                                <button 
+                                  className="flex-1 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 transition-colors" 
+                                  onClick={(e) => { e.stopPropagation(); setSelectedTour(ev); }}
+                                >
+                                  Details
+                                </button>
+                              </>
                             ) : (
                               <>
-                                <button className="flex-[1.5] bg-[#0F766E] text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-teal-700/20 hover:bg-teal-800 transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Starting tour..."); }}>
+                                <button 
+                                  className="flex-[1.5] bg-[#0F766E] text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 shadow-lg shadow-teal-700/20 hover:bg-teal-800 transition-colors" 
+                                  onClick={(e) => { e.stopPropagation(); handleStartTour(ev); }}
+                                  disabled={actionLoading}
+                                >
                                   <Play size={16} className="fill-white" /> Start Tour
                                 </button>
-                                <button className="flex-1 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 transition-colors" onClick={(e) => { e.stopPropagation(); toast.success("Opening maps..."); }}>
+                                <button 
+                                  className="flex-1 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-3.5 rounded-xl text-[14px] font-black flex items-center justify-center gap-2 transition-colors" 
+                                  onClick={(e) => { e.stopPropagation(); toast.success("Opening maps..."); }}
+                                >
                                   <Navigation size={16} /> Navigate
                                 </button>
                               </>
@@ -457,21 +549,44 @@ export default function MobileCalendarView({ events, loading, onBlockDatesClick 
                     <button className="w-full bg-slate-700 hover:bg-[#1E293B] text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-slate-700/25 transition-colors">
                       View Details (Locked)
                     </button>
-                  ) : selectedTour.status === "completed" ? (
+                  ) : (selectedTour.status === "completed" || selectedTour.rawStatus === "completed" || selectedTour.assignmentStatus === "completed") ? (
                     <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-blue-600/25 transition-colors">
                       View Tour Report
                     </button>
-                  ) : selectedTour.status === "cancelled" ? (
+                  ) : (selectedTour.status === "cancelled" || selectedTour.rawStatus === "cancelled") ? (
                     <button className="w-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-4 rounded-2xl font-black text-[16px] transition-colors">
                       View Cancellation Details
                     </button>
+                  ) : (selectedTour.rawStatus === "in_progress" || selectedTour.status === "in_progress" || selectedTour.status === "In Progress" || selectedTour.tourStatus === "started" || (selectedTour.attendance && selectedTour.attendance.present > 0)) ? (
+                    <>
+                      <button 
+                        onClick={() => handleCompleteTour(selectedTour)}
+                        disabled={actionLoading}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-blue-600/25 transition-colors flex items-center justify-center gap-2"
+                      >
+                        <CheckCircle size={20} /> Complete Tour
+                      </button>
+                      <button 
+                        onClick={() => setSelectedTour(null)}
+                        className="w-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-4 rounded-2xl font-black text-[16px] transition-colors"
+                      >
+                        Close
+                      </button>
+                    </>
                   ) : (
                     <>
-                      <button className="w-full bg-[#0F766E] hover:bg-teal-800 text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-teal-700/25 transition-colors">
-                        Start Tour Now
+                      <button 
+                        onClick={() => handleStartTour(selectedTour)}
+                        disabled={actionLoading}
+                        className="w-full bg-[#0F766E] hover:bg-teal-800 text-white py-4 rounded-2xl font-black text-[16px] shadow-lg shadow-teal-700/25 transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Play size={18} className="fill-white" /> Start Tour Now
                       </button>
-                      <button className="w-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-4 rounded-2xl font-black text-[16px] transition-colors">
-                        View Full Details
+                      <button 
+                        onClick={() => setSelectedTour(null)}
+                        className="w-full bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white py-4 rounded-2xl font-black text-[16px] transition-colors"
+                      >
+                        Close
                       </button>
                     </>
                   )}

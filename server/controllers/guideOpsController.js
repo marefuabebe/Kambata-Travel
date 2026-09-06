@@ -47,12 +47,14 @@ const flattenGuideAssignments = async (guideId) => {
         scheduleId: schedule._id,
         status: { $in: ["confirmed", "completed", "pending"] },
         paymentStatus: { $in: ["paid", "pending"] },
-      }).select("numPeople attendanceStatus status paymentStatus");
+      }).select("numPeople attendanceStatus status paymentStatus tourStatus verified");
 
       const travelerCount = bookings.reduce((sum, b) => sum + b.numPeople, 0);
-      const present = bookings.filter((b) => b.attendanceStatus === "present").length;
+      const present = bookings.filter((b) => b.attendanceStatus === "present" || b.verified === true || b.tourStatus === "started").length;
       const absent = bookings.filter((b) => b.attendanceStatus === "absent").length;
       const late = bookings.filter((b) => b.attendanceStatus === "late").length;
+      const hasStartedTourBookings = bookings.some((b) => b.tourStatus === "started" || b.verified === true || b.attendanceStatus === "present");
+      const isTourInProgress = schedule.status === "in_progress" || hasStartedTourBookings;
 
       assignments.push({
         type: "tour",
@@ -75,9 +77,9 @@ const flattenGuideAssignments = async (guideId) => {
         remainingSlots: schedule.remainingSlots,
         travelerCount,
         attendance: { present, absent, late, total: bookings.length },
-        status: mapScheduleStatus(schedule.status || "draft"),
-        rawStatus: schedule.status || "draft",
-        assignmentStatus: schedule.assignmentStatus || "pending",
+        status: isTourInProgress ? "In Progress" : mapScheduleStatus(schedule.status || "draft"),
+        rawStatus: isTourInProgress ? "in_progress" : (schedule.status || "draft"),
+        assignmentStatus: (isTourInProgress || schedule.status === "completed") ? "accepted" : (schedule.assignmentStatus || "pending"),
         isLocked: (() => {
           if (schedule.attendanceLocked) return true;
           if (schedule.status === "completed" || schedule.status === "cancelled") return false;
@@ -113,9 +115,12 @@ const flattenGuideAssignments = async (guideId) => {
       packageScheduleId: sch._id,
       bookingStatus: { $in: ["confirmed", "completed", "pending"] },
       paymentStatus: { $in: ["paid", "pending"] },
-    }).select("travelersCount bookingStatus paymentStatus");
+    }).select("travelersCount bookingStatus paymentStatus tourStatus verified attendanceStatus");
 
     const travelerCount = bookings.reduce((sum, b) => sum + b.travelersCount, 0);
+    const present = bookings.filter((b) => b.attendanceStatus === "present" || b.verified === true || b.tourStatus === "started").length;
+    const hasStartedPkgBookings = bookings.some((b) => b.tourStatus === "started" || b.verified === true || b.attendanceStatus === "present");
+    const isPkgInProgress = sch.status === "in_progress" || hasStartedPkgBookings;
 
     assignments.push({
       type: "package",
@@ -132,10 +137,10 @@ const flattenGuideAssignments = async (guideId) => {
       capacity: sch.capacity,
       remainingSlots: sch.availableSeats,
       travelerCount,
-      attendance: { present: 0, absent: 0, late: 0, total: bookings.length }, // Not tracking attendance for packages yet
-      status: mapScheduleStatus(sch.status || "draft"),
-      rawStatus: sch.status || "draft",
-      assignmentStatus: sch.assignmentStatus || "pending",
+      attendance: { present, absent: 0, late: 0, total: bookings.length },
+      status: isPkgInProgress ? "In Progress" : mapScheduleStatus(sch.status || "draft"),
+      rawStatus: isPkgInProgress ? "in_progress" : (sch.status || "draft"),
+      assignmentStatus: (isPkgInProgress || sch.status === "completed") ? "accepted" : (sch.assignmentStatus || "pending"),
       isLocked: (() => {
         if (sch.attendanceLocked) return true;
         if (sch.status === "completed" || sch.status === "cancelled") return false;
@@ -386,7 +391,7 @@ const getAssignmentDetail = async (req, res, next) => {
 const updateAssignmentStatus = async (req, res, next) => {
   try {
     const { status, guideNotes } = req.body;
-    const { tour, schedule } = await assertGuideOwnsSchedule(
+    const { tour, schedule, type } = await assertGuideOwnsSchedule(
       req.user._id,
       req.params.tourId,
       req.params.scheduleId
@@ -399,6 +404,7 @@ const updateAssignmentStatus = async (req, res, next) => {
 
     if (status === "start" || status === "in_progress") {
       schedule.status = "in_progress";
+      schedule.assignmentStatus = "accepted";
     } else if (status === "complete" || status === "completed") {
       schedule.status = "completed";
       if (guideNotes) schedule.guideNotes = guideNotes;
@@ -433,7 +439,11 @@ const updateAssignmentStatus = async (req, res, next) => {
       throw new Error("Use status: start or complete");
     }
 
-    await tour.save();
+    if (type === "tour") {
+      await tour.save();
+    } else {
+      await schedule.save();
+    }
 
     res.json({
       success: true,
@@ -961,11 +971,14 @@ const getCalendar = async (req, res, next) => {
       
       events.push({
         id: a.scheduleId,
+        tourId: a.tourId,
+        scheduleId: a.scheduleId,
         title: a.tourName,
         start,
         end,
         type: a.type || "tour",
         status: a.rawStatus || a.status,
+        rawStatus: a.rawStatus || a.status,
         assignmentStatus: a.assignmentStatus,
         isLocked: a.isLocked || false,
         image: a.image,
@@ -975,6 +988,7 @@ const getCalendar = async (req, res, next) => {
         coordinates: a.coordinates,
         startTime: a.startTime,
         endTime: a.endTime,
+        attendance: a.attendance,
       });
     }
     
