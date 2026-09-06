@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import apiClient from "@/utils/apiClient";
 import toast from "react-hot-toast";
@@ -586,12 +587,19 @@ export function DigitalPassModal({
     toast.success("Booking code copied!");
   };
 
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || typeof document === "undefined") return null;
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-[200] overflow-y-auto bg-black/40 backdrop-blur-xl"
+      className="fixed inset-0 z-[99999] overflow-y-auto bg-black/60 backdrop-blur-xl"
       onClick={onClose}
     >
-      <div className="flex min-h-full items-start justify-center p-4 pt-24 pb-32 md:pb-12">
+      <div className="flex min-h-full items-start justify-center p-4 pt-20 pb-32 md:pb-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -860,6 +868,7 @@ export function DigitalPassModal({
         
         </motion.div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -1,21 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import apiClient from "@/utils/apiClient";
-import { ArrowLeft, CheckCircle2, Clock, MapPin, Download, QrCode, MessageSquare, LifeBuoy, FileText, Star, X, AlertTriangle, Users, Hotel } from "lucide-react";
+import { downloadInvoicePdf } from "@/utils/explorerTheme";
+import toast from "react-hot-toast";
+import { 
+  ArrowLeft, CheckCircle2, Clock, MapPin, Download, QrCode, 
+  MessageSquare, LifeBuoy, FileText, Star, X, AlertTriangle, 
+  Users, Hotel, CreditCard, Hash, Calendar, Loader2 
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BookingDetailsPage() {
   const params = useParams();
   const router = useRouter();
   const { t } = useLanguage();
+  const [mounted, setMounted] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [qrCodeData, setQrCodeData] = useState<any>(null);
   const [loadingQR, setLoadingQR] = useState(false);
   const [qrError, setQrError] = useState("");
+  const [downloadingInvoice, setDownloadingInvoice] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const fetchDigitalPass = async () => {
     setLoadingQR(true);
@@ -25,16 +38,31 @@ export default function BookingDetailsPage() {
       // Try fetching as tour first
       let res;
       try {
-        res = await require("@/utils/apiClient").default.get(`/traveler/bookings/tour/${params.id}/pass?t=${Date.now()}`);
+        res = await apiClient.get(`/traveler/bookings/tour/${params.id}/pass?t=${Date.now()}`);
       } catch (e) {
         // Fallback to package
-        res = await require("@/utils/apiClient").default.get(`/traveler/bookings/package/${params.id}/pass?t=${Date.now()}`);
+        res = await apiClient.get(`/traveler/bookings/package/${params.id}/pass?t=${Date.now()}`);
       }
       setQrCodeData(res.data.data);
     } catch (e: any) {
       setQrError(e.response?.data?.message || "Failed to generate pass");
     } finally {
       setLoadingQR(false);
+    }
+  };
+
+  const handleDownloadInvoice = async () => {
+    if (!bookingData) return;
+    try {
+      setDownloadingInvoice(true);
+      const apiType = bookingData._type === "Tour" ? "tour" : bookingData._type === "Package" ? "package" : "hotel";
+      await downloadInvoicePdf(apiType, bookingData._id);
+      toast.success("Invoice downloaded successfully!");
+    } catch (err: any) {
+      console.error(err);
+      toast.error(err?.response?.data?.message || "Failed to download invoice");
+    } finally {
+      setDownloadingInvoice(false);
     }
   };
 
@@ -89,12 +117,29 @@ export default function BookingDetailsPage() {
     date: bookingData._type === "Tour" ? new Date(bookingData.scheduleStartDate || bookingData.createdAt).toLocaleDateString() 
       : bookingData._type === "Package" ? new Date(bookingData.packageScheduleId?.startDate || bookingData.createdAt).toLocaleDateString()
       : `${new Date(bookingData.checkInDate).toLocaleDateString()} - ${new Date(bookingData.checkOutDate).toLocaleDateString()}`,
-    duration: bookingData._type === "Tour" ? `${bookingData.tour?.duration || 1} Days` : bookingData._type === "Package" ? `${bookingData.packageId?.duration || 1} Days` : "N/A",
+    duration: (() => {
+      if (bookingData._type === "Tour") {
+        const d = bookingData.tour?.duration;
+        const val = typeof d === "object" ? (d?.value || d?.days || 1) : (d || 1);
+        return `${val} Days`;
+      }
+      if (bookingData._type === "Package") {
+        const d = bookingData.packageId?.duration;
+        const val = typeof d === "object" ? (d?.value || d?.days || 1) : (d || 1);
+        return `${val} Days`;
+      }
+      return "N/A";
+    })(),
     travelers: bookingData.travelersCount || bookingData.groupSize || 1,
     roomsBooked: bookingData.roomsBooked,
     roomType: bookingData.roomType?.name,
     status: bookingData.status || bookingData.bookingStatus,
     paymentStatus: bookingData.paymentStatus,
+    paymentMethod: bookingData.paymentMethod || (bookingData.chapaPaymentDetails ? "Chapa" : "Telebirr / Card"),
+    txRef: bookingData.tx_ref || bookingData.referenceNumber || bookingData._id.slice(-8).toUpperCase(),
+    paidDate: (bookingData.paidAt || bookingData.updatedAt) 
+      ? new Date(bookingData.paidAt || bookingData.updatedAt).toLocaleDateString() 
+      : "N/A",
     price: `${bookingData.totalPrice?.toLocaleString() || 0} ETB`,
     guide: bookingData.guide ? {
       name: bookingData.guide.name,
@@ -239,46 +284,107 @@ export default function BookingDetailsPage() {
           
           {/* Payment Summary */}
           <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
-            <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
-              Payment Summary
-            </h2>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center text-sm font-medium text-gray-600 dark:text-gray-300">
-                <span>Total Amount</span>
-                <span>{booking.price}</span>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 flex items-center gap-2">
+                <CreditCard size={14} className="text-emerald-500" /> Payment Summary
+              </h2>
+              <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest inline-flex items-center gap-1 ${
+                booking.paymentStatus === 'paid' 
+                  ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400' 
+                  : 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400'
+              }`}>
+                {booking.paymentStatus === 'paid' && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />}
+                {booking.paymentStatus}
+              </span>
+            </div>
+
+            <div className="space-y-4 text-sm">
+              <div className="flex justify-between items-center text-gray-600 dark:text-gray-300">
+                <span className="font-medium">Total Amount</span>
+                <span className="font-black text-lg text-gray-900 dark:text-white">{booking.price}</span>
               </div>
-              <div className="flex justify-between items-center text-sm font-medium text-gray-600 dark:text-gray-300">
-                <span>Status</span>
-                <span className="text-emerald-500 font-bold">{booking.paymentStatus}</span>
+              
+              <div className="flex justify-between items-center text-gray-600 dark:text-gray-300 border-t border-gray-100 dark:border-white/5 pt-3">
+                <span className="font-medium flex items-center gap-1.5"><CreditCard size={14} className="text-gray-400" /> Payment Method</span>
+                <span className="font-bold text-gray-900 dark:text-white">{booking.paymentMethod}</span>
               </div>
-              <div className="pt-4 mt-4 border-t border-gray-100 dark:border-white/10">
-                <button className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-50 dark:bg-[#0F172A] border border-gray-200 dark:border-gray-700 font-bold text-sm text-gray-900 dark:text-white hover:border-gray-300 transition-colors">
-                  <Download size={16} className="text-gray-400" /> {t("bookings.actions.downloadInvoice")}
-                </button>
+
+              <div className="flex justify-between items-center text-gray-600 dark:text-gray-300 border-t border-gray-100 dark:border-white/5 pt-3">
+                <span className="font-medium flex items-center gap-1.5"><Hash size={14} className="text-gray-400" /> Transaction Ref</span>
+                <span className="font-mono text-xs font-bold text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-[#0F172A] px-2 py-1 rounded-lg border border-gray-100 dark:border-white/5">
+                  {booking.txRef}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center text-gray-600 dark:text-gray-300 border-t border-gray-100 dark:border-white/5 pt-3">
+                <span className="font-medium flex items-center gap-1.5"><Calendar size={14} className="text-gray-400" /> Paid Date</span>
+                <span className="font-bold text-gray-900 dark:text-white">{booking.paidDate}</span>
               </div>
             </div>
           </div>
 
           {/* Travel Documents Center */}
           <div className="bg-white dark:bg-[#1E293B] backdrop-blur-xl rounded-[2.5rem] border border-gray-100 dark:border-white/5 p-8 shadow-sm">
-            <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-6 flex items-center gap-2">
+            <h2 className="text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2 flex items-center gap-2">
               <FileText size={14} className="text-[#FF8C00]" /> {t("bookings.details.documentsReceipts")}
             </h2>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mb-6 font-medium">
+              Official travel records, receipts, and verification passes.
+            </p>
+
             <div className="space-y-3">
-              {booking.documents.map((doc, i) => (
-                <div key={i} className="flex items-center justify-between p-4 rounded-2xl border border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group cursor-pointer">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-50 dark:bg-blue-500/10 rounded-lg text-blue-500">
-                      <FileText size={16} />
-                    </div>
-                    <div>
-                      <p className="font-bold text-sm text-gray-900 dark:text-white">{doc.name}</p>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mt-0.5">{doc.type} • {doc.size}</p>
-                    </div>
+              {/* Official Booking Invoice (PDF) */}
+              <button
+                type="button"
+                onClick={handleDownloadInvoice}
+                disabled={downloadingInvoice}
+                className="w-full flex items-center justify-between p-4 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-[#FF8C00]/30 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-left group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-blue-50 dark:bg-blue-500/10 rounded-xl text-blue-500">
+                    <FileText size={18} />
                   </div>
-                  <Download size={16} className="text-gray-400 group-hover:text-[#FF8C00] transition-colors" />
+                  <div>
+                    <p className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-[#FF8C00] transition-colors">
+                      Official Tax Invoice & Receipt
+                    </p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mt-0.5">
+                      PDF • Official Financial Receipt
+                    </p>
+                  </div>
                 </div>
-              ))}
+                <div className="p-2 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-400 group-hover:text-[#FF8C00] group-hover:bg-[#FF8C00]/10 transition-all">
+                  {downloadingInvoice ? (
+                    <Loader2 size={16} className="animate-spin text-[#FF8C00]" />
+                  ) : (
+                    <Download size={16} />
+                  )}
+                </div>
+              </button>
+
+              {/* Digital Travel Pass quick launch */}
+              <button
+                type="button"
+                onClick={fetchDigitalPass}
+                className="w-full flex items-center justify-between p-4 rounded-2xl border border-gray-100 dark:border-white/5 hover:border-emerald-500/30 hover:bg-gray-50 dark:hover:bg-white/5 transition-all text-left group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl text-emerald-500">
+                    <QrCode size={18} />
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm text-gray-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                      Digital Boarding Pass
+                    </p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mt-0.5">
+                      QR Code • Tour Verification Pass
+                    </p>
+                  </div>
+                </div>
+                <div className="p-2 rounded-xl bg-gray-100 dark:bg-white/5 text-gray-400 group-hover:text-emerald-500 group-hover:bg-emerald-500/10 transition-all">
+                  <QrCode size={16} />
+                </div>
+              </button>
             </div>
           </div>
 
@@ -303,112 +409,120 @@ export default function BookingDetailsPage() {
         </div>
       </div>
 
-      {/* ── Digital {t("bookings.actions.digitalPass")} Modal ── */}
-      <AnimatePresence>
-        {showQR && (
-          <div
-            className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-            onClick={() => setShowQR(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-sm"
+      {/* ── Digital Pass Modal (Portal to body to prevent stacking context overlap) ── */}
+      {mounted && typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {showQR && (
+            <div
+              className="fixed inset-0 z-[99999] overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+              onClick={() => setShowQR(false)}
             >
-              {/* Boarding Pass Container */}
-              <div className="bg-white dark:bg-[#1E293B] rounded-[2rem] shadow-2xl overflow-hidden relative border border-gray-100 dark:border-white/10">
-                
-                {/* Header */}
-                <div className={`p-6 text-center ${qrCodeData?.checkedInAt ? 'bg-emerald-600' : 'bg-[#1A331B]'} relative`}>
-                  <p className="text-white/80 text-[10px] uppercase tracking-[0.3em] font-black mb-1">Kambata Travel</p>
-                  <h2 className="text-white font-black text-xl tracking-wide">DIGITAL TRAVEL PASS</h2>
-                  <button onClick={() => setShowQR(false)} className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors">
-                    <X size={24} />
-                  </button>
-                  {/* Ticket Notches Top */}
-                  <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-black/80 dark:bg-black/80 rounded-full" />
-                  <div className="absolute -bottom-3 -right-3 w-6 h-6 bg-black/80 dark:bg-black/80 rounded-full" />
-                </div>
-
-                <div className="border-b-2 border-dashed border-gray-200 dark:border-white/10 relative" />
-
-                {/* Body Content */}
-                <div className="p-6">
-                  {loadingQR && (
-                    <div className="h-64 flex flex-col items-center justify-center gap-4">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1A331B] dark:border-emerald-400"></div>
-                      <p className="text-sm font-bold text-gray-500">Generating secure pass...</p>
-                    </div>
-                  )}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                transition={{ duration: 0.2 }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-sm my-auto relative"
+              >
+                {/* Boarding Pass Container */}
+                <div className="bg-white dark:bg-[#1E293B] rounded-[2rem] shadow-2xl overflow-hidden relative border border-white/20">
                   
-                  {qrError && (
-                    <div className="h-64 flex flex-col items-center justify-center gap-3 text-center">
-                      <AlertTriangle size={32} className="text-red-500" />
-                      <p className="text-sm font-bold text-gray-700 dark:text-gray-300">{qrError}</p>
-                    </div>
-                  )}
-                  
-                  {qrCodeData && !loadingQR && (
-                    <div className="space-y-6">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Traveler</p>
-                          <p className="font-bold text-gray-900 dark:text-white truncate">{qrCodeData.travelerName || "Guest"}</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Guide</p>
-                          <p className="font-bold text-gray-900 dark:text-white truncate">{qrCodeData.guideName || "Assigned Soon"}</p>
-                        </div>
-                        <div className="col-span-2">
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Tour</p>
-                          <p className="font-black text-lg text-gray-900 dark:text-white truncate">{qrCodeData.tourName || booking.title}</p>
-                        </div>
-                      </div>
+                  {/* Header */}
+                  <div className={`p-6 text-center ${qrCodeData?.checkedInAt ? 'bg-emerald-600' : 'bg-[#1A331B]'} relative`}>
+                    <p className="text-white/80 text-[10px] uppercase tracking-[0.3em] font-black mb-1">Kambata Travel</p>
+                    <h2 className="text-white font-black text-xl tracking-wide">DIGITAL TRAVEL PASS</h2>
+                    <button 
+                      onClick={() => setShowQR(false)} 
+                      aria-label="Close"
+                      className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors bg-black/20 hover:bg-black/40 p-1.5 rounded-full"
+                    >
+                      <X size={18} />
+                    </button>
+                    {/* Ticket Notches Top */}
+                    <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-white dark:bg-[#1E293B] rounded-full" />
+                    <div className="absolute -bottom-3 -right-3 w-6 h-6 bg-white dark:bg-[#1E293B] rounded-full" />
+                  </div>
 
-                      <div className="bg-gray-50 dark:bg-white/5 p-4 rounded-2xl text-center border border-gray-100 dark:border-white/5">
-                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Booking Code</p>
-                        <p className="font-black text-2xl text-gray-900 dark:text-white font-mono tracking-wider">
-                          {qrCodeData.referenceNumber}
-                        </p>
-                      </div>
+                  <div className="border-b-2 border-dashed border-gray-200 dark:border-white/10 relative" />
 
-                      {/* QR Code */}
-                      <div className="flex justify-center">
-                        <div className={`p-3 rounded-2xl bg-white ${qrCodeData.checkedInAt ? 'opacity-50' : ''}`}>
-                          <img loading="lazy" src={qrCodeData.qrCodeImage} alt="Digital Pass QR" className="w-48 h-48 rounded-xl object-contain" />
+                  {/* Body Content */}
+                  <div className="p-6">
+                    {loadingQR && (
+                      <div className="h-64 flex flex-col items-center justify-center gap-4">
+                        <Loader2 size={36} className="animate-spin text-[#1A331B] dark:text-emerald-400" />
+                        <p className="text-sm font-bold text-gray-500">Generating secure pass...</p>
+                      </div>
+                    )}
+                    
+                    {qrError && (
+                      <div className="h-64 flex flex-col items-center justify-center gap-3 text-center">
+                        <AlertTriangle size={32} className="text-red-500" />
+                        <p className="text-sm font-bold text-gray-700 dark:text-gray-300">{qrError}</p>
+                      </div>
+                    )}
+                    
+                    {qrCodeData && !loadingQR && (
+                      <div className="space-y-6">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Traveler</p>
+                            <p className="font-bold text-gray-900 dark:text-white truncate">{qrCodeData.travelerName || "Guest"}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Guide</p>
+                            <p className="font-bold text-gray-900 dark:text-white truncate">{qrCodeData.guideName || "Assigned Soon"}</p>
+                          </div>
+                          <div className="col-span-2">
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Tour</p>
+                            <p className="font-black text-lg text-gray-900 dark:text-white truncate">{qrCodeData.tourName || booking.title}</p>
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="grid grid-cols-2 gap-4 items-center">
-                        <div>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Valid Until</p>
-                          <p className="font-bold text-gray-900 dark:text-white text-sm">
-                            {qrCodeData.validUntil ? new Date(qrCodeData.validUntil).toLocaleDateString() : "End of Tour"}
+                        <div className="bg-gray-50 dark:bg-white/5 p-4 rounded-2xl text-center border border-gray-100 dark:border-white/5">
+                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Booking Code</p>
+                          <p className="font-black text-2xl text-gray-900 dark:text-white font-mono tracking-wider">
+                            {qrCodeData.referenceNumber}
                           </p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Status</p>
-                          {qrCodeData.checkedInAt ? (
-                            <p className="font-black text-emerald-600 dark:text-emerald-400 text-sm flex items-center justify-end gap-1">
-                              <CheckCircle2 size={14} /> Checked In
+
+                        {/* QR Code */}
+                        <div className="flex justify-center">
+                          <div className={`p-3 rounded-2xl bg-white shadow-inner ${qrCodeData.checkedInAt ? 'opacity-60' : ''}`}>
+                            <img loading="lazy" src={qrCodeData.qrCodeImage} alt="Digital Pass QR" className="w-48 h-48 rounded-xl object-contain" />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4 items-center">
+                          <div>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Valid Until</p>
+                            <p className="font-bold text-gray-900 dark:text-white text-sm">
+                              {qrCodeData.validUntil ? new Date(qrCodeData.validUntil).toLocaleDateString() : "End of Tour"}
                             </p>
-                          ) : (
-                            <p className="font-black text-amber-600 dark:text-amber-400 text-sm flex items-center justify-end gap-1">
-                              <Clock size={14} /> Ready
-                            </p>
-                          )}
+                          </div>
+                          <div className="text-right">
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider">Status</p>
+                            {qrCodeData.checkedInAt ? (
+                              <p className="font-black text-emerald-600 dark:text-emerald-400 text-sm flex items-center justify-end gap-1">
+                                <CheckCircle2 size={14} /> Checked In
+                              </p>
+                            ) : (
+                              <p className="font-black text-amber-600 dark:text-amber-400 text-sm flex items-center justify-end gap-1">
+                                <Clock size={14} /> Ready
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
     </motion.div>
   );
