@@ -120,29 +120,26 @@ export default function SplashScreen() {
       return;
     }
 
-    // Progress dots for mobile
+    // Progress dots for mobile over 15 seconds
     const interval = setInterval(() => {
       setActiveDot((prev) => (prev < 2 ? prev + 1 : prev));
-    }, 3333);
+    }, 5000);
 
-    // Auto dismiss after 10s
+    // Auto dismiss after at least 15 seconds
     const timer = setTimeout(() => {
       dismiss();
-    }, 10000);
+    }, 15000);
 
-    // Desktop scroll / keys
-    const handleWheel = () => dismiss();
+    // Allow keyboard skip (Escape or Enter)
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (["Escape", "Enter", " ", "ArrowDown"].includes(e.key)) dismiss();
+      if (e.key === "Escape") dismiss();
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: true });
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       clearTimeout(timer);
       clearInterval(interval);
-      window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [dismiss]);
@@ -164,7 +161,6 @@ export default function SplashScreen() {
              ══════════════════════════════════════════════════════════ */}
           <div
             className="hidden sm:block absolute inset-0 w-full h-full cursor-default"
-            onClick={dismiss}
           >
             {/* 1. RAW CLEAN BACKGROUND IMAGE (No pre-baked text) */}
             <motion.div
@@ -197,24 +193,11 @@ export default function SplashScreen() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="flex items-center gap-3.5 group"
               >
-                <div className="w-10 h-10 flex items-center justify-center">
-                  <svg width="40" height="34" viewBox="0 0 40 34" fill="none" className="drop-shadow-lg">
-                    <path
-                      d="M11 27L20 9L29 27H11Z"
-                      stroke="white"
-                      strokeWidth="2.75"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M2 27L10 13L16.5 24"
-                      stroke="white"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle cx="20" cy="8" r="4" fill="#3CB371" />
-                  </svg>
-                </div>
+                <img
+                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1777659922/kambata-travel/assets/picsvg_download_psbhbc.png"
+                  alt="Kambata Logo"
+                  className="w-12 h-12 object-contain drop-shadow-xl"
+                />
                 <div className="flex flex-col">
                   <span className="font-heading font-bold text-2xl text-white tracking-wide leading-tight drop-shadow-md">
                     Kambata
@@ -554,7 +537,7 @@ export default function SplashScreen() {
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 10, ease: "linear" }}
+                transition={{ duration: 15, ease: "linear" }}
                 className="h-full bg-[#3CB371] shadow-[0_0_10px_#3cb371]"
               />
             </div>
@@ -591,20 +574,27 @@ export default function SplashScreen() {
                 initial={{ opacity: 0, y: -12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="flex flex-col items-start"
+                className="flex items-center gap-2.5"
               >
-                <span
-                  className="font-allura text-xs text-[#3CB371] leading-none"
-                  style={{ WebkitTextStroke: "0.3px currentColor" }}
-                >
-                  visit
-                </span>
-                <span
-                  className="font-great-vibes text-lg text-white leading-none -mt-0.5"
-                  style={{ WebkitTextStroke: "0.3px currentColor" }}
-                >
-                  Kambata
-                </span>
+                <img
+                  src="https://res.cloudinary.com/dzf4st3t2/image/upload/v1777659922/kambata-travel/assets/picsvg_download_psbhbc.png"
+                  alt="Kambata Logo"
+                  className="w-8 h-8 object-contain drop-shadow"
+                />
+                <div className="flex flex-col items-start">
+                  <span
+                    className="font-allura text-xs text-[#3CB371] leading-none"
+                    style={{ WebkitTextStroke: "0.3px currentColor" }}
+                  >
+                    visit
+                  </span>
+                  <span
+                    className="font-great-vibes text-lg text-white leading-none -mt-0.5"
+                    style={{ WebkitTextStroke: "0.3px currentColor" }}
+                  >
+                    Kambata
+                  </span>
+                </div>
               </motion.div>
 
               <motion.button
