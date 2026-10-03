@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTelegramAuth } from "@/hooks/useTelegramAuth";
 
 export default function TelegramPage() {
-  const { status, user, telegramUser, error, completeRegistration } = useTelegramAuth();
+  const { status, user, telegramUser, error, completeRegistration, retry } = useTelegramAuth();
   const [selectedRole, setSelectedRole] = useState<string>("");
   const [linkMode, setLinkMode] = useState(false);
   const [email, setEmail] = useState("");
@@ -53,6 +53,21 @@ export default function TelegramPage() {
         <div style={{ fontSize: "48px" }}>⚠️</div>
         <h2 style={{ color: "#EF4444", fontSize: "20px", margin: 0 }}>Authentication Error</h2>
         <p style={{ color: "#999", fontSize: "14px", margin: 0 }}>{error}</p>
+        <button
+          onClick={retry}
+          style={{
+            padding: "10px 24px",
+            borderRadius: "10px",
+            background: "#2AABEE",
+            color: "#ffffff",
+            border: "none",
+            fontWeight: 600,
+            cursor: "pointer",
+            fontSize: "14px",
+          }}
+        >
+          🔄 Try Again
+        </button>
         <p style={{ color: "#666", fontSize: "12px" }}>Please close and reopen this app inside Telegram.</p>
       </div>
     );

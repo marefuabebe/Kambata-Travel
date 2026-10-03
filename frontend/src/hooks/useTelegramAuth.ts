@@ -105,38 +105,54 @@ export const useTelegramAuth = () => {
     [state.initData]
   );
 
-  useEffect(() => {
-    const tg = (window as any).Telegram?.WebApp;
+  const checkAndAuth = useCallback(() => {
+    setState((prev) => ({ ...prev, status: "loading", error: null }));
+    let attempts = 0;
+    const maxAttempts = 30; // 3 seconds total
 
-    if (!tg) {
-      // Not in Telegram — show error
-      setState({
-        status: "error",
-        user: null,
-        telegramUser: null,
-        error: "Please open this app inside Telegram.",
-        initData: null,
-      });
-      return;
-    }
+    const poll = () => {
+      const tg = typeof window !== "undefined" ? (window as any).Telegram?.WebApp : null;
 
-    tg.ready();
-    tg.expand();
+      if (tg) {
+        tg.ready();
+        try { tg.expand(); } catch (e) {}
 
-    const initData = tg.initData;
-    if (!initData) {
-      setState({
-        status: "error",
-        user: null,
-        telegramUser: null,
-        error: "Telegram session data not found. Please restart the app.",
-        initData: null,
-      });
-      return;
-    }
+        const initData = tg.initData;
+        if (!initData) {
+          setState({
+            status: "error",
+            user: null,
+            telegramUser: null,
+            error: "Telegram session data not found. Please restart the app.",
+            initData: null,
+          });
+          return;
+        }
 
-    authenticate(initData);
+        authenticate(initData);
+        return;
+      }
+
+      attempts++;
+      if (attempts < maxAttempts) {
+        setTimeout(poll, 100);
+      } else {
+        setState({
+          status: "error",
+          user: null,
+          telegramUser: null,
+          error: "Please open this app inside Telegram.",
+          initData: null,
+        });
+      }
+    };
+
+    poll();
   }, [authenticate]);
 
-  return { ...state, completeRegistration };
+  useEffect(() => {
+    checkAndAuth();
+  }, [checkAndAuth]);
+
+  return { ...state, completeRegistration, retry: checkAndAuth };
 };

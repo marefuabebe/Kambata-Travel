@@ -166,6 +166,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <JsonLd data={orgSchema} />
         <JsonLd data={webSiteSchema} />
         <script
