@@ -1,4 +1,4 @@
-﻿/**
+/**
  * telegramService.js
  *
  * Central Telegram Bot Service for Kambata Travel.
@@ -12,7 +12,10 @@
 
 'use strict';
 
-const TelegramBot = require('node-telegram-bot-api');
+const rawTelegramBot = require('node-telegram-bot-api');
+const TelegramBot = typeof rawTelegramBot === 'function'
+  ? rawTelegramBot
+  : (rawTelegramBot && (rawTelegramBot.TelegramBot || rawTelegramBot.default)) || rawTelegramBot;
 const crypto = require('crypto');
 const logger = require('../utils/logger');
 

@@ -121,9 +121,13 @@ mongoose
     startPostTourJobs();
 
     // Initialize Telegram Bot (polling in dev, webhook in prod)
-    initBot();
-    if (process.env.NODE_ENV === "production" && process.env.TELEGRAM_WEBHOOK_URL) {
-      registerWebhook();
+    try {
+      initBot();
+      if (process.env.NODE_ENV === "production" && process.env.TELEGRAM_WEBHOOK_URL) {
+        registerWebhook();
+      }
+    } catch (telegramErr) {
+      console.error("[Telegram] Failed to initialize bot:", telegramErr.message || telegramErr);
     }
   })
   .catch((err) => console.error("Database connection error:", err));
