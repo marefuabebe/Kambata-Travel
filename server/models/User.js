@@ -25,8 +25,18 @@ const userSchema = mongoose.Schema(
     },
     authProvider: {
       type: String,
-      enum: ['local', 'google'],
+      enum: ['local', 'google', 'telegram'],
       default: 'local',
+    },
+    // Telegram Integration
+    telegramId: {
+      type: String,
+      sparse: true,
+      unique: true,
+      index: true,
+    },
+    telegramUsername: {
+      type: String,
     },
     role: {
       type: String,

@@ -5,6 +5,8 @@ const logger = require("../utils/logger");
 const { sendEmail } = require("../utils/mailService");
 const { buildPremiumEmail } = require("../utils/emailTemplateBuilder");
 const User = require("../models/User");
+const telegramService = require("./telegramService");
+
 
 /**
  * Centralized Notification Service
@@ -125,6 +127,14 @@ const sendTourReminders = async () => {
           });
         }
 
+        // 3. Telegram Notification (if user has linked Telegram)
+        if (booking.user.telegramId) {
+          const tourTitle = booking.tour.title?.en || booking.tour.title;
+          const meetingPoint = schedule.meetingPoint || booking.tour.meetingPoint?.en || null;
+          telegramService.notifyTourReminder(booking.user, reminderType, tourTitle, schedule.startDate, meetingPoint)
+            .catch((e) => logger.warn("[Telegram] Tour reminder failed: " + e.message));
+        }
+
         if (reminderType === "7d") booking.reminder7d = true;
         if (reminderType === "1d") booking.reminder1d = true;
         if (reminderType === "2h") booking.reminder2h = true;
@@ -188,6 +198,12 @@ const notifyGuideOfAssignment = async (guideId, tourTitle, startDate, startTime)
         html: emailHtml
       });
       logger.info(`Assignment email sent to guide ${guide.email}`);
+    }
+
+    // 3. Telegram Notification (if guide has linked Telegram)
+    if (guide.telegramId) {
+      telegramService.notifyGuideAssignment(guide, tourTitle, startDate)
+        .catch((e) => logger.warn("[Telegram] Guide assignment notification failed: " + e.message));
     }
   } catch (error) {
     logger.error("Error in notifyGuideOfAssignment:", error);

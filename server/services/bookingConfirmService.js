@@ -458,6 +458,19 @@ const runBookingPostProcessing = async (booking, options = {}) => {
     });
   }
 
+  // ── Task 7: Telegram Notification ────────────────────────────────────────
+  tasks.push(async () => {
+    const telegramService = require("./telegramService");
+    const bUser = await User.findById(booking.user);
+    if (!bUser?.telegramId) return;
+
+    const tourTitle = tourDoc?.title?.en || tourDoc?.title || "your tour";
+    // Notify booking confirmed + payment
+    await telegramService.notifyBookingConfirmed(bUser, booking, tourTitle);
+    await telegramService.notifyPaymentSuccess(bUser, booking, booking.totalPrice);
+    logger.info(`Post-commit: Telegram notification sent to user ${bUser._id} for booking ${booking._id}.`);
+  });
+
   // ── Execute all tasks concurrently — failures are isolated ───────────────
   const results = await Promise.allSettled(tasks.map((fn) => fn()));
 

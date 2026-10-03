@@ -46,6 +46,8 @@ const { generateInvoicePdf } = require("../services/invoicePdfService");
 const { sendEmail } = require("../utils/mailService");
 const { buildPremiumEmail } = require("../utils/emailTemplateBuilder");
 const logger = require("../utils/logger");
+const telegramService = require("../services/telegramService");
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper — resolve booking document from tx_ref

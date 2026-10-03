@@ -31,6 +31,9 @@ const startAttendanceLockCron = require("./cron/attendanceLockCron");
 const { startDualBookingCron } = require("./cron/dualBookingCron");
 const { startPostTourJobs } = require("./cron/postTourJobs");
 
+// Telegram Bot
+const { initBot, registerWebhook } = require("./services/telegramService");
+
 const app = express();
 const server = http.createServer(app);
 
@@ -116,6 +119,12 @@ mongoose
     startAttendanceLockCron();
     startDualBookingCron();
     startPostTourJobs();
+
+    // Initialize Telegram Bot (polling in dev, webhook in prod)
+    initBot();
+    if (process.env.NODE_ENV === "production" && process.env.TELEGRAM_WEBHOOK_URL) {
+      registerWebhook();
+    }
   })
   .catch((err) => console.error("Database connection error:", err));
 
@@ -159,6 +168,7 @@ app.use("/api/sos", require("./routes/sosRoutes"));
 app.use("/api/recommendations", require("./routes/recommendationRoutes"));
 app.use("/api/support", require("./routes/supportRoutes"));
 app.use("/api/qr", require("./routes/qrVerificationRoutes"));
+app.use("/api/telegram", require("./routes/telegramRoutes"));
 
 // TEMPORARY: Email diagnostic endpoint (remove after debugging)
 app.get("/api/test-email/:email", async (req, res) => {
