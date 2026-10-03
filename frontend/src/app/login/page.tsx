@@ -278,7 +278,6 @@ const LoginPage = () => {
                   text="continue_with"
                   size="large"
                   theme="outline"
-                  locale={language === "am" ? "am" : "en"}
                 />
               </div>
             )}

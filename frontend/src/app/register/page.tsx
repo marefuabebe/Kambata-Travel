@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { User, Mail, Lock, Shield, ArrowLeft, ArrowRight, Quote, Compass, Eye, EyeOff, Star, Luggage, ShieldCheck, Check } from "lucide-react";
 import { motion } from "framer-motion";
@@ -431,7 +431,6 @@ const RegisterPage = () => {
                       text="signup_with"
                       size="large"
                       theme="outline"
-                      locale={language === "am" ? "am" : "en"}
                     />
                   </div>
                 )}

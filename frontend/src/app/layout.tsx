@@ -186,7 +186,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""} locale="en">
           <AuthProvider>
             <LanguageProvider>
               <SplashScreen />
