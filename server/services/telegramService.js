@@ -60,19 +60,19 @@ const getBot = () => {
   return bot;
 };
 
-// Main Menu Keyboard
+// Main Menu Keyboard - Points to the REAL Kambata Travel website
 const getMainMenuKeyboard = (miniAppUrl) => ({
   keyboard: [
     [
-      { text: 'Explore', web_app: { url: miniAppUrl + '/telegram/explore' } },
-      { text: 'Destinations', web_app: { url: miniAppUrl + '/telegram/destinations' } },
+      { text: '🌍 Open Kambata Travel', web_app: { url: miniAppUrl + '/' } },
     ],
     [
-      { text: 'Tours', web_app: { url: miniAppUrl + '/telegram/tours' } },
-      { text: 'My Bookings', web_app: { url: miniAppUrl + '/telegram/bookings' } },
+      { text: '🗺️ Explore', web_app: { url: miniAppUrl + '/explore' } },
+      { text: '🏕️ Tours', web_app: { url: miniAppUrl + '/tours' } },
     ],
     [
-      { text: 'My Account', web_app: { url: miniAppUrl + '/telegram/account' } },
+      { text: '📋 My Bookings', web_app: { url: miniAppUrl + '/explorer-dashboard/bookings' } },
+      { text: '👤 My Account', web_app: { url: miniAppUrl + '/explorer-dashboard' } },
     ],
   ],
   resize_keyboard: true,
@@ -82,15 +82,15 @@ const getMainMenuKeyboard = (miniAppUrl) => ({
 const getInlineMenu = (miniAppUrl) => ({
   inline_keyboard: [
     [
-      { text: 'Explore', web_app: { url: miniAppUrl + '/telegram/explore' } },
-      { text: 'Destinations', web_app: { url: miniAppUrl + '/telegram/destinations' } },
+      { text: '🌍 Open Kambata Travel', web_app: { url: miniAppUrl + '/' } },
     ],
     [
-      { text: 'Tours', web_app: { url: miniAppUrl + '/telegram/tours' } },
-      { text: 'My Bookings', web_app: { url: miniAppUrl + '/telegram/bookings' } },
+      { text: '🗺️ Explore', web_app: { url: miniAppUrl + '/explore' } },
+      { text: '🏕️ Tours', web_app: { url: miniAppUrl + '/tours' } },
     ],
     [
-      { text: 'My Account', web_app: { url: miniAppUrl + '/telegram/account' } },
+      { text: '📋 My Bookings', web_app: { url: miniAppUrl + '/explorer-dashboard/bookings' } },
+      { text: '👤 My Account', web_app: { url: miniAppUrl + '/explorer-dashboard' } },
     ],
   ],
 });
@@ -213,8 +213,8 @@ const sendTelegramMessage = async (telegramId, text, options) => {
 
 const notifyBookingConfirmed = async (user, booking, tourTitle) => {
   if (!user || !user.telegramId) return;
-  const frontendUrl = process.env.FRONTEND_URL || 'https://kambata.travel';
-  const text = 'Booking Confirmed!\n\nTour: ' + tourTitle + '\nRef: ' + booking.referenceNumber + '\nStatus: Paid\n\nView: ' + frontendUrl + '/telegram/bookings';
+  const frontendUrl = process.env.FRONTEND_URL || 'https://kambata-travel.vercel.app';
+  const text = 'Booking Confirmed!\n\nTour: ' + tourTitle + '\nRef: ' + booking.referenceNumber + '\nStatus: Paid\n\nView: ' + frontendUrl + '/explorer-dashboard/bookings';
   await sendTelegramMessage(user.telegramId, text);
 };
 
@@ -242,7 +242,7 @@ const notifyTourReminder = async (user, reminderType, tourTitle, startDate, meet
 
 const notifyGuideAssignment = async (guide, tourTitle, startDate) => {
   if (!guide || !guide.telegramId) return;
-  const frontendUrl = process.env.FRONTEND_URL || 'https://kambata.travel';
+  const frontendUrl = process.env.FRONTEND_URL || 'https://kambata-travel.vercel.app';
   const text = 'New Tour Assignment!\n\nTour: ' + tourTitle + '\nDate: ' + new Date(startDate).toDateString() + '\n\nPlease review and respond: ' + frontendUrl + '/guide-dashboard/assignments';
   await sendTelegramMessage(guide.telegramId, text);
 };
