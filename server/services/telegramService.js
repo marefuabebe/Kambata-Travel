@@ -157,11 +157,17 @@ const registerWebhook = async () => {
     logger.warn('[Telegram] TELEGRAM_WEBHOOK_URL not set -- skipping webhook registration.');
     return;
   }
+
+  // Normalize: ensure /api/telegram/webhook is never duplicated
+  const endpoint = webhookUrl.endsWith('/api/telegram/webhook')
+    ? webhookUrl
+    : webhookUrl.replace(/\/+$/, '') + '/api/telegram/webhook';
+
   try {
-    await bot.setWebHook(webhookUrl + '/api/telegram/webhook');
-    logger.info('[Telegram] Webhook registered: ' + webhookUrl + '/api/telegram/webhook');
+    await bot.setWebHook(endpoint);
+    logger.info('[Telegram] Webhook registered: ' + endpoint);
   } catch (err) {
-    logger.error('[Telegram] Failed to register webhook:', err.message);
+    logger.error('[Telegram] Failed to register webhook: ' + err.message);
   }
 };
 

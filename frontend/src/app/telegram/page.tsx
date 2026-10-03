@@ -16,7 +16,11 @@ export default function TelegramPage() {
 
   useEffect(() => {
     if (status === "authenticated" && user) {
-      router.replace("/telegram/explore");
+      if (user.role === "guide") {
+        router.replace("/guide-dashboard");
+      } else {
+        router.replace("/explorer-dashboard");
+      }
     }
   }, [status, user, router]);
 

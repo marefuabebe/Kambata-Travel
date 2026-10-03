@@ -39,7 +39,7 @@ function GoogleTelegramContent() {
         role: selectedRole,
       });
 
-      const targetUrl = data.botUrl || `https://t.me/KambataTravelBot/app?startapp=auth_${handoffId}`;
+      const targetUrl = data.botUrl || `https://t.me/KambataTravelBot?startapp=auth_${handoffId}`;
       setBotUrl(targetUrl);
       setStatus("success");
 

@@ -192,33 +192,71 @@ const completeHandoff = async (req, res, next) => {
       if (!user.googleId) {
         user.googleId = sub;
       }
-      if (handoff.telegramId && !user.telegramId) {
+      if (handoff.telegramId && user.telegramId !== handoff.telegramId) {
+        // Disassociate telegramId from any other account first to avoid E11000 duplicate key error
+        await User.updateMany(
+          { telegramId: handoff.telegramId, _id: { $ne: user._id } },
+          { $unset: { telegramId: 1, telegramUsername: 1 } }
+        );
         user.telegramId = handoff.telegramId;
       }
       await user.save();
     } else {
-      const selectedRole = role && ["user", "guide"].includes(role) ? role : "user";
-      const userPayload = {
-        name: name || "Explorer",
-        email: normalizedEmail,
-        googleId: sub,
-        authProvider: "google",
-        role: selectedRole,
-        isEmailVerified: true,
-        profilePicture: picture,
-      };
+      // Check if this Telegram user already had a placeholder account (e.g. from 1-click Telegram login)
+      let placeholderUser = null;
       if (handoff.telegramId) {
-        userPayload.telegramId = handoff.telegramId;
-      }
-      if (selectedRole === "guide") {
-        userPayload.guideStatus = "none";
+        placeholderUser = await User.findOne({ telegramId: handoff.telegramId });
       }
 
-      user = await User.create(userPayload);
-      if (selectedRole === "guide") {
-        await Guide.create({ user: user._id });
+      const selectedRole = role && ["user", "guide"].includes(role) ? role : "user";
+
+      if (placeholderUser && placeholderUser.email.endsWith("@telegram.kambata.local")) {
+        // Seamlessly upgrade placeholder account with verified Google credentials
+        placeholderUser.name = name || placeholderUser.name || "Explorer";
+        placeholderUser.email = normalizedEmail;
+        placeholderUser.googleId = sub;
+        placeholderUser.authProvider = "google";
+        placeholderUser.isEmailVerified = true;
+        if (picture) placeholderUser.profilePicture = picture;
+        if (selectedRole === "guide" && placeholderUser.role !== "guide") {
+          placeholderUser.role = "guide";
+          placeholderUser.guideStatus = "none";
+          await Guide.create({ user: placeholderUser._id });
+        }
+        await placeholderUser.save();
+        user = placeholderUser;
+        logger.info("[Handoff] Upgraded placeholder Telegram user to Google: " + user.email);
+      } else {
+        // Clear any conflicting telegramId on other accounts before creation
+        if (handoff.telegramId) {
+          await User.updateMany(
+            { telegramId: handoff.telegramId },
+            { $unset: { telegramId: 1, telegramUsername: 1 } }
+          );
+        }
+
+        const userPayload = {
+          name: name || "Explorer",
+          email: normalizedEmail,
+          googleId: sub,
+          authProvider: "google",
+          role: selectedRole,
+          isEmailVerified: true,
+          profilePicture: picture,
+        };
+        if (handoff.telegramId) {
+          userPayload.telegramId = handoff.telegramId;
+        }
+        if (selectedRole === "guide") {
+          userPayload.guideStatus = "none";
+        }
+
+        user = await User.create(userPayload);
+        if (selectedRole === "guide") {
+          await Guide.create({ user: user._id });
+        }
+        logger.info("[Handoff] New user created via Google-Telegram: " + user.email);
       }
-      logger.info("[Handoff] New user created via Google-Telegram: " + user.email);
     }
 
     const accessToken = generateAccessToken(user._id);
@@ -247,7 +285,7 @@ const completeHandoff = async (req, res, next) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    const botUrl = `https://t.me/KambataTravelBot/app?startapp=auth_${handoffId}`;
+    const botUrl = `https://t.me/KambataTravelBot?startapp=auth_${handoffId}`;
     return res.json({
       success: true,
       botUrl,
@@ -270,14 +308,19 @@ const getHandoffStatus = async (req, res, next) => {
     }
 
     if (record.status === "completed") {
-      record.status = "claimed";
-      await record.save();
-
-      return res.json({
+      const responseData = {
         status: "completed",
         accessToken: record.accessToken,
         user: record.user,
-      });
+      };
+
+      // Strict single-use security: wipe credentials from database immediately
+      record.status = "claimed";
+      record.accessToken = null;
+      record.refreshToken = null;
+      await record.save();
+
+      return res.json(responseData);
     }
 
     return res.json({ status: record.status });
@@ -296,12 +339,18 @@ const claimHandoff = async (req, res, next) => {
       return res.status(404).json({ message: "Session not found or expired" });
     }
 
+    if (record.status === "claimed") {
+      return res.status(410).json({ message: "This authentication session has already been claimed." });
+    }
+
     if (!record.accessToken || !record.user) {
       return res.status(400).json({ message: "Authentication not yet completed" });
     }
 
-    record.status = "claimed";
-    await record.save();
+    const responseData = {
+      accessToken: record.accessToken,
+      user: record.user,
+    };
 
     if (record.refreshToken) {
       res.cookie("refreshToken", record.refreshToken, {
@@ -312,10 +361,13 @@ const claimHandoff = async (req, res, next) => {
       });
     }
 
-    return res.json({
-      accessToken: record.accessToken,
-      user: record.user,
-    });
+    // Strict single-use security: wipe credentials from database immediately
+    record.status = "claimed";
+    record.accessToken = null;
+    record.refreshToken = null;
+    await record.save();
+
+    return res.json(responseData);
   } catch (err) {
     next(err);
   }

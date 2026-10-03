@@ -31,6 +31,24 @@ export function useTelegramGoogleHandoff() {
 
       if (startParam && startParam.startsWith("auth_")) {
         const handoffId = startParam.replace("auth_", "");
+
+        // 1. If already authenticated via polling, navigate directly
+        const existingToken = localStorage.getItem("token");
+        const existingUserStr = localStorage.getItem("user");
+        if (existingToken && existingUserStr) {
+          try {
+            const parsed = JSON.parse(existingUserStr);
+            setUser(parsed);
+            if (parsed.role === "guide") {
+              router.replace("/guide-dashboard");
+            } else {
+              router.replace("/explorer-dashboard");
+            }
+            return;
+          } catch (e) {}
+        }
+
+        // 2. Otherwise claim the handoff session
         try {
           const { data } = await apiClient.post("/telegram/handoff-claim", { handoffId });
           if (data.accessToken && data.user) {
@@ -39,12 +57,27 @@ export function useTelegramGoogleHandoff() {
             setUser(data.user);
             toast.success(`Welcome, ${data.user.name || "Explorer"}!`);
             if (data.user.role === "guide") {
-              router.push("/guide-dashboard");
+              router.replace("/guide-dashboard");
             } else {
-              router.push("/explorer-dashboard");
+              router.replace("/explorer-dashboard");
             }
           }
-        } catch (e) {
+        } catch (e: any) {
+          // If already claimed by background polling (410), fallback to localStorage
+          const t = localStorage.getItem("token");
+          const u = localStorage.getItem("user");
+          if (t && u) {
+            try {
+              const parsed = JSON.parse(u);
+              setUser(parsed);
+              if (parsed.role === "guide") {
+                router.replace("/guide-dashboard");
+              } else {
+                router.replace("/explorer-dashboard");
+              }
+              return;
+            } catch (err) {}
+          }
           console.error("[Handoff] Error claiming start_param auth:", e);
         }
       }

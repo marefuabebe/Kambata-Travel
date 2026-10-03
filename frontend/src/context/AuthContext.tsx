@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // Load user from token on startup
+  // Load user from token on startup & handle Telegram Google deep-link return
   useEffect(() => {
     const hydrateAuth = async () => {
       const token = localStorage.getItem("token");
@@ -50,10 +50,71 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           localStorage.removeItem("user");
         }
       }
+
+      // Universal Telegram startapp deep-link handling (?startapp=auth_<handoffId>)
+      if (typeof window !== "undefined") {
+        const tg = (window as any).Telegram?.WebApp;
+        const startParam = tg?.initDataUnsafe?.start_param;
+        if (startParam && startParam.startsWith("auth_")) {
+          const handoffId = startParam.replace("auth_", "");
+
+          // If already authenticated via polling, navigate directly
+          const existingToken = localStorage.getItem("token");
+          const existingUserStr = localStorage.getItem("user");
+          if (existingToken && existingUserStr) {
+            try {
+              const u = JSON.parse(existingUserStr);
+              setUser(u);
+              if (u.role === "guide") {
+                router.replace("/guide-dashboard");
+              } else {
+                router.replace("/explorer-dashboard");
+              }
+              setLoading(false);
+              return;
+            } catch (e) {}
+          }
+
+          // Otherwise claim the handoff session
+          try {
+            const { data } = await apiClient.post("/telegram/handoff-claim", { handoffId });
+            if (data.accessToken && data.user) {
+              localStorage.setItem("token", data.accessToken);
+              localStorage.setItem("user", JSON.stringify(data.user));
+              setUser(data.user);
+              if (data.user.role === "guide") {
+                router.replace("/guide-dashboard");
+              } else {
+                router.replace("/explorer-dashboard");
+              }
+              setLoading(false);
+              return;
+            }
+          } catch (err: any) {
+            // Fallback to localStorage if already claimed by polling
+            const t = localStorage.getItem("token");
+            const u = localStorage.getItem("user");
+            if (t && u) {
+              try {
+                const parsed = JSON.parse(u);
+                setUser(parsed);
+                if (parsed.role === "guide") {
+                  router.replace("/guide-dashboard");
+                } else {
+                  router.replace("/explorer-dashboard");
+                }
+                setLoading(false);
+                return;
+              } catch (e) {}
+            }
+          }
+        }
+      }
+
       setLoading(false);
     };
     hydrateAuth();
-  }, []);
+  }, [router]);
 
   const login = async (credentials: any) => {
     setLoading(true);
