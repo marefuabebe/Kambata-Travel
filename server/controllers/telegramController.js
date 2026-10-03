@@ -4,9 +4,14 @@ const User = require("../models/User");
 const Booking = require("../models/Booking");
 const PackageBooking = require("../models/PackageBooking");
 const { validateTelegramAuth, processUpdate } = require("../services/telegramService");
-const { generateAccessToken } = require("../utils/generateToken");
+const crypto = require("crypto");
+const { OAuth2Client } = require("google-auth-library");
+const { generateAccessToken, generateRefreshToken } = require("../utils/generateToken");
 const Guide = require("../models/Guide");
+const AuthHandoff = require("../models/AuthHandoff");
 const logger = require("../utils/logger");
+
+const GOOGLE_CLIENT_ID = "167884286246-pae6qdcf9u587i1i961asqkjodd4els7.apps.googleusercontent.com";
 
 const handleWebhook = async (req, res, next) => {
   try {
@@ -129,4 +134,202 @@ const getTelegramBookings = async (req, res, next) => {
   } catch (err) { next(err); }
 };
 
-module.exports = { handleWebhook, telegramAuth, completeTelegramAuth, linkTelegramAccount, unlinkTelegramAccount, getTelegramBookings };
+const initHandoff = async (req, res, next) => {
+  try {
+    const { telegramId } = req.body || {};
+    const handoffId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString("hex");
+
+    await AuthHandoff.create({
+      handoffId,
+      telegramId: telegramId ? String(telegramId) : undefined,
+      status: "pending",
+    });
+
+    res.status(201).json({ handoffId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const completeHandoff = async (req, res, next) => {
+  try {
+    const { handoffId, token, role } = req.body;
+    if (!handoffId || !token) {
+      return res.status(400).json({ message: "handoffId and Google token are required" });
+    }
+
+    const handoff = await AuthHandoff.findOne({ handoffId });
+    if (!handoff) {
+      return res.status(404).json({ message: "Login session expired or invalid. Please try again." });
+    }
+
+    const client = new OAuth2Client();
+    let ticket;
+    try {
+      ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: GOOGLE_CLIENT_ID,
+      });
+    } catch (e) {
+      logger.error("[Handoff] Google token verification failed: " + e.message);
+      return res.status(401).json({ message: "Google authentication failed" });
+    }
+
+    const payload = ticket.getPayload();
+    const { sub, email, name, picture, email_verified } = payload;
+
+    if (!email_verified) {
+      return res.status(400).json({ message: "Google email not verified" });
+    }
+
+    const normalizedEmail = email.toLowerCase().trim();
+    let user = await User.findOne({ email: normalizedEmail });
+
+    if (user) {
+      if (user.isBlocked || (user.suspendedUntil && user.suspendedUntil > Date.now())) {
+        return res.status(403).json({ message: "Account is suspended." });
+      }
+      if (!user.googleId) {
+        user.googleId = sub;
+      }
+      if (handoff.telegramId && !user.telegramId) {
+        user.telegramId = handoff.telegramId;
+      }
+      await user.save();
+    } else {
+      const selectedRole = role && ["user", "guide"].includes(role) ? role : "user";
+      const userPayload = {
+        name: name || "Explorer",
+        email: normalizedEmail,
+        googleId: sub,
+        authProvider: "google",
+        role: selectedRole,
+        isEmailVerified: true,
+        profilePicture: picture,
+      };
+      if (handoff.telegramId) {
+        userPayload.telegramId = handoff.telegramId;
+      }
+      if (selectedRole === "guide") {
+        userPayload.guideStatus = "none";
+      }
+
+      user = await User.create(userPayload);
+      if (selectedRole === "guide") {
+        await Guide.create({ user: user._id });
+      }
+      logger.info("[Handoff] New user created via Google-Telegram: " + user.email);
+    }
+
+    const accessToken = generateAccessToken(user._id);
+    const refreshToken = generateRefreshToken(user._id);
+
+    const safeUser = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      profilePicture: user.profilePicture,
+      guideStatus: user.guideStatus,
+      telegramId: user.telegramId,
+    };
+
+    handoff.status = "completed";
+    handoff.user = safeUser;
+    handoff.accessToken = accessToken;
+    handoff.refreshToken = refreshToken;
+    await handoff.save();
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    const botUrl = `https://t.me/KambataTravelBot/app?startapp=auth_${handoffId}`;
+    return res.json({
+      success: true,
+      botUrl,
+      handoffId,
+      user: safeUser,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getHandoffStatus = async (req, res, next) => {
+  try {
+    const { handoff } = req.query;
+    if (!handoff) return res.status(400).json({ message: "handoff is required" });
+
+    const record = await AuthHandoff.findOne({ handoffId: handoff });
+    if (!record) {
+      return res.status(404).json({ message: "Session expired or not found" });
+    }
+
+    if (record.status === "completed") {
+      record.status = "claimed";
+      await record.save();
+
+      return res.json({
+        status: "completed",
+        accessToken: record.accessToken,
+        user: record.user,
+      });
+    }
+
+    return res.json({ status: record.status });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const claimHandoff = async (req, res, next) => {
+  try {
+    const { handoffId } = req.body;
+    if (!handoffId) return res.status(400).json({ message: "handoffId is required" });
+
+    const record = await AuthHandoff.findOne({ handoffId });
+    if (!record) {
+      return res.status(404).json({ message: "Session not found or expired" });
+    }
+
+    if (!record.accessToken || !record.user) {
+      return res.status(400).json({ message: "Authentication not yet completed" });
+    }
+
+    record.status = "claimed";
+    await record.save();
+
+    if (record.refreshToken) {
+      res.cookie("refreshToken", record.refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+    }
+
+    return res.json({
+      accessToken: record.accessToken,
+      user: record.user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = {
+  handleWebhook,
+  telegramAuth,
+  completeTelegramAuth,
+  linkTelegramAccount,
+  unlinkTelegramAccount,
+  getTelegramBookings,
+  initHandoff,
+  completeHandoff,
+  getHandoffStatus,
+  claimHandoff,
+};

@@ -129,6 +129,32 @@ export const useTelegramAuth = () => {
           return;
         }
 
+        const startParam = tg.initDataUnsafe?.start_param;
+        if (startParam && startParam.startsWith("auth_")) {
+          const handoffId = startParam.replace("auth_", "");
+          apiClient
+            .post("/telegram/handoff-claim", { handoffId })
+            .then(({ data }) => {
+              if (data.accessToken && data.user) {
+                localStorage.setItem("token", data.accessToken);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                setState({
+                  status: "authenticated",
+                  user: data.user,
+                  telegramUser: null,
+                  error: null,
+                  initData,
+                });
+                return;
+              }
+              authenticate(initData);
+            })
+            .catch(() => {
+              authenticate(initData);
+            });
+          return;
+        }
+
         authenticate(initData);
         return;
       }
