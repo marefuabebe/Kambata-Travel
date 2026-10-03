@@ -177,8 +177,8 @@ export default function RootLayout({
                   console.error('ServiceWorker registration failed: ', err);
                 });
               }
-              // Prevent splash screen flash on subsequent visits
-              if (sessionStorage.getItem("hasSeenSplash")) {
+              // Prevent splash screen flash on subsequent visits or auth/telegram routes
+              if (sessionStorage.getItem("hasSeenSplash") || window.location.pathname.startsWith("/auth") || window.location.pathname.startsWith("/login") || window.location.pathname.startsWith("/register") || window.location.pathname.startsWith("/telegram")) {
                 document.documentElement.classList.add("hide-splash");
               }
             `,

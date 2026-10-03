@@ -2,8 +2,16 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function SplashScreen() {
+  const pathname = usePathname();
+  const isExcludedRoute =
+    pathname?.startsWith("/auth") ||
+    pathname?.startsWith("/login") ||
+    pathname?.startsWith("/register") ||
+    pathname?.startsWith("/telegram");
+
   const [visible, setVisible] = useState(true);
   const [activeDot, setActiveDot] = useState(0);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
@@ -113,6 +121,11 @@ export default function SplashScreen() {
   };
 
   useEffect(() => {
+    if (isExcludedRoute) {
+      setVisible(false);
+      return;
+    }
+
     // Skip if already shown this session
     const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
     if (hasSeenSplash) {
@@ -142,7 +155,11 @@ export default function SplashScreen() {
       clearInterval(interval);
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [dismiss]);
+  }, [dismiss, isExcludedRoute]);
+
+  if (isExcludedRoute || !visible) {
+    return null;
+  }
 
   return (
     <AnimatePresence>
