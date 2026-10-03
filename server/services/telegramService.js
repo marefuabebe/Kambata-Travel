@@ -98,7 +98,7 @@ const getInlineMenu = (miniAppUrl) => ({
 // Bot command/message handlers (for polling mode in dev)
 const setupBotHandlers = () => {
   if (!bot) return;
-  const miniAppUrl = process.env.FRONTEND_URL || 'https://kambata.travel';
+  const miniAppUrl = process.env.FRONTEND_URL || 'https://kambata-travel.vercel.app';
 
   bot.onText(/\/start/, async (msg) => {
     const chatId = msg.chat.id;
@@ -141,7 +141,7 @@ const processUpdate = async (update) => {
     logger.warn('[Telegram] processUpdate called but bot not initialized.');
     return;
   }
-  const miniAppUrl = process.env.FRONTEND_URL || 'https://kambata.travel';
+  const miniAppUrl = process.env.FRONTEND_URL || 'https://kambata-travel.vercel.app';
   // Register handlers for webhook mode too
   if (!bot._events || !bot._events.message) {
     setupBotHandlers();
