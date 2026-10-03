@@ -35,6 +35,7 @@ const { startPostTourJobs } = require("./cron/postTourJobs");
 const { initBot, registerWebhook } = require("./services/telegramService");
 
 const app = express();
+app.set("trust proxy", 1);
 const server = http.createServer(app);
 
 // 1. CORS Configuration (Must be before other middleware)

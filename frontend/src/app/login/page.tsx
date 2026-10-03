@@ -15,7 +15,7 @@ const LoginPage = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const { login, loginWithGoogle, loading, error } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const [googleError, setGoogleError] = useState<string | null>(null);
@@ -255,6 +255,7 @@ const LoginPage = () => {
                 text="continue_with"
                 size="large"
                 theme="outline"
+                locale={language === "am" ? "am" : "en"}
               />
             </div>
 

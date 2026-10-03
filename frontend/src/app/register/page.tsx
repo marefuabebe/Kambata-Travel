@@ -17,7 +17,7 @@ const RegisterPage = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const { register, loginWithGoogle, loading, error } = useAuth();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [localError, setLocalError] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -408,6 +408,7 @@ const RegisterPage = () => {
                     text="signup_with"
                     size="large"
                     theme="outline"
+                    locale={language === "am" ? "am" : "en"}
                   />
                 </div>
 

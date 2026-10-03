@@ -264,32 +264,24 @@ const loginUser = async (req, res, next) => {
 // @route   POST /api/auth/refresh
 // @access  Public
 const refreshAccessToken = async (req, res, next) => {
-  console.log(`[AUTH] refreshAccessToken invoked.`);
   try {
     const refreshToken = req.cookies.refreshToken;
 
     if (!refreshToken) {
-      console.warn(`[AUTH] refreshAccessToken: No refreshToken cookie found.`);
-      res.status(401);
-      throw new Error("Not authorized");
+      return res.status(401).json({ message: "No refresh token provided" });
     }
 
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
     const user = await User.findById(decoded.id);
 
     if (!user) {
-      console.warn(`[AUTH] refreshAccessToken: User not found.`);
-      res.status(401);
-      throw new Error("Not authorized");
+      return res.status(401).json({ message: "User not found" });
     }
 
     const accessToken = generateAccessToken(user._id);
-    console.log(`[AUTH] refreshAccessToken: Success.`);
-    res.json({ accessToken });
+    return res.json({ accessToken });
   } catch (error) {
-    console.error(`[AUTH] refreshAccessToken error.`);
-    res.status(401);
-    next(new Error("Not authorized"));
+    return res.status(401).json({ message: "Invalid or expired refresh token" });
   }
 };
 
