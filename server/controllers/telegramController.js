@@ -237,16 +237,34 @@ const completeHandoff = async (req, res, next) => {
       logger.info(`[Handoff] Reused existing Telegram user (${user._id}) for Google login: ${user.email}`);
 
     } else if (tgUser && googleUser && !tgUser._id.equals(googleUser._id)) {
-      // 6. If Google account and Telegram account are separate existing accounts:
-      //    - do NOT silently merge them.
-      //    - return a clear linking-required response.
-      //    - never attempt to create a second user with the same telegramId.
-      logger.warn(`[Handoff] Separate accounts detected for Telegram ID ${telegramId} (${tgUser.email}) and Google (${googleUser.email})`);
-      return res.status(409).json({
-        message: "This Telegram account is already linked to another Kambata Travel account. Please unlink it or sign in with your linked account.",
-        code: "ACCOUNT_ALREADY_LINKED",
-        telegramId,
-      });
+      // If tgUser is an auto-generated Telegram bot placeholder (e.g. tg_<id>@telegram.kambata.local),
+      // the user is logging in with their real Google account. We safely transfer the telegramId to the real Google account!
+      if (tgUser.authProvider === "telegram" || tgUser.email.endsWith("@telegram.kambata.local")) {
+        // Unlink telegramId from the placeholder first to maintain uniqueness
+        await User.updateOne(
+          { _id: tgUser._id },
+          { $unset: { telegramId: 1, telegramUsername: 1 } }
+        );
+
+        user = googleUser;
+        if (user.isBlocked || (user.suspendedUntil && user.suspendedUntil > Date.now())) {
+          return res.status(403).json({ message: "Account is suspended." });
+        }
+
+        user.telegramId = telegramId;
+        if (!user.googleId) user.googleId = sub;
+        if (picture && !user.profilePicture) user.profilePicture = picture;
+        await user.save();
+        logger.info(`[Handoff] Successfully linked existing Google user (${user.email}) to Telegram ID: ${telegramId} (upgraded from bot placeholder)`);
+      } else {
+        // Both are separate real accounts with actual email addresses!
+        logger.warn(`[Handoff] Separate accounts detected for Telegram ID ${telegramId} (${tgUser.email}) and Google (${googleUser.email})`);
+        return res.status(409).json({
+          message: "This Telegram account is already linked to another Kambata Travel account. Please unlink it or sign in with your linked account.",
+          code: "ACCOUNT_ALREADY_LINKED",
+          telegramId,
+        });
+      }
 
     } else if (tgUser && !googleUser && !tgUser.email.endsWith("@telegram.kambata.local")) {
       // tgUser has a different verified email already, and this is a different Google account
