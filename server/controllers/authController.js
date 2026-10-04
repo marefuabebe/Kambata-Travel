@@ -156,6 +156,25 @@ const loginUser = async (req, res, next) => {
       throw new Error("Please verify your email before accessing your account.");
     }
 
+    if (!password || typeof password !== "string") {
+      res.status(400);
+      throw new Error("Please enter your password");
+    }
+
+    // Check if account was created via social/external login without a password
+    if (!user.password) {
+      if (user.authProvider === "google" || user.googleId) {
+        res.status(400);
+        throw new Error("This account was created with Google. Please use 'Continue with Google' to sign in.");
+      }
+      if (user.authProvider === "telegram" || user.telegramId) {
+        res.status(400);
+        throw new Error("This account was created with Telegram. Please sign in via Telegram or use 'Forgot Password' to set a password.");
+      }
+      res.status(400);
+      throw new Error("This account does not have a password set. Please use your linked social login or reset your password.");
+    }
+
     if (await user.matchPassword(password)) {
       // Success: Reset tracking fields
       user.loginAttempts = 0;
@@ -385,9 +404,10 @@ const verifyOTP = async (req, res, next) => {
     const { otp } = req.body;
     const email = req.body.email ? req.body.email.toLowerCase().trim() : "";
     const ip = req.ip || req.connection.remoteAddress;
-    const userAgent = req.headers["user-agent"];
-
-    const user = await User.findOne({ email });
+    if (!otp || typeof otp !== "string") {
+      res.status(400);
+      throw new Error("Please enter a valid OTP code");
+    }
 
     if (!user || !user.resetPasswordOTP) {
       incrementIPFailure(ip);
@@ -488,6 +508,11 @@ const verifyEmail = async (req, res, next) => {
     const ip = req.ip || req.connection.remoteAddress;
     const userAgent = req.headers["user-agent"];
     const bcrypt = require("bcryptjs");
+
+    if (!otp || typeof otp !== "string") {
+      res.status(400);
+      throw new Error("Please enter a valid verification code");
+    }
 
     const user = await User.findOne({ email });
 

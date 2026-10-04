@@ -68,7 +68,18 @@ const completeTelegramAuth = async (req, res, next) => {
     if (linkEmail && linkPassword) {
       const normalizedEmail = linkEmail.toLowerCase().trim();
       user = await User.findOne({ email: normalizedEmail });
-      if (!user || !(await user.matchPassword(linkPassword))) return res.status(401).json({ message: "Invalid email or password" });
+      if (!user) return res.status(401).json({ message: "Invalid email or password" });
+      if (!user.password) {
+        if (user.authProvider === "google" || user.googleId) {
+          return res.status(400).json({
+            message: "This Kambata account was created with Google and has no password. Please link your account using the Google sign-in option."
+          });
+        }
+        return res.status(400).json({
+          message: "This account has no password set. Please use 'Forgot Password' or your connected social login."
+        });
+      }
+      if (!(await user.matchPassword(linkPassword))) return res.status(401).json({ message: "Invalid email or password" });
       if (user.telegramId && user.telegramId !== telegramId) return res.status(400).json({ message: "Kambata account already linked to different Telegram account" });
       user.telegramId = telegramId;
       user.telegramUsername = telegramUsername;
