@@ -59,29 +59,40 @@ export default function GuideRequestsPage() {
       </motion.div>
 
       {/* Tabs */}
-      <div className="flex gap-4 border-b border-gray-200 dark:border-gray-800 mb-8 overflow-x-auto pb-2">
-        {["guide_pending", "awaiting_payment", "confirmed", "declined_by_guide"].map(tab => {
-          const count = requests.filter(r => r.status === tab).length;
-          
-          return (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-5 py-2.5 rounded-2xl font-bold text-sm transition-all capitalize flex items-center gap-2 ${
-                activeTab === tab 
-                  ? "bg-[#1A331B] text-white shadow-md dark:bg-emerald-500"
-                  : "text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5"
-              }`}
-            >
-              {tab.replace(/_/g, ' ')}
-              {count > 0 && (
-                <span className={`py-0.5 px-2 rounded-full text-[10px] ${activeTab === tab ? 'bg-white/20' : 'bg-gray-200 dark:bg-gray-700'}`}>
-                  {count}
-                </span>
-              )}
-            </button>
-          );
-        })}
+      <div className="relative mb-8">
+        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+          {[
+            { key: "guide_pending", label: "Pending Review", icon: Clock },
+            { key: "awaiting_payment", label: "Awaiting Payment", icon: Loader2 },
+            { key: "confirmed", label: "Confirmed", icon: CheckCircle2 },
+            { key: "declined_by_guide", label: "Declined", icon: XCircle }
+          ].map(({ key, label, icon: TabIcon }) => {
+            const count = requests.filter(r => r.status === key).length;
+            const isActive = activeTab === key;
+            
+            return (
+              <button
+                key={key}
+                onClick={() => setActiveTab(key)}
+                className={`shrink-0 whitespace-nowrap px-4 md:px-5 py-2.5 rounded-2xl font-bold text-xs md:text-sm transition-all flex items-center gap-2 shadow-sm ${
+                  isActive 
+                    ? "bg-[#10B981] text-white shadow-emerald-500/20 shadow-md"
+                    : "bg-white dark:bg-[#1E293B] text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 border border-gray-100 dark:border-white/5"
+                }`}
+              >
+                <TabIcon size={14} className={isActive ? "text-white" : "text-gray-400"} />
+                <span>{label}</span>
+                {count > 0 && (
+                  <span className={`py-0.5 px-2 rounded-full text-[10px] font-black ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300'
+                  }`}>
+                    {count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {filteredRequests.length === 0 ? (
