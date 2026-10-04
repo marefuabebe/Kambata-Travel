@@ -183,80 +183,132 @@ const completeHandoff = async (req, res, next) => {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
-    let user = await User.findOne({ email: normalizedEmail });
 
-    if (user) {
+    // 2. Get Telegram ID from validated handoff session
+    const telegramId = handoff.telegramId ? String(handoff.telegramId) : null;
+
+    // 3. Search for existing user by telegramId
+    const tgUser = telegramId ? await User.findOne({ telegramId }) : null;
+
+    // 4. Search for Google account by Google ID or email according to existing auth design
+    const googleUser = await User.findOne({
+      $or: [
+        { googleId: sub },
+        { email: normalizedEmail },
+      ],
+    });
+
+    let user = null;
+
+    // 5. If the Telegram user already exists AND represents the same account:
+    //    - reuse existing User document
+    //    - do NOT create another User
+    //    - do NOT modify existing role unnecessarily
+    //    - create normal Kambata auth session/JWT
+    if (
+      tgUser &&
+      (
+        (googleUser && tgUser._id.equals(googleUser._id)) ||
+        tgUser.googleId === sub ||
+        tgUser.email === normalizedEmail ||
+        (tgUser.authProvider === "telegram" && tgUser.email.endsWith("@telegram.kambata.local") && !googleUser)
+      )
+    ) {
+      user = tgUser;
       if (user.isBlocked || (user.suspendedUntil && user.suspendedUntil > Date.now())) {
         return res.status(403).json({ message: "Account is suspended." });
       }
-      if (!user.googleId) {
-        user.googleId = sub;
+
+      // Safe update of Google profile data on the existing user document
+      if (!user.googleId) user.googleId = sub;
+      if (!user.isEmailVerified) user.isEmailVerified = true;
+      if (picture && !user.profilePicture) user.profilePicture = picture;
+
+      // If user was a telegram placeholder, upgrade email and authProvider to verified Google
+      if (user.authProvider === "telegram" && user.email.endsWith("@telegram.kambata.local")) {
+        user.email = normalizedEmail;
+        user.authProvider = "google";
+        if (name && (!user.name || user.name === "Telegram User")) {
+          user.name = name;
+        }
       }
-      if (handoff.telegramId && user.telegramId !== handoff.telegramId) {
-        // Disassociate telegramId from any other account first to avoid E11000 duplicate key error
-        await User.updateMany(
-          { telegramId: handoff.telegramId, _id: { $ne: user._id } },
-          { $unset: { telegramId: 1, telegramUsername: 1 } }
-        );
-        user.telegramId = handoff.telegramId;
-      }
+
       await user.save();
+      logger.info(`[Handoff] Reused existing Telegram user (${user._id}) for Google login: ${user.email}`);
+
+    } else if (tgUser && googleUser && !tgUser._id.equals(googleUser._id)) {
+      // 6. If Google account and Telegram account are separate existing accounts:
+      //    - do NOT silently merge them.
+      //    - return a clear linking-required response.
+      //    - never attempt to create a second user with the same telegramId.
+      logger.warn(`[Handoff] Separate accounts detected for Telegram ID ${telegramId} (${tgUser.email}) and Google (${googleUser.email})`);
+      return res.status(409).json({
+        message: "This Telegram account is already linked to another Kambata Travel account. Please unlink it or sign in with your linked account.",
+        code: "ACCOUNT_ALREADY_LINKED",
+        telegramId,
+      });
+
+    } else if (tgUser && !googleUser && !tgUser.email.endsWith("@telegram.kambata.local")) {
+      // tgUser has a different verified email already, and this is a different Google account
+      logger.warn(`[Handoff] Telegram user ${telegramId} has email ${tgUser.email}, but attempted Google login with ${normalizedEmail}`);
+      return res.status(409).json({
+        message: "This Telegram account is already associated with an email address. Account linking required.",
+        code: "ACCOUNT_LINKING_REQUIRED",
+        telegramId,
+      });
+
+    } else if (!tgUser && googleUser) {
+      // Google account exists, Telegram account is new (no user has this telegramId)
+      user = googleUser;
+      if (user.isBlocked || (user.suspendedUntil && user.suspendedUntil > Date.now())) {
+        return res.status(403).json({ message: "Account is suspended." });
+      }
+
+      if (user.telegramId && user.telegramId !== telegramId) {
+        return res.status(409).json({
+          message: "This Kambata Travel account is already linked to a different Telegram account.",
+          code: "ACCOUNT_ALREADY_LINKED",
+        });
+      }
+
+      // Safely link telegramId since no user holds this telegramId
+      if (telegramId && !user.telegramId) {
+        user.telegramId = telegramId;
+      }
+      if (!user.googleId) user.googleId = sub;
+      if (picture && !user.profilePicture) user.profilePicture = picture;
+
+      await user.save();
+      logger.info(`[Handoff] Linked Google user (${user._id}) to Telegram ID: ${telegramId}`);
+
     } else {
-      // Check if this Telegram user already had a placeholder account (e.g. from 1-click Telegram login)
-      let placeholderUser = null;
-      if (handoff.telegramId) {
-        placeholderUser = await User.findOne({ telegramId: handoff.telegramId });
-      }
-
+      // 7. If neither account exists:
+      //    - require Explorer/Traveler or Local Guide selection
+      //    - create exactly one User document
+      //    - never attempt to create a second user with the same telegramId
       const selectedRole = role && ["user", "guide"].includes(role) ? role : "user";
+      const userPayload = {
+        name: name || "Explorer",
+        email: normalizedEmail,
+        googleId: sub,
+        authProvider: "google",
+        role: selectedRole,
+        isEmailVerified: true,
+        profilePicture: picture,
+      };
 
-      if (placeholderUser && placeholderUser.email.endsWith("@telegram.kambata.local")) {
-        // Seamlessly upgrade placeholder account with verified Google credentials
-        placeholderUser.name = name || placeholderUser.name || "Explorer";
-        placeholderUser.email = normalizedEmail;
-        placeholderUser.googleId = sub;
-        placeholderUser.authProvider = "google";
-        placeholderUser.isEmailVerified = true;
-        if (picture) placeholderUser.profilePicture = picture;
-        if (selectedRole === "guide" && placeholderUser.role !== "guide") {
-          placeholderUser.role = "guide";
-          placeholderUser.guideStatus = "none";
-          await Guide.create({ user: placeholderUser._id });
-        }
-        await placeholderUser.save();
-        user = placeholderUser;
-        logger.info("[Handoff] Upgraded placeholder Telegram user to Google: " + user.email);
-      } else {
-        // Clear any conflicting telegramId on other accounts before creation
-        if (handoff.telegramId) {
-          await User.updateMany(
-            { telegramId: handoff.telegramId },
-            { $unset: { telegramId: 1, telegramUsername: 1 } }
-          );
-        }
-
-        const userPayload = {
-          name: name || "Explorer",
-          email: normalizedEmail,
-          googleId: sub,
-          authProvider: "google",
-          role: selectedRole,
-          isEmailVerified: true,
-          profilePicture: picture,
-        };
-        if (handoff.telegramId) {
-          userPayload.telegramId = handoff.telegramId;
-        }
-        if (selectedRole === "guide") {
-          userPayload.guideStatus = "none";
-        }
-
-        user = await User.create(userPayload);
-        if (selectedRole === "guide") {
-          await Guide.create({ user: user._id });
-        }
-        logger.info("[Handoff] New user created via Google-Telegram: " + user.email);
+      if (telegramId) {
+        userPayload.telegramId = telegramId;
       }
+      if (selectedRole === "guide") {
+        userPayload.guideStatus = "none";
+      }
+
+      user = await User.create(userPayload);
+      if (selectedRole === "guide") {
+        await Guide.create({ user: user._id });
+      }
+      logger.info(`[Handoff] Created single new user (${user._id}) via Google-Telegram: ${user.email} as ${user.role}`);
     }
 
     const accessToken = generateAccessToken(user._id);
